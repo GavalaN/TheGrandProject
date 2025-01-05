@@ -1,0 +1,38 @@
+#footer {
+    position:relative;
+    left:0;
+    bottom:0;
+    right: 0;
+    font-size: large;
+    overflow: hidden;
+}
+
+#footer a{
+    text-decoration: none;
+}
+
+#upper {
+    background-color: #484444;
+    height: 8rem;
+    padding-top: 1rem;
+    padding-left: 8%;
+}
+
+#upper ul {
+    text-decoration: none !important;
+    list-style-type: none;
+    text-align: left;
+}
+
+#lower {
+    background-color: #201c1c;
+    padding-bottom: 0.5rem;
+}
+
+#upper p, #lower p{
+    margin-bottom: 0;
+}
+
+#slogen {
+    padding-top: 3.5rem;
+}
