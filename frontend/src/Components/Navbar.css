@@ -14,14 +14,14 @@ a:hover{
     color:lightgray !important;
 }
 
-button {
+.navbar button {
     margin-top: -0.5rem !important;
     background-color: #a8ac14 !important;
     color: white !important;
     border: 1px solid black !important;
 }
 
-button:hover {
+.navbar button:hover {
     box-shadow: rgba(255, 255, 255, 0.301) 4px 4px 4px;
     margin-left: -4px;
     margin-right: 4px;

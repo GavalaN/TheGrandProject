@@ -1,6 +1,12 @@
 #home-search {
-    height: 100vh;
+    flex: 1;
     overflow: hidden;
+}
+
+input {
+    border: 2px solid black;
+    border-radius: 0.5rem;
+    height: 2rem;
 }
 
 .sm-input-f, .sm-input {
@@ -12,10 +18,51 @@
 }
 
 .lg-input {
-    width: 10rem;
+    width: 12rem;
 }
 
-label {
-    position: relative;
-    left: 0;
+#home-search-form {
+    width: 60%;
+    height: fit-content;
+    margin-top: 10rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 1rem;
+    border: 2px solid black;
+    border-radius: 0.5rem;
+    background-color: white;
+    text-align: left;
+    font-size: larger;
+    font-weight:600;
+}
+
+#home-search-form .row {
+    justify-content: center;
+    margin-top: 10px;
+}
+
+#home-search-lower {
+    display: flex;
+    margin-left: 55%;
+    margin-right: auto;
+}
+
+#home-search-lower .col-6 {
+    display: flex;
+    width: 100%;
+}
+
+#home-search-lower p {
+    font-size: larger;
+}
+
+#home-search-lower button {
+    background-color: red !important;
+    color: white;
+    border: 2px solid black;
+    border-radius: 1rem;
+    font-size: larger;
+    margin-left: 4rem;
+    height: 2.5rem;
+    padding-top: 0;
 }
