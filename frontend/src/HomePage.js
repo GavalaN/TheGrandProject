@@ -1,47 +1,10 @@
 import React from 'react'
+import HomeSearch from './Components/HomeSearch'
 
 export default function HomePage() {
   return (
     <div>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
-      <p>HomePage</p>
+      <HomeSearch/>
     </div>
   )
 }

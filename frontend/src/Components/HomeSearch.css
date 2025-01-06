@@ -1,0 +1,21 @@
+#home-search {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.sm-input-f, .sm-input {
+    width: 5rem;
+}
+
+.sm-input-f {
+    margin-right: 1rem;
+}
+
+.lg-input {
+    width: 10rem;
+}
+
+label {
+    position: relative;
+    left: 0;
+}
