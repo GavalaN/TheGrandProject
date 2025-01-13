@@ -22,8 +22,8 @@ input {
 }
 
 #home-search-form {
-    width: 60%;
-    height: fit-content;
+    width: 70%;
+    height: min-content;
     margin-top: 10rem;
     margin-left: auto;
     margin-right: auto;
@@ -34,6 +34,11 @@ input {
     text-align: left;
     font-size: larger;
     font-weight:600;
+    transition: height 0.3s ease;
+}
+
+#home-search-form.expanded {
+    height: auto; /* Az automatikus magasság a tartalom alapján */
 }
 
 #home-search-form .row {
@@ -65,4 +70,8 @@ input {
     margin-left: 4rem;
     height: 2.5rem;
     padding-top: 0;
+}
+
+.collapse {
+    display: none;
 }

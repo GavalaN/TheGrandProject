@@ -21,7 +21,7 @@ export default function Navbar() {
             <a className="nav-link" href="#">Hasznos tudnivalók</a>
             </li>
             <li className="nav-item">
-            <a className="nav-link" href="#"><button className='btn'><i class="bi bi-plus-lg"></i>Hirdetésfeladás</button></a>
+            <a className="nav-link" href="#"><button className='btn'><i className="bi bi-plus-lg"></i>Hirdetésfeladás</button></a>
             </li>
         </ul>
         </div>
