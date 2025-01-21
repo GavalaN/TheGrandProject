@@ -8,10 +8,15 @@
 
 a {
     color: white !important;
+    text-decoration: none !important;
 }
 
 a:hover{
     color:lightgray !important;
+}
+
+.navbar{
+    padding-top: 0 !important;
 }
 
 .navbar button {
@@ -27,4 +32,18 @@ a:hover{
     margin-right: 4px;
     margin-top: -12px !important;
     margin-bottom: 4px;
+}
+
+img{
+    height: 50px;
+    margin-left: 1rem;
+}
+
+.nav-item{
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+}
+
+.nav-link{
+    padding-bottom: 0 !important;
 }

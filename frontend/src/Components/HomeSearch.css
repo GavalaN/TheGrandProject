@@ -1,6 +1,6 @@
 #home-search {
     flex: 1;
-    overflow: hidden;
+    overflow: visible;
 }
 
 input {
@@ -22,23 +22,28 @@ input {
 }
 
 #home-search-form {
-    width: 70%;
+    width: fit-content; /*fit-content/70%*/
     height: min-content;
     margin-top: 10rem;
     margin-left: auto;
     margin-right: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
     padding-bottom: 1rem;
     border: 2px solid black;
-    border-radius: 0.5rem;
+    border-radius: 0.0rem;
     background-color: white;
     text-align: left;
     font-size: larger;
     font-weight:600;
     transition: height 0.3s ease;
+    box-shadow: -30px 30px 50px -12px rgba(0,0,0,0.75);
 }
 
 #home-search-form.expanded {
-    height: auto; /* Az automatikus magasság a tartalom alapján */
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #home-search-form .row {

@@ -1,5 +1,5 @@
 import React from 'react'
-import HomeSearch from './Components/HomeSearch'
+import HomeSearch from '../Components/HomeSearch'
 
 export default function HomePage() {
   return (

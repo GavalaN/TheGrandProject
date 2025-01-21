@@ -9,9 +9,9 @@ export default function Footer() {
             <div className='row'>
                 <div className='col'>
                   <ul>
-                      <li><Link to="/">Adatvédelmi Tájékoztatás</Link></li>
-                      <li><Link to="/">Ászf</Link></li>
-                      <li><Link to="/">Kapcsolat</Link></li>
+                      <li><Link to="/adatvedelmi-tajekoztatas">Adatvédelmi Tájékoztatás</Link></li>
+                      <li><Link to="/aszf">Ászf</Link></li>
+                      <li><Link to="/kapcsolat">Kapcsolat</Link></li>
                   </ul>
                 </div>
                 <div className='col'>
