@@ -3,7 +3,7 @@ import HomeSearch from '../Components/HomeSearch'
 
 export default function HomePage() {
   return (
-    <div>
+    <div className="content">
       <HomeSearch/>
     </div>
   )

@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import './HomeSearch.css';
 
-// Ha nem szükséges az egész komponenst újrarenderelni, használhatjuk React.memo-t.
 const HomeSearch = React.memo(() => {
     const [isActive, setIsActive] = useState(false);
 
     const handleClick = (e) => {
-        e.preventDefault();  // Megakadályozza a form alapértelmezett elküldését
+        e.preventDefault();
         setIsActive((prevState) => !prevState);
     };
 
     return (
-        <div id='home-search'>
+        // <div id='home-search'>
             <form id='home-search-form'>
                 <div className='row d-flex'>
                     <div className='col-auto'>
@@ -99,7 +98,7 @@ const HomeSearch = React.memo(() => {
                     </div>
                 </div>
             </form>
-        </div>
+        //</div>
     );
 });
 

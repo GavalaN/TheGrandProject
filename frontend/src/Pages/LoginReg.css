@@ -1,0 +1,49 @@
+#login-form, #registration-form{
+    width: 25rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 6rem;
+    background-color: white;
+    padding: 2rem;
+    border: 2px solid black;
+    box-shadow: -30px 30px 50px -12px rgba(0,0,0,0.75);
+}
+
+#login-form a, #registration-form a{
+    color: black !important;
+    transition: 0.3s;
+}
+
+#login-form a:hover, #registration-form a:hover{
+    color: #696868 !important;
+    transition: 0.3s;
+}
+
+#login-form .show-password, #registration-form .show-password{
+    text-align: left;
+}
+
+#login-form .input, #registration-form .input{
+    border: 2px solid black;
+    border-radius: 0.5rem;
+    height: 2rem;
+}
+
+#login-form button, #registration-form button{
+    background-color: red !important;
+    color: white;
+    border: 2px solid black;
+    border-radius: 1rem;
+    font-size: larger;
+    height: 2.5rem;
+    width: 10rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    transition: 0.5s;
+}
+
+#login-form button:hover, #registration-form button:hover{
+    box-shadow: -10px 10px 12px -5px rgba(0,0,0,0.75);
+    transition: 0.5s;
+}

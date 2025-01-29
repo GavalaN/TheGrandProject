@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function NewAd() {
   return (
-    <div>Új hírdetés</div>
+    <div className="content">Új hírdetés</div>
   )
 }

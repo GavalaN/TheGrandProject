@@ -2,6 +2,7 @@ import React from 'react'
 import './Navbar.css'
 import logo from '../logo_white.png'
 import { Link } from 'react-router-dom'
+import "bootstrap/js/src/collapse.js";
 
 export default function Navbar() {
   return (

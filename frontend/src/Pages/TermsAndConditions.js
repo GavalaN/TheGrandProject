@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function TermsAndConditions() {
   return (
-    <div>Általános szerződési feltételek</div>
+    <div className="content">Általános szerződési feltételek</div>
   )
 }

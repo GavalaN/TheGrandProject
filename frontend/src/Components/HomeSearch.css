@@ -1,9 +1,12 @@
 #home-search {
     flex: 1;
     overflow: visible;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-input {
+#home-search-form input {
     border: 2px solid black;
     border-radius: 0.5rem;
     height: 2rem;
@@ -22,7 +25,7 @@ input {
 }
 
 #home-search-form {
-    width: fit-content; /*fit-content/70%*/
+    width: 70%; /*fit-content/70%*/
     height: min-content;
     margin-top: 10rem;
     margin-left: auto;
