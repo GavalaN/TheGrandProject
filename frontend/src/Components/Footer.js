@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './Footer.css'
 import { Link, useLocation } from 'react-router-dom'
 
-export default function Footer() {
+export default function Footer(isActive) {
   const [footerMargin, setFooterMargin] = useState(0);
   const location = useLocation();
 
@@ -26,7 +26,7 @@ export default function Footer() {
     return () => {
       window.removeEventListener("resize", updateFooterMargin);
     };
-  }, [location.pathname]);
+  }, [location.pathname, footerMargin, isActive]);
   return (
     <div className="wrapper">
     <div id="footer" style={{ marginTop: footerMargin }}>

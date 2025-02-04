@@ -4,6 +4,7 @@
     top: 0;
     left: 0;
     right: 0;
+    z-index: 3;
 }
 
 a {
@@ -13,10 +14,6 @@ a {
 
 a:hover{
     color:lightgray !important;
-}
-
-.navbar{
-    padding-top: 0 !important;
 }
 
 .navbar button {
@@ -47,5 +44,22 @@ img{
 }
 
 .nav-link{
+    display:inline !important;
     padding-bottom: 0 !important;
+}
+
+@media (max-width: 990px){
+    .navbar-nav {
+        float: right !important;
+    }
+    .navbar-collapse {
+        text-align: center;
+    }
+    .navbar-nav {
+        display: inline-block;
+        float: none;
+    }
+    .nav-item{
+        margin-top: 0.5rem !important;
+    }
 }

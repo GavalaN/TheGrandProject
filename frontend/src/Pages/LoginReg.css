@@ -6,6 +6,7 @@
     background-color: white;
     padding: 2rem;
     border: 2px solid black;
+    border-radius: 0.2rem;
     box-shadow: -30px 30px 50px -12px rgba(0,0,0,0.75);
 }
 
@@ -25,7 +26,7 @@
 
 #login-form .input, #registration-form .input{
     border: 2px solid black;
-    border-radius: 0.5rem;
+    border-radius: 0.2rem;
     height: 2rem;
 }
 
@@ -33,7 +34,7 @@
     background-color: red !important;
     color: white;
     border: 2px solid black;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     font-size: larger;
     height: 2.5rem;
     width: 10rem;
@@ -44,6 +45,6 @@
 }
 
 #login-form button:hover, #registration-form button:hover{
-    box-shadow: -10px 10px 12px -5px rgba(0,0,0,0.75);
+    box-shadow: 8px 8px 12px -5px rgba(0,0,0,0.75);
     transition: 0.5s;
 }
