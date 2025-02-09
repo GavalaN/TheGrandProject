@@ -4,19 +4,16 @@
     top: 0;
     left: 0;
     right: 0;
+    z-index: 5;
 }
 
-a {
+.nav-item a {
     color: white !important;
     text-decoration: none !important;
 }
 
-a:hover{
+.nav-item a:hover{
     color:lightgray !important;
-}
-
-.navbar{
-    padding-top: 0 !important;
 }
 
 .navbar button {
@@ -24,6 +21,7 @@ a:hover{
     background-color: #a8ac14 !important;
     color: white !important;
     border: 1px solid black !important;
+    transition: 0.3s;
 }
 
 .navbar button:hover {
@@ -32,9 +30,10 @@ a:hover{
     margin-right: 4px;
     margin-top: -12px !important;
     margin-bottom: 4px;
+    transition: 0.3s;
 }
 
-img{
+.brand-logo{
     height: 50px;
     margin-left: 1rem;
 }
@@ -45,5 +44,22 @@ img{
 }
 
 .nav-link{
+    display:inline !important;
     padding-bottom: 0 !important;
+}
+
+@media (max-width: 990px){
+    .navbar-nav {
+        float: right !important;
+    }
+    .navbar-collapse {
+        text-align: center;
+    }
+    .navbar-nav {
+        display: inline-block;
+        float: none;
+    }
+    .nav-item{
+        margin-top: 0.5rem !important;
+    }
 }

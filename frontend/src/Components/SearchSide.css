@@ -1,0 +1,123 @@
+body{
+    overflow-x: hidden;
+}
+
+.collapsed {
+    visibility: hidden !important;
+    display: none !important;
+}
+
+#side-search-button{
+    position: absolute;
+    z-index: 4 !important;
+    left: 0;
+    top: 0;
+    width: 2rem;
+    height: 2rem;
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    border-radius: 0.5rem;
+    font-size: larger;
+    margin-top: 2rem;
+    margin-left: 2rem;
+    padding-top: 0;
+    transition: 0.5s;
+    z-index: 4 !important;
+}
+
+#side-search-button:hover {
+    box-shadow: 6px 6px 12px -5px rgba(0,0,0,0.75);
+    transition: 0.5s;
+}   
+
+#side-search {
+    position: absolute; /* Lebegő pozíció */
+    z-index: 4 !important;
+    width: 22rem !important; /* Szélesség */
+}
+
+#side-search-form {
+    display: block;
+    width: 19rem; /* Biztosítja, hogy a form ne nyúljon túl a szülő elemén */
+    height: min-content;
+    margin-top: 2rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 1rem;
+    border: 2px solid black;
+    border-radius: 0.2rem;
+    background-color: white;
+    text-align: left;
+    font-size: medium;
+    font-weight: 600;
+    box-shadow: -30px 30px 50px -12px rgba(0,0,0,0.75);
+    z-index: 3 !important;
+}
+
+#side-search-closing {
+    visibility: hidden;
+    display: absolute;
+    margin-right: -1rem;
+    width: fit-content;
+    height: fit-content;
+    padding: 0;
+    font-size: larger;
+    border: none;
+}
+
+#side-search-lower {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 1rem !important;
+}
+
+#side-search-form .lg-input{
+    width: 100%;
+}
+
+#side-search-form .input-group-f, #side-search-form .form-select-f{
+    margin-right: auto !important;
+}
+
+#side-search-form .input-group{
+    width: 50% !important;
+}
+
+#side-search-form .input-group-f, #side-search-form .form-select-f{
+    margin-right: 0.6rem !important;
+}
+
+#side-search-form .sm-input{
+    width: 4.6rem !important;
+}
+
+.col-12{
+    width: 100% !important;
+}
+
+.w-100{
+    width: 100% !important;
+}
+
+@media (max-width: 1400px) {
+    #side-search-closing {
+        visibility: visible;
+    }
+}
+
+@media (max-width: 1200px) {
+    #side-search {
+        position: absolute; /* Lebegő pozíció */
+        width: 100%;
+        height: auto;
+    }
+
+    #side-search-form {
+        width: 100;
+    }
+}
