@@ -20,6 +20,7 @@ useEffect(() => {
 
 
   return (
+<<<<<<< HEAD
     <div className="content">Hasznos Információk
 <div class="p-4"><select id="select-beast" className='form-select' data-placeholder="Select a person..."  autocomplete="off">
 				<option value="">None</option>
@@ -29,5 +30,8 @@ useEffect(() => {
 				<option value="5">Arnold Schwarzenegger</option>
 			</select></div>
     </div>
+=======
+    <div className="content">Hasznos Információk</div>
+>>>>>>> 3e6312538f4fd12e8a6295cf264bbc6fd1714f5c
   )
 }

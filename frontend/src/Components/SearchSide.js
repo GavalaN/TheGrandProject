@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import './Search.css';
 import './SearchSide.css';
@@ -238,3 +239,12 @@ const SearchSide = React.memo(() => {
 });
 
 export default SearchSide;
+=======
+import React from 'react'
+
+export default function SearchSide() {
+  return (
+    <div>SearchSide</div>
+  )
+}
+>>>>>>> 3e6312538f4fd12e8a6295cf264bbc6fd1714f5c

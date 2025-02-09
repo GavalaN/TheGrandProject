@@ -4,7 +4,11 @@
     top: 0;
     left: 0;
     right: 0;
+<<<<<<< HEAD
     z-index: 5;
+=======
+    z-index: 3;
+>>>>>>> 3e6312538f4fd12e8a6295cf264bbc6fd1714f5c
 }
 
 .nav-item a {
