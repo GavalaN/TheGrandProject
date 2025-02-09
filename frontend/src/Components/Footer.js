@@ -12,11 +12,7 @@ export default function Footer(isActive) {
       const footerHeight = document.getElementById("footer").scrollHeight;
       const navHeight = document.getElementById("nav").scrollHeight;
       const windowHeight = window.innerHeight;
-<<<<<<< HEAD
       setFooterMargin(windowHeight - contentHeight - navHeight + 2*footerHeight);
-=======
-      setFooterMargin(windowHeight - contentHeight - navHeight);
->>>>>>> 3e6312538f4fd12e8a6295cf264bbc6fd1714f5c
       console.log(footerMargin)
     };
 
