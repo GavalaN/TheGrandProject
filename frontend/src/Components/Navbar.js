@@ -9,11 +9,7 @@ export default function Navbar() {
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
-<<<<<<< HEAD
             <img src={logo} alt="assetto-auto-logo" className="brand-logo" />
-=======
-            <img src={logo} alt="assetto-auto-logo" />
->>>>>>> 3e6312538f4fd12e8a6295cf264bbc6fd1714f5c
           </Link>
           <button
             className="navbar-toggler"

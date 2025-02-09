@@ -1,15 +1,9 @@
-<<<<<<< HEAD
 import React, { useEffect, useState } from 'react';
 import './Search.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import TomSelect from 'tom-select';
 import 'tom-select/dist/css/tom-select.css'
-=======
-import React, { useState } from 'react';
-import './HomeSearch.css';
-import { Link } from 'react-router-dom';
->>>>>>> 3e6312538f4fd12e8a6295cf264bbc6fd1714f5c
 
 function yearRange(){
     let years = [];
@@ -22,7 +16,6 @@ function yearRange(){
 
 const HomeSearch = React.memo(() => {
     const [isActive, setIsActive] = useState(false);
-<<<<<<< HEAD
     const [brands, setBrands] = useState([])
     const [selectedBrand, setSelectedBrand] = useState(null);
     const  years = yearRange();
@@ -49,9 +42,6 @@ const HomeSearch = React.memo(() => {
     const handleBrandChange = (event) => {
         setSelectedBrand(event.target.value);
       };
-=======
-    const  years = yearRange();
->>>>>>> 3e6312538f4fd12e8a6295cf264bbc6fd1714f5c
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -90,7 +80,6 @@ const HomeSearch = React.memo(() => {
                     </div>
                     <div className="col-auto">
                         <label htmlFor='type'>Típus</label><br/>
-<<<<<<< HEAD
                         <input
                             list="brandOptions"
                             id="type"
@@ -104,9 +93,6 @@ const HomeSearch = React.memo(() => {
                             <option key={index} value={brand.name} />
                             ))}
                         </datalist>
-=======
-                        <input id='type' name='type' className='lg-input2' />
->>>>>>> 3e6312538f4fd12e8a6295cf264bbc6fd1714f5c
                     </div>
                     <div className="col-auto">
                         <label htmlFor='fuel'>Üzemanyag</label><br/>
@@ -175,7 +161,6 @@ const HomeSearch = React.memo(() => {
                         </div>
                         <div className="col-auto">
                             <label htmlFor='body_type'>Kivitel</label><br/>
-<<<<<<< HEAD
                             <select id='body_type' name='body_type' className='form-select w-100'>
                                 <option value='all'>Összes</option>
                                 <option value='hatchback'>Ferdehátú</option>
@@ -189,20 +174,6 @@ const HomeSearch = React.memo(() => {
                                 <option value='cabrio'>Kabrió</option>
                                 <option value='van'>Kisbusz</option>
                                 <option value='other'>Egyéb</option>
-=======
-                            <select id='body_type' name='body_type' className='form-select'>
-                                <option value='0'>Összes</option>
-                                <option value='1'>Ferdehátú</option>
-                                <option value='2'>Kombi</option>
-                                <option value='3'>Szedán</option>
-                                <option value='4'>Egyterű</option>
-                                <option value='5'>SUV</option>
-                                <option value='6'>Pickup</option>
-                                <option value='7'>Kabrió</option>
-                                <option value='8'>Egyterű</option>
-                                <option value='9'>Kisbusz</option>
-                                <option value='14'>Egyéb</option>
->>>>>>> 3e6312538f4fd12e8a6295cf264bbc6fd1714f5c
                             </select>
                         </div>
                         <div className="col-auto">
