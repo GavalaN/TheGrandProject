@@ -91,7 +91,6 @@ const HomeSearch = React.memo(() => {
                 <div className='row d-flex justify-content-between'>
                     <div className='col-auto'>
                         <label htmlFor='manufacturer'>Márka</label><br/>
-                        {/* {brandselect.clearOptions()} */}
                         <select id="brand" className='form-select' data-placeholder="Mindegy" autoComplete="off">
                             {/* <option value="0">Összes</option>
                             <option value="BMW">BMW</option>
@@ -196,7 +195,7 @@ const HomeSearch = React.memo(() => {
                         </div>
                         <div className="col-auto">
                             <label htmlFor='body_type'>Kivitel</label><br/>
-                            <select id='body_type' name='body_type' className='form-select w-100'>
+                            <select id='body_type' name='body_type' className='form-select w-120'>
                                 <option value='all'>Összes</option>
                                 <option value='hatchback'>Ferdehátú</option>
                                 <option value='stationwagon'>Kombi</option>
@@ -254,7 +253,7 @@ const HomeSearch = React.memo(() => {
                     <div className='row d-flex justify-content-between'>
                         <div className="col-auto">
                             <label htmlFor='number_of_cylinder'>Hengerek száma</label><br/>
-                            <select id='number_of_cylinder' className='form-select'>
+                            <select id='number_of_cylinder' className='form-select w-120'>
                                 <option value='0'>Összes</option>
                                 <option value='1'>1 db</option>
                                 <option value='2'>2 db</option>

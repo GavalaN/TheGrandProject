@@ -28,3 +28,40 @@ h1 {
   font-size: 2rem;
   color: #333;
 }
+
+#newad-form {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  border: 2px solid black;
+  padding: 2rem;
+  box-shadow: -30px 30px 50px -12px rgba(0,0,0,0.75);
+}
+
+#newad-form button{
+  background-color: red !important;
+  color: white;
+  border: 2px solid black;
+  border-radius: 0.5rem;
+  font-size: larger;
+  margin-left: 4rem;
+  height: 2.5rem;
+  padding-top: 0;
+  transition: 0.5s;
+}
+
+#newad-form button:hover{
+  box-shadow: 6px 6px 12px -5px rgba(0,0,0,0.75);
+  transition: 0.5s;
+}
+
+#newad-form input, #newad-form select, #newad-form textarea{
+  border: 2px solid black;
+  border-radius: 0.2rem;
+}
+
+#newad-form #brand{
+  padding: 0;
+  border: 2px solid black;
+}

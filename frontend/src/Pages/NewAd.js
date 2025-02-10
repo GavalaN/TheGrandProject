@@ -6,7 +6,7 @@ export default function NewAd() {
   return (
     <div className="content">
       <NewAdForm/>
-      <SearchSide/>
+      {/* <SearchSide/> */}
     </div>
   )
 }

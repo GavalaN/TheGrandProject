@@ -142,6 +142,7 @@
 
 .ts-wrapper, .ts-control{
     height: 2rem !important;
+    background-color: none !important;
 }
 
 .ts-wrapper{
@@ -149,8 +150,44 @@
     width: 8rem !important;
 }
 
+.ts-control{
+    background-color: none !important;
+    line-height: 1.5 !important;
+    font-size: 1rem !important;
+    border: 2px solid black !important;
+}
+
+.full .ts-control, .ts-control, .ts-wrapper.single.input-active .ts-control{
+    background-color: none !important;
+}
+
+.ts-control, .ts-wrapper.single.input-active .ts-control{
+    background-color: none !important;
+}
+
 .ts-control .item{
     padding: 0 !important;
+    font-size: larger !important;
+    margin-top: -0.5rem !important;
+}
+
+.ts-dropdown{
+    font-size: 15px !important;
+    line-height: 25px !important;
+}
+
+#brand-ts-control{
+    margin-top: -0.6rem !important;
+    font-size: large !important;
+}
+
+.w-120{
+    width: 120%;
+}
+
+#brand{
+    padding: 0;
+    border: 2px solid black;
 }
 
 @media (max-width: 990px){
