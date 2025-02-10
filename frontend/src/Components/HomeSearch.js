@@ -17,27 +17,61 @@ function yearRange(){
 const HomeSearch = React.memo(() => {
     const [isActive, setIsActive] = useState(false);
     const [brands, setBrands] = useState([])
-    const [selectedBrand, setSelectedBrand] = useState(null);
+    const [selectedBrand, setSelectedBrand] = useState(undefined);
     const  years = yearRange();
+    const [brandSelection, setBrandSelection] = useState([])
+
+    // useEffect(() => {
+    // axios.get('http://localhost:5000/Brand/BrandGet')
+    //     .then(res => {
+    //         console.log(res.data)
+    //         setBrands(res.data)
+    //     })
+    // }, [])
+    
+    // new TomSelect("#brand",{
+    //     create: false,
+    //     sortField: {
+    //         field: "text",
+    //         direction: "asc",
+    //         allowEmptyOption: true,
+    //     }
+        
+    // })
 
     useEffect(() => {
-    axios.get('http://localhost:5000/Brand/BrandGet')
-        .then(res => {
-            console.log(res.data)
-            setBrands(res.data)
-        })
-        .then(() => {
+        axios.get('http://localhost:5000/Brand/BrandGet')
+            .then(res => {
+                console.log(res.data)
+                setBrands(res.data)
+            })
+        }, [])
+
+    useEffect(() => {
+        if (brands.length > 0) {
+            const selection = brands.map((brand) => ({
+                value: brand.name,
+                text: brand.name,
+            }));
+            setBrandSelection(selection);
+        }
+    }, [brands])
+    
+
+    useEffect(() => {
+        if(brandSelection.length > 0){
             new TomSelect("#brand",{
                 create: false,
+                options: brandSelection,
                 sortField: {
                     field: "text",
                     direction: "asc",
                     allowEmptyOption: true,
                 }
-                
             })
-        })
-    }, [])
+        }
+    }, [brandSelection])
+    
 
     const handleBrandChange = (event) => {
         setSelectedBrand(event.target.value);
@@ -57,12 +91,13 @@ const HomeSearch = React.memo(() => {
                 <div className='row d-flex justify-content-between'>
                     <div className='col-auto'>
                         <label htmlFor='manufacturer'>Márka</label><br/>
+                        {/* {brandselect.clearOptions()} */}
                         <select id="brand" className='form-select' data-placeholder="Mindegy" autoComplete="off">
-                            <option value=""></option>
-                            <option value="BMW"></option>
+                            {/* <option value="0">Összes</option>
+                            <option value="BMW">BMW</option>
                             {brands.map((brand) => (
                             <option value={brand.name}>{brand.name}</option>
-                            ))}
+                            ))} */}
                         </select>
                         {/* <input
                             list="brandOptions"

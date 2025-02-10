@@ -140,6 +140,19 @@
     margin-right: 0.2rem;
 }
 
+.ts-wrapper, .ts-control{
+    height: 2rem !important;
+}
+
+.ts-wrapper{
+    padding: 0 !important;
+    width: 8rem !important;
+}
+
+.ts-control .item{
+    padding: 0 !important;
+}
+
 @media (max-width: 990px){
     #home-search-form {
         width: 95%;
