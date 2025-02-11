@@ -24,6 +24,66 @@ const SearchSide = React.memo(() => {
         setIsActive((prevState) => !prevState);
     };
 
+    function setInputFilter(textbox, inputFilter, errMsg) {
+        ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop", "focusout"].forEach(function(event) {
+          textbox.addEventListener(event, function(e) {
+            if (inputFilter(this.value)) {
+              // Accepted value
+              if (["keydown","mousedown","focusout"].indexOf(e.type) >= 0){
+                this.classList.remove("input-error");
+                this.setCustomValidity("");
+              }
+              this.oldValue = this.value;
+              this.oldSelectionStart = this.selectionStart;
+              this.oldSelectionEnd = this.selectionEnd;
+            } else if (this.hasOwnProperty("oldValue")) {
+              // Rejected value - restore the previous one
+              this.classList.add("input-error");
+              this.setCustomValidity(errMsg);
+              this.reportValidity();
+              this.value = this.oldValue;
+              this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+            } else {
+              // Rejected value - nothing to restore
+              this.value = "";
+            }
+          });
+        });
+    }
+
+    const handleInputChange = () => {
+        //Ár ellenörzés
+        setInputFilter(document.getElementById("price_from"), function(value) {
+            return /^\d*$/.test(value); }, "Ide csak egész számot adhatsz meg!");
+        setInputFilter(document.getElementById("price_to"), function(value) {
+            return /^\d*$/.test(value); }, "Ide csak egész számot adhatsz meg!");
+
+        //Km ellenörzés
+        setInputFilter(document.getElementById("odometer_from"), function(value) {
+            return /^\d*$/.test(value); }, "Ide csak egész számot adhatsz meg!");
+        setInputFilter(document.getElementById("odometer_to"), function(value) {
+            return /^\d*$/.test(value); }, "Ide csak egész számot adhatsz meg!");
+
+        //Ccm ellenörzés
+        setInputFilter(document.getElementById("ccm_from"), function(value) {
+            return /^\d*$/.test(value); }, "Ide csak egész számot adhatsz meg!");
+        setInputFilter(document.getElementById("ccm_to"), function(value) {
+            return /^\d*$/.test(value); }, "Ide csak egész számot adhatsz meg!");
+
+        //LE ellenörzés
+        setInputFilter(document.getElementById("horsepower_from"), function(value) {
+            return /^\d*$/.test(value); }, "Ide csak egész számot adhatsz meg!");
+        setInputFilter(document.getElementById("horsepower_to"), function(value) {
+            return /^\d*$/.test(value); }, "Ide csak egész számot adhatsz meg!");
+        
+        //Kg ellenörzés
+        setInputFilter(document.getElementById("kerb_wheight_from"), function(value) {
+            return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 3500); }, "0kg és 3500Kg között adhatsz meg értéket!");
+        setInputFilter(document.getElementById("kerb_wheight_to"), function(value) {
+            return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 3500); }, "0kg és 3500Kg között adhatsz meg értéket!");
+    
+    }
+
     return (
         <div id='side-search'>
             <a data-tooltip-id='search-tooltip' data-tooltip-content='Keresés' id='side-search-button' className={isActive ? '' : 'collapsed'} onClick={handleClick}>
@@ -73,13 +133,13 @@ const SearchSide = React.memo(() => {
                         <label htmlFor='price_from'>Vételár</label><br/>
                         <div className="input-groups">
                             <div className="input-group input-group-f">
-                                <input id='price_from' name='price_from' className='sm-input2' placeholder='-tól' />
+                                <input id='price_from' name='price_from' className='sm-input2' placeholder='-tól' onChange={handleInputChange} />
                                 <div className="input-group-append">
                                     <span className="">Ft</span>
                                 </div>
                             </div>
                             <div className="input-group">
-                                <input id='price_to' name='price_to' className='sm-input2' placeholder='-ig' />
+                                <input id='price_to' name='price_to' className='sm-input2' placeholder='-ig' onChange={handleInputChange} />
                                 <div className="input-group-append">
                                     <span className="">Ft</span>
                                 </div>
@@ -92,13 +152,13 @@ const SearchSide = React.memo(() => {
                             <label htmlFor='odometer_from'>Kilóméteróra állás</label><br/>
                             <div className="input-groups">
                                 <div className="input-group input-group-f">
-                                    <input id='odometer_from' name='odometer_from' className='sm-input3' placeholder='-tól' min={0} max={9999999}/>
+                                    <input id='odometer_from' name='odometer_from' className='sm-input3' placeholder='-tól' min={0} max={9999999} onChange={handleInputChange} />
                                     <div className="input-group-append">
                                         <span className="">km</span>
                                     </div>
                                 </div>
                                 <div className="input-group">
-                                    <input id='odometer_to' name='odometer_to' className='sm-input3' placeholder='-ig' min={0} max={9999999}/>
+                                    <input id='odometer_to' name='odometer_to' className='sm-input3' placeholder='-ig' min={0} max={9999999} onChange={handleInputChange} />
                                     <div className="input-group-append">
                                         <span className="">km</span>
                                     </div>
@@ -130,13 +190,13 @@ const SearchSide = React.memo(() => {
                             <label htmlFor='ccm_from'>Hengerűrtartalom</label><br/>
                             <div className="input-groups">
                                 <div className="input-group input-group-f">
-                                    <input id='ccm_from' name='ccm_from' className='sm-input' placeholder='-tól' min={0} max={9999}/>
+                                    <input id='ccm_from' name='ccm_from' className='sm-input' placeholder='-tól' min={0} max={9999} onChange={handleInputChange} />
                                     <div className="input-group-append">
                                         <span className="">cm³</span>
                                     </div>
                                 </div>
                                 <div className="input-group">
-                                    <input id='ccm_to' name='ccm_to' className='sm-input' placeholder='-ig' min={0} max={9999}/>
+                                    <input id='ccm_to' name='ccm_to' className='sm-input' placeholder='-ig' min={0} max={9999} onChange={handleInputChange} />
                                     <div className="input-group-append">
                                         <span className="">cm³</span>
                                     </div>
@@ -147,13 +207,13 @@ const SearchSide = React.memo(() => {
                             <label htmlFor='horsepower'>Teljesítmény</label><br/>
                             <div className="input-groups">
                                 <div className="input-group input-group-f">
-                                    <input id='horsepower_from' name='horsepower_from' className='sm-input3' placeholder='-tól' min={0} max={9999}/>
+                                    <input id='horsepower_from' name='horsepower_from' className='sm-input3' placeholder='-tól' min={0} max={9999} onChange={handleInputChange} />
                                     <div className="input-group-append">
                                         <span className="">LE</span>
                                     </div>
                                 </div>
                                 <div className="input-group">
-                                    <input id='horsepower_to' name='horsepower_to' className='sm-input3' placeholder='-ig' min={0} max={9999}/>
+                                    <input id='horsepower_to' name='horsepower_to' className='sm-input3' placeholder='-ig' min={0} max={9999} onChange={handleInputChange} />
                                     <div className="input-group-append">
                                         <span className="">LE</span>
                                     </div>
@@ -214,13 +274,13 @@ const SearchSide = React.memo(() => {
                             <label htmlFor='kerb_wheight_from'>Súly</label><br/>
                             <div className="input-groups">
                                 <div className="input-group input-group-f">
-                                    <input id='kerb_wheight_from' name='kerb_wheight_from' className='sm-input3' placeholder='-tól' min={0} max={3500}/>
+                                    <input id='kerb_wheight_from' name='kerb_wheight_from' className='sm-input3' placeholder='-tól' min={0} max={3500} onChange={handleInputChange} />
                                     <div className="input-group-append">
                                         <span className="">kg</span>
                                     </div>
                                 </div>
                                 <div className="input-group">
-                                    <input id='kerb_wheight_to' name='kerb_wheight_to' className='sm-input3' placeholder='-ig' min={0} max={3500}/>
+                                    <input id='kerb_wheight_to' name='kerb_wheight_to' className='sm-input3' placeholder='-ig' min={0} max={3500} onChange={handleInputChange} />
                                     <div className="input-group-append">
                                         <span className="">kg</span>
                                     </div>

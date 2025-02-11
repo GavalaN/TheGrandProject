@@ -2,6 +2,7 @@ import React, { use, useEffect, useState } from 'react'
 import SearchSide from '../Components/SearchSide'
 import axios from 'axios'
 import CarCard from '../Components/CarCard'
+import './SearchList.css'
 
 export default function SearchList() {
   const [cars, setCars] = useState([])
@@ -14,7 +15,7 @@ export default function SearchList() {
       })
   }, [])
   return (
-   <div className='content search-list'>
+   <div id='search-list' className='content search-list'>
       <div className="row">
         <div className="col-3">
           <SearchSide/>

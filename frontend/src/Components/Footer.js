@@ -6,30 +6,29 @@ export default function Footer(isActive) {
   const [footerMargin, setFooterMargin] = useState(0);
   const location = useLocation();
 
-  useEffect(() => {
-    const updateFooterMargin = () => {
-      const contentHeight = document.querySelector(".content").offsetHeight;
-      const footerHeight = document.getElementById("footer").scrollHeight;
-      const navHeight = document.getElementById("nav").scrollHeight;
-      const windowHeight = window.innerHeight;
-      setFooterMargin(windowHeight - contentHeight - navHeight + 2*footerHeight);
-      console.log(footerMargin)
-    };
+  // useEffect(() => {
+  //   const updateFooterMargin = () => {
+  //     const contentHeight = document.querySelector(".content").offsetHeight;
+  //     const footerHeight = document.getElementById("footer").scrollHeight;
+  //     const navHeight = document.getElementById("nav").scrollHeight;
+  //     const windowHeight = window.innerHeight;
+  //     setFooterMargin(windowHeight - contentHeight - navHeight + 2*footerHeight);
+  //     console.log(footerMargin)
+  //   };
 
     // Frissíti a margót az oldal betöltődésekor
-    updateFooterMargin();
+    //updateFooterMargin();
 
     // Eseményfigyelő az ablakméret változására
-    window.addEventListener("resize", updateFooterMargin);
+    //window.addEventListener("resize", updateFooterMargin);
 
     // Tisztítás az eseményfigyelő eltávolításához
-    return () => {
-      window.removeEventListener("resize", updateFooterMargin);
-    };
-  }, [location.pathname, footerMargin, isActive]);
+  //   return () => {
+  //     window.removeEventListener("resize", updateFooterMargin);
+  //   };
+  // }, [location.pathname, footerMargin, isActive]);
   return (
-    <div className="wrapper">
-    <div id="footer" style={{ marginTop: footerMargin }}>
+    <div id="footer" >
       <div id="upper" className="text-white">
         <div className="row">
           <div className="col">
@@ -50,6 +49,5 @@ export default function Footer(isActive) {
         <p>weboldal_neve.hu © Minden jog fenntartva</p>
       </div>
     </div>
-  </div>
   )
 }

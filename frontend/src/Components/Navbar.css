@@ -5,6 +5,7 @@
     left: 0;
     right: 0;
     z-index: 5;
+    font-family: "Kanit", serif !important;
 }
 
 .nav-item a {

@@ -55,6 +55,7 @@ body{
     font-weight: 600;
     box-shadow: -30px 30px 50px -12px rgba(0,0,0,0.75);
     z-index: 3 !important;
+    font-family: "Kanit", serif !important;
 }
 
 #side-search-closing {
@@ -102,6 +103,32 @@ body{
 
 .w-100{
     width: 100% !important;
+}
+
+#side-search label{
+    font-weight: bold !important;
+}
+
+#side-search span{
+    font-weight: 600 !important;
+    font-size: larger;
+}
+
+#side-search .sm-input-f2, #side-search .sm-input2 {
+    width: 5.1rem !important;
+}
+
+#side-search .sm-input-f3, #side-search .sm-input3 {
+    width: 4.4rem !important;
+}
+
+#side-search #side-search-form .sm-input {
+    width: 4.2rem !important;
+}
+
+#side-search input{
+    background-color: none !important;
+    height: 1.75rem !important;
 }
 
 @media (max-width: 1400px) {

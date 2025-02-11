@@ -8,6 +8,7 @@
     border: 2px solid black;
     border-radius: 0.2rem;
     box-shadow: -30px 30px 50px -12px rgba(0,0,0,0.75);
+    font-family: "Kanit", serif !important;
 }
 
 #login-form a, #registration-form a{

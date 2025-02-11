@@ -1,3 +1,26 @@
+#home-search{
+    background-image: url('../Images/homebg_big.jpg');
+    background-position-y: 40%;
+    background-position-x: 50%;
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 10rem 0 10rem 0;
+    font-family: "Kanit", serif !important;
+    margin-bottom: 5rem;
+    box-shadow: 0px -40px 30px -30px rgb(0, 0, 0) inset,
+        0px 40px 30px -30px rgb(0, 0, 0) inset;
+}
+
+.number{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.welcome-h1{
+    font-family: "Kanit", serif !important;
+}
+
 #home-search-form input, #home-search-form select, #side-search-form input, #side-search-form select {
     border: 2px solid black;
     border-radius: 0.2rem;
@@ -51,7 +74,6 @@
 #home-search-form {
     width: 72%; /*fit-content/70%*/
     height: min-content;
-    margin-top: 10rem;
     margin-left: auto;
     margin-right: auto;
     padding-left: 2rem;
@@ -62,9 +84,13 @@
     background-color: white;
     text-align: left;
     font-size:larger;
-    font-weight:600;
+    font-weight: 600;
     transition: height 0.3s ease;
     box-shadow: -30px 30px 50px -12px rgba(0,0,0,0.75);
+}
+
+#home-search label, #side-search label{
+    font-weight: 500 !important;
 }
 
 #home-search-form.expanded {
@@ -93,6 +119,7 @@
 
 #home-search-lower p {
     font-size: larger;
+    font-weight: 400 !important;
     min-width: fit-content;
 }
 
@@ -133,6 +160,7 @@
     border-right: 2px solid black !important;
     height: 1.8rem !important;
     border-radius: 0.2rem 0 0 0.2rem !important;
+    text-align: right !important;
 }
 
 .input-group-append {

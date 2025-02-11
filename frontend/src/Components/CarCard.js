@@ -1,6 +1,6 @@
 import React from 'react'
 import './CarCard.css'
-import logo from '../logo.png'
+import logo from '../Images/logo.png'
 import 'react-tooltip/dist/react-tooltip.css'
 import { Tooltip } from 'react-tooltip'
 
