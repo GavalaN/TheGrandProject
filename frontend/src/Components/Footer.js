@@ -40,13 +40,10 @@ export default function Footer(isActive) {
               <li><Link to="/kapcsolat">Kapcsolat</Link></li>
             </ul>
           </div>
-          <div className="col">
-            <p id="slogen">szlogen</p>
-          </div>
         </div>
       </div>
       <div id="lower" className="bg-dark text-white">
-        <p>weboldal_neve.hu © Minden jog fenntartva</p>
+        <p>© assettoauto.hu - 2025.</p>
       </div>
     </div>
   )

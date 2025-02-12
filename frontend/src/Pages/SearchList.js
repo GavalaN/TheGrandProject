@@ -15,12 +15,10 @@ export default function SearchList() {
       })
   }, [])
   return (
-   <div id='search-list' className='content search-list'>
+   <div  className='content search-list'>
+      <SearchSide/>
       <div className="row">
-        <div className="col-3">
-          <SearchSide/>
-        </div>
-        <div className="col-9">
+        <div id='search-list'>
           {cars.map(car => {
             return <CarCard id={car.id} brand={car.brand} type_name={car.type_name} fuel_type={car.fuel_type} year={car.year} ccm={car.ccm} horsepower={car.hp} odometer={car.kmClock} price={car.price} description={car.description}/>
           })}

@@ -3,18 +3,20 @@
     background-position-y: 40%;
     background-position-x: 50%;
     height: 100%;
-    width: 100%;
+    width: 60%;
     background-repeat: no-repeat;
-    background-size: 60% 100%;
+    background-size: 100% 100%;
     transition: 1s;
     padding-bottom: 10rem;
-    /* box-shadow: 40px 0px 20px -30px rgba(0,0,0,1) inset,
-    -40px 0px 30px -30px rgba(0,0,0,1) inset; */
+    box-shadow: 40px 0px 20px -30px rgba(0,0,0,1) inset,
+    -40px 0px 30px -30px rgba(0,0,0,1) inset;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 @media (max-width: 1300px){
     #search-list{
-        background-size: 65% 100%;
+        width: 65%;
         transition: 1s;
     }
     
@@ -22,14 +24,14 @@
 
 @media (max-width: 1200px){
     #search-list{
-        background-size: 75% 100%;
+        width: 75%;
         transition: 1s;
     }
 }
 
 @media (max-width: 990px){
     #search-list{
-        background-size: 95% 100%;
+        width: 95%;
         transition: 1s;
     }
 

@@ -37,6 +37,7 @@ h1 {
   border: 2px solid black;
   padding: 2rem;
   box-shadow: -30px 30px 50px -12px rgba(0,0,0,0.75);
+  font-family: "Kanit", serif !important;
 }
 
 #newad-form button{

@@ -2,7 +2,7 @@ body{
     overflow-x: hidden;
 }
 
-.collapsed {
+.form-collapsed {
     visibility: hidden !important;
     display: none !important;
 }

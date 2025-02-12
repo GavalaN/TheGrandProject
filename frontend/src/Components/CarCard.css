@@ -4,7 +4,7 @@
     text-align: left;
     height: 14rem;
     width: 60%;
-    margin: 1rem auto 1rem 2.5rem;
+    margin: 1rem auto 1rem auto;
     padding: 1rem;
     border: 1px solid black;
     border-radius: 0.2rem;
@@ -69,22 +69,15 @@
     margin-right: auto;
 }
 
-@media (max-width: 1300px){
+@media (max-width: 1500px){
     .car-card{
-        width: 65%;
+        width: 70%;
     }
-    
 }
 
 @media (max-width: 1200px){
     .car-card{
-        width: 70%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .search-list .row .col-9{
-        width: 100%;
+        width: 80%;
     }
 }
 
@@ -92,5 +85,4 @@
     .car-card{
         width: 90%;
     }
-
 }
