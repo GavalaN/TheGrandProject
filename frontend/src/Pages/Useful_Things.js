@@ -21,7 +21,7 @@ useEffect(() => {
 
   return (
     <div className="content">Hasznos Információk
-<div class="p-4"><select id="select-beast" className='form-select' data-placeholder="Select a person..."  autocomplete="off">
+<div className="p-4"><select id="select-beast" className='form-select' data-placeholder="Select a person..."  autocomplete="off">
 				<option value="">None</option>
 				<option value="4">Thomas Edison</option>
 				<option value="1">Nikola</option>

@@ -11,7 +11,7 @@ export default function Navbar() {
           <Link className="navbar-brand" to="/">
             <img src={logo} alt="assetto-auto-logo" className="brand-logo" />
           </Link>
-          <span class="navbar-text">
+          <span className="navbar-text">
             Megbízható autók, megbízható forrásból
           </span>
           <button

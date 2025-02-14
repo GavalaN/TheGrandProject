@@ -1,8 +1,6 @@
 #login-form, #registration-form{
     width: 25rem;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 6rem;
+    margin: 6rem auto;
     background-color: white;
     padding: 2rem;
     border: 2px solid black;

@@ -87,13 +87,13 @@ const SearchSide = React.memo(() => {
     return (
         <div id='side-search'>
             <a data-tooltip-id='search-tooltip' data-tooltip-content='Keresés' id='side-search-button' className={isActive ? '' : 'form-collapsed'} onClick={handleClick}>
-                <i class="bi bi-search"></i>
+                <i className="bi bi-search"></i>
             </a>
             <Tooltip id='search-tooltip'/>
             <form id='side-search-form' className={isActive ? 'form-collapsed' : ''}>
                 {console.log(years)}
                 <div className='row d-flex justify-content-between'>
-                    <button id='side-search-closing' className='btn ms-auto' onClick={handleClick}><i class="bi bi-x-square"></i></button>
+                    <button id='side-search-closing' className='btn ms-auto' onClick={handleClick}><i className="bi bi-x-square"></i></button>
                     <div className='col-12'>
                         <label htmlFor='manufacturer'>Márka</label><br/>
                         <input id='manufacturer' name='manufacturer' className='lg-input' />
