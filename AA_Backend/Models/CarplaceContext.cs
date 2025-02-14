@@ -1,0 +1,266 @@
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+
+namespace AA_Backend.Models;
+
+public partial class CarplaceContext : DbContext
+{
+    public CarplaceContext()
+    {
+    }
+
+    public CarplaceContext(DbContextOptions<CarplaceContext> options)
+        : base(options)
+    {
+    }
+
+    public virtual DbSet<Brand> Brands { get; set; }
+
+    public virtual DbSet<Car> Cars { get; set; }
+
+    public virtual DbSet<Color> Colors { get; set; }
+
+    public virtual DbSet<Motor> Motors { get; set; }
+
+    public virtual DbSet<Pictue> Pictues { get; set; }
+
+    public virtual DbSet<Type> Types { get; set; }
+
+    public virtual DbSet<User> Users { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseMySQL("SERVER=localhost;PORT=3306;DATABASE=carplace;USER=root;PASSWORD=;SSL MODE=none;");
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Brand>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("brands");
+
+            entity.Property(e => e.Id)
+                .HasColumnType("int(9)")
+                .HasColumnName("id");
+            entity.Property(e => e.Name)
+                .HasMaxLength(255)
+                .HasColumnName("name");
+        });
+
+        modelBuilder.Entity<Car>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("cars");
+
+            entity.HasIndex(e => e.BrandId, "brand_id");
+
+            entity.HasIndex(e => e.ColorId, "color_id");
+
+            entity.HasIndex(e => e.PicId, "pic_id");
+
+            entity.HasIndex(e => e.SellerId, "seller_id");
+
+            entity.HasIndex(e => e.TypeId, "type_id");
+
+            entity.Property(e => e.Id)
+                .HasColumnType("int(9)")
+                .HasColumnName("id");
+            entity.Property(e => e.Bodytype)
+                .HasMaxLength(32)
+                .HasColumnName("bodytype");
+            entity.Property(e => e.BrandId)
+                .HasColumnType("int(9)")
+                .HasColumnName("brand_id");
+            entity.Property(e => e.ColorId)
+                .HasColumnType("int(9)")
+                .HasColumnName("color_id");
+            entity.Property(e => e.Description)
+                .HasDefaultValueSql("'NULL'")
+                .HasColumnType("text")
+                .HasColumnName("description");
+            entity.Property(e => e.KmClock)
+                .HasColumnType("int(11)")
+                .HasColumnName("km_clock");
+            entity.Property(e => e.PicId)
+                .HasColumnType("int(8)")
+                .HasColumnName("pic_id");
+            entity.Property(e => e.Price)
+                .HasColumnType("int(11)")
+                .HasColumnName("price");
+            entity.Property(e => e.SellerId)
+                .HasColumnType("int(9)")
+                .HasColumnName("seller_id");
+            entity.Property(e => e.Sold).HasColumnName("sold");
+            entity.Property(e => e.TypeId)
+                .HasColumnType("int(9)")
+                .HasColumnName("type_id");
+            entity.Property(e => e.UploadDate)
+                .HasColumnType("datetime")
+                .HasColumnName("upload_date");
+
+            entity.HasOne(d => d.Brand).WithMany(p => p.Cars)
+                .HasForeignKey(d => d.BrandId)
+                .OnDelete(DeleteBehavior.Restrict)
+                .HasConstraintName("cars_ibfk_1");
+
+            entity.HasOne(d => d.Color).WithMany(p => p.Cars)
+                .HasForeignKey(d => d.ColorId)
+                .OnDelete(DeleteBehavior.Restrict)
+                .HasConstraintName("cars_ibfk_3");
+
+            entity.HasOne(d => d.Pic).WithMany(p => p.Cars)
+                .HasForeignKey(d => d.PicId)
+                .HasConstraintName("cars_ibfk_5");
+
+            entity.HasOne(d => d.Seller).WithMany(p => p.Cars)
+                .HasForeignKey(d => d.SellerId)
+                .OnDelete(DeleteBehavior.Restrict)
+                .HasConstraintName("cars_ibfk_4");
+
+            entity.HasOne(d => d.Type).WithMany(p => p.Cars)
+                .HasForeignKey(d => d.TypeId)
+                .OnDelete(DeleteBehavior.Restrict)
+                .HasConstraintName("cars_ibfk_2");
+        });
+
+        modelBuilder.Entity<Color>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("colors");
+
+            entity.Property(e => e.Id)
+                .HasColumnType("int(9)")
+                .HasColumnName("id");
+            entity.Property(e => e.Name)
+                .HasMaxLength(255)
+                .HasColumnName("name");
+        });
+
+        modelBuilder.Entity<Motor>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("motors");
+
+            entity.Property(e => e.Id)
+                .HasColumnType("int(9)")
+                .HasColumnName("id");
+            entity.Property(e => e.Cc)
+                .HasColumnType("int(11)")
+                .HasColumnName("cc");
+            entity.Property(e => e.EngineType)
+                .HasMaxLength(12)
+                .HasColumnName("engine_type");
+            entity.Property(e => e.FuelType)
+                .HasMaxLength(11)
+                .HasColumnName("fuel_type");
+            entity.Property(e => e.Horsepower)
+                .HasColumnType("int(11)")
+                .HasColumnName("horsepower");
+            entity.Property(e => e.NumOfCyl)
+                .HasColumnType("int(11)")
+                .HasColumnName("num_of_cyl");
+        });
+
+        modelBuilder.Entity<Pictue>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("pictues");
+
+            entity.HasIndex(e => e.CarId, "car_id");
+
+            entity.Property(e => e.Id)
+                .HasColumnType("int(8)")
+                .HasColumnName("id");
+            entity.Property(e => e.CarId)
+                .HasColumnType("int(11)")
+                .HasColumnName("car_id");
+            entity.Property(e => e.FilePath)
+                .HasMaxLength(124)
+                .HasColumnName("filePath");
+        });
+
+        modelBuilder.Entity<Type>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("types");
+
+            entity.HasIndex(e => e.BrandId, "brand_id");
+
+            entity.HasIndex(e => e.MotorId, "motor_id");
+
+            entity.Property(e => e.Id)
+                .HasColumnType("int(9)")
+                .HasColumnName("id");
+            entity.Property(e => e.BrandId)
+                .HasColumnType("int(9)")
+                .HasColumnName("brand_id");
+            entity.Property(e => e.Drive)
+                .HasMaxLength(50)
+                .HasColumnName("drive");
+            entity.Property(e => e.KWeight)
+                .HasColumnType("int(11)")
+                .HasColumnName("k_weight");
+            entity.Property(e => e.MotorId)
+                .HasColumnType("int(9)")
+                .HasColumnName("motor_id");
+            entity.Property(e => e.TransType)
+                .HasMaxLength(50)
+                .HasColumnName("trans_type");
+            entity.Property(e => e.TypeName)
+                .HasMaxLength(255)
+                .HasColumnName("type_name");
+            entity.Property(e => e.Year).HasColumnType("int(9)");
+
+            entity.HasOne(d => d.Brand).WithMany(p => p.Types)
+                .HasForeignKey(d => d.BrandId)
+                .OnDelete(DeleteBehavior.Restrict)
+                .HasConstraintName("types_ibfk_1");
+
+            entity.HasOne(d => d.Motor).WithMany(p => p.Types)
+                .HasForeignKey(d => d.MotorId)
+                .OnDelete(DeleteBehavior.Restrict)
+                .HasConstraintName("types_ibfk_2");
+        });
+
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("users");
+
+            entity.Property(e => e.Id)
+                .HasColumnType("int(9)")
+                .HasColumnName("id");
+            entity.Property(e => e.Created)
+                .HasColumnType("datetime")
+                .HasColumnName("created");
+            entity.Property(e => e.Email)
+                .HasMaxLength(255)
+                .HasColumnName("email");
+            entity.Property(e => e.IsAdmin).HasColumnName("is_admin");
+            entity.Property(e => e.Password)
+                .HasMaxLength(255)
+                .HasColumnName("password");
+            entity.Property(e => e.PhoneNum)
+                .HasMaxLength(50)
+                .HasColumnName("phone_num");
+            entity.Property(e => e.Salt)
+                .HasMaxLength(64)
+                .HasColumnName("SALT");
+            entity.Property(e => e.Username)
+                .HasMaxLength(255)
+                .HasColumnName("username");
+        });
+
+        OnModelCreatingPartial(modelBuilder);
+    }
+
+    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+}
