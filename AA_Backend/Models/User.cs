@@ -6,7 +6,7 @@ namespace AA_Backend.Models;
 
 public partial class User
 {
-    [JsonIgnore]
+    
     public int Id { get; set; }
 
     public string Username { get; set; } = null!;
@@ -16,9 +16,9 @@ public partial class User
     public string PhoneNum { get; set; } = null!;
 
     public string Password { get; set; } = null!;
-    [JsonIgnore]
-    public DateTime Created { get; set; }
-    [JsonIgnore]
+    
+    public DateTime? Created { get; set; }
+    
     public bool IsAdmin { get; set; }
     
     public string Salt { get; set; } = null!;
