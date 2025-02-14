@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "K5X6+VxsWsRIpH6/gjmkO74xibtmMQMJnVMBh3HSYGI=",
+  "Hash": "JDeojyWn2krt4aR6+5DYbsHRRHR3cT0cD3HLJ+ZNEG4=",
   "Source": "AA_Backend",
   "BasePath": "_content/AA_Backend",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }

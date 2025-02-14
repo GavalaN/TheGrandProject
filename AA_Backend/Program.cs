@@ -1,4 +1,6 @@
 
+using AA_Backend.Models;
+using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -32,6 +34,20 @@ namespace AA_Backend
                 }
                 return sBuilder.ToString();
             }
+        }
+        public static Dictionary<string, User> LoggedInUsers = new Dictionary<string, User>();
+
+        public static async Task SendEmail(string mailAddressTo, string subject, string body)
+        {
+            MailMessage mail = new MailMessage();
+            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
+            mail.From = new MailAddress("teszt.elek0000000000@gmail.com");
+            mail.To.Add(mailAddressTo);
+            mail.Body = body;
+            smtpClient.Port = 587;
+            smtpClient.Credentials = new System.Net.NetworkCredential("teszt.elek0000000000@gmail.com", "mrrh sdss knkj lfjw");
+            smtpClient.EnableSsl = true;
+            await smtpClient.SendMailAsync(mail);
         }
 
         public static void Main(string[] args)
