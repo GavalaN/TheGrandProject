@@ -8,7 +8,7 @@ namespace AA_Backend.Controllers
     [ApiController]
     public class RegistryController : ControllerBase
     {
-        [HttpPost]
+        [HttpPost("Registry")]
         public async  Task<IActionResult> Registry(User user)
         {
             using (var context = new CarplaceContext())
@@ -23,7 +23,8 @@ namespace AA_Backend.Controllers
                     {
                         return BadRequest("Az email cím már foglalt!");
                     }
-                    
+                    user.Created = DateTime.Now;
+
                     user.IsAdmin = false;
                     user.Password = Program.CreateSHA256(user.Password);
                     await context.Users.AddAsync(user);
@@ -38,7 +39,7 @@ namespace AA_Backend.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("Aktiválció")]
         public async Task<IActionResult> Activate(string Username, string email)
         {
             using (var context = new CarplaceContext())
