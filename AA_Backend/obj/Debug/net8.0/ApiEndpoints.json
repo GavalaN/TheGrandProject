@@ -85,24 +85,8 @@
   },
   {
     "ContainingType": "AA_Backend.Controllers.RegistryController",
-    "Method": "Registry",
-    "RelativePath": "Registry",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "user",
-        "Type": "AA_Backend.Models.User",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "AA_Backend.Controllers.RegistryController",
     "Method": "Activate",
-    "RelativePath": "Registry",
+    "RelativePath": "Registry/Aktiv\u00E1lci\u00F3",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -116,6 +100,22 @@
         "Name": "email",
         "Type": "System.String",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AA_Backend.Controllers.RegistryController",
+    "Method": "Registry",
+    "RelativePath": "Registry/Registry",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user",
+        "Type": "AA_Backend.Models.User",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
