@@ -20,7 +20,7 @@ public partial class User
     public DateTime Created { get; set; }
     [JsonIgnore]
     public bool IsAdmin { get; set; }
-    [JsonIgnore]
+    
     public string Salt { get; set; } = null!;
     [JsonIgnore]
     public virtual ICollection<Car> Cars { get; set; } = new List<Car>();

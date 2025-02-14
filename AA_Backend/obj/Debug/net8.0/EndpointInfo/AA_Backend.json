@@ -219,6 +219,10 @@
           "password": {
             "type": "string",
             "nullable": true
+          },
+          "salt": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

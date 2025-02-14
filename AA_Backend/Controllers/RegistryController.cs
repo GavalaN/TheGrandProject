@@ -24,7 +24,7 @@ namespace AA_Backend.Controllers
                         return BadRequest("Az email cím már foglalt!");
                     }
                     user.Created = DateTime.Now;
-                    user.Salt = Program.GenerateSalt();
+                    
                     user.IsAdmin = false;
                     user.Password = Program.CreateSHA256(user.Password);
                     await context.Users.AddAsync(user);
