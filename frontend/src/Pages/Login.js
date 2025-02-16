@@ -1,9 +1,42 @@
 import React from 'react'
 import './LoginReg.css'
 import { Link } from 'react-router-dom'
+import axios from 'axios';
+import bcrypt from 'bcryptjs';
 
 export default function Login() {
-  
+  async function Login(e) {
+    e.preventDefault();
+
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    try {
+        // Salt lekérése a szervertől
+        const saltResponse = await axios.post('http://localhost:5000/Login/GetSalt/' + username);
+        const salt = saltResponse.data; 
+        console.log("Salt:", salt);
+
+        // Jelszó hash-elése
+        const hashedPassword = await bcrypt.hash(password, salt);
+        console.log("Hashed Password:", hashedPassword);
+
+        // Login adatok összeállítása
+        const login = {
+            loginName: username,
+            tmpHash: hashedPassword
+        };
+
+        // Login kérés küldése
+        const loginResponse = await axios.post('http://localhost:5000/Login', login);
+        console.log("Login Response:", loginResponse.data);
+        
+    } catch (error) {
+        console.error("Hiba történt:", error);
+        alert("Bejelentkezési hiba: " + (error.response?.data || error.message));
+    }
+}
+
 
   function ShowPassword() {
     var x = document.getElementById("password");
@@ -14,12 +47,12 @@ export default function Login() {
     }
   }
   return (
-  <div className='content'>
+  <div className="content">
     <form id="login-form">
       <h3>Bejelentkezés</h3>
       <div className="mb-3">
         <label>Felhasználónév</label>
-        <input type="text" className="form-control input" placeholder="Felhasználónév begépelése"/>
+        <input type="text" id="username" className="form-control input" placeholder="Felhasználónév begépelése"/>
       </div>
       <div className="mb-3">
         <label>Jelszó</label>
@@ -34,7 +67,7 @@ export default function Login() {
         </div>
       </div>
       <div className="d-grid">
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary" onClick={Login}>
           Bejelentkezés
         </button>
       </div>

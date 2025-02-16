@@ -9,7 +9,7 @@ export default function Registration() {
     e.preventDefault();
 
     // Aszinkron módon hash-eljük a jelszót
-    const salt = bcrypt.genSaltSync(16); // Salt generálása
+    const salt = bcrypt.genSaltSync(12); // Salt generálása
     const hashedPassword = await bcrypt.hash(document.getElementById("password").value, salt); // Jelszó titkosítása aszinkron
 
     let user = {
@@ -19,7 +19,7 @@ export default function Registration() {
       phoneNum: document.getElementById("phoneNum").value,
       password: hashedPassword,
       created: null,
-      isAdmin: 0,
+      isAdmin: false,
       salt: salt,
     };
 
@@ -29,7 +29,7 @@ export default function Registration() {
       alert(response.data);
     } catch (error) {
       console.log(error);
-      alert(error);
+      alert(error.response.data);
     }
 
     console.log(user); // Kiírja a felhasználói adatokat a konzolra
@@ -45,7 +45,7 @@ export default function Registration() {
   }
 
   return (
-    <div className='content'>
+    <div className="content">
       <form id="registration-form" onSubmit={Reg}>
         <h3>Regisztráció</h3>
         <div className="mb-3">
