@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\Source\\Repos\\TheGrandProject\\AA_Backend\\AA_Backend.csproj": {}
+    "C:\\Users\\tulak\\Documents\\GitKraken\\TheGrandProject\\AA_Backend\\AA_Backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\Source\\Repos\\TheGrandProject\\AA_Backend\\AA_Backend.csproj": {
+    "C:\\Users\\tulak\\Documents\\GitKraken\\TheGrandProject\\AA_Backend\\AA_Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Source\\Repos\\TheGrandProject\\AA_Backend\\AA_Backend.csproj",
+        "projectUniqueName": "C:\\Users\\tulak\\Documents\\GitKraken\\TheGrandProject\\AA_Backend\\AA_Backend.csproj",
         "projectName": "AA_Backend",
-        "projectPath": "C:\\Users\\Admin\\Source\\Repos\\TheGrandProject\\AA_Backend\\AA_Backend.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Source\\Repos\\TheGrandProject\\AA_Backend\\obj\\",
+        "projectPath": "C:\\Users\\tulak\\Documents\\GitKraken\\TheGrandProject\\AA_Backend\\AA_Backend.csproj",
+        "packagesPath": "C:\\Users\\tulak\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tulak\\Documents\\GitKraken\\TheGrandProject\\AA_Backend\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\tulak\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -38,13 +34,7 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -88,7 +78,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

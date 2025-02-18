@@ -43,7 +43,7 @@ namespace AA_Backend.Controllers
                 try
                 {
                     string hash = Program.CreateSHA256(loginDTO.TmpHash);
-                    User response = await context.Users.FirstOrDefaultAsync(u => u.Username == loginDTO.LoginName && u.Password == hash);
+                    User response = await context.Users.FirstOrDefaultAsync(u => u.Username == loginDTO.LoginName && u.Hash == hash);
                     if (response != null)
                     {
                         string token = Guid.NewGuid().ToString();

@@ -26,7 +26,7 @@ namespace AA_Backend.Controllers
                     user.Created = DateTime.Now;
                     
                     user.IsAdmin = false;
-                    user.Password = Program.CreateSHA256(user.Password);
+                    user.Hash= Program.CreateSHA256(user.Hash);
                     await context.Users.AddAsync(user);
                     await context.SaveChangesAsync();
                     Program.SendEmail(user.Email, "Regisztráció", $"Nyomdd ki a szemét: \nhttp://localhost:7057/Registry?Username={user.Username}&email={user.Email}");

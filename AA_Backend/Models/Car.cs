@@ -27,7 +27,7 @@ public partial class Car
 
     public bool Sold { get; set; }
 
-    public string Bodytype { get; set; } = null!;
+    public string BodyType { get; set; } = null!;
 
     public virtual Brand Brand { get; set; } = null!;
 
