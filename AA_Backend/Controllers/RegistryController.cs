@@ -55,6 +55,7 @@ namespace AA_Backend.Controllers
                     {
                         return BadRequest("Sikertelen aktiválás.");
                     }
+                    user.IsActive = 1;
                     context.Users.Update(user);
                     await context.SaveChangesAsync();
                     return Ok("Sikeres aktiválás!");
