@@ -16,7 +16,7 @@ public partial class User
 
     public string Hash { get; set; } = null!;
 
-    public DateTime? Created { get; set; }
+    public DateTime Created { get; set; }
 
     public bool IsAdmin { get; set; }
 

@@ -1,6 +1,7 @@
 ﻿using AA_Backend.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace AA_Backend.Controllers
 {
@@ -42,8 +43,8 @@ namespace AA_Backend.Controllers
             {
                 try
                 {
-                    Brand brand =context.Brands.FirstOrDefault(x => x.Id == id);  
-                    return Ok(brand);
+                     List<Models.Type> types= context.Types.Where(t => t.BrandId == id).ToList();
+                    return Ok();
                 }
                 catch ( Exception ex)
                 {
