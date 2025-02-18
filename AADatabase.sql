@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 04, 2025 at 11:31 AM
+-- Generation Time: Feb 18, 2025 at 11:14 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `carplace`
 --
+CREATE DATABASE IF NOT EXISTS `carplace` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `carplace`;
 
 -- --------------------------------------------------------
 
@@ -64,14 +66,14 @@ CREATE TABLE `cars` (
   `seller_id` int(9) NOT NULL,
   `upload_date` datetime NOT NULL,
   `sold` tinyint(1) NOT NULL,
-  `bodytype` varchar(32) NOT NULL
+  `body_type` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `cars`
 --
 
-INSERT INTO `cars` (`id`, `brand_id`, `pic_id`, `type_id`, `description`, `km_clock`, `color_id`, `price`, `seller_id`, `upload_date`, `sold`, `bodytype`) VALUES
+INSERT INTO `cars` (`id`, `brand_id`, `pic_id`, `type_id`, `description`, `km_clock`, `color_id`, `price`, `seller_id`, `upload_date`, `sold`, `body_type`) VALUES
 (1, 1, 1, 1, 'Fuel-efficient and reliable.', 40000, 3, 18000, 1, '2024-01-10 10:00:00', 0, 'Sedan'),
 (2, 2, 1, 2, 'Comfortable and spacious.', 25000, 2, 25000, 1, '2024-02-05 14:30:00', 0, 'Sedan'),
 (3, 3, 1, 3, 'Strong and powerful SUV.', 60000, 5, 32000, 1, '2023-12-01 09:45:00', 1, 'SUV'),
@@ -196,7 +198,7 @@ CREATE TABLE `users` (
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `phone_num` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `HASH` varchar(255) NOT NULL,
   `created` datetime NOT NULL,
   `is_admin` tinyint(1) NOT NULL,
   `SALT` varchar(64) NOT NULL
@@ -206,7 +208,7 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `phone_num`, `password`, `created`, `is_admin`, `SALT`) VALUES
+INSERT INTO `users` (`id`, `username`, `email`, `phone_num`, `HASH`, `created`, `is_admin`, `SALT`) VALUES
 (1, 'admin', 'tulakm@kkszki.hu', '123123123', 'admin', '2025-02-04 11:05:38', 1, 'ads');
 
 --
@@ -268,10 +270,46 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `brands`
+--
+ALTER TABLE `brands`
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `cars`
+--
+ALTER TABLE `cars`
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `colors`
+--
+ALTER TABLE `colors`
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `motors`
+--
+ALTER TABLE `motors`
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `pictues`
 --
 ALTER TABLE `pictues`
   MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `types`
+--
+ALTER TABLE `types`
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
