@@ -36,7 +36,7 @@ namespace AA_Backend.Controllers
         }
 
         [HttpGet("GetBrandById")]
-        public IActionResult GetBrandById(int id)
+        public IActionResult GetTypeByBrand(int id)
         {
             using(var context = new CarplaceContext())
             {
