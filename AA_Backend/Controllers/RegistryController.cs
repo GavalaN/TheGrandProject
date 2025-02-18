@@ -38,7 +38,7 @@ namespace AA_Backend.Controllers
                 }
             }
         }
-        [HttpGet]
+        [HttpGet("GenerateSalt")]
         public IActionResult GenerateSalt()
         { 
             return Ok(Program.GenerateSalt());
