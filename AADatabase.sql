@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 18, 2025 at 11:14 AM
+-- Generation Time: Feb 18, 2025 at 11:21 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -201,15 +201,16 @@ CREATE TABLE `users` (
   `HASH` varchar(255) NOT NULL,
   `created` datetime NOT NULL,
   `is_admin` tinyint(1) NOT NULL,
-  `SALT` varchar(64) NOT NULL
+  `SALT` varchar(64) NOT NULL,
+  `IsActive` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `phone_num`, `HASH`, `created`, `is_admin`, `SALT`) VALUES
-(1, 'admin', 'tulakm@kkszki.hu', '123123123', 'admin', '2025-02-04 11:05:38', 1, 'ads');
+INSERT INTO `users` (`id`, `username`, `email`, `phone_num`, `HASH`, `created`, `is_admin`, `SALT`, `IsActive`) VALUES
+(1, 'admin', 'tulakm@kkszki.hu', '123123123', 'admin', '2025-02-04 11:05:38', 1, 'ads', 0);
 
 --
 -- Indexes for dumped tables
