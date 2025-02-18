@@ -29,7 +29,7 @@ namespace AA_Backend.Controllers
                     user.Hash= Program.CreateSHA256(user.Hash);
                     await context.Users.AddAsync(user);
                     await context.SaveChangesAsync();
-                    Program.SendEmail(user.Email, "Regisztráció", $"Nyomdd ki a szemét: \nhttp://localhost:7057/Registry?Username={user.Username}&email={user.Email}");
+                    Program.SendEmail(user.Email, "Regisztráció", $"Nyomdd ki a szemét: \nhttp://localhost:5000/Activation?Username={user.Username}&email={user.Email}");
                     return Ok("Sikeres regisztráció! Az aktiváláshoz ellenőrizze az email fiókját!");
                 }
                 catch (Exception ex)
@@ -38,8 +38,12 @@ namespace AA_Backend.Controllers
                 }
             }
         }
-
-        [HttpGet("Aktiválció")]
+        [HttpGet]
+        public IActionResult GenerateSalt()
+        { 
+            return Ok(Program.GenerateSalt());
+        }
+        [HttpGet("Activation")]
         public async Task<IActionResult> Activate(string Username, string email)
         {
             using (var context = new CarplaceContext())
