@@ -44,7 +44,7 @@ namespace AA_Backend.Controllers
                 try
                 {
                      List<Models.Type> types= context.Types.Where(t => t.BrandId == id).ToList();
-                    return Ok();
+                    return Ok(types);
                 }
                 catch ( Exception ex)
                 {
