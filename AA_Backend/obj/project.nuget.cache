@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "/PgU1hgfFT/lPxy58iWDQBo5C4MZr4e8fcwMvNeTug+DYULyxl1xYNraCUd+uM+tD1JITkzTrHUt4B6570szjA==",
+  "dgSpecHash": "Trc/phpPg/3n/PWBjHRLmRQdmw/RfB00pettPZ4EKQ86ZTBTZ7jBJlnHtG4plK6rFl5/IC0awQniJvvsw7SOeg==",
   "success": true,
   "projectFilePath": "C:\\Users\\tulak\\Documents\\GitKraken\\TheGrandProject\\AA_Backend\\AA_Backend.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\tulak\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\tulak\\.nuget\\packages\\bouncycastle.cryptography\\2.3.1\\bouncycastle.cryptography.2.3.1.nupkg.sha512",
     "C:\\Users\\tulak\\.nuget\\packages\\google.protobuf\\3.26.1\\google.protobuf.3.26.1.nupkg.sha512",
     "C:\\Users\\tulak\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

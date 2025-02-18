@@ -3,6 +3,8 @@ using AA_Backend.Models;
 using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
+using BCrypt.Net;
+  
 
 namespace AA_Backend
 {
@@ -10,13 +12,7 @@ namespace AA_Backend
     {
         public static string GenerateSalt()
         {
-            Random random = new Random();
-            string karakterek = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            string salt = "";
-            for (int i = 0; i < 64; i++)
-            {
-                salt += karakterek[random.Next(karakterek.Length)];
-            }
+            string salt = BCrypt.Net.BCrypt.GenerateSalt(12);
             return salt;
         }
 

@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\AA_Backend.props" />
-</Project>
