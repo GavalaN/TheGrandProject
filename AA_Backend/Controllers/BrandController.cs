@@ -1,4 +1,5 @@
-﻿using AA_Backend.Models;
+﻿using AA_Backend.DTOs;
+using AA_Backend.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -36,14 +37,18 @@ namespace AA_Backend.Controllers
             }
         }
 
-        [HttpGet("GetBrandById")]
+        [HttpGet("GetTypeByBrand")]
         public IActionResult GetTypeByBrand(int id)
         {
             using(var context = new CarplaceContext())
             {
                 try
                 {
-                     List<Models.Type> types= context.Types.Where(t => t.BrandId == id).ToList();
+                    List<TypeDTO> types = context.Types.Where(t => t.BrandId == id).Select(k => new TypeDTO()
+                    {
+                        Id = k.Id,
+                        TypeName = k.TypeName
+                    }).ToList();
                     return Ok(types);
                 }
                 catch ( Exception ex)
