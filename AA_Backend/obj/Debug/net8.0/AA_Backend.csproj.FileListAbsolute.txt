@@ -396,3 +396,4 @@ C:\Users\tulak\Documents\GitKraken\TheGrandProject\AA_Backend\obj\Debug\net8.0\r
 C:\Users\tulak\Documents\GitKraken\TheGrandProject\AA_Backend\obj\Debug\net8.0\AA_Backend.pdb
 C:\Users\tulak\Documents\GitKraken\TheGrandProject\AA_Backend\obj\Debug\net8.0\AA_Backend.genruntimeconfig.cache
 C:\Users\tulak\Documents\GitKraken\TheGrandProject\AA_Backend\obj\Debug\net8.0\ref\AA_Backend.dll
+C:\Users\tulak\Documents\GitKraken\TheGrandProject\AA_Backend\bin\Debug\net8.0\BCrypt.Net-Next.dll
