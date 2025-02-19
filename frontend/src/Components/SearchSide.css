@@ -131,6 +131,10 @@ body{
     height: 1.75rem !important;
 }
 
+#side-search .ts-wrapper{
+    width: 100% !important;
+}
+
 @media (max-width: 1400px) {
     #side-search-closing {
         visibility: visible;

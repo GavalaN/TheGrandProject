@@ -152,6 +152,11 @@
     display: none;
 }
 
+.disabled, .disabled:hover, .disabled input:hover{
+    cursor: not-allowed !important;
+    
+}
+
 .input-groups{
     display: flex;
     max-width: 17rem;
@@ -188,14 +193,10 @@
 }
 
 .ts-control{
-    background-color: none !important;
+    background: none !important;
     line-height: 1.5 !important;
     font-size: 1rem !important;
     border: 2px solid black !important;
-}
-
-.full .ts-control, .ts-control, .ts-wrapper.single.input-active .ts-control{
-    background-color: none !important;
 }
 
 .ts-control, .ts-wrapper.single.input-active .ts-control{
@@ -213,7 +214,7 @@
     line-height: 25px !important;
 }
 
-#brand-ts-control{
+#brand-ts-control, #type-ts-control{
     margin-top: -0.6rem !important;
     font-size: large !important;
 }
@@ -222,7 +223,7 @@
     width: 120%;
 }
 
-#brand{
+#brand, #type{
     padding: 0;
     border: 2px solid black;
 }

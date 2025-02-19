@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Search.css';
 import './SearchSide.css';
 import { Link } from 'react-router-dom';
 import { Tooltip } from 'react-tooltip';
 import 'react-tooltip/dist/react-tooltip.css'
+import axios from 'axios';
+import TomSelect from 'tom-select';
+import 'tom-select/dist/css/tom-select.css'
 
 
 function yearRange(){
@@ -18,11 +21,12 @@ function yearRange(){
 const SearchSide = React.memo(() => {
     const [isActive, setIsActive] = useState(false);
     const  years = yearRange();
-
-    const handleClick = (e) => {
-        e.preventDefault();
-        setIsActive((prevState) => !prevState);
-    };
+    const [brands, setBrands] = useState([]);
+    const [types, setTypes] = useState([]);
+    const [selectedBrand, setSelectedBrand] = useState(undefined);
+    const [selectedType, setSelectedType] = useState(undefined);
+    const [brandSelection, setBrandSelection] = useState([])
+    const [typeSelection, setTypeSelection] = useState([])
 
     function setInputFilter(textbox, inputFilter, errMsg) {
         ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop", "focusout"].forEach(function(event) {
@@ -82,7 +86,136 @@ const SearchSide = React.memo(() => {
         setInputFilter(document.getElementById("kerb_wheight_to"), function(value) {
             return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 3500); }, "0kg és 3500Kg között adhatsz meg értéket!");
     
+
+    
     }
+
+    //Brand
+    useEffect(() => {
+        axios.get('http://localhost:5000/Brand/BrandGet')
+            .then(res => {
+                console.log(res.data)
+                setBrands(res.data)
+            })
+        }, [])
+
+    useEffect(() => {
+        if (brands.length > 0) {
+            const selection = brands.map((brand) => ({
+                value: brand.id,
+                text: brand.name,
+            }));
+            setBrandSelection(selection);
+        }
+    }, [brands])
+
+    useEffect(() => {
+        if(brandSelection.length > 0){
+            new TomSelect("#brand",{
+                create: false,
+                options: brandSelection,
+                sortField: {
+                    field: "text",
+                    direction: "asc",
+                    allowEmptyOption: true,
+                }
+            })
+        }
+    }, [brandSelection])
+
+    useEffect(() => {
+        if (selectedBrand === "" || selectedBrand === undefined) {
+            setSelectedType(undefined); // Alapértelmezett érték beállítása
+            document.getElementById("type").setAttribute("disabled",false)
+        }
+        else{
+            document.getElementById("type").removeAttribute("disabled",true)
+        }
+    }, [selectedBrand]);
+    
+    //Type
+    useEffect(() => {
+        if(selectedBrand != undefined && selectedBrand != ""){
+            axios.get('http://localhost:5000/Brand/GetTypeByBrand?id='+selectedBrand)
+            .then(res => {
+                console.log(res.data)
+                setTypes(res.data)
+            })
+        }
+        else {
+            const allType = 
+            [{
+                value: 0,
+                text: "Mindegy"
+            }]
+            console.log(allType)
+            setTypes(allType)
+            console.log(types)
+        }
+        }, [selectedBrand])
+
+    useEffect(() => {
+        if (types.length > 0) {
+            const selection = types.map((type) => ({
+                value: type.id,
+                text: type.typeName,
+            }));
+            setTypeSelection(selection);
+        }
+        if (selectedBrand == ""){
+            setTypeSelection([])
+            console.log("üres")
+        }
+        console.log(typeSelection)
+        // else{
+        //     const allType = 
+        //     [{
+        //         value: 0,
+        //         text: "Mindegy"
+        //     }]
+        //     console.log(allType)
+        //     setTypeSelection(allType)
+        //     console.log(typeSelection)
+        // }
+    }, [types])
+
+    useEffect(() => {
+        const selectElement = document.querySelector("#type");
+
+        if (!selectElement) return;
+
+        if (selectElement.tomselect) {
+            selectElement.tomselect.destroy(); // Korábbi példány törlése
+        }
+
+        const typeSelect = new TomSelect(selectElement, {
+            create: false,
+            options: typeSelection,
+            sortField: { 
+                field: "text", 
+                direction: "asc" 
+            },
+            allowEmptyOption: true,
+        });
+
+        return () => {
+            typeSelect.destroy();// Komponens unmountolásakor töröljük
+        };
+    }, [typeSelection]);
+
+    //HandleChanges
+    const handleBrandChange = (event) => {
+        setSelectedBrand(event.target.value);
+      };
+
+      const handleTypeChange = (event) => {
+        setSelectedType(event.target.value);
+      };
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        setIsActive((prevState) => !prevState);
+    };
 
     return (
         <div id='side-search'>
@@ -96,11 +229,11 @@ const SearchSide = React.memo(() => {
                     <button id='side-search-closing' className='btn ms-auto' onClick={handleClick}><i className="bi bi-x-square"></i></button>
                     <div className='col-12'>
                         <label htmlFor='manufacturer'>Márka</label><br/>
-                        <input id='manufacturer' name='manufacturer' className='lg-input' />
+                        <select id="brand" name="brand" className="form-select" data-placeholder="Mindegy" autoComplete="off" onChange={handleBrandChange}/>
                     </div>
                     <div className="col-12">
                         <label htmlFor='type'>Típus</label><br/>
-                        <input id='type' name='type' className='lg-input' />
+                        <select id="type" name="type" className="form-select" data-placeholder="Mindegy" autoComplete="off" onChange={handleTypeChange}/>
                     </div>
                     <div className="col-12">
                         <label htmlFor='fuel'>Üzemanyag</label><br/>

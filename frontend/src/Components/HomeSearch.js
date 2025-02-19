@@ -16,11 +16,15 @@ function yearRange(){
 
 const HomeSearch = React.memo(() => {
     const [isActive, setIsActive] = useState(false);
-    const [brands, setBrands] = useState([])
+    const [brands, setBrands] = useState([]);
+    const [types, setTypes] = useState([]);
     const [selectedBrand, setSelectedBrand] = useState(undefined);
+    const [selectedType, setSelectedType] = useState(undefined);
     const  years = yearRange();
     const [brandSelection, setBrandSelection] = useState([])
-
+    const [typeSelection, setTypeSelection] = useState([])
+    
+    
 
     function setInputFilter(textbox, inputFilter, errMsg) {
         ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop", "focusout"].forEach(function(event) {
@@ -102,6 +106,7 @@ const HomeSearch = React.memo(() => {
         
     // })
 
+    //Brand
     useEffect(() => {
         axios.get('http://localhost:5000/Brand/BrandGet')
             .then(res => {
@@ -113,13 +118,12 @@ const HomeSearch = React.memo(() => {
     useEffect(() => {
         if (brands.length > 0) {
             const selection = brands.map((brand) => ({
-                value: brand.name,
+                value: brand.id,
                 text: brand.name,
             }));
             setBrandSelection(selection);
         }
     }, [brands])
-    
 
     useEffect(() => {
         if(brandSelection.length > 0){
@@ -134,10 +138,95 @@ const HomeSearch = React.memo(() => {
             })
         }
     }, [brandSelection])
-    
 
+    useEffect(() => {
+        if (selectedBrand === "" || selectedBrand === undefined) {
+            setSelectedType(undefined); // Alapértelmezett érték beállítása
+            document.getElementById("type").setAttribute("disabled",false)
+        }
+        else{
+            document.getElementById("type").removeAttribute("disabled",true)
+        }
+    }, [selectedBrand]);
+    
+    //Type
+    useEffect(() => {
+        if(selectedBrand != undefined && selectedBrand != ""){
+            axios.get('http://localhost:5000/Brand/GetTypeByBrand?id='+selectedBrand)
+            .then(res => {
+                console.log(res.data)
+                setTypes(res.data)
+            })
+        }
+        else {
+            const allType = 
+            [{
+                value: 0,
+                text: "Mindegy"
+            }]
+            console.log(allType)
+            setTypes(allType)
+            console.log(types)
+        }
+        }, [selectedBrand])
+
+    useEffect(() => {
+        if (types.length > 0) {
+            const selection = types.map((type) => ({
+                value: type.id,
+                text: type.typeName,
+            }));
+            setTypeSelection(selection);
+        }
+        if (selectedBrand == ""){
+            setTypeSelection([])
+            console.log("üres")
+        }
+        console.log(typeSelection)
+        // else{
+        //     const allType = 
+        //     [{
+        //         value: 0,
+        //         text: "Mindegy"
+        //     }]
+        //     console.log(allType)
+        //     setTypeSelection(allType)
+        //     console.log(typeSelection)
+        // }
+    }, [types])
+
+    useEffect(() => {
+        const selectElement = document.querySelector("#type");
+
+        if (!selectElement) return;
+
+        if (selectElement.tomselect) {
+            selectElement.tomselect.destroy(); // Korábbi példány törlése
+        }
+
+        const typeSelect = new TomSelect(selectElement, {
+            create: false,
+            options: typeSelection,
+            sortField: { 
+                field: "text", 
+                direction: "asc" 
+            },
+            allowEmptyOption: true,
+        });
+
+        return () => {
+            typeSelect.destroy();// Komponens unmountolásakor töröljük
+        };
+    }, [typeSelection]);
+
+
+    //HandleChanges
     const handleBrandChange = (event) => {
         setSelectedBrand(event.target.value);
+      };
+
+      const handleTypeChange = (event) => {
+        setSelectedType(event.target.value);
       };
 
     const handleClick = (e) => {
@@ -154,7 +243,7 @@ const HomeSearch = React.memo(() => {
                 <div className="row d-flex justify-content-between">
                     <div className="col-auto">
                         <label htmlFor="brand">Márka</label><br/>
-                        <select id="brand" name="brand" className="form-select" data-placeholder="Mindegy" autoComplete="off">
+                        <select id="brand" name="brand" className="form-select" data-placeholder="Mindegy" autoComplete="off" onChange={handleBrandChange}>
                             {/* <option value="0">Összes</option>
                             <option value="BMW">BMW</option>
                             {brands.map((brand) => (
@@ -177,7 +266,9 @@ const HomeSearch = React.memo(() => {
                     </div>
                     <div className="col-auto">
                         <label htmlFor="type">Típus</label><br/>
-                        <input
+                        <select id="type" name="type" className="form-select" data-placeholder="Mindegy" autoComplete="off" onChange={handleTypeChange}>
+                        </select>
+                        {/* <input
                             list="brandOptions"
                             id="type"
                             name="type"
@@ -189,7 +280,7 @@ const HomeSearch = React.memo(() => {
                             {brands.map((brand, index) => (
                             <option key={index} value={brand.name} />
                             ))}
-                        </datalist>
+                        </datalist> */}
                     </div>
                     <div className="col-auto">
                             <label htmlFor="body_type">Kivitel</label><br/>

@@ -30,6 +30,7 @@ export default function Login() {
         // Login kérés küldése
         const loginResponse = await axios.post('http://localhost:5000/Login', login);
         console.log("Login Response:", loginResponse.data);
+        localStorage.setItem(loginResponse.data.token, loginResponse.data)
         
     } catch (error) {
         console.error("Hiba történt:", error);

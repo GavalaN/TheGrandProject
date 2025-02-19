@@ -9,18 +9,19 @@ export default function Registration() {
     e.preventDefault();
 
     // Aszinkron módon hash-eljük a jelszót
-    const salt = bcrypt.genSaltSync(12); // Salt generálása
-    const hashedPassword = await bcrypt.hash(document.getElementById("password").value, salt); // Jelszó titkosítása aszinkron
+    const salt = await axios.get('http://localhost:5000/Registry/GenerateSalt')
+    const hashedPassword = await bcrypt.hash(document.getElementById("password").value, salt.data); // Jelszó titkosítása aszinkron
 
     let user = {
       id: 0,
       username: document.getElementById("username").value,
       email: document.getElementById("email").value,
       phoneNum: document.getElementById("phoneNum").value,
-      password: hashedPassword,
+      hash: hashedPassword,
       created: null,
-      isAdmin: false,
-      salt: salt,
+      isAdmin: null,
+      salt: salt.data,
+      isActive: null
     };
 
     try {
@@ -29,7 +30,7 @@ export default function Registration() {
       alert(response.data);
     } catch (error) {
       console.log(error);
-      alert(error.response.data);
+      alert(error.response.data.errors);
     }
 
     console.log(user); // Kiírja a felhasználói adatokat a konzolra
