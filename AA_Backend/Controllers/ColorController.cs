@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AA_Backend.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class ColorController : ControllerBase
     {
