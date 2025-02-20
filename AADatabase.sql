@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
--- httpsl://www.phpmyadmin.net/
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 18, 2025 at 11:21 AM
+-- Generation Time: Feb 20, 2025 at 09:34 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -91,22 +91,23 @@ INSERT INTO `cars` (`id`, `brand_id`, `pic_id`, `type_id`, `description`, `km_cl
 
 CREATE TABLE `colors` (
   `id` int(9) NOT NULL,
-  `name` varchar(255) NOT NULL
+  `name` varchar(255) NOT NULL,
+  `hexcode` varchar(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `colors`
 --
 
-INSERT INTO `colors` (`id`, `name`) VALUES
-(1, 'Red'),
-(2, 'Blue'),
-(3, 'Black'),
-(4, 'White'),
-(5, 'Gray'),
-(6, 'Silver'),
-(7, 'Green'),
-(8, 'Yellow');
+INSERT INTO `colors` (`id`, `name`, `hexcode`) VALUES
+(1, 'Red', '#FF0000'),
+(2, 'Blue', '#0000FF'),
+(3, 'Black', '#000000'),
+(4, 'White', '#FFFFFF'),
+(5, 'Gray', '#808080'),
+(6, 'Silver', '#C0C0C0'),
+(7, 'Green', '#008000'),
+(8, 'Yellow', '#FFFF00');
 
 -- --------------------------------------------------------
 
@@ -210,7 +211,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `phone_num`, `HASH`, `created`, `is_admin`, `SALT`, `IsActive`) VALUES
-(1, 'admin', 'tulakm@kkszki.hu', '123123123', 'admin', '2025-02-04 11:05:38', 1, 'ads', 0);
+(1, 'admin', 'tulakm@kkszki.hu', '123123123', 'admin', '2025-02-04 11:05:38', 1, 'ads', 0),
+(2, 'string', 'string', 'string', '473287f8298dba7163a897908958f7c0eae733e25d2e027992ea2edc9bed2fa8', '2025-02-18 12:25:08', 0, 'string', 0),
+(3, 'string1', 'budahazim@kkszki.hu', 'string', '473287f8298dba7163a897908958f7c0eae733e25d2e027992ea2edc9bed2fa8', '2025-02-18 13:10:14', 0, 'string', 0);
 
 --
 -- Indexes for dumped tables
@@ -310,7 +313,7 @@ ALTER TABLE `types`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
