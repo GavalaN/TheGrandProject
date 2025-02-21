@@ -11,8 +11,8 @@
   },
   {
     "ContainingType": "AA_Backend.Controllers.BrandController",
-    "Method": "GetBrandById",
-    "RelativePath": "Brand/GetBrandById",
+    "Method": "GetTypeByBrand",
+    "RelativePath": "Brand/GetTypeByBrand",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -33,6 +33,32 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AA_Backend.Controllers.ColorController",
+    "Method": "GetColor",
+    "RelativePath": "Color/GetColor",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AA_Backend.Controllers.HirdetesController",
+    "Method": "GetHirdetesById",
+    "RelativePath": "Hirdetes/GetHirdetesById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -86,7 +112,7 @@
   {
     "ContainingType": "AA_Backend.Controllers.RegistryController",
     "Method": "Activate",
-    "RelativePath": "Registry/Aktiv\u00E1lci\u00F3",
+    "RelativePath": "Registry/Activation",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -102,6 +128,16 @@
         "IsRequired": false
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AA_Backend.Controllers.RegistryController",
+    "Method": "GenerateSalt",
+    "RelativePath": "Registry/GenerateSalt",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

@@ -17,7 +17,7 @@
         }
       }
     },
-    "/Brand/GetBrandById": {
+    "/Brand/GetTypeByBrand": {
       "get": {
         "tags": [
           "Brand"
@@ -43,6 +43,40 @@
       "get": {
         "tags": [
           "CarDTO"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Color/GetColor": {
+      "get": {
+        "tags": [
+          "Color"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Hirdetes/GetHirdetesById": {
+      "get": {
+        "tags": [
+          "Hirdetes"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -156,7 +190,19 @@
         }
       }
     },
-    "/Registry/Aktiválció": {
+    "/Registry/GenerateSalt": {
+      "get": {
+        "tags": [
+          "Registry"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Registry/Activation": {
       "get": {
         "tags": [
           "Registry"
@@ -204,6 +250,10 @@
       "User": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
           "username": {
             "type": "string",
             "nullable": true
@@ -216,12 +266,26 @@
             "type": "string",
             "nullable": true
           },
-          "password": {
+          "hash": {
             "type": "string",
+            "nullable": true
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "isAdmin": {
+            "type": "boolean",
             "nullable": true
           },
           "salt": {
             "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           }
         },
