@@ -18,13 +18,14 @@ const HomeSearch = React.memo(() => {
     const [isActive, setIsActive] = useState(false);
     const [brands, setBrands] = useState([]);
     const [types, setTypes] = useState([]);
+    const [colors, setColors] = useState([])
     const [selectedBrand, setSelectedBrand] = useState(undefined);
     const [selectedType, setSelectedType] = useState(undefined);
-    const  years = yearRange();
-    const [brandSelection, setBrandSelection] = useState([])
-    const [typeSelection, setTypeSelection] = useState([])
-    
-    
+    const [selectedColor, setSelectedColor] = useState(undefined);
+    const years = yearRange();
+    const [brandSelection, setBrandSelection] = useState([]);
+    const [typeSelection, setTypeSelection] = useState([]);
+    const [colorSelection, setColorSelection] = useState([]);
 
     function setInputFilter(textbox, inputFilter, errMsg) {
         ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop", "focusout"].forEach(function(event) {
@@ -88,6 +89,41 @@ const HomeSearch = React.memo(() => {
     
     }
     
+    useEffect(() => {
+        new TomSelect("#body_type",{
+            create: false,
+            controlInput: null
+        });
+        new TomSelect("#fuel",{
+            create: false,
+            controlInput: null
+        });
+        new TomSelect("#year_from",{
+            create: false,
+            controlInput: null
+        });
+        new TomSelect("#year_to",{
+            create: false,
+            controlInput: null
+        });
+        new TomSelect("#number_of_cylinder",{
+            create: false,
+            controlInput: null
+        });
+        new TomSelect("#motor_type",{
+            create: false,
+            controlInput: null
+        });
+        new TomSelect("#drive_train",{
+            create: false,
+            controlInput: null
+        });
+        new TomSelect("#gearbox",{
+            create: false,
+            controlInput: null
+        });
+    }, [])
+
     // useEffect(() => {
     // axios.get('http://localhost:5000/Brand/BrandGet')
     //     .then(res => {
@@ -219,15 +255,61 @@ const HomeSearch = React.memo(() => {
         };
     }, [typeSelection]);
 
+    //Body type
+    useEffect(() => {
+        axios.get('./')
+            .then(res => {
+                console.log(res.data)
+                setColors(res.data)
+            })
+        }, [])
+
+    //Color
+    useEffect(() => {
+        axios.get('http://localhost:5000/Color/GetColor')
+            .then(res => {
+                console.log(res.data)
+                setColors(res.data)
+            })
+        }, [])
+
+    useEffect(() => {
+        if (colors.length > 0) {
+            const selection = colors.map((color) => ({
+                value: color.id,
+                text: color.name,
+            }));
+            setColorSelection(selection);
+        }
+    }, [colors])
+
+    useEffect(() => {
+        if(colorSelection.length > 0){
+            new TomSelect("#color",{
+                create: false,
+                options: colorSelection,
+                sortField: {
+                    field: "text",
+                    direction: "asc",
+                    allowEmptyOption: true,
+                }
+            })
+        }
+    }, [colorSelection])
+
 
     //HandleChanges
     const handleBrandChange = (event) => {
         setSelectedBrand(event.target.value);
       };
 
-      const handleTypeChange = (event) => {
+    const handleTypeChange = (event) => {
+    setSelectedType(event.target.value);
+    };
+
+    const handleColorChange = (event) => {
         setSelectedType(event.target.value);
-      };
+        };
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -286,24 +368,34 @@ const HomeSearch = React.memo(() => {
                             <label htmlFor="body_type">Kivitel</label><br/>
                             <select id="body_type" name="body_type" className="form-select w-120">
                                 <option value="all">Összes</option>
-                                <option value="hatchback">Ferdehátú</option>
-                                <option value="stationwagon">Kombi</option>
-                                <option value="sedan">Szedán</option>
-                                <option value="coupe">Kupé</option>
-                                <option value="mpv">Egyterű</option>
+                                <option value="ferdehátú">ferdehátú</option>
+                                <option value="kombi">kombi</option>
+                                <option value="szedán">szedán</option>
+                                <option value="kupé">kupé</option>
+                                <option value="egyterű">egyterű</option>
                                 <option value="SUV">SUV</option>
-                                <option value="offroad">Terepjáró</option>
-                                <option value="pickup">Pickup</option>
-                                <option value="cabrio">Kabrió</option>
-                                <option value="van">Kisbusz</option>
-                                <option value="other">Egyéb</option>
+                                <option value="terepjáró">terepjáró</option>
+                                <option value="pickup">pickup</option>
+                                <option value="kabrió">kabrió</option>
+                                <option value="kisbusz">kisbusz</option>
+                                <option value="egyéb">egyéb</option>
                             </select>
                         </div>
                     <div className="col-auto">
                         <label htmlFor="fuel">Üzemanyag</label><br/>
                         <select id="fuel" name="fuel" className="form-select">
                             <option value="0">Összes</option>
-                            <option value="1">Benzin</option>
+                            <option value="1">benzin</option>
+                            <option value="1">benzin</option>
+                            <option value="1">benzin</option>
+                            <option value="1">benzin</option>
+                            <option value="1">benzin</option>
+                            <option value="1">benzin</option>
+                            <option value="1">benzin</option>
+                            <option value="1">benzin</option>
+                            <option value="1">benzin</option>
+                            <option value="1">benzin</option>
+                            <option value="1">benzin</option>
                             <option value="2">Dízel</option>
                             <option value="3">Elektromos</option>
                             <option value="4">Hibrid</option>
@@ -363,7 +455,8 @@ const HomeSearch = React.memo(() => {
                         </div>
                         <div className={`col-auto ${isActive ? "" : "collapse-form"}`}>
                             <label htmlFor="color">Szín</label><br/>
-                            <input id="color" name="color" className="input" />
+                            <select id="color" name="color" className="form-select" data-placeholder="Mindegy" autoComplete="off" onChange={handleColorChange}>
+                        </select>
                         </div>
                         <div className={`col-auto ${isActive ? "" : "collapse-form"}`}>
                             <label htmlFor="ccm_from">Hengerűrtartalom</label><br/>

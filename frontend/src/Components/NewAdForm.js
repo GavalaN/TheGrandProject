@@ -76,6 +76,8 @@ export default function NewAdForm() {
   
   }
 
+
+  
   //Brand
   useEffect(() => {
       axios.get('http://localhost:5000/Brand/BrandGet')
@@ -219,14 +221,17 @@ export default function NewAdForm() {
             <label htmlFor="body_type">Kivitel</label><br />
             <select id="body_type" name="body_type" className="form-select w-100">
               <option value="all">Összes</option>
-              <option value="hatchback">Ferdehátú</option>
-              <option value="station_wagon">Kombi</option>
-              <option value="sedan">Szedán</option>
-              <option value="coupe">Kupé</option>
-              <option value="convertible">Kabrió</option>
-              <option value="suv">SUV</option>
-              <option value="pickup">Pickup</option>
-              <option value="van">Van</option>
+              <option value="ferdehátú">ferdehátú</option>
+              <option value="kombi">kombi</option>
+              <option value="szedán">szedán</option>
+              <option value="kupé">kupé</option>
+              <option value="egyterű">egyterű</option>
+              <option value="SUV">SUV</option>
+              <option value="terepjáró">terepjáró</option>
+              <option value="pickup">pickup</option>
+              <option value="kabrió">kabrió</option>
+              <option value="kisbusz">kisbusz</option>
+              <option value="egyéb">egyéb</option>
             </select>
           </div>
           <div className="form-group col-3">

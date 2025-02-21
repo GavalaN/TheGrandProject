@@ -135,6 +135,10 @@ body{
     width: 100% !important;
 }
 
+#side-search #number_of_cylinder-ts-control, #side-search div.col-6.wider div.ts-wrapper.form-select.single.full.has-items, #side-search #gearbox-ts-control{
+    width: 8rem !important;
+}
+
 @media (max-width: 1400px) {
     #side-search-closing {
         visibility: visible;
