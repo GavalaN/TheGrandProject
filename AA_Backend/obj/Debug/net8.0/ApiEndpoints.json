@@ -62,6 +62,38 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "AA_Backend.Controllers.HirdetesController",
+    "Method": "HirdetesPost",
+    "RelativePath": "Hirdetes/HirdetesPost",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "hirdetes",
+        "Type": "AA_Backend.DTOs.HirdetesDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AA_Backend.Controllers.HirdetesController",
+    "Method": "PutHirdetes",
+    "RelativePath": "Hirdetes/PutHirdetes",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "hirdetes",
+        "Type": "AA_Backend.DTOs.HirdetesDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "AA_Backend.Controllers.LoginController",
     "Method": "Login",
     "RelativePath": "Login",
@@ -152,6 +184,22 @@
         "Name": "user",
         "Type": "AA_Backend.Models.User",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AA_Backend.Controllers.UsersController",
+    "Method": "GetUserListings",
+    "RelativePath": "Users/GetUserListings",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userid",
+        "Type": "System.Int32",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

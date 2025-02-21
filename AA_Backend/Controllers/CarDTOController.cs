@@ -20,7 +20,8 @@ namespace AA_Backend.Controllers
                     List<CarDTO> CarDTOs = context.Cars.Select(k => new CarDTO()
                     {
                         Id = k.Id,
-                        Brand=k.Brand.Name,
+                        SellerId = k.SellerId,
+                        Brand =k.Brand.Name,
                         Type_name=k.Type.TypeName,
                         KMClock=k.KmClock,
                         Price=k.Price,

@@ -3,6 +3,7 @@
     public class CarDTO
     {
         public int Id { get; set; }
+        public int SellerId { get; set; }
         public string Type_name { get; set; } = null!;
         public string Brand { get; set; } = null!;
         public int KMClock { get; set; }
