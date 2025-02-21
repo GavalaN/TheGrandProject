@@ -130,6 +130,27 @@ namespace AA_Backend.Controllers
                 }
             }
         }
-
+        [HttpDelete("DeleteHirdetes")]
+        public async Task<IActionResult> DeleteHirdetes(int id)
+        {
+            using (var context = new CarplaceContext())
+            {
+                try
+                {
+                    var car = context.Cars.FirstOrDefault(k => k.Id == id);
+                    if (car == null)
+                    {
+                        return BadRequest("Nem található a hirdetés!");
+                    }
+                    context.Cars.Remove(car);
+                    await context.SaveChangesAsync();
+                    return Ok("Sikeres törlés!");
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+            }
+        }
     }
 }
