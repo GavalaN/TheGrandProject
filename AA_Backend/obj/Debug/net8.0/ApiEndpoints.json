@@ -47,6 +47,22 @@
   },
   {
     "ContainingType": "AA_Backend.Controllers.HirdetesController",
+    "Method": "DeleteHirdetes",
+    "RelativePath": "Hirdetes/DeleteHirdetes",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AA_Backend.Controllers.HirdetesController",
     "Method": "GetHirdetesById",
     "RelativePath": "Hirdetes/GetHirdetesById",
     "HttpMethod": "GET",
