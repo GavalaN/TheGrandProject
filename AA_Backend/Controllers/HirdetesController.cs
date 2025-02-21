@@ -36,11 +36,12 @@ namespace AA_Backend.Controllers
                         TransType= k.Type.TransType,
                         EngineType=k.Type.Motor.EngineType,
                         NumofCylinders=k.Type.Motor.NumOfCyl,
-                        BodyType=k.BodyType
+                        BodyType=k.BodyType,
+                        KWeight = k.Type.KWeight
 
-                            
 
-                        }).FirstOrDefault(k => k.Id == id);
+
+                    }).FirstOrDefault(k => k.Id == id);
                         
                     return Ok(Hirdetes);
                 }

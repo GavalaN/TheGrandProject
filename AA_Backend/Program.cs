@@ -4,12 +4,15 @@ using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
 using BCrypt.Net;
-  
+using System.Configuration;
+
 
 namespace AA_Backend
 {
     public class Program
     {
+       
+
         public static string GenerateSalt()
         {
             string salt = BCrypt.Net.BCrypt.GenerateSalt(12);
@@ -32,16 +35,19 @@ namespace AA_Backend
             }
         }
         public static Dictionary<string, User> LoggedInUsers = new Dictionary<string, User>();
-
+        
+        
         public static async Task SendEmail(string mailAddressTo, string subject, string body)
         {
+            var builder = WebApplication.CreateBuilder();
+            var config = builder.Configuration;
             MailMessage mail = new MailMessage();
             SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
-            mail.From = new MailAddress("teszt.elek0000000000@gmail.com");
+            mail.From = new MailAddress(config["AuthString:Email"]);
             mail.To.Add(mailAddressTo);
             mail.Body = body;
             smtpClient.Port = 587;
-            smtpClient.Credentials = new System.Net.NetworkCredential("teszt.elek0000000000@gmail.com", "mrrh sdss knkj lfjw");
+            smtpClient.Credentials = new System.Net.NetworkCredential(config["AuthString:Email"],config["AuthString:Password"]);
             smtpClient.EnableSsl = true;
             await smtpClient.SendMailAsync(mail);
         }
@@ -59,8 +65,8 @@ namespace AA_Backend
 
             var app = builder.Build();
             app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-
-
+           
+            
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

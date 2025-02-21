@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Microsoft.EntityFrameworkCore;
 
 namespace AA_Backend.Models;
@@ -28,7 +29,7 @@ public partial class CarplaceContext : DbContext
     public virtual DbSet<Type> Types { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
-
+    
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 => optionsBuilder.UseMySQL("SERVER=localhost;PORT=3306;DATABASE=carplace;USER=root;PASSWORD=;SSL MODE=none;");
 

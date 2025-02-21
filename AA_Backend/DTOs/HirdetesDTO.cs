@@ -21,5 +21,6 @@
         public string EngineType { get; set; } = null!;
         public int NumofCylinders { get; set; }
         public string BodyType { get; set; } = null!;
+        public int KWeight { get; set; };
     }
 }
