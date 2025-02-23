@@ -29,7 +29,7 @@ h1 {
 }
 
 #newad-form {
-  width: 50%;
+  width: 60%;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 3rem;
@@ -80,7 +80,7 @@ h1 {
   background-color: none !important;
 }
 
-#newad-form #brand-ts-control, #newad-form #type-ts-control {
+#newad-form #brand-ts-control, #newad-form #type-ts-control, #newad-form #color-ts-control{
   margin-top: -0.5rem !important;
   border: none !important;
 }
@@ -89,4 +89,44 @@ h1 {
   padding: 0 !important;
   font-size: larger !important;
   margin-top: -0.1rem !important;
+}
+
+#newad-form h4 {
+  text-align: left;
+}
+
+hr {
+  border: none;
+  height: 2px;
+  color: black !important;
+  background-color: black !important;
+}
+
+#newad-form .input-group {
+  height: 2.5rem !important;
+  width: 100% !important;
+  font-size: larger;
+}
+
+#newad-form .input-group input{
+  border: none !important;
+  border-right: 2px solid black !important;
+  height: 2.25rem !important;
+  border-radius: 0.2rem 0 0 0.2rem !important;
+  text-align: right !important;
+  width: 80% !important;
+}
+
+#newad-form .input-group-append {
+  margin-left: 0.2rem !important;
+  margin-right: 0.2rem;
+  font-weight: bold;
+  font-size: large;
+  margin: auto !important;
+}
+
+@media (max-width: 990px) {
+  #newad-form {
+    width: 90%;
+  }
 }

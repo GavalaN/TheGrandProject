@@ -279,9 +279,13 @@ const SearchSide = React.memo(() => {
         setSelectedBrand(event.target.value);
       };
 
-      const handleTypeChange = (event) => {
+    const handleTypeChange = (event) => {
         setSelectedType(event.target.value);
-      };
+    };
+
+    const handleColorChange = (event) => {
+        setSelectedColor(event.target.value);
+    };
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -309,11 +313,21 @@ const SearchSide = React.memo(() => {
                     <div className="col-12">
                         <label htmlFor='fuel'>Üzemanyag</label><br/>
                         <select id='fuel' name='fuel' className='form-select w-100'>
-                            <option value='all'>Összes</option>
-                            <option value='gas'>Benzin</option>
-                            <option value='diesel'>Dízel</option>
-                            <option value='ev'>Elektromos</option>
-                            <option value='hibrid'>Hibrid</option>
+                            <option value='0'>Összes</option>
+                            <option value="benzin">benzin</option>
+                            <option value="LPG + benzin">LPG + benzin</option>
+                            <option value="CNG + benzin">CNG + benzin</option>
+                            <option value="hibrid (benzin)">hibrid (benzin)</option>
+                            <option value="plug-in hibrid (benzin)">plug-in hibrid (benzin)</option>
+                            <option value="benzin + etanol">benzin + etanol</option>
+                            <option value="dízel">dízel</option>
+                            <option value="LPG + dízel">LPG + dízel</option>
+                            <option value="CNG + dízel">CNG + dízel</option>
+                            <option value="hibrid (dízel)">hibrid (dízel)</option>
+                            <option value="plug-in hibrid (dízel)">plug-in hibrid (dízel)</option>
+                            <option value="etanol">etanol</option>
+                            <option value="elektromos">elektromos</option>
+                            <option value="hidrogén (üzemanyagcellás)">hidrogén (üzemanyagcellás)</option>
                         </select>
                     </div>
                     <div className="col-12">
@@ -388,7 +402,7 @@ const SearchSide = React.memo(() => {
                         </div>
                         <div className="col-12">
                             <label htmlFor='color'>Szín</label><br/>
-                            <input id='color' name='color' className='lg-input' />
+                            <select id="color" name="color" className="form-select" data-placeholder="Összes" autoComplete="off" onChange={handleColorChange}/>
                         </div>
                         <div className="col-12">
                             <label htmlFor='ccm_from'>Hengerűrtartalom</label><br/>
@@ -428,7 +442,7 @@ const SearchSide = React.memo(() => {
                         <div className="col-6 wider">
                             <label htmlFor='number_of_cylinder'>Hengerek száma</label><br/>
                             <select id='number_of_cylinder' className='form-select'>
-                                <option value='0'>Összes</option>
+                                <option value='-1'>Összes</option>
                                 <option value='1'>1 db</option>
                                 <option value='2'>2 db</option>
                                 <option value='3'>3 db</option>
@@ -439,18 +453,18 @@ const SearchSide = React.memo(() => {
                                 <option value='10'>10 db</option>
                                 <option value='12'>12 db</option>
                                 <option value='16'>16 db</option>
-                                <option value="ev">elektromos</option>
+                                <option value="0">elektromos</option>
                             </select>
                         </div>
                         <div className="col-6 ps-4">
                             <label htmlFor='motor_type'>Motor elrendezés</label><br/>
                             <select id='motor_type' className='form-select f-s-m'>
-                                <option value='0'>Összes</option>
-                                <option value='1'>Soros</option>
-                                <option value='2'>V</option>
-                                <option value='3'>Boxer</option>
-                                <option value='4'>W</option>
-                                <option value='5'>Rotary</option>
+                                <option value='-1'>Összes</option>
+                                <option value="Soros">Soros</option>
+                                <option value="V">V</option>
+                                <option value="Boxer">Boxer</option>
+                                <option value="W">W</option>
+                                <option value="Rotary">Rotary</option>
                             </select>
                         </div>
                         <div className="row">
@@ -458,19 +472,22 @@ const SearchSide = React.memo(() => {
                             <label htmlFor='drive_train'>Hajtás</label><br/>
                             <select id='drive_train' className='form-select f-s-m form-select-f'>
                                 <option value='0'>Összes</option>
-                                <option value='1'>FWD</option>
-                                <option value='2'>RWD</option>
-                                <option value='3'>AWD</option>
-                                <option value='4'>4WD</option>
+                                <option value='FWD'>FWD</option>
+                                <option value='RWD'>RWD</option>
+                                <option value='AWD'>AWD</option>
+                                <option value='4WD'>4WD</option>
                             </select>
                         </div>
                         <div className="col-6 wider ps-0">
                             <label htmlFor='gearbox' className=''>Váltó típusa</label><br/>
                             <select id='gearbox' className='form-select ms-1'>
                                 <option value='0'>Összes</option>
-                                <option value='1'>Manuális</option>
-                                <option value='2'>Automata</option>
-                                <option value='3'>CVT</option>
+                                <option value="Manuális">Manuális</option>
+                                <option value="Félautomata">Félautomata</option>
+                                <option value="Automata">Automata</option>
+                                <option value="Triptronic">Triptronic</option>
+                                <option value="CVT">CVT</option>
+                                <option value="DCT">DCT</option>
                             </select>
                         </div>
                         </div>

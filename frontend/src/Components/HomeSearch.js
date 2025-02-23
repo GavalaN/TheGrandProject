@@ -165,6 +165,7 @@ const HomeSearch = React.memo(() => {
         if(brandSelection.length > 0){
             new TomSelect("#brand",{
                 create: false,
+                maxOptions: false,
                 options: brandSelection,
                 sortField: {
                     field: "text",
@@ -255,15 +256,6 @@ const HomeSearch = React.memo(() => {
         };
     }, [typeSelection]);
 
-    //Body type
-    useEffect(() => {
-        axios.get('./')
-            .then(res => {
-                console.log(res.data)
-                setColors(res.data)
-            })
-        }, [])
-
     //Color
     useEffect(() => {
         axios.get('http://localhost:5000/Color/GetColor')
@@ -304,11 +296,11 @@ const HomeSearch = React.memo(() => {
       };
 
     const handleTypeChange = (event) => {
-    setSelectedType(event.target.value);
+        setSelectedType(event.target.value);
     };
 
     const handleColorChange = (event) => {
-        setSelectedType(event.target.value);
+        setSelectedColor(event.target.value);
         };
 
     const handleClick = (e) => {
@@ -323,7 +315,7 @@ const HomeSearch = React.memo(() => {
             <form id="home-search-form">
                 {console.log(years)}
                 <div className="row d-flex justify-content-between">
-                    <div className="col-auto">
+                    <div className="col-auto brand-slct">
                         <label htmlFor="brand">Márka</label><br/>
                         <select id="brand" name="brand" className="form-select" data-placeholder="Mindegy" autoComplete="off" onChange={handleBrandChange}>
                             {/* <option value="0">Összes</option>
@@ -346,7 +338,7 @@ const HomeSearch = React.memo(() => {
                             ))}
                         </datalist> */}
                     </div>
-                    <div className="col-auto">
+                    <div className="col-auto type-slct">
                         <label htmlFor="type">Típus</label><br/>
                         <select id="type" name="type" className="form-select" data-placeholder="Mindegy" autoComplete="off" onChange={handleTypeChange}>
                         </select>
@@ -367,7 +359,7 @@ const HomeSearch = React.memo(() => {
                     <div className="col-auto">
                             <label htmlFor="body_type">Kivitel</label><br/>
                             <select id="body_type" name="body_type" className="form-select w-120">
-                                <option value="all">Összes</option>
+                                <option value="0">Összes</option>
                                 <option value="ferdehátú">ferdehátú</option>
                                 <option value="kombi">kombi</option>
                                 <option value="szedán">szedán</option>
@@ -385,20 +377,20 @@ const HomeSearch = React.memo(() => {
                         <label htmlFor="fuel">Üzemanyag</label><br/>
                         <select id="fuel" name="fuel" className="form-select">
                             <option value="0">Összes</option>
-                            <option value="1">benzin</option>
-                            <option value="1">benzin</option>
-                            <option value="1">benzin</option>
-                            <option value="1">benzin</option>
-                            <option value="1">benzin</option>
-                            <option value="1">benzin</option>
-                            <option value="1">benzin</option>
-                            <option value="1">benzin</option>
-                            <option value="1">benzin</option>
-                            <option value="1">benzin</option>
-                            <option value="1">benzin</option>
-                            <option value="2">Dízel</option>
-                            <option value="3">Elektromos</option>
-                            <option value="4">Hibrid</option>
+                            <option value="benzin">benzin</option>
+                            <option value="LPG + benzin">LPG + benzin</option>
+                            <option value="CNG + benzin">CNG + benzin</option>
+                            <option value="hibrid (benzin)">hibrid (benzin)</option>
+                            <option value="plug-in hibrid (benzin)">plug-in hibrid (benzin)</option>
+                            <option value="benzin + etanol">benzin + etanol</option>
+                            <option value="dízel">dízel</option>
+                            <option value="LPG + dízel">LPG + dízel</option>
+                            <option value="CNG + dízel">CNG + dízel</option>
+                            <option value="hibrid (dízel)">hibrid (dízel)</option>
+                            <option value="plug-in hibrid (dízel)">plug-in hibrid (dízel)</option>
+                            <option value="etanol">etanol</option>
+                            <option value="elektromos">elektromos</option>
+                            <option value="hidrogén (üzemanyagcellás)">hidrogén (üzemanyagcellás)</option>
                         </select>
                     </div>
                     <div className="col-auto">
@@ -507,37 +499,40 @@ const HomeSearch = React.memo(() => {
                                 <option value="10">10 db</option>
                                 <option value="12">12 db</option>
                                 <option value="16">16 db</option>
-                                <option value="ev">elektromos</option>
+                                <option value="-1">elektromos</option>
                             </select>
                         </div>
                         <div className={`col-auto ${isActive ? "" : "collapse-form"}`}>
                             <label htmlFor="motor_type">Motor elrendezés</label><br/>
                             <select id="motor_type" name="motor_type" className="form-select f-s-m">
                                 <option value="0">Összes</option>
-                                <option value="1">Soros</option>
-                                <option value="2">V</option>
-                                <option value="3">Boxer</option>
-                                <option value="4">W</option>
-                                <option value="5">Rotary</option>
+                                <option value="Soros">Soros</option>
+                                <option value="V">V</option>
+                                <option value="Boxer">Boxer</option>
+                                <option value="W">W</option>
+                                <option value="Rotary">Rotary</option>
                             </select>
                         </div>
                         <div className={`col-auto ${isActive ? "" : "collapse-form"}`}>
                             <label htmlFor="drive_train">Hajtás</label><br/>
                             <select id="drive_train" name="drive_train" className="form-select f-s-m">
                                 <option value="0">Összes</option>
-                                <option value="1">FWD</option>
-                                <option value="2">RWD</option>
-                                <option value="3">AWD</option>
-                                <option value="4">4WD</option>
+                                <option value="FWD">FWD</option>
+                                <option value="RWD">RWD</option>
+                                <option value="AWD">AWD</option>
+                                <option value="4WD">4WD</option>
                             </select>
                         </div>
                         <div className={`col-auto ${isActive ? "" : "collapse-form"}`}>
                             <label htmlFor="gearbox">Váltó típusa</label><br/>
                             <select id="gearbox" name="gearbox" className="form-select">
                                 <option value="0">Összes</option>
-                                <option value="1">Manuális</option>
-                                <option value="2">Automata</option>
-                                <option value="3">CVT</option>
+                                <option value="Manuális">Manuális</option>
+                                <option value="Félautomata">Félautomata</option>
+                                <option value="Automata">Automata</option>
+                                <option value="Triptronic">Triptronic</option>
+                                <option value="CVT">CVT</option>
+                                <option value="DCT">DCT</option>
                             </select>
                         </div>
                         <div className={`col-auto ${isActive ? "" : "collapse-form"}`}>
