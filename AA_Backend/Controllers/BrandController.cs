@@ -40,11 +40,10 @@ namespace AA_Backend.Controllers
         [HttpGet("GetTypeByBrand")]
         public IActionResult GetTypeByBrand(int id)
         {
-            using(var context = new CarplaceContext())
-            {
+           
                 try
                 {
-                    List<TypeDTO> types = context.Types.Where(t => t.BrandId == id).Select(k => new TypeDTO()
+                    List<TypeDTO> types = _context.Types.Where(t => t.BrandId == id).Select(k => new TypeDTO()
                     {
                         Id = k.Id,
                         TypeName = k.TypeName
@@ -62,7 +61,7 @@ namespace AA_Backend.Controllers
                     list.Add(brand);
                     return BadRequest(list);
                 }
-            }   
+             
         }
 
         /*[HttpPost]

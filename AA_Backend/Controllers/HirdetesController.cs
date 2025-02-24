@@ -26,20 +26,20 @@ namespace AA_Backend.Controllers
                         KMClock = k.KmClock,
                         Price = k.Price,
                         Description = k.Description,
-                        Ccm = k.Type.Motor.Cc,
-                        Hp = k.Type.Motor.Horsepower,
-                        Fuel_Type = k.Type.Motor.FuelType,
-                        Year = k.Type.Year,
+                        Ccm = k.Cc,
+                        Hp = k.Horsepower,
+                        Fuel_Type = k.FuelType,
+                        Year = k.Year,
                         Username = k.Seller.Username,
                         PhoneNum = k.Seller.PhoneNum,
                         Email = k.Seller.Email,
-                        Drive = k.Type.Drive,
+                        Drive = k.Drive,
                         Color = k.Color.Name,
-                        TransType= k.Type.TransType,
-                        EngineType=k.Type.Motor.EngineType,
-                        NumofCylinders=k.Type.Motor.NumOfCyl,
+                        TransType= k.TransType,
+                        EngineType=k.EngineType,
+                        NumofCylinders=k.NumOfCyl,
                         BodyType=k.BodyType,
-                        KWeight = k.Type.KWeight
+                        KWeight = k.KWeight
 
 
 
@@ -76,20 +76,20 @@ namespace AA_Backend.Controllers
                     car.KmClock = hirdetes.KMClock;
                     car.Price = hirdetes.Price;
                     car.Description = hirdetes.Description;
-                    car.Type.Motor.Cc = hirdetes.Ccm;
-                    car.Type.Motor.Horsepower = hirdetes.Hp;
-                    car.Type.Motor.FuelType = hirdetes.Fuel_Type;
-                    car.Type.Year = hirdetes.Year;
+                    car.Cc = hirdetes.Ccm;
+                    car.Horsepower = hirdetes.Hp;
+                    car.FuelType = hirdetes.Fuel_Type;
+                    car.Year = hirdetes.Year;
                     car.Seller.Username = hirdetes.Username;
                     car.Seller.PhoneNum = hirdetes.PhoneNum;
                     car.Seller.Email = hirdetes.Email;
-                    car.Type.Drive = hirdetes.Drive;
+                    car.Drive = hirdetes.Drive;
                     car.Color.Name = hirdetes.Color;
-                    car.Type.TransType = hirdetes.TransType;
-                    car.Type.Motor.EngineType = hirdetes.EngineType;
-                    car.Type.Motor.NumOfCyl = hirdetes.NumofCylinders;
+                    car.TransType = hirdetes.TransType;
+                    car.EngineType = hirdetes.EngineType;
+                    car.NumOfCyl = hirdetes.NumofCylinders;
                     car.BodyType = hirdetes.BodyType;
-                    car.Type.KWeight = hirdetes.KWeight;
+                    car.KWeight = hirdetes.KWeight;
                     await _context.SaveChangesAsync();
                     return Ok("Sikeres módosítás!");
                 }

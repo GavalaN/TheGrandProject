@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace AA_Backend.Models;
 
@@ -16,13 +15,13 @@ public partial class User
 
     public string Hash { get; set; } = null!;
 
-    public DateTime? Created { get; set; }
+    public DateTime Created { get; set; }
 
-    public bool? IsAdmin { get; set; }
+    public bool IsAdmin { get; set; }
 
     public string Salt { get; set; } = null!;
 
-    public int? IsActive { get; set; }
-    [JsonIgnore]
+    public int IsActive { get; set; }
+
     public virtual ICollection<Car> Cars { get; set; } = new List<Car>();
 }

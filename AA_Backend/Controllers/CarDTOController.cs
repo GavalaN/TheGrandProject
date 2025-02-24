@@ -7,6 +7,7 @@ namespace AA_Backend.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    
     public class CarDTOController : ControllerBase
     {
         private readonly CarplaceContext _context;
@@ -26,10 +27,10 @@ namespace AA_Backend.Controllers
                         KMClock=k.KmClock,
                         Price=k.Price,
                         Description=k.Description,
-                        ccm=k.Type.Motor.Cc,
-                        hp=k.Type.Motor.Horsepower,
-                        fuel_type=k.Type.Motor.FuelType,
-                        Year=k.Type.Year
+                        ccm=k.Cc,
+                        hp=k.Horsepower,
+                        fuel_type=k.FuelType,
+                        Year=k.Year
 
 
                     }).ToList();

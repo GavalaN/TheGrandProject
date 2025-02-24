@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace AA_Backend.Models;
 
@@ -29,14 +28,32 @@ public partial class Car
     public bool Sold { get; set; }
 
     public string BodyType { get; set; } = null!;
-    [JsonIgnore]
+
+    public int NumOfCyl { get; set; }
+
+    public int Horsepower { get; set; }
+
+    public int Cc { get; set; }
+
+    public string EngineType { get; set; } = null!;
+
+    public string FuelType { get; set; } = null!;
+
+    public string Drive { get; set; } = null!;
+
+    public string TransType { get; set; } = null!;
+
+    public int Year { get; set; }
+
+    public int KWeight { get; set; }
+
     public virtual Brand Brand { get; set; } = null!;
-    [JsonIgnore]
+
     public virtual Color Color { get; set; } = null!;
-    [JsonIgnore]
+
     public virtual Pictue Pic { get; set; } = null!;
-    [JsonIgnore]
+
     public virtual User Seller { get; set; } = null!;
-    [JsonIgnore]
+
     public virtual Type Type { get; set; } = null!;
 }
