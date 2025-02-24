@@ -8,6 +8,7 @@ namespace AA_Backend.Controllers
     [ApiController]
     public class LogoutController : ControllerBase
     {
+        
         [HttpPost]
         public IActionResult Logout(string uId)
         {

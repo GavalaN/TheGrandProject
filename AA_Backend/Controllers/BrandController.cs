@@ -10,14 +10,14 @@ namespace AA_Backend.Controllers
     [ApiController]
     public class BrandController : ControllerBase
     {
+        private readonly CarplaceContext _context;
         [HttpGet("BrandGet")]
         public IActionResult GetBrand()
         {
-            using (var context = new CarplaceContext())
-            {
+            
                 try
                 {
-                    List<Brand> list = context.Brands.ToList();
+                    List<Brand> list = _context.Brands.ToList();
                     return Ok(list);
                 }
                 catch (Exception ex)
@@ -34,7 +34,7 @@ namespace AA_Backend.Controllers
 
 
 
-            }
+            
         }
 
         [HttpGet("GetTypeByBrand")]

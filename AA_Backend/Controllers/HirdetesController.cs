@@ -2,21 +2,23 @@
 using AA_Backend.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace AA_Backend.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+
     public class HirdetesController : ControllerBase
     {
+        private readonly CarplaceContext _context;
         [HttpGet("GetHirdetesById")]
         public IActionResult GetHirdetesById(int id)
         {
-            using (var context = new CarplaceContext())
-            {
+            
                 try
                 {
-                    HirdetesDTO Hirdetes = context.Cars.Select(k => new HirdetesDTO()
+                    HirdetesDTO Hirdetes = _context.Cars.Select(k => new HirdetesDTO()
                     {
                         Id = k.Id,
                         Brand = k.Brand.Name,
@@ -56,22 +58,21 @@ namespace AA_Backend.Controllers
                     list.Add(hirdetes);
                     return BadRequest(list);
                 }
-            }
+            
         }
         [HttpPut("PutHirdetes")]
         public async Task<IActionResult> PutHirdetes(HirdetesDTO hirdetes)
         {
-            using (var context = new CarplaceContext())
-            {
+            
                 try
                 {
-                    var car = context.Cars.FirstOrDefault(k => k.Id == hirdetes.Id);
+                    var car = _context.Cars.FirstOrDefault(k => k.Id == hirdetes.Id);
                     if (car == null)
                     {
                         return BadRequest("Nem található a hirdetés!");
                     }
-                    car.BrandId = context.Brands.FirstOrDefault(b => b.Name == hirdetes.Brand).Id;
-                    car.TypeId = context.Types.FirstOrDefault(t => t.TypeName == hirdetes.Type_Name).Id;
+                    car.BrandId = _context.Brands.FirstOrDefaultAsync(b => b.Name == hirdetes.Brand).Id;
+                    car.TypeId = _context.Types.FirstOrDefaultAsync(t => t.TypeName == hirdetes.Type_Name).Id;
                     car.KmClock = hirdetes.KMClock;
                     car.Price = hirdetes.Price;
                     car.Description = hirdetes.Description;
@@ -89,39 +90,40 @@ namespace AA_Backend.Controllers
                     car.Type.Motor.NumOfCyl = hirdetes.NumofCylinders;
                     car.BodyType = hirdetes.BodyType;
                     car.Type.KWeight = hirdetes.KWeight;
-                    await context.SaveChangesAsync();
+                    await _context.SaveChangesAsync();
                     return Ok("Sikeres módosítás!");
                 }
                 catch (Exception ex)
                 {
                     return BadRequest(ex.Message);
                 }
-            }
+            
         }
-        [HttpPost("HirdetesPost")]
+        /*[HttpPost("HirdetesPost")]
         public async Task<IActionResult>  HirdetesPost(HirdetesDTO hirdetes)
         {
-            using (var context = new CarplaceContext())
+            using (var _context = new CarplaceContext())
             {
                 try
                 {
-                    if (context.Cars.FirstOrDefault(k => k.Id == hirdetes.Id) != null)
+                    if (_context.Cars.FirstOrDefault(k => k.Id == hirdetes.Id) != null)
                     {
                         return BadRequest("A hirdetés már létezik!");
                     }
                     Car car = new Car()
                     {
-                        BrandId = context.Brands.FirstOrDefault(b => b.Name == hirdetes.Brand).Id,
-                        TypeId = context.Types.FirstOrDefault(t => t.TypeName == hirdetes.Type_Name).Id,
+                        BrandId = _context.Brands.FirstOrDefaultAsync(b => b.Name == hirdetes.Brand).Id,
+                        TypeId = _context.Types.FirstOrDefaultAsync(t => t.TypeName == hirdetes.Type_Name).Id,
                         KmClock = hirdetes.KMClock,
                         Price = hirdetes.Price,
                         Description = hirdetes.Description,
                         BodyType = hirdetes.BodyType,
-                        ColorId = context.Colors.FirstOrDefault(c => c.Name == hirdetes.Color).Id,
-                        SellerId = context.Users.FirstOrDefault(s => s.Username == hirdetes.Username).Id
+                        ColorId = _context.Colors.FirstOrDefaultAsync(c => c.Name == hirdetes.Color).Id,
+                        SellerId = _context.Users.FirstOrDefaultAsync(s => s.Username == hirdetes.Username).Id
+                        
                     };
-                    context.Cars.Add(car);
-                    await context.SaveChangesAsync();
+                    await _context.Cars.Add(car);
+                    await _context.SaveChangesAsync();
                     return Ok("Sikeres hirdetésfeladás!");
                 }
                 catch (Exception ex)
@@ -129,28 +131,27 @@ namespace AA_Backend.Controllers
                     return BadRequest(ex.Message);
                 }
             }
-        }
+        }*/
         [HttpDelete("DeleteHirdetes")]
         public async Task<IActionResult> DeleteHirdetes(int id)
         {
-            using (var context = new CarplaceContext())
-            {
+            
                 try
                 {
-                    var car = context.Cars.FirstOrDefault(k => k.Id == id);
+                    var car = _context.Cars.FirstOrDefault(k => k.Id == id);
                     if (car == null)
                     {
                         return BadRequest("Nem található a hirdetés!");
                     }
-                    context.Cars.Remove(car);
-                    await context.SaveChangesAsync();
+                    _context.Cars.Remove(car);
+                    await _context.SaveChangesAsync();
                     return Ok("Sikeres törlés!");
                 }
                 catch (Exception ex)
                 {
                     return BadRequest(ex.Message);
                 }
-            }
+            
         }
     }
 }

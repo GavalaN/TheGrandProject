@@ -26,6 +26,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "AA_Backend.Controllers.CarController",
+    "Method": "Add",
+    "RelativePath": "Car/Add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "car",
+        "Type": "AA_Backend.Models.Car",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "AA_Backend.Controllers.CarDTOController",
     "Method": "GetDTOAll",
     "RelativePath": "CarDTO/GetAll",
@@ -73,22 +89,6 @@
         "Name": "id",
         "Type": "System.Int32",
         "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "AA_Backend.Controllers.HirdetesController",
-    "Method": "HirdetesPost",
-    "RelativePath": "Hirdetes/HirdetesPost",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "hirdetes",
-        "Type": "AA_Backend.DTOs.HirdetesDTO",
-        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -170,6 +170,22 @@
         "Type": "System.String",
         "IsRequired": false
       },
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AA_Backend.Controllers.RegistryController",
+    "Method": "ForgotPassword",
+    "RelativePath": "Registry/ForgotPassword",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
       {
         "Name": "email",
         "Type": "System.String",

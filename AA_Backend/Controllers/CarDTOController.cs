@@ -9,15 +9,15 @@ namespace AA_Backend.Controllers
     [ApiController]
     public class CarDTOController : ControllerBase
     {
+        private readonly CarplaceContext _context;
         [HttpGet("GetAll")]
         public IActionResult GetDTOAll()
         {
-            using (var context = new CarplaceContext())
-            {
+            
                 
                 try
                 {
-                    List<CarDTO> CarDTOs = context.Cars.Select(k => new CarDTO()
+                    List<CarDTO> CarDTOs = _context.Cars.Select(k => new CarDTO()
                     {
                         Id = k.Id,
                         SellerId = k.SellerId,
@@ -47,7 +47,7 @@ namespace AA_Backend.Controllers
                     list.Add(car);
                     return BadRequest(list);
                 }
-            }
+            
         }
     }
 }

@@ -10,14 +10,14 @@ namespace AA_Backend.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+        private readonly CarplaceContext _context;
         [HttpGet("GetUserListings")]
         public IActionResult GetUserListings(int userid)
         {
             try
             {
-                using (var context = new CarplaceContext())
-                {
-                    var listings = context.Cars
+                
+                    var listings = _context.Cars
                         .Where(l => l.SellerId == userid)
                         .Select(k => new CarDTO()
                         {
@@ -49,7 +49,7 @@ namespace AA_Backend.Controllers
                         carDTOs.Add(car);
                         return NotFound(carDTOs);
                     }
-                }
+                
             }
             catch (Exception ex)
             {

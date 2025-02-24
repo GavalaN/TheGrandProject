@@ -11,14 +11,14 @@ namespace AA_Backend.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
+        private readonly CarplaceContext _context;
         [HttpPost("GetSalt/{Username}")]
         public async Task<IActionResult> GetSalt(string Username)
         {
-            using (var context = new CarplaceContext())
-            {
+            
                 try
                 {
-                    User response = await context.Users.FirstOrDefaultAsync(u => u.Username == Username);
+                    User response = await _context.Users.FirstOrDefaultAsync(u => u.Username == Username);
                     if (response == null)
                     {
                         return NotFound("Felhasználó név nem található!");
@@ -32,18 +32,17 @@ namespace AA_Backend.Controllers
                 {
                     return BadRequest(ex.Message);
                 }
-            }
+            
         }
 
         [HttpPost]
         public async Task<IActionResult> Login(LoginDTO loginDTO)
         {
-            using (var context = new CarplaceContext())
-            {
+            
                 try
                 {
                     string hash = Program.CreateSHA256(loginDTO.TmpHash);
-                    User response = await context.Users.FirstOrDefaultAsync(u => u.Username == loginDTO.LoginName && u.Hash == hash);
+                    User response = await _context.Users.FirstOrDefaultAsync(u => u.Username == loginDTO.LoginName && u.Hash == hash);
                     if (response != null)
                     {
                         string token = Guid.NewGuid().ToString();
@@ -66,6 +65,6 @@ namespace AA_Backend.Controllers
                     return BadRequest(ex.Message);
                 }
             }
-        }
+        
     }
 }
