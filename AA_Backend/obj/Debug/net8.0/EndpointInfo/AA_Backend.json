@@ -360,34 +360,6 @@
   },
   "components": {
     "schemas": {
-      "Brand": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "cars": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Car"
-            },
-            "nullable": true
-          },
-          "types": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Type"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "Car": {
         "type": "object",
         "properties": {
@@ -429,7 +401,8 @@
           },
           "uploadDate": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "sold": {
             "type": "boolean"
@@ -473,46 +446,6 @@
           "kWeight": {
             "type": "integer",
             "format": "int32"
-          },
-          "brand": {
-            "$ref": "#/components/schemas/Brand"
-          },
-          "color": {
-            "$ref": "#/components/schemas/Color"
-          },
-          "pic": {
-            "$ref": "#/components/schemas/Pictue"
-          },
-          "seller": {
-            "$ref": "#/components/schemas/User"
-          },
-          "type": {
-            "$ref": "#/components/schemas/Type"
-          }
-        },
-        "additionalProperties": false
-      },
-      "Color": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "hexcode": {
-            "type": "string",
-            "nullable": true
-          },
-          "cars": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Car"
-            },
-            "nullable": true
           }
         },
         "additionalProperties": false
@@ -617,59 +550,6 @@
         },
         "additionalProperties": false
       },
-      "Pictue": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "carId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "filePath": {
-            "type": "string",
-            "nullable": true
-          },
-          "cars": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Car"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "Type": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "brandId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "typeName": {
-            "type": "string",
-            "nullable": true
-          },
-          "brand": {
-            "$ref": "#/components/schemas/Brand"
-          },
-          "cars": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Car"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "User": {
         "type": "object",
         "properties": {
@@ -707,13 +587,6 @@
           "isActive": {
             "type": "integer",
             "format": "int32"
-          },
-          "cars": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Car"
-            },
-            "nullable": true
           }
         },
         "additionalProperties": false

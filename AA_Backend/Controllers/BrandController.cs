@@ -10,47 +10,19 @@ namespace AA_Backend.Controllers
     [ApiController]
     public class BrandController : ControllerBase
     {
-        private readonly CarplaceContext _context;
+
+
         [HttpGet("BrandGet")]
         public IActionResult GetBrand()
         {
-            
+            using (var context = new CarplaceContext())
+            {
                 try
                 {
-                    List<Brand> list = _context.Brands.ToList();
+                    List<Brand> list = context.Brands.ToList();
                     return Ok(list);
                 }
                 catch (Exception ex)
-                {
-                    List<Brand> list = new  List<Brand>();
-                    Brand brand = new()
-                    {
-                        Id = -1,
-                        Name= ex.Message
-                    };
-                    list.Add(brand);
-                    return BadRequest(list);
-                }
-
-
-
-            
-        }
-
-        [HttpGet("GetTypeByBrand")]
-        public IActionResult GetTypeByBrand(int id)
-        {
-           
-                try
-                {
-                    List<TypeDTO> types = _context.Types.Where(t => t.BrandId == id).Select(k => new TypeDTO()
-                    {
-                        Id = k.Id,
-                        TypeName = k.TypeName
-                    }).ToList();
-                    return Ok(types);
-                }
-                catch ( Exception ex)
                 {
                     List<Brand> list = new List<Brand>();
                     Brand brand = new()
@@ -61,25 +33,58 @@ namespace AA_Backend.Controllers
                     list.Add(brand);
                     return BadRequest(list);
                 }
-             
+            }
+
+
+
         }
 
-        /*[HttpPost]
-        public IActionResult Post(Brand brand)
+        [HttpGet("GetTypeByBrand")]
+        public IActionResult GetTypeByBrand(int id)
         {
-            
-        }
+            using (var context = new CarplaceContext())
+            {
+                {
+                    try
+                    {
+                        List<TypeDTO> types = context.Types.Where(t => t.BrandId == id).Select(k => new TypeDTO()
+                        {
+                            Id = k.Id,
+                            TypeName = k.TypeName
+                        }).ToList();
+                        return Ok(types);
+                    }
+                    catch (Exception ex)
+                    {
+                        List<Brand> list = new List<Brand>();
+                        Brand brand = new()
+                        {
+                            Id = -1,
+                            Name = ex.Message
+                        };
+                        list.Add(brand);
+                        return BadRequest(list);
+                    }
+                }
+            }
 
-        [HttpPut("{id}")]
-        public IActionResult Put(string id)
-        {
-            return Ok();
-        }
+            /*[HttpPost]
+            public IActionResult Post(Brand brand)
+            {
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(string id)
-        {
-            return Ok();
-        }*/
+            }
+
+            [HttpPut("{id}")]
+            public IActionResult Put(string id)
+            {
+                return Ok();
+            }
+
+            [HttpDelete("{id}")]
+            public IActionResult Delete(string id)
+            {
+                return Ok();
+            }*/
+        }
     }
 }

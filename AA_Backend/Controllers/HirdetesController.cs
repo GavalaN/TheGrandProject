@@ -11,14 +11,16 @@ namespace AA_Backend.Controllers
 
     public class HirdetesController : ControllerBase
     {
-        private readonly CarplaceContext _context;
+        
+
         [HttpGet("GetHirdetesById")]
         public IActionResult GetHirdetesById(int id)
         {
-            
+            using (var context = new CarplaceContext())
+            {
                 try
                 {
-                    HirdetesDTO Hirdetes = _context.Cars.Select(k => new HirdetesDTO()
+                    HirdetesDTO Hirdetes = context.Cars.Select(k => new HirdetesDTO()
                     {
                         Id = k.Id,
                         Brand = k.Brand.Name,
@@ -35,16 +37,16 @@ namespace AA_Backend.Controllers
                         Email = k.Seller.Email,
                         Drive = k.Drive,
                         Color = k.Color.Name,
-                        TransType= k.TransType,
-                        EngineType=k.EngineType,
-                        NumofCylinders=k.NumOfCyl,
-                        BodyType=k.BodyType,
+                        TransType = k.TransType,
+                        EngineType = k.EngineType,
+                        NumofCylinders = k.NumOfCyl,
+                        BodyType = k.BodyType,
                         KWeight = k.KWeight
 
 
 
                     }).FirstOrDefault(k => k.Id == id);
-                        
+
                     return Ok(Hirdetes);
                 }
                 catch (Exception ex)
@@ -58,21 +60,22 @@ namespace AA_Backend.Controllers
                     list.Add(hirdetes);
                     return BadRequest(list);
                 }
-            
+            }
         }
         [HttpPut("PutHirdetes")]
         public async Task<IActionResult> PutHirdetes(HirdetesDTO hirdetes)
         {
-            
+            using (var context = new CarplaceContext())
+            {
                 try
                 {
-                    var car = _context.Cars.FirstOrDefault(k => k.Id == hirdetes.Id);
+                    var car = context.Cars.FirstOrDefault(k => k.Id == hirdetes.Id);
                     if (car == null)
                     {
                         return BadRequest("Nem található a hirdetés!");
                     }
-                    car.BrandId = _context.Brands.FirstOrDefaultAsync(b => b.Name == hirdetes.Brand).Id;
-                    car.TypeId = _context.Types.FirstOrDefaultAsync(t => t.TypeName == hirdetes.Type_Name).Id;
+                    car.BrandId = context.Brands.FirstOrDefaultAsync(b => b.Name == hirdetes.Brand).Id;
+                    car.TypeId = context.Types.FirstOrDefaultAsync(t => t.TypeName == hirdetes.Type_Name).Id;
                     car.KmClock = hirdetes.KMClock;
                     car.Price = hirdetes.Price;
                     car.Description = hirdetes.Description;
@@ -90,14 +93,14 @@ namespace AA_Backend.Controllers
                     car.NumOfCyl = hirdetes.NumofCylinders;
                     car.BodyType = hirdetes.BodyType;
                     car.KWeight = hirdetes.KWeight;
-                    await _context.SaveChangesAsync();
+                    await context.SaveChangesAsync();
                     return Ok("Sikeres módosítás!");
                 }
                 catch (Exception ex)
                 {
                     return BadRequest(ex.Message);
                 }
-            
+            }
         }
         /*[HttpPost("HirdetesPost")]
         public async Task<IActionResult>  HirdetesPost(HirdetesDTO hirdetes)
@@ -135,23 +138,24 @@ namespace AA_Backend.Controllers
         [HttpDelete("DeleteHirdetes")]
         public async Task<IActionResult> DeleteHirdetes(int id)
         {
-            
+            using (var context = new CarplaceContext())
+            {
                 try
                 {
-                    var car = _context.Cars.FirstOrDefault(k => k.Id == id);
+                    var car = context.Cars.FirstOrDefault(k => k.Id == id);
                     if (car == null)
                     {
                         return BadRequest("Nem található a hirdetés!");
                     }
-                    _context.Cars.Remove(car);
-                    await _context.SaveChangesAsync();
+                    context.Cars.Remove(car);
+                    await context.SaveChangesAsync();
                     return Ok("Sikeres törlés!");
                 }
                 catch (Exception ex)
                 {
                     return BadRequest(ex.Message);
                 }
-            
+            }
         }
     }
 }

@@ -11,12 +11,17 @@ namespace AA_Backend.Controllers
     public class UsersController : ControllerBase
     {
         private readonly CarplaceContext _context;
+
+
+
         [HttpGet("GetUserListings")]
         public IActionResult GetUserListings(int userid)
         {
-            try
+            using (var context = new CarplaceContext())
             {
-                
+                try
+                {
+
                     var listings = _context.Cars
                         .Where(l => l.SellerId == userid)
                         .Select(k => new CarDTO()
@@ -49,18 +54,19 @@ namespace AA_Backend.Controllers
                         carDTOs.Add(car);
                         return NotFound(carDTOs);
                     }
-                
-            }
-            catch (Exception ex)
-            {
-                List<CarDTO> carDTOs = new List<CarDTO>();
-                CarDTO car = new()
+
+                }
+                catch (Exception ex)
                 {
-                    Id = -1,
-                    Description = ex.Message
-                };
-                carDTOs.Add(car);
-                return BadRequest(carDTOs);
+                    List<CarDTO> carDTOs = new List<CarDTO>();
+                    CarDTO car = new()
+                    {
+                        Id = -1,
+                        Description = ex.Message
+                    };
+                    carDTOs.Add(car);
+                    return BadRequest(carDTOs);
+                }
             }
         }
     }

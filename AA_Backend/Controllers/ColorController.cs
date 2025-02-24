@@ -8,14 +8,16 @@ namespace AA_Backend.Controllers
     [ApiController]
     public class ColorController : ControllerBase
     {
-        private readonly CarplaceContext _context;
+        
+
         [HttpGet("GetColor")]
         public IActionResult GetColor()
         {
-            
+            using (var context = new CarplaceContext())
+            {
                 try
                 {
-                    List<Color> list = _context.Colors.ToList();
+                    List<Color> list = context.Colors.ToList();
                     return Ok(list);
                 }
                 catch (Exception ex)
@@ -29,7 +31,7 @@ namespace AA_Backend.Controllers
                     list.Add(color);
                     return BadRequest(list);
                 }
-            
+            }
         }
     }
 }

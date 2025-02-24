@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace AA_Backend.Models;
 
@@ -23,7 +24,7 @@ public partial class Car
 
     public int SellerId { get; set; }
 
-    public DateTime UploadDate { get; set; }
+    public DateTime? UploadDate { get; set; }
 
     public bool Sold { get; set; }
 
@@ -46,14 +47,14 @@ public partial class Car
     public int Year { get; set; }
 
     public int KWeight { get; set; }
-
-    public virtual Brand Brand { get; set; } = null!;
-
-    public virtual Color Color { get; set; } = null!;
-
-    public virtual Pictue Pic { get; set; } = null!;
-
-    public virtual User Seller { get; set; } = null!;
-
-    public virtual Type Type { get; set; } = null!;
+    [JsonIgnore]
+    public virtual Brand? Brand { get; set; }
+    [JsonIgnore]
+    public virtual Color? Color { get; set; }
+    [JsonIgnore]
+    public virtual Pictue? Pic { get; set; }
+    [JsonIgnore]
+    public virtual User? Seller { get; set; }
+    [JsonIgnore]
+    public virtual Type? Type { get; set; }
 }

@@ -10,32 +10,34 @@ namespace AA_Backend.Controllers
     
     public class CarDTOController : ControllerBase
     {
-        private readonly CarplaceContext _context;
+        
+
         [HttpGet("GetAll")]
         public IActionResult GetDTOAll()
         {
-            
-                
+            using (var context = new CarplaceContext())
+            {
+
                 try
                 {
-                    List<CarDTO> CarDTOs = _context.Cars.Select(k => new CarDTO()
+                    List<CarDTO> CarDTOs = context.Cars.Select(k => new CarDTO()
                     {
                         Id = k.Id,
                         SellerId = k.SellerId,
-                        Brand =k.Brand.Name,
-                        Type_name=k.Type.TypeName,
-                        KMClock=k.KmClock,
-                        Price=k.Price,
-                        Description=k.Description,
-                        ccm=k.Cc,
-                        hp=k.Horsepower,
-                        fuel_type=k.FuelType,
-                        Year=k.Year
+                        Brand = k.Brand.Name,
+                        Type_name = k.Type.TypeName,
+                        KMClock = k.KmClock,
+                        Price = k.Price,
+                        Description = k.Description,
+                        ccm = k.Cc,
+                        hp = k.Horsepower,
+                        fuel_type = k.FuelType,
+                        Year = k.Year
 
 
                     }).ToList();
                     return Ok(CarDTOs);
-                
+
                 }
                 catch (Exception ex)
                 {
@@ -48,7 +50,7 @@ namespace AA_Backend.Controllers
                     list.Add(car);
                     return BadRequest(list);
                 }
-            
+            }
         }
     }
 }

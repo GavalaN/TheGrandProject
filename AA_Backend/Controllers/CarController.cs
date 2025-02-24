@@ -9,25 +9,27 @@ namespace AA_Backend.Controllers
     
     public class CarController : ControllerBase
     {
-        private readonly CarplaceContext _context;
-
         
 
         [HttpPost("Add")]
         public async Task<IActionResult> Add(Car car)
         {
-            
+
+            using (var context = new CarplaceContext())
+            {
                 try
                 {
-                    await _context.Cars.AddAsync(car);
-                    await _context.SaveChangesAsync();
+                    car.UploadDate = DateTime.Now;
+                    car.Sold = false;
+                    await context.Cars.AddAsync(car);
+                    await context.SaveChangesAsync();
                     return Ok("Sikeres hozzáadás!");
                 }
                 catch (Exception ex)
                 {
                     return BadRequest(ex.Message);
                 }
-            
+            }
         }
 
 

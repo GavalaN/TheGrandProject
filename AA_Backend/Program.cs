@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using BCrypt.Net;
 using System.Configuration;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace AA_Backend
@@ -18,6 +19,7 @@ namespace AA_Backend
             string salt = BCrypt.Net.BCrypt.GenerateSalt(12);
             return salt;
         }
+
 
 
 
@@ -65,8 +67,7 @@ namespace AA_Backend
 
             var app = builder.Build();
             app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-           
-            
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

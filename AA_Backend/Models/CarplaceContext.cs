@@ -11,10 +11,7 @@ public partial class CarplaceContext : DbContext
     {
     }
 
-    public CarplaceContext(DbContextOptions<CarplaceContext> options)
-        : base(options)
-    {
-    }
+    
 
     public virtual DbSet<Brand> Brands { get; set; }
 
