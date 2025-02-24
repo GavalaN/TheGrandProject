@@ -176,9 +176,15 @@
 .input-group input, .input-group-f input {
     border: none !important;
     border-right: 2px solid black !important;
-    height: 1.8rem !important;
+    height: 90% !important;
     border-radius: 0.2rem 0 0 0.2rem !important;
     text-align: right !important;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.input-group input:focus, .input-group-f input:focus {
+    outline: none !important;
 }
 
 .input-group-append {

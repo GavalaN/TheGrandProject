@@ -82,31 +82,38 @@ export default function NewAdForm() {
   useEffect(() => {
           new TomSelect("#body_type",{
               create: false,
-              controlInput: null
+              controlInput: null,
+              maxOptions: false
           });
           new TomSelect("#fuel",{
-              create: false,
-              controlInput: null
+            create: false,
+            controlInput: null,
+            maxOptions: false
           });
           new TomSelect("#year",{
-              create: false,
-              controlInput: null
+            create: false,
+            controlInput: null,
+            maxOptions: false
           });
           new TomSelect("#number_of_cylinder",{
-              create: false,
-              controlInput: null
+            create: false,
+            controlInput: null,
+            maxOptions: false
           });
           new TomSelect("#motor_type",{
-              create: false,
-              controlInput: null
+            create: false,
+            controlInput: null,
+            maxOptions: false
           });
           new TomSelect("#drive_train",{
-              create: false,
-              controlInput: null
+            create: false,
+            controlInput: null,
+            maxOptions: false
           });
           new TomSelect("#gearbox",{
-              create: false,
-              controlInput: null
+            create: false,
+            controlInput: null,
+            maxOptions: false
           });
       }, [])
   
@@ -351,7 +358,7 @@ export default function NewAdForm() {
           </div>
           <div className="form-group col-3">
             <label htmlFor="year">Évjárat</label>
-            <select id="year" name="year" className="form-control">
+            <select id="year" name="year" className="form-select">
                 <option value="0">Válassz!</option>
                 {years.map(year => (
                     <option key={year} value={year}>{year}</option>

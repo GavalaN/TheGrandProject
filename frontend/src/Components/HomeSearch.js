@@ -92,35 +92,43 @@ const HomeSearch = React.memo(() => {
     useEffect(() => {
         new TomSelect("#body_type",{
             create: false,
-            controlInput: null
+            controlInput: null,
+            maxOptions: false
         });
         new TomSelect("#fuel",{
             create: false,
-            controlInput: null
+            controlInput: null,
+            maxOptions: false
         });
         new TomSelect("#year_from",{
             create: false,
-            controlInput: null
+            controlInput: null,
+            maxOptions: false
         });
         new TomSelect("#year_to",{
             create: false,
-            controlInput: null
+            controlInput: null,
+            maxOptions: false
         });
         new TomSelect("#number_of_cylinder",{
             create: false,
-            controlInput: null
+            controlInput: null,
+            maxOptions: false
         });
         new TomSelect("#motor_type",{
             create: false,
-            controlInput: null
+            controlInput: null,
+            maxOptions: false
         });
         new TomSelect("#drive_train",{
             create: false,
-            controlInput: null
+            controlInput: null,
+            maxOptions: false
         });
         new TomSelect("#gearbox",{
             create: false,
-            controlInput: null
+            controlInput: null,
+            maxOptions: false
         });
     }, [])
 
