@@ -26,7 +26,7 @@ public partial class Car
 
     public DateTime? UploadDate { get; set; }
 
-    public bool Sold { get; set; }
+    public bool? Sold { get; set; }
 
     public string BodyType { get; set; } = null!;
 
