@@ -61,7 +61,7 @@ namespace AA_Backend.Controllers
                             Email = response.Email
                         });
                     }
-                    return NotFound("valami nem jó!");
+                    return NotFound("Felhasználónév vagy jelszó helytelen");
                 }
                 catch (Exception ex)
                 {
