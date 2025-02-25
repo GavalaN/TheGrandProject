@@ -40,8 +40,9 @@
 }
 
 .car-card-text h3{
-    font-size: larger !important;
-    font-weight: 400 !important;
+    font-size: x-large !important;
+    font-weight: 600 !important;
+    color: #0096d6;
 }
 
 .car-card-text h2{

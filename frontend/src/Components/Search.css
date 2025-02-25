@@ -17,7 +17,7 @@
     font-family: 'Courier New', Courier, monospace;
 }
 
-.welcome-h1{
+h1{
     color: white;
     text-shadow: 2px 2px #201c1c;
     font-family: "Kanit", serif !important;
@@ -89,7 +89,7 @@
     padding-bottom: 1rem;
     border: 2px solid black;
     border-radius: 0.2rem;
-    background-color: white;
+    background-color: #DEDFE1;
     text-align: left;
     font-size:larger;
     font-weight: 600;
@@ -133,10 +133,11 @@
     font-size: larger;
     font-weight: 400 !important;
     min-width: fit-content;
+    cursor: pointer;
 }
 
 #home-search-lower button, #side-search-lower button {
-    background-color: red !important;
+    background-color: #0096de !important;
     color: white;
     border: 2px solid black;
     border-radius: 0.5rem;
@@ -160,6 +161,10 @@
     cursor: not-allowed !important;
     
 }
+
+/* input, .ts-wrapper.form-select {
+    background-color: #fbe9d0 !important;
+} */
 
 .input-groups{
     display: flex;

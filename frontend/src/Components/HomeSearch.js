@@ -565,7 +565,7 @@ const HomeSearch = React.memo(() => {
                 <div id="home-search-lower" className="row">
                     <div className="col-6 ms-auto">
                         <p onClick={handleClick}>Részletes keresés
-                            <i className={isActive ? "bi bi-caret-up" : "bi bi-caret-down"}></i>
+                            <i className={isActive ? "bi bi-chevron-up" : "bi bi-chevron-down"}></i>
                         </p>
                         <Link to="/search"><button className="btn">Keresés</button></Link>
                     </div>

@@ -11,6 +11,8 @@ import TermsAndConditions from './Pages/TermsAndConditions';
 import Contact from './Pages/Contact';
 import NewAd from './Pages/NewAd';
 import SearchList from './Pages/SearchList';
+import ForgottedPassword from './Pages/ForgottedPassword';
+import NewPassword from './Pages/NewPassword';
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
         {/* legyen POST (login), PUT (profil), GETID (/adat/:id) */}
         <Route path='/login' element={<Login/>}/>
         <Route path='/regisztracio' element={<Registration/>}/>
+        <Route path='/elfelejtett-jelszo' element={<ForgottedPassword/>}/>
+        <Route path='/uj-jelszo' element={<NewPassword/>}/>
         <Route path='/hasznos-tudnivalok' element={<Useful_Things/>}/>
         <Route path='/hirdetesfeladas' element={<NewAd/>}/>
         <Route path='/adatvedelmi-tajekoztatas' element={<DataProtection/>}/>

@@ -73,7 +73,7 @@ export default function Login() {
         </button>
       </div>
       <p className="forgot-password text-right">
-        <Link to="/login">Elfelejtett jelszó</Link>
+        <Link to="/elfelejtett-jelszo">Elfelejtett jelszó</Link>
       </p>
     </form>
   </div>

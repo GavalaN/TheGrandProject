@@ -15,7 +15,7 @@
 }
 
 #upper {
-    background-color: #484444;
+    background-color: #0e1d2c;
     height: 8rem;
     padding-top: 1rem;
     padding-left: 8%;
@@ -28,7 +28,7 @@
 }
 
 #lower {
-    background-color: #201c1c;
+    background-color: #10070C !important;
     padding-bottom: 0.5rem;
 }
 

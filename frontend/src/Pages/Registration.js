@@ -30,7 +30,7 @@ export default function Registration() {
       alert(response.data);
     } catch (error) {
       console.log(error);
-      alert(error.response.data.errors);
+      alert(error.response.data);
     }
 
     console.log(user); // Kiírja a felhasználói adatokat a konzolra

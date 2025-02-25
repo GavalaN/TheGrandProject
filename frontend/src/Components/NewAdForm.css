@@ -25,7 +25,7 @@ label {
 h1 {
   margin-bottom: 2rem;
   font-size: 2rem;
-  color: #333;
+  color: #ffffff !important;
 }
 
 #newad-form {
@@ -33,7 +33,7 @@ h1 {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 3rem;
-  background-color: white;
+  background-color: #DEDFE1;
   border: 2px solid black;
   padding: 2rem;
   box-shadow: -30px 30px 50px -12px rgba(0,0,0,0.75);
@@ -41,7 +41,7 @@ h1 {
 }
 
 #newad-form button{
-  background-color: red !important;
+  background-color: #0096D6 !important;
   color: white;
   border: 2px solid black;
   border-radius: 0.5rem;

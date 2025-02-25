@@ -4,6 +4,7 @@ import Select from 'react-select';
 import TomSelect from 'tom-select';
 import './NewAdForm.css';
 import './Search.css'
+import logo from '../Images/logo.png'
 
 function yearRange(){
   let years = [];
@@ -269,13 +270,16 @@ export default function NewAdForm() {
     const body = 
     {
       id: 0,
-      brand: selectedBrand,
-      type_Name: selectedType,
-      fuel_Type: document.getElementById("fuel").value,
+      uploadDate: null,
+
+      picId: 1,
+      brandId: selectedBrand,
+      typeId: selectedType,
+      fuelType: document.getElementById("fuel").value,
       year: document.getElementById("year").value,
     
       bodyType: document.getElementById("body_type").value,
-      color: selectedColor,
+      colorId: selectedColor,
       kmClock: document.getElementById("odometer").value,
       kWeight: document.getElementById("kerb_wheight").value,
       
@@ -283,22 +287,19 @@ export default function NewAdForm() {
       transType: document.getElementById("gearbox").value,
       drive: document.getElementById("drive_train").value,
       engineType: document.getElementById("motor_type").value,
-      numofCylinders: document.getElementById("number_of_cylinder").value,
-      ccm: document.getElementById("ccm").value,
-      hp: document.getElementById("horsepower").value,
-      
+      numofCyl: document.getElementById("number_of_cylinder").value,
+      cc: document.getElementById("ccm").value,
+      horsepower: document.getElementById("horsepower").value,
       
       price: document.getElementById("price").value,
       description: document.getElementById("description").value,
-    
-      username: "string",
-      phoneNum: "string",
-      email: "string",
+
+      sellerId: 1,
       
     }
     console.log(body)
     
-    axios.post('http://localhost:5000/Hirdetes/HirdetesPost', body)
+    axios.post('http://localhost:5000/Car/Add', body)
     .then(response => {console.log(response); alert(response.data)})
   }
 
@@ -324,6 +325,7 @@ export default function NewAdForm() {
       <h1>Új hirdetés feladása</h1>
       <form id="newad-form">
         <div className="row">
+          <img src={logo} alt="placeholder"/>
 
           <h4>Általános adatok</h4>
           <hr/>
@@ -337,7 +339,7 @@ export default function NewAdForm() {
           </div>
           
           <div className="form-group col-3">
-            <label htmlFor="fuel_type">Üzemanyag típusa</label>
+            <label htmlFor="fuel">Üzemanyag típusa</label>
             <select id='fuel' name='fuel' className='form-select'>
               <option value='0'>Válassz!</option>
               <option value="benzin">benzin</option>

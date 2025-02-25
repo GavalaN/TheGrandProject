@@ -1,5 +1,5 @@
 #nav {
-    background-color: #201c1c;
+    background-color: #18262f;
     position: sticky;
     top: 0;
     left: 0;
@@ -19,7 +19,7 @@
 
 .navbar button {
     margin-top: -0.5rem !important;
-    background-color: #a8ac14 !important;
+    background-color: #0096D6 !important;
     color: white !important;
     border: 1px solid black !important;
     transition: 0.3s;
