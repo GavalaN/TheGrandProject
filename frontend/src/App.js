@@ -13,6 +13,7 @@ import NewAd from './Pages/NewAd';
 import SearchList from './Pages/SearchList';
 import ForgottedPassword from './Pages/ForgottedPassword';
 import NewPassword from './Pages/NewPassword';
+import CarCardDetailed from './Components/CarCardDetailed';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path='/adatvedelmi-tajekoztatas' element={<DataProtection/>}/>
         <Route path='/aszf' element={<TermsAndConditions/>}/>
         <Route path='kapcsolat' element={<Contact/>}/>
+        <Route path='/hirdetes/:id' element={<CarCardDetailed/>}/>
       </Routes>
       <Footer/>
     </div>

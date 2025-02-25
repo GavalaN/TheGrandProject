@@ -3,12 +3,13 @@ import './CarCard.css'
 import logo from '../Images/logo.png'
 import 'react-tooltip/dist/react-tooltip.css'
 import { Tooltip } from 'react-tooltip'
+import { Link } from 'react-router-dom'
 
 export default function CarCard(props) {
   return (
     <div className='car-card'>
         <div className='car-card-img col-4'>
-            <img src={logo} alt={props.brand + ' ' + props.type_name} />
+            <Link to={`/hirdetes/${props.id}`}><img src={logo} alt={props.brand + ' ' + props.type_name} /></Link>
         </div>
         <div className='car-card-text col-8'>
             <div className="title d-flex justify-content-between">
