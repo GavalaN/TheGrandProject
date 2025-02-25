@@ -335,6 +335,48 @@
         }
       }
     },
+    "/Registry/PasswordModify": {
+      "post": {
+        "tags": [
+          "Registry"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "newPassword",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SALT",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/Users/GetUserListings": {
       "get": {
         "tags": [
@@ -405,7 +447,8 @@
             "nullable": true
           },
           "sold": {
-            "type": "boolean"
+            "type": "boolean",
+            "nullable": true
           },
           "bodyType": {
             "type": "string",
@@ -513,6 +556,10 @@
             "type": "string",
             "nullable": true
           },
+          "hexcode": {
+            "type": "string",
+            "nullable": true
+          },
           "transType": {
             "type": "string",
             "nullable": true
@@ -575,10 +622,21 @@
           },
           "created": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
+          },
+          "resetPasswordToken": {
+            "type": "string",
+            "nullable": true
+          },
+          "resetPasswordTokenExpiry": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
           },
           "isAdmin": {
-            "type": "boolean"
+            "type": "boolean",
+            "nullable": true
           },
           "salt": {
             "type": "string",
@@ -586,7 +644,8 @@
           },
           "isActive": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           }
         },
         "additionalProperties": false

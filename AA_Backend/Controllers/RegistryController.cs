@@ -80,12 +80,59 @@ namespace AA_Backend.Controllers
                     {
                         return BadRequest("Nem található felhasználó ezzel az email címmel!");
                     }
-                    string newPass = Program.GenerateSalt();
-                    user.Hash = Program.CreateSHA256(newPass);
+
+                    // Generate a secure token (e.g., using GUID or a cryptographic library)
+                    var token = Guid.NewGuid().ToString();
+
+                    // Store the token in the database with an expiration time
+                    user.ResetPasswordToken = token;
+                    user.ResetPasswordTokenExpiry = DateTime.UtcNow.AddHours(1); // Token expires in 1 hour
                     context.Users.Update(user);
                     await context.SaveChangesAsync();
-                    Program.SendEmail(email, "Elfelejtett jelszó", $"Az új jelszavad: {newPass}");
+
+                    // Send the reset link with the token
+                    var resetLink = $"http://localhost:5000/Registry/PasswordModify?email={email}&token={token}";
+                    Program.SendEmail(email, "Elfelejtett jelszó", $"Az új jelszavad itt adhatod meg:\n{resetLink}");
+
                     return Ok("Az új jelszót elküldtük az email címére!");
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+            }
+        }
+        [HttpPost("PasswordModify")]
+        public async Task<IActionResult> PasswordModify(string email, string token, string newPassword,string SALT)
+        {
+            using (var context = new CarplaceContext())
+            {
+                try
+                {
+                    var user = context.Users.FirstOrDefault(u => u.Email == email);
+                    if (user == null)
+                    {
+                        return BadRequest("Nem található felhasználó ezzel az email címmel!");
+                    }
+
+                    // Validate the token
+                    if (user.ResetPasswordToken != token || user.ResetPasswordTokenExpiry < DateTime.UtcNow)
+                    {
+                        return BadRequest("Érvénytelen vagy lejárt token!");
+                    }
+
+                    // Update the password
+                    user.Hash = Program.CreateSHA256(newPassword);
+                    user.Salt = SALT;
+
+                    // Clear the reset token
+                    user.ResetPasswordToken = null;
+                    user.ResetPasswordTokenExpiry = null;
+
+                    context.Users.Update(user);
+                    await context.SaveChangesAsync();
+
+                    return Ok("Sikeres jelszó módosítás!");
                 }
                 catch (Exception ex)
                 {

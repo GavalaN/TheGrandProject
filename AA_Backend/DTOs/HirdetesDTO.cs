@@ -17,6 +17,7 @@
         public string Email { get; set; } = null!;
         public string Drive { get; set; } = null!;
         public string Color { get; set; } = null!;
+        public string Hexcode { get; set; } = null!;
         public string TransType { get; set; } = null!;
         public string EngineType { get; set; } = null!;
         public int NumofCylinders { get; set; }

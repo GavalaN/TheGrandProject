@@ -41,7 +41,8 @@ namespace AA_Backend.Controllers
                         EngineType = k.EngineType,
                         NumofCylinders = k.NumOfCyl,
                         BodyType = k.BodyType,
-                        KWeight = k.KWeight
+                        KWeight = k.KWeight,
+                        Hexcode = k.Color.Hexcode
 
 
 
@@ -88,11 +89,13 @@ namespace AA_Backend.Controllers
                     car.Seller.Email = hirdetes.Email;
                     car.Drive = hirdetes.Drive;
                     car.Color.Name = hirdetes.Color;
+                    car.Color.Hexcode = hirdetes.Hexcode;
                     car.TransType = hirdetes.TransType;
                     car.EngineType = hirdetes.EngineType;
                     car.NumOfCyl = hirdetes.NumofCylinders;
                     car.BodyType = hirdetes.BodyType;
                     car.KWeight = hirdetes.KWeight;
+                    
                     await context.SaveChangesAsync();
                     return Ok("Sikeres módosítás!");
                 }
