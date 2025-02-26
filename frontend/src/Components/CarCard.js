@@ -4,6 +4,8 @@ import logo from '../Images/logo.png'
 import 'react-tooltip/dist/react-tooltip.css'
 import { Tooltip } from 'react-tooltip'
 import { Link } from 'react-router-dom'
+import { faHorseHead, faGasPump, faCalendarWeek, faRoad, faChargingStation, faGaugeHigh } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function CarCard(props) {
   return (
@@ -18,19 +20,19 @@ export default function CarCard(props) {
             </div>
             <p className='props'>
             <a data-tooltip-id="props-details" data-tooltip-content="Üzemanyag típusa">
-                {props.fuel_type}&nbsp;
+            {props.fuel_type == "elektromos" || props.fuel_type == "hidrogén (üzemanyagcellás)"?<FontAwesomeIcon icon={faChargingStation} />:<FontAwesomeIcon icon={faGasPump} />}&nbsp;{props.fuel_type}&nbsp;
             </a>-
             <a data-tooltip-id="props-details" data-tooltip-content="Évjárat">
-                <span title="Évjárat">&nbsp;{props.year}&nbsp;</span>
+            &nbsp;<FontAwesomeIcon icon={faCalendarWeek} />&nbsp;{props.year}&nbsp;
             </a>-
             <a data-tooltip-id="props-details" data-tooltip-content="Motor térfogat">
-                &nbsp;{props.ccm} cm³&nbsp;
+            &nbsp;<FontAwesomeIcon icon={faGaugeHigh} />&nbsp;{props.ccm} cm³&nbsp;
             </a>-
             <a data-tooltip-id="props-details" data-tooltip-content="Teljesítmény (lóerő)">
-                &nbsp;{props.horsepower} LE&nbsp;
+            &nbsp;<FontAwesomeIcon icon={faHorseHead} />&nbsp;{props.horsepower} LE&nbsp;
             </a>- 
             <a data-tooltip-id="props-details" data-tooltip-content="Kilométeróra állása">
-                &nbsp;{props.odometer} Km&nbsp;
+            &nbsp;<FontAwesomeIcon icon={faRoad} />&nbsp;{props.odometer} Km&nbsp;
             </a>
             </p>
             <Tooltip id="props-details"/>

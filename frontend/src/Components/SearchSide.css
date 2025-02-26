@@ -1,15 +1,36 @@
 body{
-    overflow-x: hidden;
+    overflow-x: hidden !important;
+}
+
+#side-search {
+    width: 0rem !important;
+    height: 0rem !important;
 }
 
 .form-collapsed {
-    visibility: hidden !important;
-    display: none !important;
+    pointer-events: none;
+    transform: translateX(-400px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  
+.form-expanded {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+
+#side-search-form.collapsed {
+    transform: translateX(-60rem); /* Slightly more than the width to ensure it's completely hidden */
+}
+  
+#side-search-form.expanded {
+    transform: translateX(0);
 }
 
 #side-search-button{
     position: absolute;
-    z-index: 4 !important;
+    z-index: 2 !important;
     left: 0;
     top: 0;
     width: 2rem;
@@ -22,8 +43,7 @@ body{
     margin-top: 2rem;
     margin-left: 2rem;
     padding-top: 0;
-    transition: 0.5s;
-    z-index: 4 !important;
+
 }
 
 #side-search-button:hover {
@@ -39,7 +59,7 @@ body{
 
 #side-search-form {
     display: block;
-    width: 19rem; /* Biztosítja, hogy a form ne nyúljon túl a szülő elemén */
+    width: 21rem;
     height: min-content;
     margin-top: 2rem;
     margin-left: 2rem;
@@ -55,7 +75,9 @@ body{
     font-weight: 600;
     box-shadow: -30px 30px 50px -12px rgba(0,0,0,0.75);
     z-index: 3 !important;
-    font-family: "Kanit", serif !important;
+    font-family: "Kanit", serif !important; 
+    transform: translate(0, 0);
+    transition: 1s;
 }
 
 #side-search-closing {
@@ -95,7 +117,7 @@ body{
 }
 
 #side-search-form .input-group-f, #side-search-form .form-select-f{
-    margin-right: 0.6rem !important;
+    margin-right: 1.2rem !important;
 }
 
 #side-search-form .sm-input{
@@ -120,15 +142,15 @@ body{
 }
 
 #side-search .sm-input-f2, #side-search .sm-input2 {
-    width: 5.1rem !important;
+    width: 5.8rem !important;
 }
 
 #side-search .sm-input-f3, #side-search .sm-input3 {
-    width: 4.4rem !important;
+    width: 5.6rem !important;
 }
 
 #side-search #side-search-form .sm-input {
-    width: 4.2rem !important;
+    width: 5rem !important;
 }
 
 #side-search input{
@@ -139,17 +161,13 @@ body{
     width: 100% !important;
 }
 
-#side-search #number_of_cylinder-ts-control, #side-search div.col-6.wider div.ts-wrapper.form-select.single.full.has-items, #side-search #gearbox-ts-control{
-    width: 8rem !important;
-}
-
 @media (max-width: 1400px) {
     #side-search-closing {
         visibility: visible;
     }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 990px) {
     #side-search {
         position: absolute; /* Lebegő pozíció */
         width: 100%;
@@ -157,6 +175,55 @@ body{
     }
 
     #side-search-form {
-        width: 100;
+        width: 90vw;
+        margin-left: 5vw;
+        margin-right: 5vw;
+        font-size: x-large;
+    }
+
+    .i-g-w100 {
+        width: 100% !important;
+    }
+
+    #side-search-form input, #side-search-form select, #side-search-form .ts-wrapper, #side-search-form .ts-control, #side-search-form .input-group {
+        height: 3rem !important;
+    }
+
+    #side-search-form .input-groups {
+        max-width: 100% !important;
+    }
+
+    #side-search-form .input-groups input {
+        height: 2.7rem !important;
+    }
+
+    #side-search-form .item, #side-search-form .option {
+        font-size: x-large !important;
+        margin-top: auto !important;
+        margin-bottom: auto !important;
+    }
+
+    #side-search-closing, #side-search-button {
+        font-size: xx-large;
+        width: 3rem;
+        height: 3rem;
+    }
+
+    #side-search .sm-input-f2, #side-search .sm-input2 {
+        width: 65% !important;
+    }
+    
+    #side-search .sm-input-f3, #side-search .sm-input3 {
+        width: 65% !important;
+    }
+    
+    #side-search #side-search-form .sm-input {
+        width: 65% !important;
+    }
+    
+    #side-search #side-search-form .input-group-append {
+        font-size: large;
+        margin-top: auto;
+        margin-bottom: auto;
     }
 }

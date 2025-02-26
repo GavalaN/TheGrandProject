@@ -302,11 +302,11 @@ const SearchSide = React.memo(() => {
 
     return (
         <div id='side-search'>
-            <a data-tooltip-id='search-tooltip' data-tooltip-content='Keresés' id='side-search-button' className={isActive ? '' : 'form-collapsed'} onClick={handleClick}>
+            <a data-tooltip-id='search-tooltip' data-tooltip-content='Keresés' id='side-search-button' className={isActive ? 'form-expanded' : 'form-collapsed'} onClick={handleClick}>
                 <i className="bi bi-search"></i>
             </a>
             <Tooltip id='search-tooltip'/>
-            <form id='side-search-form' className={isActive ? 'form-collapsed' : ''}>
+            <form id='side-search-form' className={isActive ? 'collapsed' : 'expanded'}>
                 {console.log(years)}
                 <div className='row d-flex justify-content-between'>
                     <button id='side-search-closing' className='btn ms-auto' onClick={handleClick}><i className="bi bi-x-square"></i></button>
@@ -378,13 +378,13 @@ const SearchSide = React.memo(() => {
                             <label htmlFor='odometer_from'>Kilóméteróra állás</label><br/>
                             <div className="input-groups">
                                 <div className="input-group input-group-f">
-                                    <input id='odometer_from' name='odometer_from' className='sm-input3' placeholder='-tól' min={0} max={9999999} onChange={handleInputChange} />
+                                    <input id='odometer_from' name='odometer_from' className='sm-input' placeholder='-tól' min={0} max={9999999} onChange={handleInputChange} />
                                     <div className="input-group-append">
                                         <span className="">km</span>
                                     </div>
                                 </div>
                                 <div className="input-group">
-                                    <input id='odometer_to' name='odometer_to' className='sm-input3' placeholder='-ig' min={0} max={9999999} onChange={handleInputChange} />
+                                    <input id='odometer_to' name='odometer_to' className='sm-input' placeholder='-ig' min={0} max={9999999} onChange={handleInputChange} />
                                     <div className="input-group-append">
                                         <span className="">km</span>
                                     </div>
@@ -446,8 +446,7 @@ const SearchSide = React.memo(() => {
                                 </div>
                             </div>
                         </div>
-
-                        <div className="col-6 wider">
+                        <div className="col-6">
                             <label htmlFor='number_of_cylinder'>Hengerek száma</label><br/>
                             <select id='number_of_cylinder' className='form-select'>
                                 <option value='-1'>Összes</option>
@@ -464,7 +463,7 @@ const SearchSide = React.memo(() => {
                                 <option value="0">elektromos</option>
                             </select>
                         </div>
-                        <div className="col-6 ps-4">
+                        <div className="col-6">
                             <label htmlFor='motor_type'>Motor elrendezés</label><br/>
                             <select id='motor_type' className='form-select f-s-m'>
                                 <option value='-1'>Összes</option>
@@ -475,7 +474,6 @@ const SearchSide = React.memo(() => {
                                 <option value="Rotary">Rotary</option>
                             </select>
                         </div>
-                        <div className="row">
                         <div className="col-6">
                             <label htmlFor='drive_train'>Hajtás</label><br/>
                             <select id='drive_train' className='form-select f-s-m form-select-f'>
@@ -486,9 +484,9 @@ const SearchSide = React.memo(() => {
                                 <option value='4WD'>4WD</option>
                             </select>
                         </div>
-                        <div className="col-6 wider ps-0">
+                        <div className="col-6">
                             <label htmlFor='gearbox' className=''>Váltó típusa</label><br/>
-                            <select id='gearbox' className='form-select ms-1'>
+                            <select id='gearbox' className='form-select'>
                                 <option value='0'>Összes</option>
                                 <option value="Manuális">Manuális</option>
                                 <option value="Félautomata">Félautomata</option>
@@ -497,7 +495,6 @@ const SearchSide = React.memo(() => {
                                 <option value="CVT">CVT</option>
                                 <option value="DCT">DCT</option>
                             </select>
-                        </div>
                         </div>
                         <div className="col-12">
                             <label htmlFor='kerb_wheight_from'>Súly</label><br/>
