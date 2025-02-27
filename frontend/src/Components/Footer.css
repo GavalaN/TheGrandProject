@@ -22,6 +22,10 @@
     padding-left: 8%;
 }
 
+#upper .row {
+    max-width: fit-content;
+}
+
 #upper ul {
     text-decoration: none !important;
     list-style-type: none;
