@@ -42,14 +42,17 @@ h1 {
 
 #newad-form button{
   background-color: #0096D6 !important;
-  color: white;
-  border: 2px solid black;
-  border-radius: 0.5rem;
-  font-size: larger;
-  margin-left: 4rem;
-  height: 2.5rem;
-  padding-top: 0;
-  transition: 0.5s;
+    color: white;
+    border: none;
+    border-bottom: 0.2rem solid #005d88;
+    border-radius: 0.8rem;
+    font-size: larger;
+    height: 2.5rem;
+    width: 15rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    transition: 1s;
 }
 
 #newad-form button:hover{
