@@ -266,5 +266,21 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AA_Backend.Controllers.SearchController",
+    "Method": "Search",
+    "RelativePath": "api/Search/GigaSearch",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "search",
+        "Type": "AA_Backend.DTOs.SearchDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

@@ -377,6 +377,37 @@
         }
       }
     },
+    "/api/Search/GigaSearch": {
+      "post": {
+        "tags": [
+          "Search"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/Users/GetUserListings": {
       "get": {
         "tags": [
@@ -593,6 +624,100 @@
           "tmpHash": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SearchDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "brandId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "typeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "bodyType": {
+            "type": "string",
+            "nullable": true
+          },
+          "fuelType": {
+            "type": "string",
+            "nullable": true
+          },
+          "yearMin": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "yearMax": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "priceMin": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "priceMax": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "kmClockMin": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "kmClockMax": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "colorId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ccMin": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ccMax": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hpMin": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hpMax": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numOfCyl": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "engineType": {
+            "type": "string",
+            "nullable": true
+          },
+          "drive": {
+            "type": "string",
+            "nullable": true
+          },
+          "transType": {
+            "type": "string",
+            "nullable": true
+          },
+          "kWeightMin": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "kWeightMax": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
