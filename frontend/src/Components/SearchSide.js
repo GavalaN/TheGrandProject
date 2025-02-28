@@ -17,6 +17,28 @@ function yearRange(){
     }
     return years.reverse();
 }
+// "id": 0,
+// "brandId": 0,
+// "typeId": 0,
+// "bodyType": null,
+// "fuelType": null,
+// "yearMin": 0,
+// "yearMax": 0,
+// "priceMin": 0,
+// "priceMax": 0,
+// "kmClockMin": 0,
+// "kmClockMax": 0,
+// "colorId": 0,
+// "ccMin": 0,
+// "ccMax": 0,
+// "hpMin": 0,
+// "hpMax": 0,
+// "numOfCyl": 0,
+// "engineType": null,
+// "drive": null,
+// "transType": null,
+// "kWeightMin": 0,
+// "kWeightMax": 0
 
 const SearchSide = React.memo(() => {
     const [isActive, setIsActive] = useState(false);

@@ -29,7 +29,7 @@ h1 {
 }
 
 #newad-form {
-  width: 60%;
+  width: 60rem !important;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 3rem;
@@ -52,12 +52,17 @@ h1 {
     margin-left: auto;
     margin-right: auto;
     padding: 0;
-    transition: 1s;
+    transition: 0.3s;
 }
 
 #newad-form button:hover{
-  box-shadow: 6px 6px 12px -5px rgba(0,0,0,0.75);
-  transition: 0.5s;
+  margin-top: -0.3rem;
+  height: 2.8rem;
+  border-bottom: 0.4rem solid #005d88;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
+  transition: 0.3s;
 }
 
 #newad-form input, #newad-form select{
@@ -117,7 +122,7 @@ hr {
   height: 2.25rem !important;
   border-radius: 0.2rem 0 0 0.2rem !important;
   text-align: right !important;
-  width: 80% !important;
+  width: 80%;
 }
 
 #newad-form .input-group-append {
@@ -128,9 +133,15 @@ hr {
   margin: auto !important;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 568px) {
   #newad-form .input-group input {
-    width: 65% !important;
+    width: 80% !important;
+  }
+}
+
+@media (max-width: 860px) {
+  #newad-form .col-3 {
+    width: 100% !important;
   }
 }
 
@@ -140,12 +151,16 @@ hr {
   }
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1200px) {
   #newad-form {
-    width: 75%;
+    width: 90%;
   }
 
   #newad-form .input-group input {
-    width: 75%;
+    width: 90%;
+  }
+
+  #newad-form .col-3{
+    width: 50%;
   }
 }

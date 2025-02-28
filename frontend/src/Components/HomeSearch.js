@@ -19,9 +19,14 @@ const HomeSearch = React.memo(() => {
     const [brands, setBrands] = useState([]);
     const [types, setTypes] = useState([]);
     const [colors, setColors] = useState([])
-    const [selectedBrand, setSelectedBrand] = useState(undefined);
-    const [selectedType, setSelectedType] = useState(undefined);
-    const [selectedColor, setSelectedColor] = useState(undefined);
+    const [selectedBrand, setSelectedBrand] = useState(0);
+    const [selectedType, setSelectedType] = useState(0);
+    const [selectedColor, setSelectedColor] = useState(0);
+    const [selectedBody, setSelectedBody] = useState(null);
+    const [selectedFuel, setSelectedFuel] = useState(null);
+    const [selectedEngine, setSelectedEngine] = useState(null);
+    const [selectedDriveTrain, setselectedDriveTrain] = useState(null);
+    const [selectedGearbox, setSelectedGearbox] = useState(null);
     const years = yearRange();
     const [brandSelection, setBrandSelection] = useState([]);
     const [typeSelection, setTypeSelection] = useState([]);
@@ -309,14 +314,79 @@ const HomeSearch = React.memo(() => {
 
     const handleColorChange = (event) => {
         setSelectedColor(event.target.value);
-        };
+    };
+
+    const handleBodyChange = (event) => {
+        if(event.target.value == "0"){
+            setSelectedBody(null);
+        }
+        setSelectedBody(event.target.value)
+    };
+
+    const handleFuelChange = (event) => {
+        if(event.target.value == "0"){
+            setSelectedFuel(null);
+        }
+        setSelectedFuel(event.target.value)
+    };
+
+    const handleEngineChange = (event) => {
+        if(event.target.value == "0"){
+            setSelectedEngine(null);
+            console.log(selectedEngine)
+        }
+        setSelectedEngine(event.target.value)
+    };
+
+    const handleDriveTrainChange = (event) => {
+        if(event.target.value == "0"){
+            setselectedDriveTrain(null);
+        }
+        setselectedDriveTrain(event.target.value)
+    };
+
+    const handleGearboxChange = (event) => {
+        if(event.target.value == "0"){
+            setSelectedGearbox(null);
+        }
+        setSelectedGearbox(event.target.value)
+    };
 
     const handleClick = (e) => {
         e.preventDefault();
         setIsActive((prevState) => !prevState);
     };
 
-    
+    function GigaSearch(e){
+        e.preventDefault();
+        let gigaSearch = {
+            "id": 0,
+            "brandId": Number(selectedBrand),
+            "typeId": Number(selectedType),
+            "bodyType": selectedBody,
+            "fuelType": selectedFuel,
+            "yearMin": Number(document.getElementById("year_from").value),
+            "yearMax": Number(document.getElementById("year_to").value),
+            "priceMin": Number(document.getElementById("price_from").value),
+            "priceMax": Number(document.getElementById("price_to").value),
+            "kmClockMin": Number(document.getElementById("odometer_from").value),
+            "kmClockMax": Number(document.getElementById("odometer_to").value),
+            "colorId": Number(selectedColor),
+            "ccMin": Number(document.getElementById("ccm_from").value),
+            "ccMax": Number(document.getElementById("ccm_to").value),
+            "hpMin": Number(document.getElementById("horsepower_from").value),
+            "hpMax": Number(document.getElementById("horsepower_to").value),
+            "numOfCyl": Number(document.getElementById("number_of_cylinder").value),
+            "engineType": selectedEngine,
+            "drive": selectedDriveTrain,
+            "transType": selectedGearbox,
+            "kWeightMin": Number(document.getElementById("kerb_wheight_from").value),
+            "kWeightMax": Number(document.getElementById("kerb_wheight_to").value)
+        }
+        console.log(gigaSearch)
+        axios.post("http://localhost:5000/Search/GigaSearch",gigaSearch)
+        .then(response => (console.log(response.data)))
+    }
    
     return (
         <div id="home-search">
@@ -366,7 +436,7 @@ const HomeSearch = React.memo(() => {
                     </div>
                     <div className="col-auto">
                             <label htmlFor="body_type">Kivitel</label><br/>
-                            <select id="body_type" name="body_type" className="form-select w-120">
+                            <select id="body_type" name="body_type" className="form-select w-120" onChange={handleBodyChange}>
                                 <option value="0">Összes</option>
                                 <option value="ferdehátú">ferdehátú</option>
                                 <option value="kombi">kombi</option>
@@ -383,7 +453,7 @@ const HomeSearch = React.memo(() => {
                         </div>
                     <div className="col-auto">
                         <label htmlFor="fuel">Üzemanyag</label><br/>
-                        <select id="fuel" name="fuel" className="form-select">
+                        <select id="fuel" name="fuel" className="form-select" onChange={handleFuelChange}>
                             <option value="0">Összes</option>
                             <option value="benzin">benzin</option>
                             <option value="LPG + benzin">LPG + benzin</option>
@@ -512,7 +582,7 @@ const HomeSearch = React.memo(() => {
                         </div>
                         <div className={`col-auto ${isActive ? "" : "collapse-form"}`}>
                             <label htmlFor="motor_type">Motor elrendezés</label><br/>
-                            <select id="motor_type" name="motor_type" className="form-select f-s-m">
+                            <select id="motor_type" name="motor_type" className="form-select f-s-m" onChange={handleEngineChange}>
                                 <option value="0">Összes</option>
                                 <option value="Soros">Soros</option>
                                 <option value="V">V</option>
@@ -523,7 +593,7 @@ const HomeSearch = React.memo(() => {
                         </div>
                         <div className={`col-auto ${isActive ? "" : "collapse-form"}`}>
                             <label htmlFor="drive_train">Hajtás</label><br/>
-                            <select id="drive_train" name="drive_train" className="form-select f-s-m">
+                            <select id="drive_train" name="drive_train" className="form-select f-s-m" onChange={handleDriveTrainChange}>
                                 <option value="0">Összes</option>
                                 <option value="FWD">FWD</option>
                                 <option value="RWD">RWD</option>
@@ -533,7 +603,7 @@ const HomeSearch = React.memo(() => {
                         </div>
                         <div className={`col-auto ${isActive ? "" : "collapse-form"}`}>
                             <label htmlFor="gearbox">Váltó típusa</label><br/>
-                            <select id="gearbox" name="gearbox" className="form-select">
+                            <select id="gearbox" name="gearbox" className="form-select" onChange={handleGearboxChange}>
                                 <option value="0">Összes</option>
                                 <option value="Manuális">Manuális</option>
                                 <option value="Félautomata">Félautomata</option>
@@ -569,6 +639,7 @@ const HomeSearch = React.memo(() => {
                         </p>
                     </div>
                     <div className="col-3">
+                        <button className="btn" onClick={GigaSearch}>Keresés</button>
                         <Link to="/search"><button className="btn">Keresés</button></Link>
                     </div>
                 </div>

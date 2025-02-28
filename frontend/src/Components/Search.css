@@ -155,7 +155,7 @@ h1{
     margin-left: auto;
     margin-right: auto;
     padding: 0;
-    transition: 1s;
+    transition: 0.3s;
     
 }
 
@@ -166,7 +166,7 @@ h1{
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
     box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
-    transition: 1s;
+    transition: 0.3s;
 }
 
 .collapse-form {
@@ -207,6 +207,7 @@ h1{
 .input-group-append {
     margin-left: 0.2rem !important;
     margin-right: 0.2rem;
+    text-align: center;
 }
 
 .ts-wrapper, .ts-control{
@@ -305,6 +306,11 @@ h1{
     
     #home-search #home-search-form .sm-input {
         width: 65% !important;
+    }
+
+    .input-group-append {
+        margin-left: auto !important;
+        margin-right: auto !important;
     }
 }
 
