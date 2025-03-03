@@ -40,14 +40,19 @@ function yearRange(){
 // "kWeightMin": 0,
 // "kWeightMax": 0
 
-const SearchSide = React.memo(() => {
+const SearchSide = React.memo((props) => {
     const [isActive, setIsActive] = useState(false);
     const [brands, setBrands] = useState([]);
     const [types, setTypes] = useState([]);
     const [colors, setColors] = useState([])
-    const [selectedBrand, setSelectedBrand] = useState(undefined);
-    const [selectedType, setSelectedType] = useState(undefined);
-    const [selectedColor, setSelectedColor] = useState(undefined);
+    const [selectedBrand, setSelectedBrand] = useState(0);
+    const [selectedType, setSelectedType] = useState(0);
+    const [selectedColor, setSelectedColor] = useState(0);
+    const [selectedBody, setSelectedBody] = useState(null);
+    const [selectedFuel, setSelectedFuel] = useState(null);
+    const [selectedEngine, setSelectedEngine] = useState(null);
+    const [selectedDriveTrain, setselectedDriveTrain] = useState(null);
+    const [selectedGearbox, setSelectedGearbox] = useState(null);
     const years = yearRange();
     const [brandSelection, setBrandSelection] = useState([]);
     const [typeSelection, setTypeSelection] = useState([]);
@@ -317,10 +322,87 @@ const SearchSide = React.memo(() => {
         setSelectedColor(event.target.value);
     };
 
+    const handleBodyChange = (event) => {
+        if(event.target.value == "0"){
+            setSelectedBody(null);
+        }
+        setSelectedBody(event.target.value)
+    };
+
+    const handleFuelChange = (event) => {
+        if(event.target.value == "0"){
+            setSelectedFuel(null);
+        }
+        setSelectedFuel(event.target.value)
+    };
+
+    const handleEngineChange = (event) => {
+        if(event.target.value == "0"){
+            setSelectedEngine(null);
+            console.log(selectedEngine)
+        }
+        setSelectedEngine(event.target.value)
+    };
+
+    const handleDriveTrainChange = (event) => {
+        if(event.target.value == "0"){
+            setselectedDriveTrain(null);
+        }
+        setselectedDriveTrain(event.target.value)
+    };
+
+    const handleGearboxChange = (event) => {
+        if(event.target.value == "0"){
+            setSelectedGearbox(null);
+        }
+        setSelectedGearbox(event.target.value)
+    };
+
     const handleClick = (e) => {
         e.preventDefault();
         setIsActive((prevState) => !prevState);
     };
+
+    function GigaSearch(e){
+        e.preventDefault();
+        let gigaSearch = {
+            "id": 0,
+            "brandId": Number(selectedBrand),
+            "typeId": Number(selectedType),
+            "bodyType": selectedBody,
+            "fuelType": selectedFuel,
+            "yearMin": Number(document.getElementById("year_from").value),
+            "yearMax": Number(document.getElementById("year_to").value),
+            "priceMin": Number(document.getElementById("price_from").value),
+            "priceMax": Number(document.getElementById("price_to").value),
+            "kmClockMin": Number(document.getElementById("odometer_from").value),
+            "kmClockMax": Number(document.getElementById("odometer_to").value),
+            "colorId": Number(selectedColor),
+            "ccMin": Number(document.getElementById("ccm_from").value),
+            "ccMax": Number(document.getElementById("ccm_to").value),
+            "hpMin": Number(document.getElementById("horsepower_from").value),
+            "hpMax": Number(document.getElementById("horsepower_to").value),
+            "numOfCyl": Number(document.getElementById("number_of_cylinder").value),
+            "engineType": selectedEngine,
+            "drive": selectedDriveTrain,
+            "transType": selectedGearbox,
+            "kWeightMin": Number(document.getElementById("kerb_wheight_from").value),
+            "kWeightMax": Number(document.getElementById("kerb_wheight_to").value)
+        }
+        console.log(gigaSearch)
+        axios.post("http://localhost:5000/Search/GigaSearch",gigaSearch)
+        .then(response => {
+            console.log(response.data);
+            if(response.data.length == 0) {
+                alert("Nincs ilyen specifikájú autó!");
+                
+            }
+            else {
+                props.contentChange(response.data)
+            }
+            
+        })
+    }
 
     return (
         <div id='side-search'>
@@ -342,8 +424,8 @@ const SearchSide = React.memo(() => {
                     </div>
                     <div className="col-12">
                         <label htmlFor='fuel'>Üzemanyag</label><br/>
-                        <select id='fuel' name='fuel' className='form-select w-100'>
-                            <option value='0'>Összes</option>
+                        <select id='fuel' name='fuel' className='form-select w-100'  onChange={handleFuelChange}>
+                            <option value="0">Összes</option>
                             <option value="benzin">benzin</option>
                             <option value="LPG + benzin">LPG + benzin</option>
                             <option value="CNG + benzin">CNG + benzin</option>
@@ -415,8 +497,8 @@ const SearchSide = React.memo(() => {
                         </div>
                         <div className="col-12">
                             <label htmlFor='body_type'>Kivitel</label><br/>
-                            <select id='body_type' name='body_type' className='form-select w-100'>
-                                <option value='all'>Összes</option>
+                            <select id='body_type' name='body_type' className='form-select w-100' onChange={handleBodyChange}>
+                                <option value="0">Összes</option>
                                 <option value="ferdehátú">ferdehátú</option>
                                 <option value="kombi">kombi</option>
                                 <option value="szedán">szedán</option>
@@ -471,7 +553,7 @@ const SearchSide = React.memo(() => {
                         <div className="col-6">
                             <label htmlFor='number_of_cylinder'>Hengerek száma</label><br/>
                             <select id='number_of_cylinder' className='form-select'>
-                                <option value='-1'>Összes</option>
+                                <option value='0'>Összes</option>
                                 <option value='1'>1 db</option>
                                 <option value='2'>2 db</option>
                                 <option value='3'>3 db</option>
@@ -482,13 +564,13 @@ const SearchSide = React.memo(() => {
                                 <option value='10'>10 db</option>
                                 <option value='12'>12 db</option>
                                 <option value='16'>16 db</option>
-                                <option value="0">elektromos</option>
+                                <option value="-1">elektromos</option>
                             </select>
                         </div>
                         <div className="col-6">
                             <label htmlFor='motor_type'>Motor elrendezés</label><br/>
-                            <select id='motor_type' className='form-select f-s-m'>
-                                <option value='-1'>Összes</option>
+                            <select id='motor_type' className='form-select f-s-m' onChange={handleEngineChange}>
+                                <option value='0'>Összes</option>
                                 <option value="Soros">Soros</option>
                                 <option value="V">V</option>
                                 <option value="Boxer">Boxer</option>
@@ -498,7 +580,7 @@ const SearchSide = React.memo(() => {
                         </div>
                         <div className="col-6">
                             <label htmlFor='drive_train'>Hajtás</label><br/>
-                            <select id='drive_train' className='form-select f-s-m form-select-f'>
+                            <select id='drive_train' className='form-select f-s-m form-select-f' onChange={handleDriveTrainChange}>
                                 <option value='0'>Összes</option>
                                 <option value='FWD'>FWD</option>
                                 <option value='RWD'>RWD</option>
@@ -508,7 +590,7 @@ const SearchSide = React.memo(() => {
                         </div>
                         <div className="col-6">
                             <label htmlFor='gearbox' className=''>Váltó típusa</label><br/>
-                            <select id='gearbox' className='form-select'>
+                            <select id='gearbox' className='form-select' onChange={handleGearboxChange}>
                                 <option value='0'>Összes</option>
                                 <option value="Manuális">Manuális</option>
                                 <option value="Félautomata">Félautomata</option>
@@ -538,7 +620,7 @@ const SearchSide = React.memo(() => {
                 </div>
                 
                 <div id='side-search-lower' className=''>
-                    <Link to={'/search'}><button className='btn'>Keresés</button></Link>
+                    <button className="btn" onClick={GigaSearch}>Keresés</button>
                 </div>
             </form>
         </div>

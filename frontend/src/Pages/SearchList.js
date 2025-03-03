@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from 'react'
+import React, { use, useCallback, useEffect, useState } from 'react'
 import SearchSide from '../Components/SearchSide'
 import axios from 'axios'
 import CarCard from '../Components/CarCard'
@@ -13,10 +13,17 @@ export default function SearchList() {
         console.log(res)
         setCars(res.data)
       })
+
+
   }, [])
+
+  function contentChange(data){
+    setCars(data)
+  }
+
   return (
    <div  className='content search-list'>
-      <SearchSide/>
+      <SearchSide contentChange = {contentChange}/>
       <div className="row">
         <div id='search-list'>
           {cars.map(car => {
