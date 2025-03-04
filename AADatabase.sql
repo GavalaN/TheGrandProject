@@ -193,6 +193,14 @@ INSERT INTO `users` (`id`, `username`, `email`, `phone_num`, `HASH`, `created`, 
 (5, 'string3', 'gavalan@kkszki.hu', 'string', '473287f8298dba7163a897908958f7c0eae733e25d2e027992ea2edc9bed2fa8', '2025-02-21 08:06:03', 0, 'string', 0);
 
 --
+-- Add ResetPasswordToken and ResetPasswordTokenExpiry columns to the users table
+--
+
+ALTER TABLE `users`
+ADD COLUMN `ResetPasswordToken` VARCHAR(255) DEFAULT NULL,
+ADD COLUMN `ResetPasswordTokenExpiry` DATETIME DEFAULT NULL;
+
+--
 -- Indexes for dumped tables
 --
 
