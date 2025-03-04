@@ -237,9 +237,9 @@ const SearchSide = React.memo((props) => {
         }
         if (selectedBrand == ""){
             setTypeSelection([])
-            console.log("üres")
+            // console.log("üres")
         }
-        console.log(typeSelection)
+        // console.log(typeSelection)
         // else{
         //     const allType = 
         //     [{
@@ -411,7 +411,7 @@ const SearchSide = React.memo((props) => {
             </a>
             <Tooltip id='search-tooltip'/>
             <form id='side-search-form' className={isActive ? 'collapsed' : 'expanded'}>
-                {console.log(years)}
+                {/* {console.log(years)} */}
                 <div className='row d-flex justify-content-between'>
                     <button id='side-search-closing' className='btn ms-auto' onClick={handleClick}><i className="bi bi-x-square"></i></button>
                     <div className='col-12'>

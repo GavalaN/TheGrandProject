@@ -84,9 +84,9 @@ export default function CarCardDetailed() {
 
                 <h3 className="mt-2">Hírdető adatai</h3>
                 <hr className="my-1"/>
-                <p>Hírdető neve:{carDetailed.sellerName}</p>
-                <p>Telefon száma:{carDetailed.sellerPhoneNumber}</p>
-                <p>Email címe:{carDetailed.sellerEmail}</p>
+                <p>Hírdető neve: {carDetailed.username}</p>
+                <p>Telefon száma: {carDetailed.phoneNum}</p>
+                <p>Email címe: {carDetailed.email}</p>
             </div>
         </div>
     </div>

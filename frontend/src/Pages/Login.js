@@ -1,15 +1,20 @@
 import React from 'react'
 import './LoginReg.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import bcrypt from 'bcryptjs';
+import Cookies from 'js-cookie';
 
 export default function Login() {
+  const navigate = useNavigate();
+
   async function Login(e) {
     e.preventDefault();
 
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
+    
+
 
     try {
         // Salt lekérése a szervertől
@@ -30,7 +35,11 @@ export default function Login() {
         // Login kérés küldése
         const loginResponse = await axios.post('http://localhost:5000/Login', login);
         console.log("Login Response:", loginResponse.data);
-        localStorage.setItem(loginResponse.data.token, loginResponse.data)
+        Cookies.set("user",JSON.stringify(loginResponse.data));
+        console.log(JSON.parse(Cookies.get("user")));
+        setTimeout(() => {
+          navigate("/profil");
+        }, 1000);
         
     } catch (error) {
         console.error("Hiba történt:", error);

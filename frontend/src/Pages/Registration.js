@@ -21,7 +21,9 @@ export default function Registration() {
       created: null,
       isAdmin: null,
       salt: salt.data,
-      isActive: null
+      isActive: null,
+      resetPasswordToken: null,
+      resetPasswordTokenExpiry: null,
     };
 
     try {

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import TomSelect from 'tom-select';
 import 'tom-select/dist/css/tom-select.css'
+import Cookies from 'js-cookie';
 
 function yearRange(){
     let years = [];
@@ -230,9 +231,9 @@ const HomeSearch = React.memo(() => {
         }
         if (selectedBrand == ""){
             setTypeSelection([])
-            console.log("üres")
+            // console.log("üres")
         }
-        console.log(typeSelection)
+        // console.log(typeSelection)
         // else{
         //     const allType = 
         //     [{
@@ -273,7 +274,7 @@ const HomeSearch = React.memo(() => {
     useEffect(() => {
         axios.get('http://localhost:5000/Color/GetColor')
             .then(res => {
-                console.log(res.data)
+                // console.log(res.data)
                 setColors(res.data)
             })
         }, [])
@@ -386,12 +387,13 @@ const HomeSearch = React.memo(() => {
         console.log(gigaSearch)
         axios.post("http://localhost:5000/Search/GigaSearch",gigaSearch)
         .then(response => (console.log(response.data)))
+        Cookies.set("gigasearch",JSON.stringify(gigaSearch));
     }
    
     return (
         <div id="home-search">
             <form id="home-search-form">
-                {console.log(years)}
+                {/* {console.log(years)} */}
                 <div className="row d-flex justify-content-between">
                     <div className="col-auto brand-slct">
                         <label htmlFor="brand">Márka</label><br/>

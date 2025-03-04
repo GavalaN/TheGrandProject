@@ -1,0 +1,63 @@
+#profile-details {
+    width: fit-content;
+    min-height: 15rem;
+    margin: 4rem auto;
+    background-color: #DEDFE1;
+    padding: 2rem;
+    border: 2px solid black;
+    border-radius: 0.2rem;
+    box-shadow: -30px 30px 50px -12px rgba(0,0,0,0.75);
+    font-family: "Kanit", serif !important;
+}
+
+#profile-details .show-password{
+    text-align: left;
+}
+
+#profile-details .input{
+    border: 2px solid black;
+    border-radius: 0.2rem;
+    height: 2rem;
+}
+
+#profile-details button{
+    background-color: #0096D6 !important;
+    color: white;
+    border: none;
+    border-bottom: 0.2rem solid #005d88;
+    border-radius: 0.8rem;
+    font-size: larger;
+    height: 2.5rem;
+    width: 15rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0.5rem;
+    padding: 0;
+    transition: 0.3s;
+}
+
+#profile-details button:hover{
+    margin-top: -0.3rem;
+    height: 2.8rem;
+    border-bottom: 0.4rem solid #005d88;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
+    transition: 0.3s;
+}
+
+.close {
+    max-height: 0;
+    transition: max-height 0.5s linear;
+    transform: scalex(90deg);
+    display: none;
+}
+
+.open {
+    max-height: 32rem; 
+    transition: max-height 0.5s linear;
+}
+
+.col-auto {
+    min-height: fit-content;
+}
