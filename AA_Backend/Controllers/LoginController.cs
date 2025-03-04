@@ -58,7 +58,9 @@ namespace AA_Backend.Controllers
                         {
                             Token = token,
                             Username = response.Username,
-                            Email = response.Email
+                            Email = response.Email,
+                            PhoneNum = response.PhoneNum,
+                            UId=response.Id
                         });
                     }
                     return NotFound("Felhasználónév vagy jelszó helytelen");
