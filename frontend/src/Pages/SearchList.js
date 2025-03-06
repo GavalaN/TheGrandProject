@@ -7,15 +7,15 @@ import './SearchList.css'
 export default function SearchList() {
   const [cars, setCars] = useState([])
 
-  useEffect(() => {
-    axios.get('http://localhost:5000/CarDTO/GetAll')
-      .then(res => {
-        console.log(res)
-        setCars(res.data)
-      })
+  // useEffect(() => {
+  //   axios.get('http://localhost:5000/CarDTO/GetAll')
+  //     .then(res => {
+  //       console.log(res)
+  //       setCars(res.data)
+  //     })
 
 
-  }, [])
+  // }, [])
 
   function contentChange(data){
     setCars(data)

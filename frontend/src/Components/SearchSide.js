@@ -7,6 +7,7 @@ import 'react-tooltip/dist/react-tooltip.css'
 import axios from 'axios';
 import TomSelect from 'tom-select';
 import 'tom-select/dist/css/tom-select.css'
+import Cookies from 'js-cookie';
 
 
 function yearRange(){
@@ -120,6 +121,7 @@ const SearchSide = React.memo((props) => {
     
     }
 
+    
     useEffect(() => {
         new TomSelect("#body_type",{
             create: false,
@@ -309,6 +311,14 @@ const SearchSide = React.memo((props) => {
         }
     }, [colorSelection])
 
+    useEffect(() => {
+        if(selectedType == NaN){
+            setSelectedType("0");
+            console.log("first")
+        }
+    }, [selectedBrand])
+    
+
     //HandleChanges
     const handleBrandChange = (event) => {
         setSelectedBrand(event.target.value);
@@ -363,9 +373,16 @@ const SearchSide = React.memo((props) => {
         setIsActive((prevState) => !prevState);
     };
 
+    useEffect(() => {
+        const gigaSearch = JSON.parse(Cookies.get("gigasearch"));
+        axios.post("http://localhost:5000/Search/GigaSearch",gigaSearch)
+        .then(response => (props.contentChange(response.data)));
+    }, [])
+    
+
     function GigaSearch(e){
         e.preventDefault();
-        let gigaSearch = {
+        const gigaSearch = {
             "id": 0,
             "brandId": Number(selectedBrand),
             "typeId": Number(selectedType),
@@ -398,7 +415,8 @@ const SearchSide = React.memo((props) => {
                 
             }
             else {
-                props.contentChange(response.data)
+                props.contentChange(response.data);
+                Cookies.set("gigasearch",JSON.stringify(gigaSearch));
             }
             
         })

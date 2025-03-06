@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Search.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import TomSelect from 'tom-select';
 import 'tom-select/dist/css/tom-select.css'
@@ -32,6 +32,7 @@ const HomeSearch = React.memo(() => {
     const [brandSelection, setBrandSelection] = useState([]);
     const [typeSelection, setTypeSelection] = useState([]);
     const [colorSelection, setColorSelection] = useState([]);
+    const navigate = useNavigate();
 
     function setInputFilter(textbox, inputFilter, errMsg) {
         ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop", "focusout"].forEach(function(event) {
@@ -388,6 +389,7 @@ const HomeSearch = React.memo(() => {
         axios.post("http://localhost:5000/Search/GigaSearch",gigaSearch)
         .then(response => (console.log(response.data)))
         Cookies.set("gigasearch",JSON.stringify(gigaSearch));
+        navigate("/search");
     }
    
     return (
@@ -642,7 +644,6 @@ const HomeSearch = React.memo(() => {
                     </div>
                     <div className="col-3">
                         <button className="btn" onClick={GigaSearch}>Keresés</button>
-                        <Link to="/search"><button className="btn">Keresés</button></Link>
                     </div>
                 </div>
             </form>
