@@ -54,10 +54,6 @@
 }
 
 .open {
-    max-height: 32rem; 
+    max-height: fit-content; 
     transition: max-height 0.5s linear;
-}
-
-.col-auto {
-    min-height: fit-content;
 }

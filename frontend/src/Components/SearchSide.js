@@ -201,10 +201,10 @@ const SearchSide = React.memo((props) => {
     useEffect(() => {
         if (selectedBrand === "" || selectedBrand === undefined) {
             setSelectedType(undefined); // Alapértelmezett érték beállítása
-            document.getElementById("type").setAttribute("disabled",false)
+            document.getElementById("type").setAttribute("disabled","")
         }
         else{
-            document.getElementById("type").removeAttribute("disabled",true)
+            document.getElementById("type").removeAttribute("disabled","")
         }
     }, [selectedBrand]);
     
@@ -379,13 +379,23 @@ const SearchSide = React.memo((props) => {
         .then(response => (props.contentChange(response.data)));
     }, [])
     
+        // Helper function to safely convert to number
+    const safeNumber = (value, defaultValue = 0) => {
+        // Check if value exists and is not empty string
+        if (value === undefined || value === null || value === "") {
+        return defaultValue
+        }
+        const num = Number(value)
+        // Return default if NaN, otherwise return the number
+        return isNaN(num) ? "defaultValue" : num
+    }
 
     function GigaSearch(e){
         e.preventDefault();
         const gigaSearch = {
             "id": 0,
             "brandId": Number(selectedBrand),
-            "typeId": Number(selectedType),
+            "typeId": safeNumber(selectedType),
             "bodyType": selectedBody,
             "fuelType": selectedFuel,
             "yearMin": Number(document.getElementById("year_from").value),

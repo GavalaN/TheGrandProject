@@ -38,6 +38,7 @@ export default function Login() {
         Cookies.set("user",JSON.stringify(loginResponse.data));
         console.log(JSON.parse(Cookies.get("user")));
         setTimeout(() => {
+          alert("Sikeres bejelentkezés!")
           navigate("/profil");
         }, 1000);
         

@@ -54,10 +54,10 @@ export default function Profile() {
             </div>
             
         </div>
-        <div className={`col-auto ${isSRPActive ? "close" : "open"}`}>
+        <div className={`col-auto ${isSRPActive ? "open" : "close"}`}>
                 <NewPassword/>
             </div>
-        <div className={`col-auto ${isSAActive ? "close" : "open"}`}>
+        <div className={`col-auto ${isSAActive ? "open" : "close"}`}>
           {ads.map(car => {
             return <CarCard id={car.id} brand={car.brand} type_name={car.type_name} fuel_type={car.fuel_type} year={car.year} ccm={car.ccm} horsepower={car.hp} odometer={car.kmClock} price={car.price} description={car.description}/>
           })}

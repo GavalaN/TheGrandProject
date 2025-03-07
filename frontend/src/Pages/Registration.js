@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import './LoginReg.css';
 import axios from 'axios';
 import bcrypt from 'bcryptjs';
+import { useNavigate } from 'react-router-dom';
 
 export default function Registration() {
+  const navigate = useNavigate()
+
   async function Reg(e) {
     // Megakadályozzuk, hogy a form automatikusan elküldődjön
     e.preventDefault();
@@ -30,6 +33,7 @@ export default function Registration() {
       const response = await axios.post('http://localhost:5000/Registry/Registry', user);
       console.log(response);
       alert(response.data);
+      navigate("/login")
     } catch (error) {
       console.log(error);
       alert(error.response.data);
