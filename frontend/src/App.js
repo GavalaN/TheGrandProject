@@ -15,6 +15,7 @@ import ForgottedPassword from './Pages/ForgottedPassword';
 import NewPassword from './Pages/NewPassword';
 import CarCardDetailed from './Components/CarCardDetailed';
 import Profile from './Pages/Profile';
+import SiteCookies from './Components/SiteCookies';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         <Route path='/hirdetes/:id' element={<CarCardDetailed/>}/>
         <Route path='/profil' element={<Profile/>}/>
       </Routes>
+      <SiteCookies/>
       <Footer/>
     </div>
   );

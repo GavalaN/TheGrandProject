@@ -1,0 +1,11 @@
+#site-cookies {
+    position: fixed;
+    width: 2.5rem;
+    height: 2.5rem;
+    right: 2rem !important;
+    bottom: 2rem !important;
+    background-color: #0096D6 !important;
+    color: white !important;
+    border-radius: 25%;
+    z-index: 9999;
+}

@@ -374,9 +374,15 @@ const SearchSide = React.memo((props) => {
     };
 
     useEffect(() => {
-        const gigaSearch = JSON.parse(Cookies.get("gigasearch"));
-        axios.post("http://localhost:5000/Search/GigaSearch",gigaSearch)
-        .then(response => (props.contentChange(response.data)));
+        if (Cookies.get("gigasearch") == undefined) {
+            axios.get('http://localhost:5000/CarDTO/GetAll')
+            .then(response => (props.contentChange(response.data)));
+        }
+        else {
+            const gigaSearch = JSON.parse(Cookies.get("gigasearch"));
+            axios.post("http://localhost:5000/Search/GigaSearch",gigaSearch)
+            .then(response => (props.contentChange(response.data)));
+        }
     }, [])
     
         // Helper function to safely convert to number
