@@ -31,11 +31,13 @@ function App() {
         <Route path='/uj-jelszo' element={<NewPassword/>}/>
         <Route path='/hasznos-tudnivalok' element={<Useful_Things/>}/>
         <Route path='/hirdetesfeladas' element={<NewAd/>}/>
+        <Route path='/modositas/:id' element={<NewAd/>}/>
         <Route path='/adatvedelmi-tajekoztatas' element={<DataProtection/>}/>
         <Route path='/aszf' element={<TermsAndConditions/>}/>
         <Route path='kapcsolat' element={<Contact/>}/>
         <Route path='/hirdetes/:id' element={<CarCardDetailed/>}/>
         <Route path='/profil' element={<Profile/>}/>
+        <Route path='*' element={<HomePage/>}/>
       </Routes>
       <SiteCookies/>
       <Footer/>

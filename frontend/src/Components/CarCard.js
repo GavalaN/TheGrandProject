@@ -3,17 +3,28 @@ import './CarCard.css'
 import logo from '../Images/logo.png'
 import 'react-tooltip/dist/react-tooltip.css'
 import { Tooltip } from 'react-tooltip'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { faHorseHead, faGasPump, faCalendarWeek, faRoad, faChargingStation, faGaugeHigh } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import axios from 'axios'
 
 export default function CarCard(props) {
+  const base_url = process.env.REACT_APP_BASE_URL;
+  const navigate = useNavigate();
+
+  function DeleteCar() {
+    if (window.confirm("Biztos ki szeretnéd törölni?")) {
+      axios.get(base_url+'/Hirdetes/DeleteHirdetes?id='+props.id)
+      .then(response => {alert(response.data); navigate("/profil")})
+    }
+  }
+
   return (
     <div className='car-card'>
         <div className='car-card-img col-4'>
             <Link to={`/hirdetes/${props.id}`}><img src={logo} alt={props.brand + ' ' + props.type_name} /></Link>
         </div>
-        <div className='car-card-text col-8'>
+        <div className={`car-card-text ${props.is_owner ? "col-6" : "collapse-formcol-8"}`}>
             <div className="title d-flex justify-content-between">
                 <h3>{props.brand} {props.type_name}</h3>
                 <h2>{props.price} Ft</h2>
@@ -38,6 +49,10 @@ export default function CarCard(props) {
             <Tooltip id="props-details"/>
             <p>{props.description}</p>
         </div>
+        {props.is_owner? <div id="owner-things" className="col-2">
+              <Link to={"/modositas/"+props.id} className="btn">Módosítás</Link>
+              <Link className="btn btn-danger" onClick={DeleteCar}>Törlés</Link>
+            </div> : ""}
     </div>
   )
 }

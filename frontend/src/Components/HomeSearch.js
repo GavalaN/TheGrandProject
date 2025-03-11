@@ -16,6 +16,7 @@ function yearRange(){
 }
 
 const HomeSearch = React.memo(() => {
+    const base_url = process.env.REACT_APP_BASE_URL;
     const [isActive, setIsActive] = useState(false);
     const [brands, setBrands] = useState([]);
     const [types, setTypes] = useState([]);
@@ -140,7 +141,7 @@ const HomeSearch = React.memo(() => {
     }, [])
 
     // useEffect(() => {
-    // axios.get('http://localhost:5000/Brand/BrandGet')
+    // axios.get(base_url+'/Brand/BrandGet')
     //     .then(res => {
     //         console.log(res.data)
     //         setBrands(res.data)
@@ -159,7 +160,7 @@ const HomeSearch = React.memo(() => {
 
     //Brand
     useEffect(() => {
-        axios.get('http://localhost:5000/Brand/BrandGet')
+        axios.get(`${base_url}/Brand/BrandGet`)
             .then(res => {
                 console.log(res.data)
                 setBrands(res.data)
@@ -204,7 +205,7 @@ const HomeSearch = React.memo(() => {
     //Type
     useEffect(() => {
         if(selectedBrand != undefined && selectedBrand != ""){
-            axios.get('http://localhost:5000/Brand/GetTypeByBrand?id='+selectedBrand)
+            axios.get(base_url+'/Brand/GetTypeByBrand?id='+selectedBrand)
             .then(res => {
                 console.log(res.data)
                 setTypes(res.data)
@@ -273,7 +274,7 @@ const HomeSearch = React.memo(() => {
 
     //Color
     useEffect(() => {
-        axios.get('http://localhost:5000/Color/GetColor')
+        axios.get(base_url+'/Color/GetColor')
             .then(res => {
                 // console.log(res.data)
                 setColors(res.data)

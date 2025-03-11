@@ -42,6 +42,7 @@ function yearRange(){
 // "kWeightMax": 0
 
 const SearchSide = React.memo((props) => {
+    const base_url = process.env.REACT_APP_BASE_URL;
     const [isActive, setIsActive] = useState(false);
     const [brands, setBrands] = useState([]);
     const [types, setTypes] = useState([]);
@@ -58,6 +59,7 @@ const SearchSide = React.memo((props) => {
     const [brandSelection, setBrandSelection] = useState([]);
     const [typeSelection, setTypeSelection] = useState([]);
     const [colorSelection, setColorSelection] = useState([]);
+    const gigaSearch = Cookies.get("gigasearch") === undefined? undefined : JSON.parse(Cookies.get("gigasearch"))
 
     function setInputFilter(textbox, inputFilter, errMsg) {
         ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop", "focusout"].forEach(function(event) {
@@ -123,51 +125,82 @@ const SearchSide = React.memo((props) => {
 
     
     useEffect(() => {
-        new TomSelect("#body_type",{
+        const body_typeSelect = new TomSelect("#body_type",{
             create: false,
             controlInput: null,
             maxOptions: false
         });
-        new TomSelect("#fuel",{
+        if (gigaSearch !== undefined) {
+            body_typeSelect.setValue(gigaSearch.bodyType)
+        }
+
+        const fuelSelect = new TomSelect("#fuel",{
             create: false,
             controlInput: null,
             maxOptions: false
         });
-        new TomSelect("#year_from",{
+        if (gigaSearch !== undefined) {
+            fuelSelect.setValue(gigaSearch.fuelType)
+        }
+
+        const year_fromSelect = new TomSelect("#year_from",{
             create: false,
             controlInput: null,
             maxOptions: false
         });
-        new TomSelect("#year_to",{
+        if (gigaSearch !== undefined) {
+            year_fromSelect.setValue(gigaSearch.yearMin)
+        }
+
+        const year_toSelect = new TomSelect("#year_to",{
             create: false,
             controlInput: null,
             maxOptions: false
         });
-        new TomSelect("#number_of_cylinder",{
+        if (gigaSearch !== undefined) {
+            year_toSelect.setValue(gigaSearch.yearMax)
+        }
+
+        const number_of_cylinderSelect = new TomSelect("#number_of_cylinder",{
             create: false,
             controlInput: null,
             maxOptions: false
         });
-        new TomSelect("#motor_type",{
+        if (gigaSearch !== undefined) {
+            number_of_cylinderSelect.setValue(gigaSearch.numOfCyl)
+        }
+
+        const motor_typeSelect = new TomSelect("#motor_type",{
             create: false,
             controlInput: null,
             maxOptions: false
         });
-        new TomSelect("#drive_train",{
+        if (gigaSearch !== undefined) {
+            motor_typeSelect.setValue(gigaSearch.engineType)
+        }
+
+        const drive_trainSelect = new TomSelect("#drive_train",{
             create: false,
             controlInput: null,
             maxOptions: false
         });
-        new TomSelect("#gearbox",{
+        if (gigaSearch !== undefined) {
+            drive_trainSelect.setValue(gigaSearch.drive)
+        }
+        
+        const gearboxSelect = new TomSelect("#gearbox",{
             create: false,
             controlInput: null,
             maxOptions: false
         });
+        if (gigaSearch !== undefined) {
+            gearboxSelect.setValue(gigaSearch.transType)
+        }
     }, [])
 
     //Brand
     useEffect(() => {
-        axios.get('http://localhost:5000/Brand/BrandGet')
+        axios.get(base_url+'/Brand/BrandGet')
             .then(res => {
                 console.log(res.data)
                 setBrands(res.data)
@@ -186,7 +219,7 @@ const SearchSide = React.memo((props) => {
 
     useEffect(() => {
         if(brandSelection.length > 0){
-            new TomSelect("#brand",{
+            const brandSelect = new TomSelect("#brand",{
                 create: false,
                 options: brandSelection,
                 sortField: {
@@ -195,6 +228,9 @@ const SearchSide = React.memo((props) => {
                     allowEmptyOption: true,
                 }
             })
+            if (gigaSearch !== undefined) {
+                brandSelect.setValue(gigaSearch.brandId)
+            }
         }
     }, [brandSelection])
 
@@ -211,7 +247,7 @@ const SearchSide = React.memo((props) => {
     //Type
     useEffect(() => {
         if(selectedBrand != undefined && selectedBrand != ""){
-            axios.get('http://localhost:5000/Brand/GetTypeByBrand?id='+selectedBrand)
+            axios.get(base_url+'/Brand/GetTypeByBrand?id='+selectedBrand)
             .then(res => {
                 console.log(res.data)
                 setTypes(res.data)
@@ -272,6 +308,9 @@ const SearchSide = React.memo((props) => {
             },
             allowEmptyOption: true,
         });
+        if (gigaSearch !== undefined) {
+            typeSelect.setValue(gigaSearch.typeId)
+        }
 
         return () => {
             typeSelect.destroy();// Komponens unmountolásakor töröljük
@@ -280,7 +319,7 @@ const SearchSide = React.memo((props) => {
 
     //Color
     useEffect(() => {
-        axios.get('http://localhost:5000/Color/GetColor')
+        axios.get(base_url+'/Color/GetColor')
             .then(res => {
                 console.log(res.data)
                 setColors(res.data)
@@ -299,7 +338,7 @@ const SearchSide = React.memo((props) => {
 
     useEffect(() => {
         if(colorSelection.length > 0){
-            new TomSelect("#color",{
+            const colorSelect = new TomSelect("#color",{
                 create: false,
                 options: colorSelection,
                 sortField: {
@@ -308,6 +347,9 @@ const SearchSide = React.memo((props) => {
                     allowEmptyOption: true,
                 }
             })
+            if (gigaSearch !== undefined) {
+                colorSelect.setValue(gigaSearch.colorId)
+            }
         }
     }, [colorSelection])
 
@@ -375,13 +417,15 @@ const SearchSide = React.memo((props) => {
 
     useEffect(() => {
         if (Cookies.get("gigasearch") == undefined) {
-            axios.get('http://localhost:5000/CarDTO/GetAll')
+            axios.get(base_url+'/CarDTO/GetAll')
             .then(response => (props.contentChange(response.data)));
         }
         else {
             const gigaSearch = JSON.parse(Cookies.get("gigasearch"));
-            axios.post("http://localhost:5000/Search/GigaSearch",gigaSearch)
+            axios.post(base_url+'/Search/GigaSearch',gigaSearch)
             .then(response => (props.contentChange(response.data)));
+            setSelectedBrand(gigaSearch.brandId);
+            document.getElementById("brand").value = selectedBrand;
         }
     }, [])
     
@@ -423,7 +467,7 @@ const SearchSide = React.memo((props) => {
             "kWeightMax": Number(document.getElementById("kerb_wheight_to").value)
         }
         console.log(gigaSearch)
-        axios.post("http://localhost:5000/Search/GigaSearch",gigaSearch)
+        axios.post(base_url+'/Search/GigaSearch',gigaSearch)
         .then(response => {
             console.log(response.data);
             if(response.data.length == 0) {

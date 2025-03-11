@@ -4,6 +4,7 @@ import axios from 'axios';
 import bcrypt from 'bcryptjs';
 
 export default function ForgottedPassword() {
+  const base_url = process.env.REACT_APP_BASE_URL;
     async function Login(e) {
         e.preventDefault();
     
@@ -16,7 +17,7 @@ export default function ForgottedPassword() {
             };
     
             // Login kérés küldése
-            const loginResponse = await axios.post('http://localhost:5000/Regitsry', {setEmail});
+            const loginResponse = await axios.post(base_url+'/Regitsry', {setEmail});
             console.log("Login Response:", loginResponse.data);
             localStorage.setItem(loginResponse.data.token, loginResponse.data)
             

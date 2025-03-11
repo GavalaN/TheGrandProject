@@ -1,18 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './LoginReg.css';
 import axios from 'axios';
 import bcrypt from 'bcryptjs';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 export default function Registration() {
+  const base_url = process.env.REACT_APP_BASE_URL;
   const navigate = useNavigate()
+  const user = Cookies.get("user");
+
+  useEffect(() => {
+    if (user !== undefined) {
+      navigate("/profil")
+    }
+  }, [user])
 
   async function Reg(e) {
     // Megakadályozzuk, hogy a form automatikusan elküldődjön
     e.preventDefault();
 
     // Aszinkron módon hash-eljük a jelszót
-    const salt = await axios.get('http://localhost:5000/Registry/GenerateSalt')
+    const salt = await axios.get(base_url+'/Registry/GenerateSalt')
     const hashedPassword = await bcrypt.hash(document.getElementById("password").value, salt.data); // Jelszó titkosítása aszinkron
 
     let user = {
@@ -30,7 +39,7 @@ export default function Registration() {
     };
 
     try {
-      const response = await axios.post('http://localhost:5000/Registry/Registry', user);
+      const response = await axios.post(base_url+'/Registry/Registry', user);
       console.log(response);
       alert(response.data);
       navigate("/login")
@@ -51,6 +60,9 @@ export default function Registration() {
     }
   }
 
+  if (Cookies.get("user") != undefined) {
+    navigate("/profil")
+  }
   return (
     <div className="content">
       <form id="registration-form" onSubmit={Reg}>

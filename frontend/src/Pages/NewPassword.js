@@ -4,6 +4,7 @@ import axios from 'axios';
 import bcrypt from 'bcryptjs';
 
 export default function NewPassword() {
+  const base_url = process.env.REACT_APP_BASE_URL;
     async function Login(e) {
         e.preventDefault();
     
@@ -13,7 +14,7 @@ export default function NewPassword() {
     
         try {
             // Salt lekérése a szervertől
-            const saltResponse = await axios.get('http://localhost:5000/Registry/GenerateSalt');
+            const saltResponse = await axios.get(base_url+'/Registry/GenerateSalt');
             const salt = saltResponse.data; 
             console.log("Salt:", salt);
     
@@ -28,7 +29,7 @@ export default function NewPassword() {
             };
     
             // Login kérés küldése
-            const loginResponse = await axios.post('http://localhost:5000/Registry/PasswordModify', login);
+            const loginResponse = await axios.post(base_url+'/Registry/PasswordModify', login);
             console.log("Login Response:", loginResponse.data);
             localStorage.setItem(loginResponse.data.token, loginResponse.data)
             

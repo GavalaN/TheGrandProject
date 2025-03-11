@@ -5,10 +5,11 @@ import CarCard from '../Components/CarCard'
 import './SearchList.css'
 
 export default function SearchList() {
+  const base_url = process.env.REACT_APP_BASE_URL;
   const [cars, setCars] = useState([])
 
   // useEffect(() => {
-  //   axios.get('http://localhost:5000/CarDTO/GetAll')
+  //   axios.get(base_url+'/CarDTO/GetAll')
   //     .then(res => {
   //       console.log(res)
   //       setCars(res.data)

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './LoginReg.css'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
@@ -6,9 +6,18 @@ import bcrypt from 'bcryptjs';
 import Cookies from 'js-cookie';
 
 export default function Login() {
+  const base_url = process.env.REACT_APP_BASE_URL;
   const navigate = useNavigate();
+  const user = Cookies.get("user");
 
-  async function Login(e) {
+  useEffect(() => {
+    if (user !== undefined) {
+      navigate("/profil")
+    }
+  }, [user])
+  
+
+  async function Log(e) {
     e.preventDefault();
 
     const username = document.getElementById("username").value;
@@ -18,7 +27,7 @@ export default function Login() {
 
     try {
         // Salt lekérése a szervertől
-        const saltResponse = await axios.post('http://localhost:5000/Login/GetSalt/' + username);
+        const saltResponse = await axios.post(base_url+'/Login/GetSalt/' + username);
         const salt = saltResponse.data; 
         console.log("Salt:", salt);
 
@@ -33,7 +42,7 @@ export default function Login() {
         };
 
         // Login kérés küldése
-        const loginResponse = await axios.post('http://localhost:5000/Login', login);
+        const loginResponse = await axios.post(base_url+'/Login', login);
         console.log("Login Response:", loginResponse.data);
         Cookies.set("user",JSON.stringify(loginResponse.data));
         console.log(JSON.parse(Cookies.get("user")));
@@ -56,36 +65,39 @@ export default function Login() {
     } else {
       x.type = "password";
     }
-  }
-  return (
-  <div className="content">
-    <form id="login-form">
-      <h3>Bejelentkezés</h3>
-      <div className="mb-3">
-        <label>Felhasználónév</label>
-        <input type="text" id="username" className="form-control input" placeholder="Felhasználónév begépelése"/>
+  } 
+
+  
+    return (
+      <div className="content">
+        <form id="login-form">
+          <h3>Bejelentkezés</h3>
+          <div className="mb-3">
+            <label>Felhasználónév</label>
+            <input type="text" id="username" className="form-control input" placeholder="Felhasználónév begépelése"/>
+          </div>
+          <div className="mb-3">
+            <label>Jelszó</label>
+            <input type="password" id="password" className="form-control input" placeholder="Jelszó begépelése"/>
+          </div>
+          <div className="mb-3">
+            <div className="show-password">
+              <input type="checkbox" className="custom-control-input" id="show-password-button" onClick={ShowPassword}/>
+              <label className="custom-control-label" htmlFor="show-password-button">
+                Jelszó megjelenítése
+              </label>
+            </div>
+          </div>
+          <div className="d-grid">
+            <button type="submit" className="btn btn-primary" onClick={Log}>
+              Bejelentkezés
+            </button>
+          </div>
+          <p className="forgot-password text-right">
+            <Link to="/elfelejtett-jelszo">Elfelejtett jelszó</Link>
+          </p>
+        </form>
       </div>
-      <div className="mb-3">
-        <label>Jelszó</label>
-        <input type="password" id="password" className="form-control input" placeholder="Jelszó begépelése"/>
-      </div>
-      <div className="mb-3">
-        <div className="show-password">
-          <input type="checkbox" className="custom-control-input" id="show-password-button" onClick={ShowPassword}/>
-          <label className="custom-control-label" htmlFor="show-password-button">
-            Jelszó megjelenítése
-          </label>
-        </div>
-      </div>
-      <div className="d-grid">
-        <button type="submit" className="btn btn-primary" onClick={Login}>
-          Bejelentkezés
-        </button>
-      </div>
-      <p className="forgot-password text-right">
-        <Link to="/elfelejtett-jelszo">Elfelejtett jelszó</Link>
-      </p>
-    </form>
-  </div>
-  )
+      )
+  
 }

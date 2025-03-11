@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 import TomSelect from 'tom-select';
 import './NewAdForm.css';
@@ -16,6 +17,7 @@ function yearRange(){
 }
 
 export default function NewAdForm() {
+  const base_url = process.env.REACT_APP_BASE_URL;
   //const [isActive, setIsActive] = useState(false);
   const [brands, setBrands] = useState([]);
   const [types, setTypes] = useState([]);
@@ -27,6 +29,7 @@ export default function NewAdForm() {
   const [brandSelection, setBrandSelection] = useState([]);
   const [typeSelection, setTypeSelection] = useState([]);
   const [colorSelection, setColorSelection] = useState([]);
+  const navigate = useNavigate();
 
   function setInputFilter(textbox, inputFilter, errMsg) {
     ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop", "focusout"].forEach(function(event) {
@@ -120,7 +123,7 @@ export default function NewAdForm() {
   
   //Brand
   useEffect(() => {
-      axios.get('http://localhost:5000/Brand/BrandGet')
+      axios.get(base_url+'/Brand/BrandGet')
           .then(res => {
               console.log(res.data)
               setBrands(res.data)
@@ -154,17 +157,17 @@ export default function NewAdForm() {
   useEffect(() => {
       if (selectedBrand === "" || selectedBrand === undefined) {
           setSelectedType(undefined); // Alapértelmezett érték beállítása
-          document.getElementById("type").setAttribute("disabled",false)
+          document.getElementById("type").setAttribute("disabled","")
       }
       else{
-          document.getElementById("type").removeAttribute("disabled",true)
+          document.getElementById("type").removeAttribute("disabled","")
       }
   }, [selectedBrand]);
   
   //Type
   useEffect(() => {
       if(selectedBrand != undefined && selectedBrand != ""){
-          axios.get('http://localhost:5000/Brand/GetTypeByBrand?id='+selectedBrand)
+          axios.get(base_url+'/Brand/GetTypeByBrand?id='+selectedBrand)
           .then(res => {
               console.log(res.data)
               setTypes(res.data)
@@ -233,7 +236,7 @@ export default function NewAdForm() {
 
   //Color
   useEffect(() => {
-    axios.get('http://localhost:5000/Color/GetColor')
+    axios.get(base_url+'/Color/GetColor')
         .then(res => {
             console.log(res.data)
             setColors(res.data)
@@ -299,8 +302,8 @@ export default function NewAdForm() {
     }
     console.log(body)
     
-    axios.post('http://localhost:5000/Car/Add', body)
-    .then(response => {console.log(response); alert(response.data)})
+    axios.post(base_url+'/Car/Add', body)
+    .then(response => {console.log(response); alert(response.data); navigate("/profil")})
   }
 
   //HandleChanges
