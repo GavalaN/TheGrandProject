@@ -128,7 +128,8 @@ const SearchSide = React.memo((props) => {
         const body_typeSelect = new TomSelect("#body_type",{
             create: false,
             controlInput: null,
-            maxOptions: false
+            maxOptions: false,
+            plugins: ['no_backspace_delete']
         });
         if (gigaSearch !== undefined) {
             body_typeSelect.setValue(gigaSearch.bodyType)
@@ -137,16 +138,25 @@ const SearchSide = React.memo((props) => {
         const fuelSelect = new TomSelect("#fuel",{
             create: false,
             controlInput: null,
-            maxOptions: false
+            maxOptions: false,
+            plugins: ['no_backspace_delete']
         });
         if (gigaSearch !== undefined) {
+            if (gigaSearch.fuelType) {
+                fuelSelect.setActiveItem("0")
+            }
             fuelSelect.setValue(gigaSearch.fuelType)
+            
+        }
+        else {
+            fuelSelect.setActiveItem(0)
         }
 
         const year_fromSelect = new TomSelect("#year_from",{
             create: false,
             controlInput: null,
-            maxOptions: false
+            maxOptions: false,
+            plugins: ['no_backspace_delete']
         });
         if (gigaSearch !== undefined) {
             year_fromSelect.setValue(gigaSearch.yearMin)
@@ -155,7 +165,8 @@ const SearchSide = React.memo((props) => {
         const year_toSelect = new TomSelect("#year_to",{
             create: false,
             controlInput: null,
-            maxOptions: false
+            maxOptions: false,
+            plugins: ['no_backspace_delete']
         });
         if (gigaSearch !== undefined) {
             year_toSelect.setValue(gigaSearch.yearMax)
@@ -164,7 +175,8 @@ const SearchSide = React.memo((props) => {
         const number_of_cylinderSelect = new TomSelect("#number_of_cylinder",{
             create: false,
             controlInput: null,
-            maxOptions: false
+            maxOptions: false,
+            plugins: ['no_backspace_delete']
         });
         if (gigaSearch !== undefined) {
             number_of_cylinderSelect.setValue(gigaSearch.numOfCyl)
@@ -173,7 +185,8 @@ const SearchSide = React.memo((props) => {
         const motor_typeSelect = new TomSelect("#motor_type",{
             create: false,
             controlInput: null,
-            maxOptions: false
+            maxOptions: false,
+            plugins: ['no_backspace_delete']
         });
         if (gigaSearch !== undefined) {
             motor_typeSelect.setValue(gigaSearch.engineType)
@@ -182,7 +195,8 @@ const SearchSide = React.memo((props) => {
         const drive_trainSelect = new TomSelect("#drive_train",{
             create: false,
             controlInput: null,
-            maxOptions: false
+            maxOptions: false,
+            plugins: ['no_backspace_delete']
         });
         if (gigaSearch !== undefined) {
             drive_trainSelect.setValue(gigaSearch.drive)
@@ -191,11 +205,23 @@ const SearchSide = React.memo((props) => {
         const gearboxSelect = new TomSelect("#gearbox",{
             create: false,
             controlInput: null,
-            maxOptions: false
+            maxOptions: false,
+            plugins: ['no_backspace_delete']
         });
         if (gigaSearch !== undefined) {
             gearboxSelect.setValue(gigaSearch.transType)
         }
+
+        document.getElementById("price_from").value = gigaSearch.priceMin;
+        document.getElementById("price_to").value = gigaSearch.priceMax;
+        document.getElementById("odometer_from").value = gigaSearch.kmClockMin;
+        document.getElementById("odometer_to").value = gigaSearch.kmClockMax;
+        document.getElementById("ccm_from").value = gigaSearch.ccMin;
+        document.getElementById("ccm_to").value = gigaSearch.ccMax;
+        document.getElementById("horsepower_from").value = gigaSearch.hpMin;
+        document.getElementById("horsepower_to").value = gigaSearch.hpMax;
+        document.getElementById("kerb_wheight_from").value = gigaSearch.kWeightMin;
+        document.getElementById("kerb_wheight_to").value = gigaSearch.kWeightMax;
     }, [])
 
     //Brand
