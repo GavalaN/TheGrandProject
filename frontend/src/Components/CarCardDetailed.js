@@ -86,7 +86,9 @@ export default function CarCardDetailed() {
                 <hr className="my-1"/>
                 <p>Hírdető neve: {carDetailed.username}</p>
                 <p>Telefon száma: {carDetailed.phoneNum}</p>
+                <a href={`tel:${carDetailed.phoneNum}`} className="btn">Vevő felhívása</a>
                 <p>Email címe: {carDetailed.email}</p>
+                <a href={`mailto:${carDetailed.email}`} className="btn">E-mail küldése a vevőnek</a>
             </div>
         </div>
     </div>

@@ -16,7 +16,7 @@ export default function Profile() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(base_url+'/Users/GetUserListings?userid='+1)
+        axios.get(base_url+'/Users/GetUserListings?userid='+userdata.uId)
         .then(response => (setAds(response.data)))
         .then(console.log(ads))
     }, [])

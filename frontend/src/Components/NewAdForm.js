@@ -6,6 +6,7 @@ import TomSelect from 'tom-select';
 import './NewAdForm.css';
 import './Search.css'
 import logo from '../Images/logo.png'
+import Cookies from 'js-cookie';
 
 function yearRange(){
   let years = [];
@@ -18,6 +19,7 @@ function yearRange(){
 
 export default function NewAdForm() {
   const base_url = process.env.REACT_APP_BASE_URL;
+  const userId = Cookies.get("user") == undefined? undefined : JSON.parse(Cookies.get("user")).uId;
   //const [isActive, setIsActive] = useState(false);
   const [brands, setBrands] = useState([]);
   const [types, setTypes] = useState([]);
@@ -297,7 +299,7 @@ export default function NewAdForm() {
       price: document.getElementById("price").value,
       description: document.getElementById("description").value,
 
-      sellerId: 1,
+      sellerId: userId,
       
     }
     console.log(body)

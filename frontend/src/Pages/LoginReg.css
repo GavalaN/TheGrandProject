@@ -1,4 +1,4 @@
-#login-form, #registration-form{
+#login-form, #registration-form, #contact, #tac, #dp{
     width: 25rem;
     margin: 4rem auto;
     background-color: #DEDFE1;
@@ -9,7 +9,7 @@
     font-family: "Kanit", serif !important;
 }
 
-#login-form a, #registration-form a{
+#login-form a, #registration-form a, #contact a{
     color: black !important;
     transition: 0.3s;
 }
@@ -52,4 +52,36 @@
     border-bottom-right-radius: 1rem;
     box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
     transition: 0.3s;
+}
+
+#contact {
+    min-width: fit-content;
+    font-size: larger;
+}
+
+#tac, #dp {
+    width: 80% !important;
+    font-size: larger;
+    text-align: start;
+}
+
+.figyelmeztetes {
+    margin-top: 5rem !important;
+}
+
+.figyelmeztetes .modal-content{
+    color: white !important;
+    background-color: #bb0000 !important;
+    border: 1px solid white;
+}
+
+.figyelmeztetes .modal-content button {
+    transition: 0.5s;
+}
+
+.figyelmeztetes .modal-content button:hover {
+    color: white !important;
+    background-color: #bb0000 !important;
+    box-shadow: white 0 0 3px 3px;
+    transition: 0.5s;
 }
