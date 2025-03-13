@@ -34,6 +34,7 @@ const HomeSearch = React.memo(() => {
     const [typeSelection, setTypeSelection] = useState([]);
     const [colorSelection, setColorSelection] = useState([]);
     const navigate = useNavigate();
+    const gigaSearch = Cookies.get("gigasearch") === undefined? undefined : JSON.parse(Cookies.get("gigasearch"))
 
     function setInputFilter(textbox, inputFilter, errMsg) {
         ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop", "focusout"].forEach(function(event) {
@@ -98,47 +99,223 @@ const HomeSearch = React.memo(() => {
     }
     
     useEffect(() => {
-        new TomSelect("#body_type",{
-            create: false,
-            controlInput: null,
-            maxOptions: false
-        });
-        new TomSelect("#fuel",{
-            create: false,
-            controlInput: null,
-            maxOptions: false
-        });
-        new TomSelect("#year_from",{
-            create: false,
-            controlInput: null,
-            maxOptions: false
-        });
-        new TomSelect("#year_to",{
-            create: false,
-            controlInput: null,
-            maxOptions: false
-        });
-        new TomSelect("#number_of_cylinder",{
-            create: false,
-            controlInput: null,
-            maxOptions: false
-        });
-        new TomSelect("#motor_type",{
-            create: false,
-            controlInput: null,
-            maxOptions: false
-        });
-        new TomSelect("#drive_train",{
-            create: false,
-            controlInput: null,
-            maxOptions: false
-        });
-        new TomSelect("#gearbox",{
-            create: false,
-            controlInput: null,
-            maxOptions: false
-        });
-    }, [])
+        const body_typeSelect = new TomSelect("#body_type", {
+          create: false,
+          controlInput: null,
+          maxOptions: false,
+          plugins: ["no_backspace_delete"],
+          render: {
+              no_results: function(){
+                  return '<div class="no-results">Nincs találat</div>';
+              }
+          }
+          
+        })
+    
+        if (gigaSearch !== undefined && gigaSearch.bodyType !== null) {
+          body_typeSelect.setValue(gigaSearch.bodyType)
+        } else {
+          body_typeSelect.setValue("0")
+        }
+    
+        const fuelSelect = new TomSelect("#fuel", {
+          create: false,
+          controlInput: null,
+          maxOptions: false,
+          plugins: ["no_backspace_delete"],
+          render: {
+              no_results: function(){
+                  return '<div class="no-results">Nincs találat</div>';
+              }
+          }
+        })
+        if (gigaSearch !== undefined && gigaSearch.fuelType !== null) {
+          fuelSelect.setValue(gigaSearch.fuelType)
+        } else {
+          fuelSelect.setValue("0")
+        }
+    
+        const year_fromSelect = new TomSelect("#year_from", {
+          create: false,
+          controlInput: null,
+          maxOptions: false,
+          plugins: ["no_backspace_delete"],
+          render: {
+              no_results: function(){
+                  return '<div class="no-results">Nincs találat</div>';
+              }
+          }
+        })
+        if (gigaSearch !== undefined && gigaSearch.yearMin !== null) {
+          year_fromSelect.setValue(gigaSearch.yearMin)
+        } else {
+          year_fromSelect.setValue("0")
+        }
+    
+        const year_toSelect = new TomSelect("#year_to", {
+          create: false,
+          controlInput: null,
+          maxOptions: false,
+          plugins: ["no_backspace_delete"],
+          render: {
+              no_results: function(){
+                  return '<div class="no-results">Nincs találat</div>';
+              }
+          }
+        })
+        if (gigaSearch !== undefined && gigaSearch.yearMax !== null) {
+          year_toSelect.setValue(gigaSearch.yearMax)
+        } else {
+          year_toSelect.setValue("0")
+        }
+    
+        const number_of_cylinderSelect = new TomSelect("#number_of_cylinder", {
+          create: false,
+          controlInput: null,
+          maxOptions: false,
+          plugins: ["no_backspace_delete"],
+          render: {
+              no_results: function(){
+                  return '<div class="no-results">Nincs találat</div>';
+              }
+          }
+        })
+        if (gigaSearch !== undefined && gigaSearch.numOfCyl !== null) {
+          number_of_cylinderSelect.setValue(gigaSearch.numOfCyl)
+        } else {
+          number_of_cylinderSelect.setValue("0")
+        }
+    
+        const motor_typeSelect = new TomSelect("#motor_type", {
+          create: false,
+          controlInput: null,
+          maxOptions: false,
+          plugins: ["no_backspace_delete"],
+          render: {
+              no_results: function(){
+                  return '<div class="no-results">Nincs találat</div>';
+              }
+          }
+        })
+        if (gigaSearch !== undefined && gigaSearch.engineType !== null) {
+          motor_typeSelect.setValue(gigaSearch.engineType)
+        } else {
+          motor_typeSelect.setValue("0")
+        }
+    
+        const drive_trainSelect = new TomSelect("#drive_train", {
+          create: false,
+          controlInput: null,
+          maxOptions: false,
+          plugins: ["no_backspace_delete"],
+          render: {
+              no_results: function(){
+                  return '<div class="no-results">Nincs találat</div>';
+              }
+          }
+        })
+        if (gigaSearch !== undefined && gigaSearch.drive !== null) {
+          drive_trainSelect.setValue(gigaSearch.drive)
+        } else {
+          drive_trainSelect.setValue("0")
+        }
+    
+        const gearboxSelect = new TomSelect("#gearbox", {
+          create: false,
+          controlInput: null,
+          maxOptions: false,
+          plugins: ["no_backspace_delete"],
+          render: {
+              no_results: function(){
+                  return '<div class="no-results">Nincs találat</div>';
+              }
+          }
+        })
+        if (gigaSearch !== undefined && gigaSearch.transType !== null) {
+          gearboxSelect.setValue(gigaSearch.transType)
+        } else {
+          gearboxSelect.setValue("0")
+        }
+    
+        document.getElementById("price_from").value = gigaSearch.priceMin == 0 ? null : gigaSearch.priceMin
+        document.getElementById("price_to").value = gigaSearch.priceMax == 0 ? null : gigaSearch.priceMax
+        document.getElementById("odometer_from").value = gigaSearch.kmClockMin == 0 ? null : gigaSearch.kmClockMin
+        document.getElementById("odometer_to").value = gigaSearch.kmClockMax == 0 ? null : gigaSearch.kmClockMax
+        document.getElementById("ccm_from").value = gigaSearch.ccMin == 0 ? null : gigaSearch.ccMin
+        document.getElementById("ccm_to").value = gigaSearch.ccMax == 0 ? null : gigaSearch.ccMax
+        document.getElementById("horsepower_from").value = gigaSearch.hpMin == 0 ? null : gigaSearch.hpMin
+        document.getElementById("horsepower_to").value = gigaSearch.hpMax == 0 ? null : gigaSearch.hpMax
+        document.getElementById("kerb_wheight_from").value = gigaSearch.kWeightMin == 0 ? null : gigaSearch.kWeightMin
+        document.getElementById("kerb_wheight_to").value = gigaSearch.kWeightMax == 0 ? null : gigaSearch.kWeightMax
+    
+        // Return a cleanup function that safely destroys all TomSelect instances
+        return () => {
+          // Safely destroy all TomSelect instances with null checks
+          if (body_typeSelect && body_typeSelect.destroy) {
+            try {
+              body_typeSelect.destroy()
+            } catch (e) {
+              console.warn("Error destroying body_typeSelect:", e)
+            }
+          }
+    
+          if (fuelSelect && fuelSelect.destroy) {
+            try {
+              fuelSelect.destroy()
+            } catch (e) {
+              console.warn("Error destroying fuelSelect:", e)
+            }
+          }
+    
+          if (year_fromSelect && year_fromSelect.destroy) {
+            try {
+              year_fromSelect.destroy()
+            } catch (e) {
+              console.warn("Error destroying year_fromSelect:", e)
+            }
+          }
+    
+          if (year_toSelect && year_toSelect.destroy) {
+            try {
+              year_toSelect.destroy()
+            } catch (e) {
+              console.warn("Error destroying year_toSelect:", e)
+            }
+          }
+    
+          if (number_of_cylinderSelect && number_of_cylinderSelect.destroy) {
+            try {
+              number_of_cylinderSelect.destroy()
+            } catch (e) {
+              console.warn("Error destroying number_of_cylinderSelect:", e)
+            }
+          }
+    
+          if (motor_typeSelect && motor_typeSelect.destroy) {
+            try {
+              motor_typeSelect.destroy()
+            } catch (e) {
+              console.warn("Error destroying motor_typeSelect:", e)
+            }
+          }
+    
+          if (drive_trainSelect && drive_trainSelect.destroy) {
+            try {
+              drive_trainSelect.destroy()
+            } catch (e) {
+              console.warn("Error destroying drive_trainSelect:", e)
+            }
+          }
+    
+          if (gearboxSelect && gearboxSelect.destroy) {
+            try {
+              gearboxSelect.destroy()
+            } catch (e) {
+              console.warn("Error destroying gearboxSelect:", e)
+            }
+          }
+        }
+      }, [])
 
     // useEffect(() => {
     // axios.get(base_url+'/Brand/BrandGet')
@@ -187,6 +364,11 @@ const HomeSearch = React.memo(() => {
                     field: "text",
                     direction: "asc",
                     allowEmptyOption: true,
+                },
+                render: {
+                    no_results: function( data, escape ){
+                        return '<div class="no-results">Nincs találat</div>';
+                    }
                 }
             })
         }
@@ -217,6 +399,7 @@ const HomeSearch = React.memo(() => {
                 value: 0,
                 text: "Mindegy"
             }]
+            document.getElementById("type").setAttribute("disabled","")
             console.log(allType)
             setTypes(allType)
             console.log(types)
@@ -265,6 +448,11 @@ const HomeSearch = React.memo(() => {
                 direction: "asc" 
             },
             allowEmptyOption: true,
+            render: {
+                no_results: function( data, escape ){
+                    return '<div class="no-results">Nincs találat</div>';
+                }
+            }
         });
 
         return () => {
@@ -300,6 +488,11 @@ const HomeSearch = React.memo(() => {
                     field: "text",
                     direction: "asc",
                     allowEmptyOption: true,
+                },
+                render: {
+                    no_results: function( data, escape ){
+                        return '<div class="no-results">Nincs találat</div>';
+                    }
                 }
             })
         }
@@ -377,8 +570,8 @@ const HomeSearch = React.memo(() => {
             "id": 0,
             "brandId": Number(selectedBrand),
             "typeId": safeNumber(selectedType),
-            "bodyType": selectedBody,
-            "fuelType": selectedFuel,
+            "bodyType": selectedBody == "" || selectedBody == "0"? null : selectedBody,
+            "fuelType": selectedFuel == "" || selectedFuel == "0"? null : selectedFuel,
             "yearMin": Number(document.getElementById("year_from").value),
             "yearMax": Number(document.getElementById("year_to").value),
             "priceMin": Number(document.getElementById("price_from").value),
@@ -391,9 +584,9 @@ const HomeSearch = React.memo(() => {
             "hpMin": Number(document.getElementById("horsepower_from").value),
             "hpMax": Number(document.getElementById("horsepower_to").value),
             "numOfCyl": Number(document.getElementById("number_of_cylinder").value),
-            "engineType": selectedEngine,
-            "drive": selectedDriveTrain,
-            "transType": selectedGearbox,
+            "engineType": selectedEngine == "" || selectedEngine == "0"? null : selectedEngine,
+            "drive": selectedDriveTrain == "" || selectedDriveTrain == "0"? null : selectedDriveTrain,
+            "transType": selectedGearbox == "" || selectedGearbox == "0"? null : selectedGearbox,
             "kWeightMin": Number(document.getElementById("kerb_wheight_from").value),
             "kWeightMax": Number(document.getElementById("kerb_wheight_to").value)
         }

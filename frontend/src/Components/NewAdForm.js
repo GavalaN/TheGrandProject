@@ -89,37 +89,44 @@ export default function NewAdForm() {
           new TomSelect("#body_type",{
               create: false,
               controlInput: null,
-              maxOptions: false
+              maxOptions: false,
+              plugins: ["no_backspace_delete"],
           });
           new TomSelect("#fuel",{
             create: false,
             controlInput: null,
-            maxOptions: false
+            maxOptions: false,
+            plugins: ["no_backspace_delete"],
           });
           new TomSelect("#year",{
             create: false,
             controlInput: null,
-            maxOptions: false
+            maxOptions: false,
+            plugins: ["no_backspace_delete"],
           });
           new TomSelect("#number_of_cylinder",{
             create: false,
             controlInput: null,
-            maxOptions: false
+            maxOptions: false,
+            plugins: ["no_backspace_delete"],
           });
           new TomSelect("#motor_type",{
             create: false,
             controlInput: null,
-            maxOptions: false
+            maxOptions: false,
+            plugins: ["no_backspace_delete"],
           });
           new TomSelect("#drive_train",{
             create: false,
             controlInput: null,
-            maxOptions: false
+            maxOptions: false,
+            plugins: ["no_backspace_delete"],
           });
           new TomSelect("#gearbox",{
             create: false,
             controlInput: null,
-            maxOptions: false
+            maxOptions: false,
+            plugins: ["no_backspace_delete"],
           });
       }, [])
   

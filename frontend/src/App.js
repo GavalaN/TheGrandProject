@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import HomePage from './Pages/HomePage';
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
@@ -16,8 +16,15 @@ import NewPassword from './Pages/NewPassword';
 import CarCardDetailed from './Components/CarCardDetailed';
 import Profile from './Pages/Profile';
 import SiteCookies from './Components/SiteCookies';
+import { useEffect } from 'react';
 
 function App() {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [location]);
+  
   return (
     <div className="App">
       <Navbar/>

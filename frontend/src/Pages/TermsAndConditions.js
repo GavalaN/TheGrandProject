@@ -1,11 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './LoginReg.css'
 import WarningModal from '../Components/WarningModal'
+import { useLocation } from 'react-router-dom';
 
 export default function TermsAndConditions() {
+  const location = useLocation();
+  const [isModalOpen, setIsModalOpen] = useState(true);
+
+  useEffect(() => {
+    if (!isModalOpen) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [location, isModalOpen]);
+
+  const handleModalClose = () => setIsModalOpen(false);
+  const handleModalOpen = () => setIsModalOpen(true);
+
   return (
     <div className="content">
-      <WarningModal/>
+      {isModalOpen && <WarningModal onClose={handleModalClose} />}
 
       <div id="tac">
 

@@ -1,15 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './LoginReg.css'
 import WarningModal from '../Components/WarningModal'
 import { faEnvelope, faSquarePhone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useLocation } from 'react-router-dom';
 
 export default function Contact() {
+  const location = useLocation();
+  const [isModalOpen, setIsModalOpen] = useState(true);
+
+  useEffect(() => {
+    if (!isModalOpen) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [location, isModalOpen]);
+
+  const handleModalClose = () => setIsModalOpen(false);
+  const handleModalOpen = () => setIsModalOpen(true);
+
   return (
     <div className="content">
-      <WarningModal/>
+       {isModalOpen && <WarningModal onClose={handleModalClose} />}
       <div id="contact" className="text-start">
-        <h3 className="text-center">Kapcsolat</h3>
+        <h3 id="#" className="text-center">Kapcsolat</h3>
 
         <hr/>
 

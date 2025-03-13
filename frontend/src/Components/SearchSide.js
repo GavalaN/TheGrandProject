@@ -125,12 +125,17 @@ const SearchSide = React.memo((props) => {
 
     
     useEffect(() => {
-        // Initialize all TomSelect instances and store them in variables
         const body_typeSelect = new TomSelect("#body_type", {
           create: false,
           controlInput: null,
           maxOptions: false,
           plugins: ["no_backspace_delete"],
+          render: {
+              no_results: function(){
+                  return '<div class="no-results">Nincs találat</div>';
+              }
+          }
+          
         })
     
         if (gigaSearch !== undefined && gigaSearch.bodyType !== null) {
@@ -144,6 +149,11 @@ const SearchSide = React.memo((props) => {
           controlInput: null,
           maxOptions: false,
           plugins: ["no_backspace_delete"],
+          render: {
+              no_results: function(){
+                  return '<div class="no-results">Nincs találat</div>';
+              }
+          }
         })
         if (gigaSearch !== undefined && gigaSearch.fuelType !== null) {
           fuelSelect.setValue(gigaSearch.fuelType)
@@ -156,6 +166,11 @@ const SearchSide = React.memo((props) => {
           controlInput: null,
           maxOptions: false,
           plugins: ["no_backspace_delete"],
+          render: {
+              no_results: function(){
+                  return '<div class="no-results">Nincs találat</div>';
+              }
+          }
         })
         if (gigaSearch !== undefined && gigaSearch.yearMin !== null) {
           year_fromSelect.setValue(gigaSearch.yearMin)
@@ -168,6 +183,11 @@ const SearchSide = React.memo((props) => {
           controlInput: null,
           maxOptions: false,
           plugins: ["no_backspace_delete"],
+          render: {
+              no_results: function(){
+                  return '<div class="no-results">Nincs találat</div>';
+              }
+          }
         })
         if (gigaSearch !== undefined && gigaSearch.yearMax !== null) {
           year_toSelect.setValue(gigaSearch.yearMax)
@@ -180,6 +200,11 @@ const SearchSide = React.memo((props) => {
           controlInput: null,
           maxOptions: false,
           plugins: ["no_backspace_delete"],
+          render: {
+              no_results: function(){
+                  return '<div class="no-results">Nincs találat</div>';
+              }
+          }
         })
         if (gigaSearch !== undefined && gigaSearch.numOfCyl !== null) {
           number_of_cylinderSelect.setValue(gigaSearch.numOfCyl)
@@ -192,6 +217,11 @@ const SearchSide = React.memo((props) => {
           controlInput: null,
           maxOptions: false,
           plugins: ["no_backspace_delete"],
+          render: {
+              no_results: function(){
+                  return '<div class="no-results">Nincs találat</div>';
+              }
+          }
         })
         if (gigaSearch !== undefined && gigaSearch.engineType !== null) {
           motor_typeSelect.setValue(gigaSearch.engineType)
@@ -204,6 +234,11 @@ const SearchSide = React.memo((props) => {
           controlInput: null,
           maxOptions: false,
           plugins: ["no_backspace_delete"],
+          render: {
+              no_results: function(){
+                  return '<div class="no-results">Nincs találat</div>';
+              }
+          }
         })
         if (gigaSearch !== undefined && gigaSearch.drive !== null) {
           drive_trainSelect.setValue(gigaSearch.drive)
@@ -216,6 +251,11 @@ const SearchSide = React.memo((props) => {
           controlInput: null,
           maxOptions: false,
           plugins: ["no_backspace_delete"],
+          render: {
+              no_results: function(){
+                  return '<div class="no-results">Nincs találat</div>';
+              }
+          }
         })
         if (gigaSearch !== undefined && gigaSearch.transType !== null) {
           gearboxSelect.setValue(gigaSearch.transType)
@@ -364,6 +404,7 @@ const SearchSide = React.memo((props) => {
                 value: 0,
                 text: "Mindegy"
             }]
+            document.getElementById("type").setAttribute("disabled","")
             console.log(allType)
             setTypes(allType)
             console.log(types)
