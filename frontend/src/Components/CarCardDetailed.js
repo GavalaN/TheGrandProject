@@ -84,11 +84,27 @@ export default function CarCardDetailed() {
 
                 <h3 className="mt-2">Hírdető adatai</h3>
                 <hr className="my-1"/>
-                <p>Hírdető neve: {carDetailed.username}</p>
-                <p>Telefon száma: {carDetailed.phoneNum}</p>
-                <a href={`tel:${carDetailed.phoneNum}`} className="btn">Vevő felhívása</a>
-                <p>Email címe: {carDetailed.email}</p>
-                <a href={`mailto:${carDetailed.email}`} className="btn">E-mail küldése a vevőnek</a>
+                <div class="row">
+                    <div class="col-12">
+                        <p>Hírdető neve: {carDetailed.username}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <p>Telefon száma: {carDetailed.phoneNum}</p>
+                    </div>
+                    <div class="col-8">
+                        <a href={`tel:${carDetailed.phoneNum}`} className="btn">Vevő felhívása</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <p>Email címe: {carDetailed.email}</p>
+                    </div>
+                    <div class="col-8">
+                        <a href={`mailto:${carDetailed.email}`} className="btn">E-mail küldése a vevőnek</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

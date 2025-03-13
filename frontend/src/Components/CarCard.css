@@ -144,13 +144,15 @@
     padding-top: 0.25rem !important;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 1rem;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
     padding: 0;
     transition: 0.3s;
 }
 
 .car-card-detailed .btn:hover, #owner-things .btn:hover {
-    margin-top: 0.7rem;
+    margin-top: -0.3rem;
+    margin-bottom: 0.5rem;
     height: 2.8rem;
     color: white;
     background-color: #0096D6;
@@ -191,7 +193,7 @@
         width: 100%;
         font-size: larger;
     }
-    .car-card .col-8, .car-card .col-6, .car-card .col-4, .car-card-detailed .col-8, .car-card-detailed .col-4 , #owner-things.col-2{
+    .car-card .col-8, .car-card .col-6, .car-card .col-4, .car-card-detailed .col-8, .car-card-detailed .col-6, .car-card-detailed .col-4 , #owner-things.col-2{
         width: 100% !important;
     }
     .car-card-detailed .car-card-text {
@@ -201,6 +203,16 @@
     .car-card-detailed h1 {
         font-size: revert;
     }
+
+    .car-card-detailed .btn {
+        margin-top: 1rem;
+        width: 100%;
+    }
+
+    .car-card-detailed .btn:hover {
+        margin-top: 0.7rem;
+    }
+
     #owner-things {
         display: flex;
         width: fit-content !important;
