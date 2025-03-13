@@ -10,7 +10,7 @@ namespace AA_Backend.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly CarplaceContext _context;
+        
 
 
 
@@ -22,7 +22,7 @@ namespace AA_Backend.Controllers
                 try
                 {
 
-                    var listings = _context.Cars
+                    var listings = context.Cars
                         .Where(l => l.SellerId == userid)
                         .Select(k => new CarDTO()
                         {
