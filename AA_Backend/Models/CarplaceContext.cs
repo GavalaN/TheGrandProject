@@ -43,6 +43,9 @@ public partial class CarplaceContext : DbContext
             entity.Property(e => e.Name)
                 .HasMaxLength(255)
                 .HasColumnName("name");
+            entity.HasMany(e => e.Cars)
+                .WithOne()
+                .OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<Car>(entity =>
