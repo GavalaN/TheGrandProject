@@ -377,7 +377,7 @@
         }
       }
     },
-    "/api/Search/GigaSearch": {
+    "/Search/GigaSearch": {
       "post": {
         "tags": [
           "Search"

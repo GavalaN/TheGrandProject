@@ -252,6 +252,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "AA_Backend.Controllers.SearchController",
+    "Method": "Search",
+    "RelativePath": "Search/GigaSearch",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "search",
+        "Type": "AA_Backend.DTOs.SearchDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "AA_Backend.Controllers.UsersController",
     "Method": "GetUserListings",
     "RelativePath": "Users/GetUserListings",
@@ -263,22 +279,6 @@
         "Name": "userid",
         "Type": "System.Int32",
         "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "AA_Backend.Controllers.SearchController",
-    "Method": "Search",
-    "RelativePath": "api/Search/GigaSearch",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "search",
-        "Type": "AA_Backend.DTOs.SearchDTO",
-        "IsRequired": true
       }
     ],
     "ReturnTypes": []
