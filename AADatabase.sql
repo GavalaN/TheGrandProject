@@ -71,7 +71,7 @@ CREATE TABLE `cars` (
   `horsepower` int(11) NOT NULL,
   `cc` int(11) NOT NULL,
   `engine_type` varchar(12) NOT NULL,
-  `fuel_type` varchar(11) NOT NULL,
+  `fuel_type` varchar(32) NOT NULL,
   `drive` varchar(50) NOT NULL,
   `trans_type` varchar(50) NOT NULL,
   `Year` int(9) NOT NULL,
