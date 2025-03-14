@@ -13,9 +13,11 @@ export default function NewAd() {
       navigate("/login")
     }
   }, [user])
-  return (
-    <div className="content">
-      <NewAdForm/>
-    </div>
-  )
+  if (user !== undefined){
+    return (
+      <div className="content">
+        <NewAdForm/>
+      </div>
+    )
+  }
 }

@@ -4,34 +4,65 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Cookies from 'js-cookie';
 import './SiteCookies.css'
 import { Tooltip } from 'react-tooltip';
+import { Modal, Button } from 'react-bootstrap';
+import '../Pages/LoginReg.css'; 
 
 export default function SiteCookies() {
     const [accepted, setAccepted] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
-        if (Cookies.get("accepted-cookies") !== undefined) {
-            setAccepted(false);
-        }
-    }, [])
+        const cookie = Cookies.get("accepted-cookies");
 
-    function AcceptCookies() {
-        if (window.confirm("Elfogadod?")) {
-            Cookies.set("accepted-cookies",true);
-            setAccepted(true);
+        if (cookie === undefined) {
+            setShowModal(true);
+            document.getElementById("cookies-content").style.visibility = "hidden";
+        } else {
+            setAccepted(cookie === "true");
         }
-        else {
-            Cookies.set("accepted-cookies",false);
-            setAccepted(false);
-        }
-        console.log(accepted)
-    }
+    }, []);
+
+    const handleAccept = () => {
+        Cookies.set("accepted-cookies", true);
+        setAccepted(true);
+        setShowModal(false);
+        document.getElementById("cookies-content").style.visibility = "visible";
+    };
+
+    const handleReject = () => {
+        Cookies.set("accepted-cookies", false);
+        setAccepted(false);
+        setShowModal(false);
+        document.getElementById("cookies-content").style.visibility = "visible";
+    };
 
     return (
-        <div id="site-cookies" className="btn">
-            <a data-tooltip-id='sitecookies-tooltip' data-tooltip-content='Süti beállítások' onClick={AcceptCookies}>
-                {Cookies.get("accepted-cookies") == undefined?<FontAwesomeIcon icon={faCookie} />:<FontAwesomeIcon icon={faCookieBite} />}
-            </a>
-            <Tooltip id='sitecookies-tooltip'/>
+        <div id="cookies-content">
+            <div id="site-cookies" className="btn">
+                <a
+                    data-tooltip-id='sitecookies-tooltip'
+                    data-tooltip-content='Süti beállítások'
+                    onClick={() => setShowModal(true)}
+                >
+                    {accepted ?
+                        <FontAwesomeIcon icon={faCookieBite} /> :
+                        <FontAwesomeIcon icon={faCookie} />}
+                </a>
+                <Tooltip id='sitecookies-tooltip' />
+            </div>
+
+            <Modal show={showModal} onHide={() => setShowModal(false)} dialogClassName="site-cookies" backdrop="static" keyboard={false}>
+                <Modal.Header>
+                    <Modal.Title>Süti elfogadása</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <p>Weboldalunk sütiket használ a felhasználói élmény javítása érdekében. Elfogadod?</p>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={handleReject}>Nem</Button>
+                    <Button onClick={handleAccept}>Igen</Button>
+                </Modal.Footer>
+            </Modal>
         </div>
-    )
+    );
 }

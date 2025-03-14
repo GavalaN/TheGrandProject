@@ -8,7 +8,7 @@ import '../Pages/LoginReg.css';
 export default function WarningModal({ onClose }) {
 
   return (
-    <Modal show={true} onHide={onClose} dialogClassName="figyelmeztetes">
+    <Modal show={true} onHide={onClose} dialogClassName="figyelmeztetes" backdrop="static" keyboard={false} >
       <Modal.Header>
         <Modal.Title>Figyelmeztetés!</Modal.Title>
       </Modal.Header>

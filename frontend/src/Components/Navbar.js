@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Navbar.css';
 import logo from '../Images/logo_white.png';
 import { Link, useNavigate } from 'react-router-dom';
@@ -8,16 +8,18 @@ import axios from 'axios';
 export default function Navbar() {
   const base_url = process.env.REACT_APP_BASE_URL;
   const navigate = useNavigate();
-
+  const user = Cookies.get("user") === undefined? undefined : JSON.parse(Cookies.get("user"))
+  
   function Logout(){
-    let token = JSON.parse(Cookies.get("user")).token;
-
-    axios.post(base_url+'/Logout?uId='+token)
-    .then(response => (alert(response.data)))
-    .then(() => {
-      Cookies.remove("user");
-      navigate("/login")
-    })
+    if (user !== undefined){
+      axios.post(base_url+'/Logout?token='+user.token)
+      .then(response => (alert(response.data)))
+      .then(() => {
+        Cookies.remove("user");
+        navigate("/login")
+      })
+    }
+    
   }
 
   return (

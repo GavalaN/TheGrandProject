@@ -237,16 +237,16 @@ const HomeSearch = React.memo(() => {
           gearboxSelect.setValue("0")
         }
     
-        document.getElementById("price_from").value = gigaSearch.priceMin == 0 ? null : gigaSearch.priceMin
-        document.getElementById("price_to").value = gigaSearch.priceMax == 0 ? null : gigaSearch.priceMax
-        document.getElementById("odometer_from").value = gigaSearch.kmClockMin == 0 ? null : gigaSearch.kmClockMin
-        document.getElementById("odometer_to").value = gigaSearch.kmClockMax == 0 ? null : gigaSearch.kmClockMax
-        document.getElementById("ccm_from").value = gigaSearch.ccMin == 0 ? null : gigaSearch.ccMin
-        document.getElementById("ccm_to").value = gigaSearch.ccMax == 0 ? null : gigaSearch.ccMax
-        document.getElementById("horsepower_from").value = gigaSearch.hpMin == 0 ? null : gigaSearch.hpMin
-        document.getElementById("horsepower_to").value = gigaSearch.hpMax == 0 ? null : gigaSearch.hpMax
-        document.getElementById("kerb_wheight_from").value = gigaSearch.kWeightMin == 0 ? null : gigaSearch.kWeightMin
-        document.getElementById("kerb_wheight_to").value = gigaSearch.kWeightMax == 0 ? null : gigaSearch.kWeightMax
+        // document.getElementById("price_from").value = gigaSearch.priceMin == 0 ? null : gigaSearch.priceMin
+        // document.getElementById("price_to").value = gigaSearch.priceMax == 0 ? null : gigaSearch.priceMax
+        // document.getElementById("odometer_from").value = gigaSearch.kmClockMin == 0 ? null : gigaSearch.kmClockMin
+        // document.getElementById("odometer_to").value = gigaSearch.kmClockMax == 0 ? null : gigaSearch.kmClockMax
+        // document.getElementById("ccm_from").value = gigaSearch.ccMin == 0 ? null : gigaSearch.ccMin
+        // document.getElementById("ccm_to").value = gigaSearch.ccMax == 0 ? null : gigaSearch.ccMax
+        // document.getElementById("horsepower_from").value = gigaSearch.hpMin == 0 ? null : gigaSearch.hpMin
+        // document.getElementById("horsepower_to").value = gigaSearch.hpMax == 0 ? null : gigaSearch.hpMax
+        // document.getElementById("kerb_wheight_from").value = gigaSearch.kWeightMin == 0 ? null : gigaSearch.kWeightMin
+        // document.getElementById("kerb_wheight_to").value = gigaSearch.kWeightMax == 0 ? null : gigaSearch.kWeightMax
     
         // Return a cleanup function that safely destroys all TomSelect instances
         return () => {
@@ -449,7 +449,7 @@ const HomeSearch = React.memo(() => {
             },
             allowEmptyOption: true,
             render: {
-                no_results: function( data, escape ){
+                no_results: function(){
                     return '<div class="no-results">Nincs találat</div>';
                 }
             }
@@ -490,7 +490,7 @@ const HomeSearch = React.memo(() => {
                     allowEmptyOption: true,
                 },
                 render: {
-                    no_results: function( data, escape ){
+                    no_results: function(){
                         return '<div class="no-results">Nincs találat</div>';
                     }
                 }

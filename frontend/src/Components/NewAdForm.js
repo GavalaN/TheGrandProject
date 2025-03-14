@@ -19,7 +19,7 @@ function yearRange(){
 
 export default function NewAdForm() {
   const base_url = process.env.REACT_APP_BASE_URL;
-  const userId = Cookies.get("user") == undefined? undefined : JSON.parse(Cookies.get("user")).uId;
+  const user = Cookies.get("user") == undefined? undefined : JSON.parse(Cookies.get("user"));
   //const [isActive, setIsActive] = useState(false);
   const [brands, setBrands] = useState([]);
   const [types, setTypes] = useState([]);
@@ -306,12 +306,12 @@ export default function NewAdForm() {
       price: document.getElementById("price").value,
       description: document.getElementById("description").value,
 
-      sellerId: userId,
+      sellerId: user.id,
       
     }
     console.log(body)
     
-    axios.post(base_url+'/Car/Add', body)
+    axios.post(base_url+'/Car/Add?token='+user.token, body)
     .then(response => {console.log(response); alert(response.data); navigate("/profil")})
   }
 

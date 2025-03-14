@@ -22,10 +22,15 @@ export default function Profile() {
     const handleOpen = () => setShow(true);
 
     useEffect(() => {
+        if (userdata !== undefined) {
             axios.get(base_url+'/Users/GetUserListings?userid='+userdata.uId)
             .then(response => (setAds(response.data)))
             .then(console.log(ads))
             .catch((error) => {console.log("Nincs megjeleníthető adat!")});
+        }
+        else {
+            navigate("/login")
+        }
     }, [])
 
     function ShowAds(e) {
@@ -40,7 +45,7 @@ export default function Profile() {
     }
 
     if (userdata === undefined) {
-        navigate("/login")
+
     }
     else {
         return (

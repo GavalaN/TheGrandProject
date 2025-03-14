@@ -44,7 +44,10 @@ export default function Login() {
         // Login kérés küldése
         const loginResponse = await axios.post(base_url+'/Login', login);
         console.log("Login Response:", loginResponse.data);
-        Cookies.set("user",JSON.stringify(loginResponse.data));
+
+        let date = new Date();
+        date.setTime(date.getTime() + (24 * 60 * 60 * 1000));
+        Cookies.set("user",JSON.stringify(loginResponse.data), { expires: date });
         console.log(JSON.parse(Cookies.get("user")));
         setTimeout(() => {
           alert("Sikeres bejelentkezés!")
