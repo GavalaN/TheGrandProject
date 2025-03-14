@@ -10,13 +10,13 @@ namespace AA_Backend.Controllers
     {
         
         [HttpPost]
-        public IActionResult Logout(string uId)
+        public IActionResult Logout(string token)
         {
-            if (Program.LoggedInUsers.ContainsKey(uId))
+            if (Program.LoggedInUsers.ContainsKey(token))
             {
                 lock (Program.LoggedInUsers)
                 {
-                    Program.LoggedInUsers.Remove(uId);
+                    Program.LoggedInUsers.Remove(token);
                 }
                 return Ok("Sikeres kijelentkezés!");
             }
