@@ -46,6 +46,10 @@ namespace AA_Backend.Controllers
                 {
                     string hash = Program.CreateSHA256(loginDTO.TmpHash);
                     User response = await context.Users.FirstOrDefaultAsync(u => u.Username == loginDTO.LoginName && u.Hash == hash);
+                    if (response.IsActive == 0)
+                    {
+                        return BadRequest("A felhasználó inaktív!");
+                    }
                     if (response != null)
                     {
                         string token = Guid.NewGuid().ToString();
