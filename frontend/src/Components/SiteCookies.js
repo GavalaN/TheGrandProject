@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { faCookie, faCookieBite } from '@fortawesome/free-solid-svg-icons';
+import { faCookie, faCookieBite, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Cookies from 'js-cookie';
 import './SiteCookies.css'
@@ -53,10 +53,17 @@ export default function SiteCookies() {
 
             <Modal show={showModal} onHide={() => setShowModal(false)} dialogClassName="site-cookies" backdrop="static" keyboard={false}>
                 <Modal.Header>
-                    <Modal.Title>Süti elfogadása</Modal.Title>
+                    <Modal.Title>Sütik elfogadása</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <p>Weboldalunk sütiket használ a felhasználói élmény javítása érdekében. Elfogadod?</p>
+                    <div className="row">
+                        <div className="col-8">
+                        <p>Weboldalunk sütiket használ a felhasználói élmény javítása érdekében. Elfogadod?</p>
+                        </div>
+                        <div className="col-4 text-center">
+                        <FontAwesomeIcon icon={faTriangleExclamation} size="2xl" style={{ fontSize: '5em' }} />
+                        </div>
+                    </div>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={handleReject}>Nem</Button>

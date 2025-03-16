@@ -1,0 +1,49 @@
+.site-cookies, .error, .information{
+    margin-top: 5rem !important;
+}
+
+.site-cookies .modal-content, .error .modal-content {
+    color: white !important;
+    background-color: #bb0000 !important;
+    border: 1px solid white;
+}
+
+.site-cookies .modal-content button,  .error .modal-content button{
+    color: #bb0000 !important;
+    background-color: white !important;
+    border: #bb0000;
+    transition: 0.5s;
+}
+
+.site-cookies .modal-content button:hover,  .error .modal-content button:hover {
+    color: white !important;
+    background-color: #bb0000 !important;
+    box-shadow: white 0 0 3px 3px;
+    transition: 0.5s;
+}
+
+.information .modal-content .modal-body {
+    border: 1px solid #0096D6;
+    border-left: 0;
+    border-right: 0;
+}
+
+.information .modal-content {
+    color: #0096D6 !important;
+    background-color: #DEDFE1 !important;
+    border: 1px solid #0096D6;
+}
+
+.information .modal-content button{
+    color: #DEDFE1 !important;
+    background-color: #0096D6 !important;
+    border: #DEDFE1;
+    transition: 0.5s;
+}
+
+.information .modal-content button:hover {
+    color: #0096D6 !important;
+    background-color: #DEDFE1 !important;
+    box-shadow: #0096D6 0 0 3px 3px;
+    transition: 0.5s;
+}

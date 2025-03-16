@@ -3,12 +3,12 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import '../Pages/LoginReg.css';
+import './Modals.css';
 
 export default function WarningModal({ onClose }) {
 
   return (
-    <Modal show={true} onHide={onClose} dialogClassName="figyelmeztetes" backdrop="static" keyboard={false} >
+    <Modal show={true} onHide={onClose} dialogClassName="error" backdrop="static" keyboard={false} >
       <Modal.Header>
         <Modal.Title>Figyelmeztetés!</Modal.Title>
       </Modal.Header>

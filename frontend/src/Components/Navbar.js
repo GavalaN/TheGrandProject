@@ -1,19 +1,40 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Navbar.css';
 import logo from '../Images/logo_white.png';
 import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import InformationModal from './InformationModal';
 
 export default function Navbar() {
   const base_url = process.env.REACT_APP_BASE_URL;
   const navigate = useNavigate();
   const user = Cookies.get("user") === undefined? undefined : JSON.parse(Cookies.get("user"))
+
+  const [modalInfo, setModalInfo] = useState({
+      show: false,
+      title: "",
+      text: "",
+      theme: "information",
+    })
+
+  // Add a handler to close the modal
+  const handleCloseModal = () => {
+    setModalInfo({
+      ...modalInfo,
+      show: false,
+    })
+  }
   
   function Logout(){
     if (user !== undefined){
       axios.post(base_url+'/Logout?token='+user.token)
-      .then(response => (alert(response.data)))
+      .then(response => (setModalInfo({
+        show: true,
+        title: response.data,
+        text: "",
+        theme: "information",
+      })))
       .then(() => {
         Cookies.remove("user");
         navigate("/login")
@@ -65,6 +86,13 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
+      <InformationModal
+              show={modalInfo.show}
+              title={modalInfo.title}
+              text={modalInfo.text}
+              theme={modalInfo.theme}
+              onClose={handleCloseModal}
+            />
     </div>
   );
 }

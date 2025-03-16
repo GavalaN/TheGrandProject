@@ -64,27 +64,3 @@
     font-size: larger;
     text-align: start;
 }
-
-.figyelmeztetes, .site-cookies {
-    margin-top: 5rem !important;
-}
-
-.figyelmeztetes .modal-content, .site-cookies .modal-content {
-    color: white !important;
-    background-color: #bb0000 !important;
-    border: 1px solid white;
-}
-
-.figyelmeztetes .modal-content button, .site-cookies .modal-content button {
-    color: #bb0000 !important;
-    background-color: white !important;
-    border: #bb0000;
-    transition: 0.5s;
-}
-
-.figyelmeztetes .modal-content button:hover, .site-cookies .modal-content button:hover {
-    color: white !important;
-    background-color: #bb0000 !important;
-    box-shadow: white 0 0 3px 3px;
-    transition: 0.5s;
-}

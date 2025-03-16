@@ -7,6 +7,7 @@ import './NewAdForm.css';
 import './Search.css'
 import logo from '../Images/logo.png'
 import Cookies from 'js-cookie';
+import InformationModal from './InformationModal';
 
 function yearRange(){
   let years = [];
@@ -32,6 +33,21 @@ export default function NewAdForm() {
   const [typeSelection, setTypeSelection] = useState([]);
   const [colorSelection, setColorSelection] = useState([]);
   const navigate = useNavigate();
+
+  const [modalInfo, setModalInfo] = useState({
+    show: false,
+    title: "",
+    text: "",
+    theme: "information",
+  })
+
+  // Add a handler to close the modal
+  const handleCloseModal = () => {
+    setModalInfo({
+      ...modalInfo,
+      show: false,
+    })
+  }
 
   function setInputFilter(textbox, inputFilter, errMsg) {
     ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop", "focusout"].forEach(function(event) {
@@ -312,7 +328,12 @@ export default function NewAdForm() {
     console.log(body)
     
     axios.post(base_url+'/Car/Add?token='+user.token, body)
-    .then(response => {console.log(response); alert(response.data); navigate("/profil")})
+    .then(response => {console.log(response); setModalInfo({
+      show: true,
+      title: response.data,
+      text: "",
+      theme: "information",
+    }); navigate("/profil")})
   }
 
   //HandleChanges
@@ -511,6 +532,13 @@ export default function NewAdForm() {
         </div>
         <button type="submit" className="btn btn-danger" onClick={AdPOST}>Hirdetés feladása</button>
       </form>
+      <InformationModal
+        show={modalInfo.show}
+        title={modalInfo.title}
+        text={modalInfo.text}
+        theme={modalInfo.theme}
+        onClose={handleCloseModal}
+      />
     </div>
   );
 }

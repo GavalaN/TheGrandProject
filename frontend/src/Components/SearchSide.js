@@ -8,6 +8,7 @@ import axios from 'axios';
 import TomSelect from 'tom-select';
 import 'tom-select/dist/css/tom-select.css'
 import Cookies from 'js-cookie';
+import InformationModal from './InformationModal';
 
 
 function yearRange(){
@@ -60,6 +61,13 @@ const SearchSide = React.memo((props) => {
     const [typeSelection, setTypeSelection] = useState([]);
     const [colorSelection, setColorSelection] = useState([]);
     const gigaSearch = Cookies.get("gigasearch") === undefined? undefined : JSON.parse(Cookies.get("gigasearch"))
+
+    const [modalInfo, setModalInfo] = useState({
+        show: false,
+        title: "",
+        text: "",
+        theme: "information",
+      })
 
     function setInputFilter(textbox, inputFilter, errMsg) {
         ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop", "focusout"].forEach(function(event) {
@@ -123,6 +131,13 @@ const SearchSide = React.memo((props) => {
     
     }
 
+    // Add a handler to close the modal
+    const handleCloseModal = () => {
+        setModalInfo({
+        ...modalInfo,
+        show: false,
+        })
+    }
     
     useEffect(() => {
         const body_typeSelect = new TomSelect("#body_type", {
@@ -617,8 +632,12 @@ const SearchSide = React.memo((props) => {
         .then(response => {
             console.log(response.data);
             if(response.data.length == 0) {
-                alert("Nincs ilyen specifikájú autó!");
-                
+                setModalInfo({
+                    show: true,
+                    title: "Nincs találat!",
+                    text: "Nincs ilyen specifikájú autó!",
+                    theme: "information",
+                  })
             }
             else {
                 props.contentChange(response.data);
@@ -846,6 +865,13 @@ const SearchSide = React.memo((props) => {
                     <button className="btn" onClick={GigaSearch}>Keresés</button>
                 </div>
             </form>
+            <InformationModal
+                show={modalInfo.show}
+                title={modalInfo.title}
+                text={modalInfo.text}
+                theme={modalInfo.theme}
+                onClose={handleCloseModal}
+            />
         </div>
     );
 });

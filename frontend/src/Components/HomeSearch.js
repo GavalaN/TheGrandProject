@@ -5,6 +5,7 @@ import axios from 'axios';
 import TomSelect from 'tom-select';
 import 'tom-select/dist/css/tom-select.css'
 import Cookies from 'js-cookie';
+import InformationModal from './InformationModal';
 
 function yearRange(){
     let years = [];
@@ -35,6 +36,13 @@ const HomeSearch = React.memo(() => {
     const [colorSelection, setColorSelection] = useState([]);
     const navigate = useNavigate();
     const gigaSearch = Cookies.get("gigasearch") === undefined? undefined : JSON.parse(Cookies.get("gigasearch"))
+
+    const [modalInfo, setModalInfo] = useState({
+        show: false,
+        title: "",
+        text: "",
+        theme: "information",
+      })
 
     function setInputFilter(textbox, inputFilter, errMsg) {
         ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop", "focusout"].forEach(function(event) {
@@ -564,6 +572,14 @@ const HomeSearch = React.memo(() => {
         return isNaN(num) ? "defaultValue" : num
     }
 
+    // Add a handler to close the modal
+    const handleCloseModal = () => {
+        setModalInfo({
+        ...modalInfo,
+        show: false,
+        })
+    }
+
     function GigaSearch(e){
         e.preventDefault();
         let gigaSearch = {
@@ -592,9 +608,21 @@ const HomeSearch = React.memo(() => {
         }
         console.log(gigaSearch)
         axios.post("http://localhost:5000/Search/GigaSearch",gigaSearch)
-        .then(response => (console.log(response.data)))
-        Cookies.set("gigasearch",JSON.stringify(gigaSearch));
-        navigate("/search");
+        .then(response => {
+            console.log(response.data)
+            Cookies.set("gigasearch",JSON.stringify(gigaSearch));
+            if (response.data.length > 0) {
+                navigate("/search");
+            }
+            else {
+                setModalInfo({
+                    show: true,
+                    title: "Nincs találat!",
+                    text: "Nincs ilyen specifikájú autó!",
+                    theme: "information",
+                  })
+            }
+        })
     }
    
     return (
@@ -852,6 +880,13 @@ const HomeSearch = React.memo(() => {
                     </div>
                 </div>
             </form>
+            <InformationModal
+                show={modalInfo.show}
+                title={modalInfo.title}
+                text={modalInfo.text}
+                theme={modalInfo.theme}
+                onClose={handleCloseModal}
+            />
         </div>
     );
 });
