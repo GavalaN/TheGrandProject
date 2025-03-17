@@ -31,8 +31,8 @@ export default function Navbar() {
       axios.post(base_url+'/Logout?token='+user.token)
       .then(response => (setModalInfo({
         show: true,
-        title: response.data,
-        text: "",
+        title: "",
+        text: response.data,
         theme: "information",
       })))
       .then(() => {

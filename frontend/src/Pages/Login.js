@@ -75,8 +75,8 @@ export default function Login() {
       // Show the modal first, don't navigate immediately
       setModalInfo({
         show: true,
-        title: "Sikeres bejelentkezés",
-        text: "Sikeres bejelentkezés! Üdv "+username+"!",
+        title: "",
+        text: "Sikeres bejelentkezés! Üdv",
         theme: "information",
       })
 
@@ -87,7 +87,7 @@ export default function Login() {
       setModalInfo({
         show: true,
         title: "Bejelentkezési hiba",
-        text: "Hiba történt a bejelentkezés során! " + (error.response?.data || "Helytelen jelszó"),
+        text: "Helytelen jelszó!",
         theme: "error",
       })
     }

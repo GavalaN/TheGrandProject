@@ -24,12 +24,12 @@ export default function InformationModal({ title, text, theme, show, onClose }) 
   
     return (
       <Modal show={show} onHide={onClose} dialogClassName={theme} backdrop="static" keyboard={false}>
-        <Modal.Header>
+        {title == "" ? null : <Modal.Header>
           <Modal.Title>{title}</Modal.Title>
-        </Modal.Header>
+        </Modal.Header>}
         <Modal.Body>
           <div className="row">
-            <div className="col-8">
+            <div className="col-8 my-auto">
               <p style={{ fontSize: "1.2em"}}>{text}</p>
             </div>
             <div className="col-4 text-center">

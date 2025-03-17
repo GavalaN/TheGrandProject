@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom'
 import { Button, Modal } from 'react-bootstrap'
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import InformationModal from '../Components/InformationModal'
 
 export default function Profile() {
     const base_url = process.env.REACT_APP_BASE_URL;
@@ -20,6 +21,21 @@ export default function Profile() {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleOpen = () => setShow(true);
+
+    const [modalInfo, setModalInfo] = useState({
+        show: false,
+        title: "",
+        text: "",
+        theme: "information",
+      })
+
+    // Add a handler to close the modal
+    const handleCloseModal = () => {
+        setModalInfo({
+        ...modalInfo,
+        show: false,
+        })
+    }
 
     useEffect(() => {
         if (userdata !== undefined) {
@@ -35,6 +51,12 @@ export default function Profile() {
 
     function ShowAds(e) {
         e.preventDefault();
+        setModalInfo({
+            show: true,
+            title: "",
+            text: "Nincs megjeleníthető hírdetés!",
+            theme: "information",
+        })
         setIsSAActive((prevState) => !prevState);
         handleOpen();
     }
@@ -80,22 +102,13 @@ export default function Profile() {
                   {ads.length > 0? ads.map(car => {
                     return <CarCard id={car.id} brand={car.brand} type_name={car.type_name} fuel_type={car.fuel_type} year={car.year} ccm={car.ccm} horsepower={car.hp} odometer={car.kmClock} price={car.price} description={car.description} is_owner={true}/>
                   }) : 
-                    <Modal show={show} onHide={handleClose} dialogClassName="figyelmeztetes">
-                        <Modal.Header>
-                        <Modal.Title>Figyelmeztetés!</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                            <div class="row">
-                                <div class="col-8">Nincs megjeleníthető hírdetés!</div>
-                                <div className="col-4 text-center"><FontAwesomeIcon icon={faCircleInfo} size="2xl" style={{fontSize: "5em"}}/></div>
-                            </div>
-                        </Modal.Body>
-                        <Modal.Footer>
-                        <Button variant="information" style={{backgroundColor: "white", color: ""}} onClick={handleClose}>
-                            Oké
-                        </Button>
-                        </Modal.Footer>
-                    </Modal>
+                    <InformationModal
+                        show={modalInfo.show}
+                        title={modalInfo.title}
+                        text={modalInfo.text}
+                        theme={modalInfo.theme}
+                        onClose={handleCloseModal}
+                    />
                 //   <h2 style={{color : "white"}}>Nincs megjeleníthető hírdetés</h2>
                   }
                 </div>
