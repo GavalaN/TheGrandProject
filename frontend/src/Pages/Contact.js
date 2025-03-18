@@ -21,8 +21,8 @@ export default function Contact() {
   return (
     <div className="content">
        {isModalOpen && <WarningModal onClose={handleModalClose} />}
-      <div id="contact" className="text-start">
-        <h3 id="#" className="text-center">Kapcsolat</h3>
+      <div id="contact" className="etc text-start">
+        <h3 className="text-center">Kapcsolat</h3>
 
         <hr/>
 

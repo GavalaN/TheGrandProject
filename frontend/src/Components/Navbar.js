@@ -72,9 +72,19 @@ export default function Navbar() {
               <li className="nav-item">
                 {Cookies.get("user") == undefined? <Link className="nav-link" to="/regisztracio">Regisztráció</Link> : <Link className="nav-link" onClick={Logout}>Kilépés</Link>}
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link className="nav-link" to="/hasznos-tudnivalok">Hasznos Tudnivalók</Link>
-              </li>
+              </li> */}
+              <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Hasznos Tudnivalók
+              </a>
+              <ul class="dropdown-menu">
+                <li><Link className="dropdown-item" to="/regisztracios-adokalkulator">Regisztrációs adókalkulátor</Link></li>
+                <li><hr class="dropdown-divider"/></li>
+                <li><Link className="dropdown-item" to="/gepjarmu-atiras">Gépjármű átírás</Link></li>
+                <li><hr class="dropdown-divider"/></li>
+                <li><Link className="dropdown-item" to="/dokumentumtar">Dokumentumtár</Link></li>
+              </ul>
               <li className="nav-item nav-link">
                 <Link className="nav-link" to="/hirdetesfeladas">
                   <button className='btn'>
@@ -87,12 +97,12 @@ export default function Navbar() {
         </div>
       </nav>
       <InformationModal
-              show={modalInfo.show}
-              title={modalInfo.title}
-              text={modalInfo.text}
-              theme={modalInfo.theme}
-              onClose={handleCloseModal}
-            />
+        show={modalInfo.show}
+        title={modalInfo.title}
+        text={modalInfo.text}
+        theme={modalInfo.theme}
+        onClose={handleCloseModal}
+      />
     </div>
   );
 }

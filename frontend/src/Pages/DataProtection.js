@@ -20,7 +20,7 @@ export default function DataProtection() {
     <div className="content">
       {isModalOpen && <WarningModal onClose={handleModalClose} />}
 
-      <div id="dp">
+      <div className="etc">
 
         <h2 className="text-center">ASSETTOAUTO ADATVÉDELMI TÁJÉKOZTATÓ</h2>
 

@@ -5,7 +5,6 @@ import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import Login from './Pages/Login';
 import Registration from './Pages/Registration';
-import Useful_Things from './Pages/Useful_Things';
 import DataProtection from './Pages/DataProtection';
 import TermsAndConditions from './Pages/TermsAndConditions';
 import Contact from './Pages/Contact';
@@ -17,6 +16,9 @@ import CarCardDetailed from './Components/CarCardDetailed';
 import Profile from './Pages/Profile';
 import SiteCookies from './Components/SiteCookies';
 import { useEffect } from 'react';
+import RegistrationTaxCalculator from './Pages/RegistrationTaxCalculator';
+import VehicleTitleTransfer from './Pages/VehicleTitleTransfer';
+import Documents from './Pages/Documents';
 
 function App() {
   const location = useLocation();
@@ -36,7 +38,9 @@ function App() {
         <Route path='/regisztracio' element={<Registration/>}/>
         <Route path='/elfelejtett-jelszo' element={<ForgottedPassword/>}/>
         <Route path='/uj-jelszo' element={<NewPassword/>}/>
-        <Route path='/hasznos-tudnivalok' element={<Useful_Things/>}/>
+        <Route path='/regisztracios-adokalkulator' element={<RegistrationTaxCalculator/>}/>
+        <Route path='/dokumentumtar' element={<Documents/>}/>
+        <Route path='/gepjarmu-atiras' element={<VehicleTitleTransfer/>}/>
         <Route path='/hirdetesfeladas' element={<NewAd/>}/>
         <Route path='/modositas/:id' element={<NewAd/>}/>
         <Route path='/adatvedelmi-tajekoztatas' element={<DataProtection/>}/>

@@ -20,7 +20,7 @@ export default function TermsAndConditions() {
     <div className="content">
       {isModalOpen && <WarningModal onClose={handleModalClose} />}
 
-      <div id="tac">
+      <div className="etc">
 
         <h2 className="text-center">ASSETTOAUTO ÁLTALÁNOS SZERZŐDÉSI FELTÉTELEK (ÁSZF)</h2>
 
