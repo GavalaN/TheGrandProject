@@ -23,7 +23,7 @@ export default function ConfirmModal({ title, text, show, onClose, onAccept, onR
       }
     
     return (
-      <Modal show={show} onHide={onClose} dialogClassName={"information"} backdrop="static" keyboard={false}>
+      <Modal show={show} onHide={onClose} dialogClassName={"error"} backdrop="static" keyboard={false}>
         <Modal.Header>
           <Modal.Title>{title}</Modal.Title>
         </Modal.Header>

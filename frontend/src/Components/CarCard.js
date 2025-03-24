@@ -9,10 +9,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import axios from 'axios'
 import InformationModal from './InformationModal'
 import ConfirmModal from './ConfirmModal'
+import Cookies from 'js-cookie';
 
 export default function CarCard(props) {
   const base_url = process.env.REACT_APP_BASE_URL
   const navigate = useNavigate()
+  const [user, setUser] = useState(Cookies.get("user") === undefined? undefined : JSON.parse(Cookies.get("user")))
 
   // State for information modal
   const [modalInfo, setModalInfo] = useState({
@@ -27,6 +29,7 @@ export default function CarCard(props) {
     show: false,
     title: "Megerősítés",
     text: "Biztos ki szeretnéd törölni ezt a hirdetést?",
+    theme: "error",
   })
 
   // Handler to close the information modal
@@ -56,7 +59,7 @@ export default function CarCard(props) {
   // Handler for the delete action
   const handleDeleteCar = () => {
     axios
-      .get(base_url + "/Hirdetes/DeleteHirdetes?id=" + props.id)
+      .get(base_url + "/Car/Delete?id="+props.id+"&token=" + user.token)
       .then((response) => {
         setModalInfo({
           show: true,

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Select from 'react-select';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import Select, { useStateManager } from 'react-select';
 import TomSelect from 'tom-select';
 import './NewAdForm.css';
 import './Search.css'
@@ -33,6 +33,12 @@ export default function NewAdForm() {
   const [typeSelection, setTypeSelection] = useState([]);
   const [colorSelection, setColorSelection] = useState([]);
   const navigate = useNavigate();
+  const params = useParams();
+  const location = useLocation();
+  const isModify = location.pathname.includes("modositas") ? true : false;
+  const [carModify, setCarModify] = useState(undefined);
+
+  
 
   const [modalInfo, setModalInfo] = useState({
     show: false,
@@ -291,6 +297,31 @@ export default function NewAdForm() {
           })
       }
   }, [colorSelection])
+  
+  useEffect(() => {
+    if (isModify) {
+      axios.get(base_url+'/Car/GetById?id='+params.id)
+      .then(response => {console.log(response.data); setCarModify(response.data)})
+      .then(() => {
+        setSelectedBrand(carModify.brandId);
+        setSelectedType(carModify.typeId);
+        document.getElementById("fuel").value = carModify.fuelType;
+        document.getElementById("year").value = carModify.year;
+        document.getElementById("body_type").value = carModify.bodyType;
+        setSelectedColor(carModify.colorId);
+        document.getElementById("odometer").value = carModify.kmClock;
+        document.getElementById("kerb_wheight").value = carModify.kWeight;
+        document.getElementById("gearbox").value = carModify.transType;
+        document.getElementById("drive_train").value = carModify.drive;
+        document.getElementById("motor_type").value = carModify.engineType;
+        document.getElementById("number_of_cylinder").value = carModify.numofCyl;
+        document.getElementById("ccm").value = carModify.cc;
+        document.getElementById("horsepower").value =carModify.horsepower;
+        document.getElementById("price").value = carModify.price;
+        document.getElementById("description").value = carModify.description;
+      })   
+    }
+  }, [])
 
   function AdPOST(e){
     e.preventDefault();
@@ -322,7 +353,7 @@ export default function NewAdForm() {
       price: document.getElementById("price").value,
       description: document.getElementById("description").value,
 
-      sellerId: user.id,
+      sellerId: user.uId,
       
     }
     console.log(body)
@@ -330,10 +361,58 @@ export default function NewAdForm() {
     axios.post(base_url+'/Car/Add?token='+user.token, body)
     .then(response => {console.log(response); setModalInfo({
       show: true,
-      title: response.data,
-      text: "",
+      title: "",
+      text: response.data,
       theme: "information",
-    }); navigate("/profil")})
+    }); setTimeout(() => {
+      navigate("/profil")
+    }, 1500)})
+  }
+
+  function AdPUT(e){
+    e.preventDefault();
+
+    const body = 
+    {
+      id: 0,
+      uploadDate: null,
+
+      picId: 1,
+      brandId: selectedBrand,
+      typeId: selectedType,
+      fuelType: document.getElementById("fuel").value,
+      year: document.getElementById("year").value,
+    
+      bodyType: document.getElementById("body_type").value,
+      colorId: selectedColor,
+      kmClock: document.getElementById("odometer").value,
+      kWeight: document.getElementById("kerb_wheight").value,
+      
+      
+      transType: document.getElementById("gearbox").value,
+      drive: document.getElementById("drive_train").value,
+      engineType: document.getElementById("motor_type").value,
+      numofCyl: document.getElementById("number_of_cylinder").value,
+      cc: document.getElementById("ccm").value,
+      horsepower: document.getElementById("horsepower").value,
+      
+      price: document.getElementById("price").value,
+      description: document.getElementById("description").value,
+
+      sellerId: user.uId,
+      
+    }
+    console.log(body)
+    
+    axios.put(base_url+'/Car/Put?token='+user.token, body)
+    .then(response => {console.log(response); setModalInfo({
+      show: true,
+      title: "",
+      text: response.data,
+      theme: "information",
+    }); setTimeout(() => {
+      navigate("/profil")
+    }, 1500)})
   }
 
   //HandleChanges
@@ -355,7 +434,7 @@ export default function NewAdForm() {
   // };
   return (
     <div>
-      <h1>Új hirdetés feladása</h1>
+      { isModify? <h1>Hírdetés módosítása</h1> : <h1>Új hirdetés feladása</h1> }
       <form id="newad-form">
         <div className="row">
           <img src={logo} alt="placeholder"/>
@@ -530,7 +609,7 @@ export default function NewAdForm() {
             <textarea className="form-control" id="description" name="description" rows="5"></textarea>
           </div>
         </div>
-        <button type="submit" className="btn btn-danger" onClick={AdPOST}>Hirdetés feladása</button>
+        { isModify? <button type="submit" className="btn" onClick={AdPUT}>Hirdetés módosítása</button> : <button type="submit" className="btn" onClick={AdPOST}>Hirdetés feladása</button> }
       </form>
       <InformationModal
         show={modalInfo.show}
