@@ -35,8 +35,8 @@ namespace AA_Backend.Controllers
                 }
             }
         }
-        [HttpPut("Post")]
-        public async Task<IActionResult> Post(Car car,string token)
+        [HttpPut("Put")]
+        public async Task<IActionResult> Put(Car car,string token)
         {
             using (var context = new CarplaceContext())
             {
@@ -57,7 +57,57 @@ namespace AA_Backend.Controllers
                         }
 
                     }
-                    return StatusCode(401);
+                    return StatusCode(401,"Nem vagy belépve");
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+            }
+        }
+        [HttpGet("GetById")]
+        public IActionResult GetById(int id)
+        {
+            using (var context = new CarplaceContext())
+            {
+                try
+                {
+                    Car car = context.Cars.FirstOrDefault(k => k.Id == id);
+                    return Ok(car);
+                }
+                catch (Exception ex)
+                {
+                    Car car = new Car()
+                    {
+                        Id = -1,
+                        Description = ex.Message
+                    };
+                    return BadRequest(car);
+                }
+            }
+        }
+        [HttpDelete("Delete")]
+        public async Task<IActionResult> Delete(int id, string token)
+        {
+            using (var context = new CarplaceContext())
+            {
+                try
+                {
+                    if (Program.LoggedInUsers.ContainsKey(token))
+                    {
+                        var car = new Car() { Id = id };
+                        if (context.Cars.Contains(car))
+                        {
+                            context.Cars.Remove(car);
+                            await context.SaveChangesAsync();
+                            return Ok("Sikeres törlés!");
+                        }
+                        else
+                        {
+                            return BadRequest("Nem található a hirdetés!");
+                        }
+                    }
+                    return StatusCode(401, "Nem vagy belépve");
                 }
                 catch (Exception ex)
                 {

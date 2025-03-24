@@ -37,6 +37,48 @@
         "Name": "car",
         "Type": "AA_Backend.Models.Car",
         "IsRequired": true
+      },
+      {
+        "Name": "token",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AA_Backend.Controllers.CarController",
+    "Method": "GetById",
+    "RelativePath": "Car/GetById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AA_Backend.Controllers.CarController",
+    "Method": "Put",
+    "RelativePath": "Car/Put",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "car",
+        "Type": "AA_Backend.Models.Car",
+        "IsRequired": true
+      },
+      {
+        "Name": "token",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -94,22 +136,6 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "AA_Backend.Controllers.HirdetesController",
-    "Method": "PutHirdetes",
-    "RelativePath": "Hirdetes/PutHirdetes",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "hirdetes",
-        "Type": "AA_Backend.DTOs.HirdetesDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "AA_Backend.Controllers.LoginController",
     "Method": "Login",
     "RelativePath": "Login",
@@ -150,7 +176,7 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "uId",
+        "Name": "token",
         "Type": "System.String",
         "IsRequired": false
       }
