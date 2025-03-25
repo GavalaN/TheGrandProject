@@ -75,16 +75,18 @@ export default function Navbar() {
               {/* <li className="nav-item">
                 <Link className="nav-link" to="/hasznos-tudnivalok">Hasznos Tudnivalók</Link>
               </li> */}
-              <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Hasznos Tudnivalók
-              </a>
-              <ul class="dropdown-menu">
-                <li><Link className="dropdown-item" to="/regisztracios-adokalkulator">Regisztrációs adókalkulátor</Link></li>
-                <li><hr class="dropdown-divider"/></li>
-                <li><Link className="dropdown-item" to="/gepjarmu-atiras">Gépjármű átírás</Link></li>
-                <li><hr class="dropdown-divider"/></li>
-                <li><Link className="dropdown-item" to="/dokumentumtar">Dokumentumtár</Link></li>
-              </ul>
+              <li className="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Hasznos Tudnivalók
+                </a>
+                <ul class="dropdown-menu dd-menu">
+                  <li><Link className="dropdown-item" to="/regisztracios-adokalkulator">Regisztrációs adókalkulátor</Link></li>
+                  <li><hr class="dropdown-divider"/></li>
+                  <li><Link className="dropdown-item" to="/gepjarmu-atiras">Gépjármű átírás</Link></li>
+                  <li><hr class="dropdown-divider"/></li>
+                  <li><Link className="dropdown-item" to="/dokumentumtar">Dokumentumtár</Link></li>
+                </ul>
+              </li>
               <li className="nav-item nav-link">
                 <Link className="nav-link" to="/hirdetesfeladas">
                   <button className='btn'>

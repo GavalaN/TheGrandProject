@@ -108,49 +108,126 @@ export default function NewAdForm() {
   }
 
   useEffect(() => {
-          new TomSelect("#body_type",{
+          const body_typeSelect = new TomSelect("#body_type",{
               create: false,
               controlInput: null,
               maxOptions: false,
               plugins: ["no_backspace_delete"],
           });
-          new TomSelect("#fuel",{
+          const fuelSelect = new TomSelect("#fuel",{
             create: false,
             controlInput: null,
             maxOptions: false,
             plugins: ["no_backspace_delete"],
           });
-          new TomSelect("#year",{
+          const yearSelect = new TomSelect("#year",{
             create: false,
             controlInput: null,
             maxOptions: false,
             plugins: ["no_backspace_delete"],
           });
-          new TomSelect("#number_of_cylinder",{
+          const number_of_cylinderSelect = new TomSelect("#number_of_cylinder",{
             create: false,
             controlInput: null,
             maxOptions: false,
             plugins: ["no_backspace_delete"],
           });
-          new TomSelect("#motor_type",{
+          const motor_typeSelect = new TomSelect("#motor_type",{
             create: false,
             controlInput: null,
             maxOptions: false,
             plugins: ["no_backspace_delete"],
           });
-          new TomSelect("#drive_train",{
+          const drive_trainSelect = new TomSelect("#drive_train",{
             create: false,
             controlInput: null,
             maxOptions: false,
             plugins: ["no_backspace_delete"],
           });
-          new TomSelect("#gearbox",{
+          const gearboxSelect = new TomSelect("#gearbox",{
             create: false,
             controlInput: null,
             maxOptions: false,
             plugins: ["no_backspace_delete"],
           });
-      }, [])
+          if (carModify != undefined) {
+            body_typeSelect.setValue(carModify.bodyType);
+            fuelSelect.setValue(carModify.fuelType);
+            yearSelect.setValue(carModify.year);
+            gearboxSelect.setValue(carModify.transType)
+            drive_trainSelect.setValue(carModify.drive)
+            motor_typeSelect.setValue(carModify.engineType)
+            number_of_cylinderSelect.setValue(String(carModify.numOfCyl))
+            console.log(number_of_cylinderSelect.value)
+
+            document.getElementById("odometer").value = carModify.kmClock;
+            document.getElementById("kerb_wheight").value = carModify.kWeight;
+            document.getElementById("ccm").value = carModify.cc;
+            document.getElementById("horsepower").value = carModify.horsepower;
+            document.getElementById("price").value = carModify.price;
+            document.getElementById("description").value = carModify.description;
+          }
+          
+          // Return a cleanup function that safely destroys all TomSelect instances
+        return () => {
+          // Safely destroy all TomSelect instances with null checks
+          if (body_typeSelect && body_typeSelect.destroy) {
+            try {
+              body_typeSelect.destroy()
+            } catch (e) {
+              console.warn("Error destroying body_typeSelect:", e)
+            }
+          }
+    
+          if (fuelSelect && fuelSelect.destroy) {
+            try {
+              fuelSelect.destroy()
+            } catch (e) {
+              console.warn("Error destroying fuelSelect:", e)
+            }
+          }
+    
+          if (yearSelect && yearSelect.destroy) {
+            try {
+              yearSelect.destroy()
+            } catch (e) {
+              console.warn("Error destroying year_fromSelect:", e)
+            }
+          }
+    
+          if (number_of_cylinderSelect && number_of_cylinderSelect.destroy) {
+            try {
+              number_of_cylinderSelect.destroy()
+            } catch (e) {
+              console.warn("Error destroying number_of_cylinderSelect:", e)
+            }
+          }
+    
+          if (motor_typeSelect && motor_typeSelect.destroy) {
+            try {
+              motor_typeSelect.destroy()
+            } catch (e) {
+              console.warn("Error destroying motor_typeSelect:", e)
+            }
+          }
+    
+          if (drive_trainSelect && drive_trainSelect.destroy) {
+            try {
+              drive_trainSelect.destroy()
+            } catch (e) {
+              console.warn("Error destroying drive_trainSelect:", e)
+            }
+          }
+    
+          if (gearboxSelect && gearboxSelect.destroy) {
+            try {
+              gearboxSelect.destroy()
+            } catch (e) {
+              console.warn("Error destroying gearboxSelect:", e)
+            }
+          }
+        }
+      }, [carModify])
   
   //Brand
   useEffect(() => {
@@ -173,7 +250,7 @@ export default function NewAdForm() {
 
   useEffect(() => {
       if(brandSelection.length > 0){
-          new TomSelect("#brand",{
+          const brandSelect = new TomSelect("#brand",{
               create: false,
               options: brandSelection,
               sortField: {
@@ -182,7 +259,12 @@ export default function NewAdForm() {
                   allowEmptyOption: true,
               }
           })
+          if (carModify != undefined) {
+            brandSelect.setValue(carModify.brandId)
+            setSelectedBrand(carModify.brandId)
+          }
       }
+      
   }, [brandSelection])
 
   useEffect(() => {
@@ -259,6 +341,9 @@ export default function NewAdForm() {
           },
           allowEmptyOption: true,
       });
+      if (carModify != undefined) {
+        typeSelect.setValue(carModify.typeId)
+      }
 
       return () => {
           typeSelect.destroy();// Komponens unmountolásakor töröljük
@@ -286,7 +371,7 @@ export default function NewAdForm() {
 
   useEffect(() => {
       if(colorSelection.length > 0){
-          new TomSelect("#color",{
+          const colorSelect = new TomSelect("#color",{
               create: false,
               options: colorSelection,
               sortField: {
@@ -295,6 +380,9 @@ export default function NewAdForm() {
                   allowEmptyOption: true,
               }
           })
+          if (carModify != undefined) {
+            colorSelect.setValue(carModify.colorId)
+          }
       }
   }, [colorSelection])
   
@@ -303,25 +391,10 @@ export default function NewAdForm() {
       axios.get(base_url+'/Car/GetById?id='+params.id)
       .then(response => {console.log(response.data); setCarModify(response.data)})
       .then(() => {
-        setSelectedBrand(carModify.brandId);
-        setSelectedType(carModify.typeId);
-        document.getElementById("fuel").value = carModify.fuelType;
-        document.getElementById("year").value = carModify.year;
-        document.getElementById("body_type").value = carModify.bodyType;
-        setSelectedColor(carModify.colorId);
-        document.getElementById("odometer").value = carModify.kmClock;
-        document.getElementById("kerb_wheight").value = carModify.kWeight;
-        document.getElementById("gearbox").value = carModify.transType;
-        document.getElementById("drive_train").value = carModify.drive;
-        document.getElementById("motor_type").value = carModify.engineType;
-        document.getElementById("number_of_cylinder").value = carModify.numofCyl;
-        document.getElementById("ccm").value = carModify.cc;
-        document.getElementById("horsepower").value =carModify.horsepower;
-        document.getElementById("price").value = carModify.price;
-        document.getElementById("description").value = carModify.description;
+        
       })   
     }
-  }, [])
+  }, [isModify, params.id])
 
   function AdPOST(e){
     e.preventDefault();
@@ -374,8 +447,8 @@ export default function NewAdForm() {
 
     const body = 
     {
-      id: 0,
-      uploadDate: null,
+      id: carModify.id,
+      uploadDate: carModify.uploadDate,
 
       picId: 1,
       brandId: selectedBrand,

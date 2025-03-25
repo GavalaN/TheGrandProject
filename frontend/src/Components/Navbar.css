@@ -56,7 +56,7 @@
 
 ul.dropdown-menu {
     background-color: #18262f;
-    margin-top: -0.5rem !important;
+    margin-top: 0.5rem !important;
     border: 0;
 }
 
@@ -74,12 +74,16 @@ a.dropdown-item {
 }
 
 .nav-link.dropdown-toggle:hover {
-    color:lightgray !important;
+    color: lightgray !important;
 }
   
 .dropdown-item:active {
-background-color: white!important ;
+background-color: white !important;
 color: #18262f !important;
+}
+
+.dd-m.show .dropdown-item:hover {
+    background-color: #0096D6 !important;
 }
 
 @media (max-width: 990px){

@@ -4,6 +4,7 @@ import WarningModal from '../Components/WarningModal'
 import { faEnvelope, faSquarePhone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useLocation } from 'react-router-dom';
+import { Tooltip } from 'react-tooltip';
 
 export default function Contact() {
   const location = useLocation();
@@ -36,8 +37,9 @@ export default function Contact() {
 
         <h4>Kérdése van?</h4>
         <p>Keressen fel minket az alábbi módokon:</p>
-        <p><FontAwesomeIcon icon={faEnvelope} style={{color: "#0096D6"}}/> teszt.elek0000000000@gmail.com</p>
-        <p><FontAwesomeIcon icon={faSquarePhone} style={{color: "#0096D6"}}/> +3620-1234567</p>
+        <p><a data-tooltip-id="contacts" data-tooltip-content="Email"><FontAwesomeIcon icon={faEnvelope} style={{color: "#0096D6"}}/></a> teszt.elek0000000000@gmail.com</p>
+        <p><a data-tooltip-id="contacts" data-tooltip-content="Telefonszám"><FontAwesomeIcon icon={faSquarePhone} style={{color: "#0096D6"}}/></a> +3620-1234567</p>
+        <Tooltip id="contacts" />
       </div>
 
       {/* Kapcsolati Űrlap

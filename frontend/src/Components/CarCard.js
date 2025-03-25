@@ -90,7 +90,7 @@ export default function CarCard(props) {
           <img src={logo || "/placeholder.svg"} alt={props.brand + " " + props.type_name} />
         </Link>
       </div>
-      <div className={`car-card-text ${props.is_owner ? "col-6" : "collapse-formcol-8"}`}>
+      <div className={`car-card-text ${props.is_owner ? "col-6" : "col-8"}`}>
         <div className="title d-flex justify-content-between">
           <h3>
             {props.brand} {props.type_name}
