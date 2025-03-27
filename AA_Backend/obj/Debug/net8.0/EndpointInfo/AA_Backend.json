@@ -141,10 +141,61 @@
         }
       }
     },
+    "/Car/Delete": {
+      "delete": {
+        "tags": [
+          "Car"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/CarDTO/GetAll": {
       "get": {
         "tags": [
           "CarDTO"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/CarDTO/GetPage": {
+      "get": {
+        "tags": [
+          "CarDTO"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -167,28 +218,6 @@
     },
     "/Hirdetes/GetHirdetesById": {
       "get": {
-        "tags": [
-          "Hirdetes"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/Hirdetes/DeleteHirdetes": {
-      "delete": {
         "tags": [
           "Hirdetes"
         ],

@@ -48,6 +48,27 @@
   },
   {
     "ContainingType": "AA_Backend.Controllers.CarController",
+    "Method": "Delete",
+    "RelativePath": "Car/Delete",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "token",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AA_Backend.Controllers.CarController",
     "Method": "GetById",
     "RelativePath": "Car/GetById",
     "HttpMethod": "GET",
@@ -94,6 +115,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "AA_Backend.Controllers.CarDTOController",
+    "Method": "GetDTOPage",
+    "RelativePath": "CarDTO/GetPage",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "AA_Backend.Controllers.ColorController",
     "Method": "GetColor",
     "RelativePath": "Color/GetColor",
@@ -101,22 +138,6 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "AA_Backend.Controllers.HirdetesController",
-    "Method": "DeleteHirdetes",
-    "RelativePath": "Hirdetes/DeleteHirdetes",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
     "ReturnTypes": []
   },
   {
