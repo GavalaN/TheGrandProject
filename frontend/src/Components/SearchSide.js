@@ -60,7 +60,9 @@ const SearchSide = React.memo((props) => {
     const [brandSelection, setBrandSelection] = useState([]);
     const [typeSelection, setTypeSelection] = useState([]);
     const [colorSelection, setColorSelection] = useState([]);
-    const gigaSearch = Cookies.get("gigasearch") === undefined? undefined : JSON.parse(Cookies.get("gigasearch"))
+    const gigaSearch = Cookies.get("gigasearch") === undefined? undefined : JSON.parse(Cookies.get("gigasearch"));
+    const [pageSize, setPageSize] = useState(props.pageSize? props.pageSize : 10);
+    const [page, setPage] = useState(props.page? props.page : 1);
 
     const [modalInfo, setModalInfo] = useState({
         show: false,
@@ -628,7 +630,7 @@ const SearchSide = React.memo((props) => {
             "kWeightMax": Number(document.getElementById("kerb_wheight_to").value)
         }
         console.log(gigaSearch)
-        axios.post(base_url+'/Search/GigaSearch',gigaSearch)
+        axios.post(base_url+'/CarDTO/GetPage?page='+page+'&pagesize='+pageSize,gigaSearch)
         .then(response => {
             console.log(response.data);
             if(response.data.length == 0) {

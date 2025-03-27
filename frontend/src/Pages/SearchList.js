@@ -8,26 +8,25 @@ import ReactPaginate from 'react-paginate'
 export default function SearchList() {
   const base_url = process.env.REACT_APP_BASE_URL;
   const [cars, setCars] = useState([])
-  const [pageSize, setPageSize] = useState(10);
-  const [page, setPage] = useState(1)
-
-  // useEffect(() => {
-  //   axios.get(base_url+'/CarDTO/GetAll')
-  //     .then(res => {
-  //       console.log(res)
-  //       setCars(res.data)
-  //     })
-
-
-  // }, [])
-
+  const [pageSize, setPageSize] = useState(5);
+  const [page, setPage] = useState(1);
+  const [itemOffset, setItemOffset] = useState(0);
+  
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * pageSize) % cars.length;
+    console.log(
+      `User requested page number ${event.selected}, which is offset ${newOffset}`
+    );
+    setItemOffset(newOffset);
+  };
+  
   function contentChange(data){
     setCars(data)
   }
 
   return (
    <div  className='content search-list'>
-      <SearchSide contentChange = {contentChange}/>
+      <SearchSide contentChange = {contentChange} page = {page} pageSize = {pageSize}/>
       <div className="row">
         <div id='search-list'>
           {cars.map(car => {
@@ -37,9 +36,9 @@ export default function SearchList() {
             containerClassName={"pagination d-flex justify-content-center"}
             breakLabel="..."
             nextLabel="előző >"
-            onPageChange={contentChange}
+            onPageChange={handlePageClick}
             pageRangeDisplayed={pageSize}
-            pageCount={page}
+            pageCount={cars.length/pageSize}
             previousLabel="< következő"
             renderOnZeroPageCount={null}
           />
