@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Search.css';
 import './SearchSide.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { Tooltip } from 'react-tooltip';
 import 'react-tooltip/dist/react-tooltip.css'
 import axios from 'axios';
@@ -60,9 +60,35 @@ const SearchSide = React.memo((props) => {
     const [brandSelection, setBrandSelection] = useState([]);
     const [typeSelection, setTypeSelection] = useState([]);
     const [colorSelection, setColorSelection] = useState([]);
-    const gigaSearch = Cookies.get("gigasearch") === undefined? undefined : JSON.parse(Cookies.get("gigasearch"));
-    const [pageSize, setPageSize] = useState(props.pageSize? props.pageSize : 10);
-    const [page, setPage] = useState(props.page? props.page : 1);
+    const location = useLocation();
+    const gigaSearch = Cookies.get("gigasearch") ? JSON.parse(Cookies.get("gigasearch")) 
+    : {
+        "id": 0,
+        "brandId": 0,
+        "typeId": 0,
+        "bodyType": null,
+        "fuelType": null,
+        "yearMin": 0,
+        "yearMax": 0,
+        "priceMin": 0,
+        "priceMax": 0,
+        "kmClockMin": 0,
+        "kmClockMax": 0,
+        "colorId": 0,
+        "ccMin": 0,
+        "ccMax": 0,
+        "hpMin": 0,
+        "hpMax": 0,
+        "numOfCyl": 0,
+        "engineType": null,
+        "drive": null,
+        "transType": null,
+        "kWeightMin": 0,
+        "kWeightMax": 0
+    };
+    const [pageSize, setPageSize] = useState(props.pageSize);
+    const params = useParams();
+    const [page, setPage] = useState(params.page);
 
     const [modalInfo, setModalInfo] = useState({
         show: false,
@@ -579,18 +605,19 @@ const SearchSide = React.memo((props) => {
     };
 
     useEffect(() => {
-        if (Cookies.get("gigasearch") == undefined) {
-            axios.get(base_url+'/CarDTO/GetAll')
+        // if (Cookies.get("gigasearch") == undefined) {
+        //     axios.post(base_url+'/CarDTO/GetPage?page='+page+'&pagesize='+pageSize)
+        //     .then(response => (props.contentChange(response.data)));
+        // }
+        // else {
+            //const gigaSearch = JSON.parse(Cookies.get("gigasearch"));
+            axios.post(base_url+'/CarDTO/GetPage?page='+page+'&pagesize='+pageSize,gigaSearch)
             .then(response => (props.contentChange(response.data)));
-        }
-        else {
-            const gigaSearch = JSON.parse(Cookies.get("gigasearch"));
-            axios.post(base_url+'/Search/GigaSearch',gigaSearch)
-            .then(response => (props.contentChange(response.data)));
-            setSelectedBrand(gigaSearch.brandId);
-            document.getElementById("brand").value = selectedBrand;
-        }
-    }, [])
+            // setSelectedBrand(gigaSearch.brandId);
+            // document.getElementById("brand").value = selectedBrand;
+            console.log("SearchSide page:"+page)
+        // }
+    }, [page])
     
         // Helper function to safely convert to number
     const safeNumber = (value, defaultValue = 0) => {

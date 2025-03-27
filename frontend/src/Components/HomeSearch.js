@@ -614,7 +614,7 @@ const HomeSearch = React.memo(() => {
             console.log(response.data)
             Cookies.set("gigasearch",JSON.stringify(gigaSearch));
             if (response.data.length > 0) {
-                navigate("/search");
+                navigate("search/1");
             }
             else {
                 setModalInfo({

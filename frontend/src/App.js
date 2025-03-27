@@ -32,7 +32,7 @@ function App() {
       <Navbar/>
       <Routes>
         <Route path='/' element={<HomePage/>}/>
-        <Route path='/search' element={<SearchList/>}/>
+        <Route path='/search/:page' element={<SearchList/>}/>
         {/* legyen POST (login), PUT (profil), GETID (/adat/:id) */}
         <Route path='/login' element={<Login/>}/>
         <Route path='/regisztracio' element={<Registration/>}/>

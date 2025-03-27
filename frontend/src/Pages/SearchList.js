@@ -4,24 +4,61 @@ import axios from 'axios'
 import CarCard from '../Components/CarCard'
 import './SearchList.css'
 import ReactPaginate from 'react-paginate'
+import Cookies from 'js-cookie';
+import { useNavigate, useParams } from 'react-router-dom'
 
 export default function SearchList() {
   const base_url = process.env.REACT_APP_BASE_URL;
   const [cars, setCars] = useState([])
-  const [pageSize, setPageSize] = useState(5);
+  const [dataCount, setDataCount] = useState(0)
+  const [pageSize, setPageSize] = useState(3);
   const [page, setPage] = useState(1);
-  const [itemOffset, setItemOffset] = useState(0);
+  const navigate = useNavigate();
+  const params = useParams();
+  const gigaSearch = Cookies.get("gigasearch") ? JSON.parse(Cookies.get("gigasearch")) 
+      : {
+          "id": 0,
+          "brandId": 0,
+          "typeId": 0,
+          "bodyType": null,
+          "fuelType": null,
+          "yearMin": 0,
+          "yearMax": 0,
+          "priceMin": 0,
+          "priceMax": 0,
+          "kmClockMin": 0,
+          "kmClockMax": 0,
+          "colorId": 0,
+          "ccMin": 0,
+          "ccMax": 0,
+          "hpMin": 0,
+          "hpMax": 0,
+          "numOfCyl": 0,
+          "engineType": null,
+          "drive": null,
+          "transType": null,
+          "kWeightMin": 0,
+          "kWeightMax": 0
+      };
   
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * pageSize) % cars.length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
-    setItemOffset(newOffset);
+    const currentPage = event.selected + 1;
+    console.log(`User requested page number ${currentPage}`);
+    setPage(currentPage);
   };
+  
+  useEffect(() => {
+    console.log("oldal: "+ (page))
+    navigate(`/search/${page}`)
+  }, [page])
   
   function contentChange(data){
     setCars(data)
+    axios.post(base_url+'/Search/Gigasearch',gigaSearch)
+    .then(response => {
+        console.log(response.data.length);
+        setDataCount(response.data.length);
+    })
   }
 
   return (
@@ -38,9 +75,10 @@ export default function SearchList() {
             nextLabel="előző >"
             onPageChange={handlePageClick}
             pageRangeDisplayed={pageSize}
-            pageCount={cars.length/pageSize}
+            pageCount={Math.ceil(dataCount/pageSize)}
             previousLabel="< következő"
             renderOnZeroPageCount={null}
+            initialPage={params.page-1}
           />
         </div>
       </div>
