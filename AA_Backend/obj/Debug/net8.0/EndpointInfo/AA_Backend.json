@@ -183,13 +183,21 @@
       }
     },
     "/CarDTO/GetPage": {
-      "get": {
+      "post": {
         "tags": [
           "CarDTO"
         ],
         "parameters": [
           {
             "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pagesize",
             "in": "query",
             "schema": {
               "type": "integer",

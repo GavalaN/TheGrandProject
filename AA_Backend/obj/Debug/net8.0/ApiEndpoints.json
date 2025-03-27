@@ -118,12 +118,17 @@
     "ContainingType": "AA_Backend.Controllers.CarDTOController",
     "Method": "GetDTOPage",
     "RelativePath": "CarDTO/GetPage",
-    "HttpMethod": "GET",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pagesize",
         "Type": "System.Int32",
         "IsRequired": false
       }

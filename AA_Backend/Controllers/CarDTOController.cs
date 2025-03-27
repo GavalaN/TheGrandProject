@@ -52,7 +52,7 @@ namespace AA_Backend.Controllers
                 }
             }
         }
-        [HttpGet("GetPage")]
+        [HttpPost("GetPage")]
         public IActionResult GetDTOPage(int page,int pagesize)
         {
             using (var context = new CarplaceContext())
