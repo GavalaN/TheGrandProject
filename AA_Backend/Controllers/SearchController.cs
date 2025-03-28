@@ -10,7 +10,7 @@ namespace AA_Backend.Controllers
     public class SearchController : ControllerBase
     {
         [HttpPost("GigaSearch")]
-        public IActionResult Search(SearchDTO search)
+        public IActionResult Search(SearchDTO search,int page,int pagesize)
         {
             /*using (var context = new CarplaceContext())
             {
@@ -187,7 +187,7 @@ namespace AA_Backend.Controllers
                         fuel_type = car.FuelType,
                         ccm = car.Cc,
                         hp = car.Horsepower
-                    }).ToList();
+                    }).Skip((page - 1) * pagesize).Take(pagesize).ToList();
 
                     return Ok(response);
                 }
