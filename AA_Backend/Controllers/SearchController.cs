@@ -10,7 +10,7 @@ namespace AA_Backend.Controllers
     public class SearchController : ControllerBase
     {
         [HttpPost("GigaSearch")]
-        public IActionResult Search(SearchDTO search,int page,int pagesize)
+        public IActionResult Search(SearchDTO search, int page, int pagesize)
         {
             using (var context = new CarplaceContext())
             {
@@ -93,8 +93,8 @@ namespace AA_Backend.Controllers
                     {
                         Id = car.Id,
                         SellerId = car.SellerId,
-                        Type_name = car.Type.TypeName, 
-                        Brand = car.Brand.Name,   
+                        Type_name = car.Type.TypeName,
+                        Brand = car.Brand.Name,
                         KMClock = car.KmClock,
                         Price = car.Price,
                         Description = car.Description,
@@ -221,4 +221,5 @@ namespace AA_Backend.Controllers
 
         }
     }
+}
 
