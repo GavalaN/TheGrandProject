@@ -392,7 +392,7 @@
       }
     },
     "/Registry/ForgotPassword": {
-      "put": {
+      "post": {
         "tags": [
           "Registry"
         ],
@@ -455,6 +455,55 @@
       }
     },
     "/Search/GigaSearch": {
+      "post": {
+        "tags": [
+          "Search"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pagesize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Search/GetSearchSize": {
       "post": {
         "tags": [
           "Search"

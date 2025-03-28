@@ -91,7 +91,7 @@ namespace AA_Backend.Controllers
                     await context.SaveChangesAsync();
 
                     // Send the reset link with the token
-                    var resetLink = $"http://localhost:3000/{email}/{token}";
+                    var resetLink = $"http://localhost:3000/uj-jelszo/{email}/{token}";
                     Program.SendEmail(email, "Elfelejtett jelszó", $"Az új jelszavad itt adhatod meg:\n{resetLink}");
 
                     return Ok("Az új jelszót elküldtük az email címére!");

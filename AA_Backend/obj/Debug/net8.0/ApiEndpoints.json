@@ -234,7 +234,7 @@
     "ContainingType": "AA_Backend.Controllers.RegistryController",
     "Method": "ForgotPassword",
     "RelativePath": "Registry/ForgotPassword",
-    "HttpMethod": "PUT",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -305,6 +305,22 @@
   },
   {
     "ContainingType": "AA_Backend.Controllers.SearchController",
+    "Method": "GetSearchSize",
+    "RelativePath": "Search/GetSearchSize",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "search",
+        "Type": "AA_Backend.DTOs.SearchDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AA_Backend.Controllers.SearchController",
     "Method": "Search",
     "RelativePath": "Search/GigaSearch",
     "HttpMethod": "POST",
@@ -315,6 +331,16 @@
         "Name": "search",
         "Type": "AA_Backend.DTOs.SearchDTO",
         "IsRequired": true
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pagesize",
+        "Type": "System.Int32",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
