@@ -6,6 +6,7 @@ using System.Text;
 using BCrypt.Net;
 using System.Configuration;
 using Microsoft.EntityFrameworkCore;
+using AA_Backend.Services;
 
 
 namespace AA_Backend
@@ -59,6 +60,8 @@ namespace AA_Backend
             var builder = WebApplication.CreateBuilder(args);
              builder.Services.AddCors(c => { c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()); });
             // Add services to the container.
+            builder.Services.AddScoped<FtpService>();
+           
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
