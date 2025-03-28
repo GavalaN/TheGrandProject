@@ -2,9 +2,32 @@ import React, { useState } from 'react';
 import './LoginReg.css';
 import axios from 'axios';
 import bcrypt from 'bcryptjs';
+import { useNavigate, useParams } from 'react-router-dom';
+import InformationModal from '../Components/InformationModal';
 
 export default function NewPassword() {
   const base_url = process.env.REACT_APP_BASE_URL;
+  const params = useParams();
+  const navigate = useNavigate();
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [modalInfo, setModalInfo] = useState({
+    show: false,
+    title: "",
+    text: "",
+    theme: "information",
+  })
+
+  const handleCloseModal = () => {
+    setModalInfo({
+      ...modalInfo,
+      show: false,
+    })
+
+    if (modalInfo.theme === "information") {
+      navigate("/login")
+    }
+  }
+
     async function Login(e) {
         e.preventDefault();
     
@@ -12,7 +35,8 @@ export default function NewPassword() {
         const password_again = document.getElementById("password-again").value;
         const username = null;
     
-        try {
+        if (password === password_again) {
+          try {
             // Salt lekérése a szervertől
             const saltResponse = await axios.get(base_url+'/Registry/GenerateSalt');
             const salt = saltResponse.data; 
@@ -29,27 +53,38 @@ export default function NewPassword() {
             };
     
             // Login kérés küldése
-            const loginResponse = await axios.post(base_url+'/Registry/PasswordModify', login);
-            console.log("Login Response:", loginResponse.data);
-            localStorage.setItem(loginResponse.data.token, loginResponse.data)
+            const loginResponse = await axios.post(base_url+`/Registry/PasswordModify?email=${params.email}&token=${params.token}&newPassword=${hashedPassword}&SALT=${salt}`);
+            console.log("Sikeres módosítás: ", loginResponse.data);
+            setModalInfo({
+              show: true,
+              title: "",
+              text: loginResponse.data,
+              theme: "information",
+            })
             
-        } catch (error) {
-            console.error("Hiba történt:", error);
-            alert("Bejelentkezési hiba: " + (error.response?.data || error.message));
+          } catch (error) {
+              console.error("Hiba történt:", error);
+              setModalInfo({
+                show: true,
+                title: "Hiba",
+                text: error.response?.data || error.message,
+                theme: "error",
+              })
+          }
+        }
+        else {
+          setModalInfo({
+            show: true,
+            title: "Hiba",
+            text: "A jelszavak nem egyeznek!",
+            theme: "error",
+          })
         }
     }
     
     
       function ShowPassword() {
-        var x = document.getElementById("password");
-        var y = document.getElementById("password-again");
-        if (x.type === "password") {
-          x.type = "text";
-          y.type = "text";
-        } else {
-          x.type = "password";
-          y.type = "password";
-        }
+        setIsPasswordVisible(!isPasswordVisible);
       }
       return (
       <div className="content">
@@ -57,11 +92,11 @@ export default function NewPassword() {
           <h3>Új jelszó</h3>
           <div className="mb-3">
             <label>Jelszó</label>
-            <input type="password" id="password" className="form-control input" placeholder="Jelszó begépelése"/>
+            <input type={isPasswordVisible ? 'text' : 'password'} id="password" className="form-control input" placeholder="Jelszó begépelése"/>
           </div>
           <div className="mb-3">
             <label>Jelszó ismét</label>
-            <input type="password" id="password-again" className="form-control input" placeholder="Jelszó begépelése ismét"/>
+            <input type={isPasswordVisible ? 'text' : 'password'} id="password-again" className="form-control input" placeholder="Jelszó begépelése ismét"/>
           </div>
           <div className="mb-3">
             <div className="show-password">
@@ -77,6 +112,13 @@ export default function NewPassword() {
             </button>
           </div>
         </form>
+        <InformationModal
+          show={modalInfo.show}
+          title={modalInfo.title}
+          text={modalInfo.text}
+          theme={modalInfo.theme}
+          onClose={handleCloseModal}
+        />
       </div>
   )
 }

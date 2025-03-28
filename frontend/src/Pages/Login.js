@@ -10,16 +10,13 @@ export default function Login() {
   const base_url = process.env.REACT_APP_BASE_URL
   const navigate = useNavigate()
   const user = Cookies.get("user")
-
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [modalInfo, setModalInfo] = useState({
     show: false,
     title: "",
     text: "",
     theme: "information",
   })
-
-  // Add state to track if we should navigate after login
-  const [shouldNavigate, setShouldNavigate] = useState(false)
 
   useEffect(() => {
     // Only check for existing user on initial load
@@ -94,12 +91,7 @@ export default function Login() {
   }
 
   function ShowPassword() {
-    var x = document.getElementById("password")
-    if (x.type === "password") {
-      x.type = "text"
-    } else {
-      x.type = "password"
-    }
+    setIsPasswordVisible(!isPasswordVisible);
   }
 
   return (
@@ -112,7 +104,7 @@ export default function Login() {
         </div>
         <div className="mb-3">
           <label>Jelszó</label>
-          <input type="password" id="password" className="form-control input" placeholder="Jelszó begépelése" />
+          <input type={isPasswordVisible ? 'text' : 'password'} id="password" className="form-control input" placeholder="Jelszó begépelése" />
         </div>
         <div className="mb-3">
           <div className="show-password">

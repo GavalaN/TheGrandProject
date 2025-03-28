@@ -19,6 +19,7 @@ import { useEffect } from 'react';
 import RegistrationTaxCalculator from './Pages/RegistrationTaxCalculator';
 import VehicleTitleTransfer from './Pages/VehicleTitleTransfer';
 import Documents from './Pages/Documents';
+import Activated from './Pages/Activated';
 
 function App() {
   const location = useLocation();
@@ -36,8 +37,9 @@ function App() {
         {/* legyen POST (login), PUT (profil), GETID (/adat/:id) */}
         <Route path='/login' element={<Login/>}/>
         <Route path='/regisztracio' element={<Registration/>}/>
+        <Route path='/aktivalas/:username/:email' element={<Activated/>}/>
         <Route path='/elfelejtett-jelszo' element={<ForgottedPassword/>}/>
-        <Route path='/uj-jelszo' element={<NewPassword/>}/>
+        <Route path='/uj-jelszo/:email/:token' element={<NewPassword/>}/>
         <Route path='/regisztracios-adokalkulator' element={<RegistrationTaxCalculator/>}/>
         <Route path='/dokumentumtar' element={<Documents/>}/>
         <Route path='/gepjarmu-atiras' element={<VehicleTitleTransfer/>}/>
@@ -48,7 +50,7 @@ function App() {
         <Route path='kapcsolat' element={<Contact/>}/>
         <Route path='/hirdetes/:id' element={<CarCardDetailed/>}/>
         <Route path='/profil' element={<Profile/>}/>
-        <Route path='*' element={<HomePage/>}/>
+        {/* <Route path='*' element={<HomePage/>}/> */}
       </Routes>
       <SiteCookies/>
       <Footer/>
