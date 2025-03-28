@@ -31,7 +31,7 @@ namespace AA_Backend.Controllers
                     user.Hash = Program.CreateSHA256(user.Hash);
                     await context.Users.AddAsync(user);
                     await context.SaveChangesAsync();
-                    Program.SendEmail(user.Email, "Regisztráció", $"Nyomdd ki a szemét: \nhttp://localhost:5000/Registry/Activation?Username={user.Username}&email={user.Email}");
+                    Program.SendEmail(user.Email, "Regisztráció", $"Nyomd ki a szemét: \nhttp://localhost:3000/Aktivalas/{user.Username}/{user.Email}");
                     return Ok("Sikeres regisztráció! Az aktiváláshoz ellenőrizze az email fiókját!");
                 }
                 catch (Exception ex)
