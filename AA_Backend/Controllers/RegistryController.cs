@@ -68,7 +68,7 @@ namespace AA_Backend.Controllers
                 }
             }
         }
-        [HttpPut("ForgotPassword")]
+        [HttpPost("ForgotPassword")]
         public async Task<IActionResult> ForgotPassword(string email)
         {
             using (var context = new CarplaceContext())
