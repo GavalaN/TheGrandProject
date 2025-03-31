@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using AA_Backend.Services;
+using AA_Backend.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AA_Backend.Controllers
 {
@@ -15,23 +17,33 @@ namespace AA_Backend.Controllers
             _ftpService = ftpService;
         }
         [HttpPost("Upload")]
-        public async Task<IActionResult> UploadImage([FromForm] IFormFile file)
+        public async Task<IActionResult> UploadImage([FromForm] IFormFile file, int carId)
         {
-            if (file == null || file.Length == 0)
-                return BadRequest("Nem adott meg fájlt");
+            using (var context = new CarplaceContext())
+            {
 
-            // Validate file type
-            var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
-            var extension = Path.GetExtension(file.FileName).ToLower();
-            if (!allowedExtensions.Contains(extension))
-                return BadRequest("Nem megengedett fájl típus");
 
-            // Sanitize filename
-            var fileName = Path.GetFileName(file.FileName);
+                if (file == null || file.Length == 0)
+                    return BadRequest("Nem adott meg fájlt");
 
-            using var stream = file.OpenReadStream();
-            _ftpService.UploadImageAsync(stream, fileName);
-            return Ok($"File {fileName} uploaded successfully.");
+                // Validate file type
+                var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+                var extension = Path.GetExtension(file.FileName).ToLower();
+                if (!allowedExtensions.Contains(extension))
+                    return BadRequest("Nem megengedett fájl típus");
+
+
+                // Sanitize filename
+                var typename = context.Cars.Where(c => c.Id == carId).Select(c => c.Type.TypeName).FirstOrDefault();
+                var fileName = typename+"_"+carId;
+                context.Pictues.Add(new Pictue {
+                    FilePath = fileName,
+                    CarId=carId
+                });
+                using var stream = file.OpenReadStream();
+                _ftpService.UploadImageAsync(stream, fileName);
+                return Ok($"Sikeres Fájlfeltöltés {fileName} néven");
+            }
         }
 
         [HttpGet("download/{fileName}")]
@@ -60,6 +72,29 @@ namespace AA_Backend.Controllers
                 ".gif" => "image/gif",
                 _ => "application/octet-stream"
             };
+        }
+        [HttpGet("bycar/{carId}")]
+        public async Task<ActionResult<IEnumerable<string>>> GetPicturePathsByCar(int carId)
+        {
+            using (var context = new CarplaceContext())
+            {
+                if (!context.Pictues.Contains(new Pictue() { CarId=carId}))
+                {
+                    return BadRequest("Invalid Car ID");
+                }
+
+                var filePaths = await context.Pictues
+                .Where(p => p.CarId == carId)
+                .Select(p => p.FilePath)
+                .ToListAsync();
+
+                if (!filePaths.Any())
+                {
+                    return NotFound("No pictures found for this car");
+                }
+
+                return Ok(filePaths);
+            }
         }
     }
 }
