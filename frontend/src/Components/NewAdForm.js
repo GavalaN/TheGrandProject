@@ -438,7 +438,7 @@ export default function NewAdForm() {
       text: response.data,
       theme: "information",
     }); setTimeout(() => {
-      navigate("/profil")
+      navigate("/kepfeltoltes")
     }, 1500)})
   }
 
@@ -484,7 +484,7 @@ export default function NewAdForm() {
       text: response.data,
       theme: "information",
     }); setTimeout(() => {
-      navigate("/profil")
+      navigate("/kepfeltoltes")
     }, 1500)})
   }
 
@@ -510,8 +510,6 @@ export default function NewAdForm() {
       { isModify? <h1>Hírdetés módosítása</h1> : <h1>Új hirdetés feladása</h1> }
       <form id="newad-form">
         <div className="row">
-          <img src={logo} alt="placeholder"/>
-
           <h4>Általános adatok</h4>
           <hr/>
           <div className="form-group col-3">
@@ -682,7 +680,7 @@ export default function NewAdForm() {
             <textarea className="form-control" id="description" name="description" rows="5"></textarea>
           </div>
         </div>
-        { isModify? <button type="submit" className="btn" onClick={AdPUT}>Hirdetés módosítása</button> : <button type="submit" className="btn" onClick={AdPOST}>Hirdetés feladása</button> }
+        { isModify? <button type="submit" className="btn" onClick={AdPUT}>Tovább a képek módosításához</button> : <button type="submit" className="btn" onClick={AdPOST}>Tovább a képek feltöltéséhez</button> }
       </form>
       <InformationModal
         show={modalInfo.show}

@@ -20,6 +20,7 @@ import RegistrationTaxCalculator from './Pages/RegistrationTaxCalculator';
 import VehicleTitleTransfer from './Pages/VehicleTitleTransfer';
 import Documents from './Pages/Documents';
 import Activated from './Pages/Activated';
+import NewAdPictures from './Components/NewAdPictures';
 
 function App() {
   const location = useLocation();
@@ -45,6 +46,7 @@ function App() {
         <Route path='/gepjarmu-atiras' element={<VehicleTitleTransfer/>}/>
         <Route path='/hirdetesfeladas' element={<NewAd/>}/>
         <Route path='/modositas/:id' element={<NewAd/>}/>
+        <Route path='/kepfeltoltes' element={<NewAdPictures/>}/>
         <Route path='/adatvedelmi-tajekoztatas' element={<DataProtection/>}/>
         <Route path='/aszf' element={<TermsAndConditions/>}/>
         <Route path='kapcsolat' element={<Contact/>}/>
