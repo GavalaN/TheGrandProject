@@ -27,7 +27,7 @@ namespace AA_Backend.Controllers
                     car.Sold = false;
                     await context.Cars.AddAsync(car);
                     await context.SaveChangesAsync();
-                    return Ok("Sikeres hozzáadás!");
+                    return Ok("Sikeres hozzáadás!\nMost átnavigálunk a képfeltöltésre!");
                 }
                 catch (Exception ex)
                 {
@@ -48,7 +48,7 @@ namespace AA_Backend.Controllers
                         {
                             context.Update(car);
                             await context.SaveChangesAsync();
-                            return Ok("Sikeres módosítás!");
+                            return Ok("Sikeres módosítás!\nMost átnavigálunk a képfeltöltésre!");
 
                         }
                         else

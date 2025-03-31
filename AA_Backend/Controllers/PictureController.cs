@@ -35,11 +35,19 @@ namespace AA_Backend.Controllers
 
                 // Sanitize filename
                 var typename = context.Cars.Where(c => c.Id == carId).Select(c => c.Type.TypeName).FirstOrDefault();
+
                 var fileName = typename+"_"+carId;
+                int i = 0;
+                while (context.Pictues.Contains(new Pictue() { FilePath = fileName }))
+                {
+                    i++;
+                    fileName = typename + "_" + carId +"_"+ i;
+                }
                 context.Pictues.Add(new Pictue {
                     FilePath = fileName,
                     CarId=carId
                 });
+                context.SaveChanges();
                 using var stream = file.OpenReadStream();
                 _ftpService.UploadImageAsync(stream, fileName);
                 return Ok($"Sikeres Fájlfeltöltés {fileName} néven");
