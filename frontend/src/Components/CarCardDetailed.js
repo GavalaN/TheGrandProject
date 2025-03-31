@@ -7,48 +7,47 @@ import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import { faHorseHead, faGasPump, faCalendarWeek, faRoad, faChargingStation, faGaugeHigh } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { PhotoProvider, PhotoView } from 'react-photo-view'
+import 'react-photo-view/dist/react-photo-view.css'; // Ensure you import the CSS for proper styling
 
 export default function CarCardDetailed() {
     const [carDetailed, setCarDetailed] = useState([])
     const params = useParams()
+    const [imageUrls, setImageUrls] = useState([
+        "https://cdn.myshoptet.com/usr/www.bawodeal.cz/user/documents/upload/Bawodeal%20garage/bmw-e36-coupe-325i-141kw-od-radka-1-min.png",
+        "https://cdn.myshoptet.com/usr/www.bawodeal.cz/user/documents/upload/Bawodeal%20garage/bmw-e36-coupe-325i-141kw-od-radka-1-min.png",
+        "https://cdn.myshoptet.com/usr/www.bawodeal.cz/user/documents/upload/Bawodeal%20garage/bmw-e36-coupe-325i-141kw-od-radka-1-min.png"
+    ]);
+
     useEffect(() => {
         axios.get('http://localhost:5000/Hirdetes/GetHirdetesById?id='+params.id)
         .then(response => {console.log(response.data); setCarDetailed(response.data)})
     }, [])
+
   return (
     <div className="car-card-detailed">
         <h2>{carDetailed.brand} {carDetailed.type_Name}</h2>
         <div className="row">
             <div className="col-8">
                 <div className="car-card-img">
-                    <img src={"https://cdn.myshoptet.com/usr/www.bawodeal.cz/user/documents/upload/Bawodeal%20garage/bmw-e36-coupe-325i-141kw-od-radka-1-min.png"} alt={carDetailed.brand + " " + carDetailed.type_Name} />
+                <PhotoProvider>
+                {imageUrls.map((url, index) => (
+                    
+                                <PhotoView key={index} src={url}>
+                                    <img
+                                        src={url}
+                                        alt={`Car ${index + 1}`}
+                                        style={{ cursor: 'pointer', maxWidth: '100%', height: 'auto', marginBottom: '10px' }} // Ensure proper styling
+                                    />
+                                </PhotoView>
+                            ))}
+                </PhotoProvider>                
                 </div>
-                {/* <p>//</p>
-                <p>//</p> */}
                 <p>//fénykép irányítás</p>
-                {/* <p>//</p>
-                <p>//</p> */}
+                
             </div>
             <div className="col-4">
                 <h1>{carDetailed.price} Ft</h1>
-                {/* <p className='carDetailed'>
-                <a data-tooltip-id="carDetailed-details" data-tooltip-content="Üzemanyag típusa">
-                {carDetailed.fuel_Type == "elektromos" || carDetailed.fuel_Type == "hidrogén (üzemanyagcellás)"?<FontAwesomeIcon icon={faChargingStation} />:<FontAwesomeIcon icon={faGasPump} />}&nbsp;{carDetailed.fuel_Type}&nbsp;
-                </a>-
-                <a data-tooltip-id="carDetailed-details" data-tooltip-content="Évjárat">
-                &nbsp;<FontAwesomeIcon icon={faCalendarWeek} />&nbsp;{carDetailed.year}&nbsp;
-                </a>-
-                <a data-tooltip-id="carDetailed-details" data-tooltip-content="Motor térfogat">
-                &nbsp;<FontAwesomeIcon icon={faGaugeHigh} />&nbsp;{carDetailed.ccm} cm³&nbsp;
-                </a>-
-                <a data-tooltip-id="carDetailed-details" data-tooltip-content="Teljesítmény (lóerő)">
-                &nbsp;<FontAwesomeIcon icon={faHorseHead} />&nbsp;{carDetailed.hp} LE&nbsp;
-                </a>- 
-                <a data-tooltip-id="carDetailed-details" data-tooltip-content="Kilométeróra állása">
-                &nbsp;<FontAwesomeIcon icon={faRoad} />&nbsp;{carDetailed.kmClock} Km&nbsp;
-                </a>
-                </p>
-                <Tooltip id="carDetailed-details"/> */}
                 <div className="car-card-text">
                     <h3>Általános adatok</h3>
                     <hr className="my-1"/>
