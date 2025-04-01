@@ -427,7 +427,7 @@ export default function NewAdForm() {
       description: document.getElementById("description").value,
 
       sellerId: user.uId,
-      
+      sold: null,
     }
     console.log(body)
     
@@ -473,7 +473,7 @@ export default function NewAdForm() {
       description: document.getElementById("description").value,
 
       sellerId: user.uId,
-      
+      sold: null,
     }
     console.log(body)
     
