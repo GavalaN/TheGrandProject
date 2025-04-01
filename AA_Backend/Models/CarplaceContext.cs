@@ -58,7 +58,7 @@ public partial class CarplaceContext : DbContext
 
             entity.HasIndex(e => e.ColorId, "color_id");
 
-            entity.HasIndex(e => e.PicId, "pic_id");
+
 
             entity.HasIndex(e => e.SellerId, "seller_id");
 
@@ -104,9 +104,8 @@ public partial class CarplaceContext : DbContext
             entity.Property(e => e.NumOfCyl)
                 .HasColumnType("int(11)")
                 .HasColumnName("num_of_cyl");
-            entity.Property(e => e.PicId)
-                .HasColumnType("int(8)")
-                .HasColumnName("pic_id");
+
+
             entity.Property(e => e.Price)
                 .HasColumnType("int(11)")
                 .HasColumnName("price");
@@ -135,10 +134,7 @@ public partial class CarplaceContext : DbContext
                 .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("cars_ibfk_3");
 
-            entity.HasOne(d => d.Pic).WithMany(p => p.Cars)
-                .HasForeignKey(d => d.PicId)
-                .HasConstraintName("cars_ibfk_5");
-
+            
             entity.HasOne(d => d.Seller).WithMany(p => p.Cars)
                 .HasForeignKey(d => d.SellerId)
                 .OnDelete(DeleteBehavior.Restrict)
