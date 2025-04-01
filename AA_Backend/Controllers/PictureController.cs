@@ -43,6 +43,7 @@ namespace AA_Backend.Controllers
                     i++;
                     fileName = typename + "_" + carId +"_"+ i;
                 }
+                fileName += extension;  
                 context.Pictues.Add(new Pictue {
                     FilePath = fileName,
                     CarId=carId
