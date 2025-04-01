@@ -28,38 +28,38 @@ export default function NewAdPictures() {
     };
 
     const onChange = async (imageList, addUpdateIndex) => {
-        console.log(imageList, addUpdateIndex);
-        setImages(imageList);
-        try {
+      console.log(imageList, addUpdateIndex);
+      setImages(imageList);
+      try {
           setUploadProgress(0);
           const formData = new FormData();
-          formData.append('file', imageList[0]);
-          console.log(formData.get('file'))
+  
+          // Append each image file in the list to formData
+          imageList.forEach((image) => {
+              formData.append('file', image.file);
+          });
+  
           let carId = 1;
-          const response = await axios.post(base_url+`/Picture/Upload?carId=${carId}`, formData,
-            formData,
-            {
+          const response = await axios.post(base_url + `/Picture/Upload?carId=${carId}`, formData, {
               headers: {
-                'Content-Type': 'multipart/form-data'
+                  'Content-Type': 'multipart/form-data',
               },
               onUploadProgress: (progressEvent) => {
-                const percentCompleted = Math.round(
-                  (progressEvent.loaded * 100) / progressEvent.total
-                );
-                setUploadProgress(percentCompleted);
-              }
-            }
-          );
-    
+                  const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+                  setUploadProgress(percentCompleted);
+              },
+          });
+  
           console.log('Upload success:', response.data);
           setUploadSuccess(true);
-        } catch (error) {
+      } catch (error) {
           console.error('Upload failed:', error);
           setUploadError(error.response?.data || error.message);
-        } finally {
+      } finally {
           setUploadProgress(0);
-        }
-    };
+      }
+  };
+  
 
     const [modalInfo, setModalInfo] = useState({
           show: false,
