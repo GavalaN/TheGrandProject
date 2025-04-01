@@ -10,7 +10,7 @@ public partial class Car
 
     public int BrandId { get; set; }
 
-    public int PicId { get; set; }
+
 
     public int TypeId { get; set; }
 
