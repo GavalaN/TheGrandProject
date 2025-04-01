@@ -36,7 +36,7 @@ namespace AA_Backend.Controllers
                 // Sanitize filename
                 var typename = context.Cars.Where(c => c.Id == carId).Select(c => c.Type.TypeName).FirstOrDefault();
 
-                var fileName = typename+"_"+carId;
+                var fileName = typename+"_"+carId+extension;
                 int i = 0;
                 while (context.Pictues.Contains(new Pictue() { FilePath = fileName }))
                 {
