@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 25, 2025 at 10:14 AM
+-- Generation Time: Apr 01, 2025 at 01:30 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -179,26 +179,20 @@ CREATE TABLE `users` (
   `created` datetime NOT NULL,
   `is_admin` tinyint(1) NOT NULL,
   `SALT` varchar(64) NOT NULL,
-  `IsActive` int(1) NOT NULL
+  `IsActive` int(1) NOT NULL,
+  `ResetPasswordToken` varchar(255) DEFAULT NULL,
+  `ResetPasswordTokenExpiry` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `phone_num`, `HASH`, `created`, `is_admin`, `SALT`, `IsActive`) VALUES
-(1, 'admin', 'tulakm@kkszki.hu', '123123123', 'admin', '2025-02-04 11:05:38', 1, 'ads', 0),
-(2, 'string', 'string', 'string', '473287f8298dba7163a897908958f7c0eae733e25d2e027992ea2edc9bed2fa8', '2025-02-18 12:25:08', 0, 'string', 0),
-(3, 'string1', 'budahazim@kkszki.hu', 'string', '473287f8298dba7163a897908958f7c0eae733e25d2e027992ea2edc9bed2fa8', '2025-02-18 13:10:14', 0, 'string', 0),
-(5, 'string3', 'gavalan@kkszki.hu', 'string', '473287f8298dba7163a897908958f7c0eae733e25d2e027992ea2edc9bed2fa8', '2025-02-21 08:06:03', 0, 'string', 0);
-
---
--- Add ResetPasswordToken and ResetPasswordTokenExpiry columns to the users table
---
-
-ALTER TABLE `users`
-ADD COLUMN `ResetPasswordToken` VARCHAR(255) DEFAULT NULL,
-ADD COLUMN `ResetPasswordTokenExpiry` DATETIME DEFAULT NULL;
+INSERT INTO `users` (`id`, `username`, `email`, `phone_num`, `HASH`, `created`, `is_admin`, `SALT`, `IsActive`, `ResetPasswordToken`, `ResetPasswordTokenExpiry`) VALUES
+(1, 'admin', 'tulakm@kkszki.hu', '123123123', 'admin', '2025-02-04 11:05:38', 1, 'ads', 0, NULL, NULL),
+(2, 'string', 'string', 'string', '473287f8298dba7163a897908958f7c0eae733e25d2e027992ea2edc9bed2fa8', '2025-02-18 12:25:08', 0, 'string', 0, NULL, NULL),
+(3, 'string1', 'budahazim@kkszki.hu', 'string', '473287f8298dba7163a897908958f7c0eae733e25d2e027992ea2edc9bed2fa8', '2025-02-18 13:10:14', 0, 'string', 0, NULL, NULL),
+(5, 'string3', 'gavalan@kkszki.hu', 'string', '473287f8298dba7163a897908958f7c0eae733e25d2e027992ea2edc9bed2fa8', '2025-02-21 08:06:03', 0, 'string', 0, '0f888a02-d5c1-4fb2-95c4-b6dce29e2323', '2025-03-28 10:51:54');
 
 --
 -- Indexes for dumped tables
@@ -298,8 +292,13 @@ ALTER TABLE `cars`
   ADD CONSTRAINT `cars_ibfk_1` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`id`),
   ADD CONSTRAINT `cars_ibfk_2` FOREIGN KEY (`type_id`) REFERENCES `types` (`id`),
   ADD CONSTRAINT `cars_ibfk_3` FOREIGN KEY (`color_id`) REFERENCES `colors` (`id`),
-  ADD CONSTRAINT `cars_ibfk_4` FOREIGN KEY (`seller_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `cars_ibfk_5` FOREIGN KEY (`pic_id`) REFERENCES `pictues` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `cars_ibfk_4` FOREIGN KEY (`seller_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `pictues`
+--
+ALTER TABLE `pictues`
+  ADD CONSTRAINT `pictues_ibfk_1` FOREIGN KEY (`car_id`) REFERENCES `cars` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `types`
