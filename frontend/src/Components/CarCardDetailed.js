@@ -13,15 +13,13 @@ import 'react-photo-view/dist/react-photo-view.css'; // Ensure you import the CS
 export default function CarCardDetailed() {
     const [carDetailed, setCarDetailed] = useState([])
     const params = useParams()
-    const [imageUrls, setImageUrls] = useState([
-        "https://cdn.myshoptet.com/usr/www.bawodeal.cz/user/documents/upload/Bawodeal%20garage/bmw-e36-coupe-325i-141kw-od-radka-1-min.png",
-        "https://cdn.myshoptet.com/usr/www.bawodeal.cz/user/documents/upload/Bawodeal%20garage/bmw-e36-coupe-325i-141kw-od-radka-1-min.png",
-        "https://cdn.myshoptet.com/usr/www.bawodeal.cz/user/documents/upload/Bawodeal%20garage/bmw-e36-coupe-325i-141kw-od-radka-1-min.png"
-    ]);
+    const [imageUrls, setImageUrls] = useState([]);
 
     useEffect(() => {
         axios.get('http://localhost:5000/Hirdetes/GetHirdetesById?id='+params.id)
         .then(response => {console.log(response.data); setCarDetailed(response.data)})
+        axios.get('http://localhost:5000/Picture/bycar?id='+params.id)
+        .then(response => {console.log(response.data); setImageUrls(response.data)})
     }, [])
 
   return (
