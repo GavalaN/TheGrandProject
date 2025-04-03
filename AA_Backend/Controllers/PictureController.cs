@@ -42,9 +42,9 @@ namespace AA_Backend.Controllers
                 while (context.Pictues.FirstOrDefault(x=> x.FilePath == fileName )!=null)
                 {
                     i++;
-                    fileName = carId +"_"+ i;
+                    fileName = carId +"_"+ i+ extension;
                 }
-                fileName += extension;  
+                  
                 context.Pictues.Add(new Pictue {
                     FilePath = fileName,
                     CarId=carId
