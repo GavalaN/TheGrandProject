@@ -12,5 +12,5 @@ public partial class Pictue
 
     public string FilePath { get; set; } = null!;
     [JsonIgnore]
-    public virtual ICollection<Car> Cars { get; set; } = new List<Car>();
+    public virtual Car Car { get; set; } = null!;
 }

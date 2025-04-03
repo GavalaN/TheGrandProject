@@ -6,12 +6,14 @@ namespace AA_Backend.Models;
 
 public partial class CarplaceContext : DbContext
 {
-    
     public CarplaceContext()
     {
     }
 
-    
+    public CarplaceContext(DbContextOptions<CarplaceContext> options)
+        : base(options)
+    {
+    }
 
     public virtual DbSet<Brand> Brands { get; set; }
 
@@ -26,7 +28,6 @@ public partial class CarplaceContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-
         => optionsBuilder.UseMySQL("SERVER=localhost;PORT=3306;DATABASE=carplace;USER=root;PASSWORD=;SSL MODE=none;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -43,9 +44,6 @@ public partial class CarplaceContext : DbContext
             entity.Property(e => e.Name)
                 .HasMaxLength(255)
                 .HasColumnName("name");
-            entity.HasMany(e => e.Cars)
-                .WithOne()
-                .OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<Car>(entity =>
@@ -57,8 +55,6 @@ public partial class CarplaceContext : DbContext
             entity.HasIndex(e => e.BrandId, "brand_id");
 
             entity.HasIndex(e => e.ColorId, "color_id");
-
-
 
             entity.HasIndex(e => e.SellerId, "seller_id");
 
@@ -90,7 +86,7 @@ public partial class CarplaceContext : DbContext
                 .HasMaxLength(12)
                 .HasColumnName("engine_type");
             entity.Property(e => e.FuelType)
-                .HasMaxLength(11)
+                .HasMaxLength(32)
                 .HasColumnName("fuel_type");
             entity.Property(e => e.Horsepower)
                 .HasColumnType("int(11)")
@@ -104,8 +100,6 @@ public partial class CarplaceContext : DbContext
             entity.Property(e => e.NumOfCyl)
                 .HasColumnType("int(11)")
                 .HasColumnName("num_of_cyl");
-
-
             entity.Property(e => e.Price)
                 .HasColumnType("int(11)")
                 .HasColumnName("price");
@@ -134,7 +128,6 @@ public partial class CarplaceContext : DbContext
                 .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("cars_ibfk_3");
 
-            
             entity.HasOne(d => d.Seller).WithMany(p => p.Cars)
                 .HasForeignKey(d => d.SellerId)
                 .OnDelete(DeleteBehavior.Restrict)
@@ -180,6 +173,10 @@ public partial class CarplaceContext : DbContext
             entity.Property(e => e.FilePath)
                 .HasMaxLength(124)
                 .HasColumnName("filePath");
+
+            entity.HasOne(d => d.Car).WithMany(p => p.Pictues)
+                .HasForeignKey(d => d.CarId)
+                .HasConstraintName("pictues_ibfk_1");
         });
 
         modelBuilder.Entity<Type>(entity =>
@@ -229,6 +226,12 @@ public partial class CarplaceContext : DbContext
             entity.Property(e => e.PhoneNum)
                 .HasMaxLength(50)
                 .HasColumnName("phone_num");
+            entity.Property(e => e.ResetPasswordToken)
+                .HasMaxLength(255)
+                .HasDefaultValueSql("'NULL'");
+            entity.Property(e => e.ResetPasswordTokenExpiry)
+                .HasDefaultValueSql("'NULL'")
+                .HasColumnType("datetime");
             entity.Property(e => e.Salt)
                 .HasMaxLength(64)
                 .HasColumnName("SALT");

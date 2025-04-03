@@ -931,15 +931,6 @@
             "format": "date-time",
             "nullable": true
           },
-          "resetPasswordToken": {
-            "type": "string",
-            "nullable": true
-          },
-          "resetPasswordTokenExpiry": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
           "isAdmin": {
             "type": "boolean",
             "nullable": true
@@ -950,7 +941,15 @@
           },
           "isActive": {
             "type": "integer",
-            "format": "int32",
+            "format": "int32"
+          },
+          "resetPasswordToken": {
+            "type": "string",
+            "nullable": true
+          },
+          "resetPasswordTokenExpiry": {
+            "type": "string",
+            "format": "date-time",
             "nullable": true
           }
         },

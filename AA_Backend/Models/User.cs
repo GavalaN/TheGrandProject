@@ -18,15 +18,15 @@ public partial class User
 
     public DateTime? Created { get; set; }
 
-    public string? ResetPasswordToken { get; set; }
-
-    public DateTime? ResetPasswordTokenExpiry { get; set; }
-
     public bool? IsAdmin { get; set; }
 
     public string Salt { get; set; } = null!;
 
-    public int? IsActive { get; set; }
+    public int IsActive { get; set; }
+
+    public string? ResetPasswordToken { get; set; }
+
+    public DateTime? ResetPasswordTokenExpiry { get; set; }
     [JsonIgnore]
     public virtual ICollection<Car> Cars { get; set; } = new List<Car>();
 }

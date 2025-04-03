@@ -50,7 +50,7 @@ public partial class Car
     [JsonIgnore]
     public virtual Color? Color { get; set; }
     [JsonIgnore]
-    public virtual Pictue? Pic { get; set; }
+    public virtual ICollection<Pictue>? Pictues { get; set; } = new List<Pictue>();
     [JsonIgnore]
     public virtual User? Seller { get; set; }
     [JsonIgnore]

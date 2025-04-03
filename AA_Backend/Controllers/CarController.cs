@@ -19,10 +19,10 @@ namespace AA_Backend.Controllers
             {
                 try
                 {
-                    if (!Program.LoggedInUsers.ContainsKey(token))
+                    /*if (!Program.LoggedInUsers.ContainsKey(token))
                     {
                         return StatusCode(401);
-                    }
+                    }*/
                     car.UploadDate = DateTime.Now;
                     car.Sold = false;
                     await context.Cars.AddAsync(car);
