@@ -22,7 +22,7 @@ public partial class User
 
     public string Salt { get; set; } = null!;
 
-    public int IsActive { get; set; }
+    public int? IsActive { get; set; }
 
     public string? ResetPasswordToken { get; set; }
 
