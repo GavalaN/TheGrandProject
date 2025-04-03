@@ -11,16 +11,45 @@ import { PhotoProvider, PhotoView } from 'react-photo-view'
 import 'react-photo-view/dist/react-photo-view.css'; // Ensure you import the CSS for proper styling
 
 export default function CarCardDetailed() {
+    const base_url = process.env.REACT_APP_BASE_URL;
     const [carDetailed, setCarDetailed] = useState([])
     const params = useParams()
     const [imageUrls, setImageUrls] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/Hirdetes/GetHirdetesById?id='+params.id)
+        axios.get(base_url+'/Hirdetes/GetHirdetesById?id='+params.id)
         .then(response => {console.log(response.data); setCarDetailed(response.data)})
-        axios.get('http://localhost:5000/Picture/bycar?id='+params.id)
-        .then(response => {console.log(response.data); setImageUrls(response.data)})
     }, [])
+
+    useEffect(() => {
+        axios.get(base_url+`/Picture/bycar/${params.id}`)
+            .then(response => {
+                console.log(response.data); 
+                setImageFileNames(response.data);
+            })
+            .catch(error => console.error('Error fetching image names:', error));
+    }, [carDetailed]);
+    
+    useEffect(() => {
+        if (!imageFileNames || imageFileNames.length === 0) return;
+    
+        const fetchImages = async () => {
+            try {
+                const urls = await Promise.all(
+                    imageFileNames.map(async (item) => {
+                        const response = await axios.get(base_url+`/Picture/download/${item}`, { responseType: 'blob' });
+                        return URL.createObjectURL(response.data);
+                    })
+                );
+                setImageUrls(urls);
+            } catch (error) {
+                console.error('Error fetching images:', error);
+                // Optionally set some fallback images here
+            }
+        };
+    
+        fetchImages();
+    }, [imageFileNames]);
 
   return (
     <div className="car-card-detailed">

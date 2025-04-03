@@ -404,7 +404,6 @@ export default function NewAdForm() {
       id: 0,
       uploadDate: null,
 
-      picId: 1,
       brandId: selectedBrand,
       typeId: selectedType,
       fuelType: document.getElementById("fuel").value,
@@ -419,7 +418,7 @@ export default function NewAdForm() {
       transType: document.getElementById("gearbox").value,
       drive: document.getElementById("drive_train").value,
       engineType: document.getElementById("motor_type").value,
-      numofCyl: document.getElementById("number_of_cylinder").value,
+      numOfCyl: document.getElementById("number_of_cylinder").value,
       cc: document.getElementById("ccm").value,
       horsepower: document.getElementById("horsepower").value,
       
@@ -427,7 +426,7 @@ export default function NewAdForm() {
       description: document.getElementById("description").value,
 
       sellerId: user.uId,
-      sold: null,
+      sold: null
     }
     console.log(body)
     
@@ -450,7 +449,6 @@ export default function NewAdForm() {
       id: carModify.id,
       uploadDate: carModify.uploadDate,
 
-      picId: 1,
       brandId: selectedBrand,
       typeId: selectedType,
       fuelType: document.getElementById("fuel").value,
@@ -465,7 +463,7 @@ export default function NewAdForm() {
       transType: document.getElementById("gearbox").value,
       drive: document.getElementById("drive_train").value,
       engineType: document.getElementById("motor_type").value,
-      numofCyl: document.getElementById("number_of_cylinder").value,
+      numOfCyl: document.getElementById("number_of_cylinder").value,
       cc: document.getElementById("ccm").value,
       horsepower: document.getElementById("horsepower").value,
       
@@ -473,7 +471,7 @@ export default function NewAdForm() {
       description: document.getElementById("description").value,
 
       sellerId: user.uId,
-      sold: null,
+      sold: null
     }
     console.log(body)
     

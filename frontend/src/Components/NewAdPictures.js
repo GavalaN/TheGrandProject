@@ -13,6 +13,7 @@ import axios from "axios"
 export default function NewAdPictures() {
   const [images, setImages] = useState([])
   const maxNumber = 6
+  const carId = 2;
   const navigate = useNavigate()
   const user = Cookies.get("user")
   const base_url = process.env.REACT_APP_BASE_URL
@@ -44,15 +45,11 @@ export default function NewAdPictures() {
           const formData = new FormData()
 
           // Get the file and its original name
-          const carId = 1
           const file = imageList[indexToUpload].file
-          const originalFilename = file.name
-
-          // Create a custom filename with the index prefix
-          const customFilename = `${carId}_${originalFilename}`
+          const Filename = file.name
 
           // Append the file with the custom filename
-          formData.append("file", file, customFilename)
+          formData.append("file", file, Filename)
 
           console.log(`Uploading file with custom name: ${customFilename}`)
 
@@ -110,50 +107,51 @@ export default function NewAdPictures() {
   }, [])
 
   const handleUpload = async () => {
-    if (!selectedFile) return
+    navigate("/profil")
+    // if (!selectedFile) return
 
-    // Set upload progress to show loader
-    setUploadProgress(50)
+    // // Set upload progress to show loader
+    // setUploadProgress(50)
 
-    // For the manual upload button, we're not tracking a specific image index
-    // This is for uploading a file selected via the file input
+    // // For the manual upload button, we're not tracking a specific image index
+    // // This is for uploading a file selected via the file input
 
-    // Simulate upload with 1 second timeout
-    setTimeout(async () => {
-      try {
-        const formData = new FormData()
+    // // Simulate upload with 1 second timeout
+    // setTimeout(async () => {
+    //   try {
+    //     const formData = new FormData()
 
-        // Get the original filename
-        const originalFilename = selectedFile.name
+    //     // Get the original filename
+    //     const originalFilename = selectedFile.name
 
-        // Create a custom filename with "manual" prefix since this isn't from the image list
-        const customFilename = `manual_${originalFilename}`
+    //     // Create a custom filename with "manual" prefix since this isn't from the image list
+    //     const customFilename = `manual_${originalFilename}`
 
-        // Append the file with the custom filename
-        formData.append("file", selectedFile, customFilename)
+    //     // Append the file with the custom filename
+    //     formData.append("file", selectedFile, customFilename)
 
-        console.log(`Uploading file with custom name: ${customFilename}`)
+    //     console.log(`Uploading file with custom name: ${customFilename}`)
 
-        const carId = 1
-        const response = await axios.post(base_url + `/Picture/Upload?carId=${carId}`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-          onUploadProgress: (progressEvent) => {
-            const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
-            setUploadProgress(percentCompleted)
-          },
-        })
+    //     const carId = 1
+    //     const response = await axios.post(base_url + `/Picture/Upload?carId=${carId}`, formData, {
+    //       headers: {
+    //         "Content-Type": "multipart/form-data",
+    //       },
+    //       onUploadProgress: (progressEvent) => {
+    //         const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+    //         setUploadProgress(percentCompleted)
+    //       },
+    //     })
 
-        console.log("Upload success:", response.data)
-        setUploadSuccess(true)
-      } catch (error) {
-        console.error("Upload failed:", error)
-        setUploadError(error.response?.data || error.message)
-      } finally {
-        setUploadProgress(0)
-      }
-    }, 1000) // 1 second timeout
+    //     console.log("Upload success:", response.data)
+    //     setUploadSuccess(true)
+    //   } catch (error) {
+    //     console.error("Upload failed:", error)
+    //     setUploadError(error.response?.data || error.message)
+    //   } finally {
+    //     setUploadProgress(0)
+    //   }
+    // }, 1000) // 1 second timeout
   }
 
   if (user !== undefined) {
