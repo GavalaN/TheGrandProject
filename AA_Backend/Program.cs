@@ -69,8 +69,16 @@ namespace AA_Backend
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
-            app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                          .AllowAnyMethod() 
+                          .AllowAnyHeader();
+                });
+            });
+            app.UseCors("AllowAll");
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
