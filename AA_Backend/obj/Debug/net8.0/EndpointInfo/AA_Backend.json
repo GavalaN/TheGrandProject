@@ -719,10 +719,6 @@
             "type": "integer",
             "format": "int32"
           },
-          "picId": {
-            "type": "integer",
-            "format": "int32"
-          },
           "typeId": {
             "type": "integer",
             "format": "int32"

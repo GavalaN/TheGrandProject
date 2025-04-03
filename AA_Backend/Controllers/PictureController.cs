@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using AA_Backend.Services;
 using AA_Backend.Models;
 using Microsoft.EntityFrameworkCore;
+using Google.Protobuf.WellKnownTypes;
 
 namespace AA_Backend.Controllers
 {
@@ -34,14 +35,14 @@ namespace AA_Backend.Controllers
 
 
                 // Sanitize filename
-                var typename = context.Cars.Where(c => c.Id == carId).Select(c => c.Type.TypeName).FirstOrDefault();
+               
 
-                var fileName = typename+"_"+carId+extension;
+                var fileName = carId+extension;
                 int i = 0;
-                while (context.Pictues.Contains(new Pictue() { FilePath = fileName }))
+                while (context.Pictues.FirstOrDefault(x=> x.FilePath == fileName )!=null)
                 {
                     i++;
-                    fileName = typename + "_" + carId +"_"+ i;
+                    fileName = carId +"_"+ i;
                 }
                 fileName += extension;  
                 context.Pictues.Add(new Pictue {
@@ -87,7 +88,7 @@ namespace AA_Backend.Controllers
         {
             using (var context = new CarplaceContext())
             {
-                if (!context.Pictues.Contains(new Pictue() { CarId=carId}))
+                if (context.Pictues.FirstOrDefault(x=>x.CarId==carId)==null)
                 {
                     return BadRequest("Invalid Car ID");
                 }
