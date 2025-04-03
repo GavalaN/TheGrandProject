@@ -10,6 +10,7 @@ export default function Registration() {
   const base_url = process.env.REACT_APP_BASE_URL
   const navigate = useNavigate()
   const user = Cookies.get("user")
+   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   // Add state for the modal
   const [modalInfo, setModalInfo] = useState({
@@ -88,12 +89,7 @@ export default function Registration() {
   }
 
   function ShowPassword() {
-    var x = document.getElementById("password")
-    if (x.type === "password") {
-      x.type = "text"
-    } else {
-      x.type = "password"
-    }
+    setIsPasswordVisible(!isPasswordVisible);
   }
 
   return (
@@ -114,7 +110,7 @@ export default function Registration() {
         </div>
         <div className="mb-3">
           <label>Jelszó</label>
-          <input type="password" id="password" className="form-control input" placeholder="pl.: Minta123." />
+          <input type={isPasswordVisible ? 'text' : 'password'} id="password" className="form-control input" placeholder="pl.: Minta123." />
           <div className="show-password">
             <input type="checkbox" className="custom-control-input" id="show-password-button" onClick={ShowPassword} />
             <label className="custom-control-label" htmlFor="show-password-button">

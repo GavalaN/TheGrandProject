@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import './CarCard.css'
-import logo from '../Images/logo.png'
 import 'react-tooltip/dist/react-tooltip.css'
-import { Tooltip } from 'react-tooltip'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
-import { faHorseHead, faGasPump, faCalendarWeek, faRoad, faChargingStation, faGaugeHigh } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { PhotoProvider, PhotoView } from 'react-photo-view'
-import 'react-photo-view/dist/react-photo-view.css'; // Ensure you import the CSS for proper styling
+import 'react-photo-view/dist/react-photo-view.css';
+import { BeatLoader } from 'react-spinners'
 
 export default function CarCardDetailed() {
     const base_url = process.env.REACT_APP_BASE_URL;
-    const [carDetailed, setCarDetailed] = useState([])
-    const params = useParams()
+    const [carDetailed, setCarDetailed] = useState([]);
+    const params = useParams();
     const [imageUrls, setImageUrls] = useState([]);
+    const [imageFileNames, setImageFileNames] = useState([]);
+    const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         axios.get(base_url+'/Hirdetes/GetHirdetesById?id='+params.id)
@@ -31,8 +31,12 @@ export default function CarCardDetailed() {
     }, [carDetailed]);
     
     useEffect(() => {
-        if (!imageFileNames || imageFileNames.length === 0) return;
+        if (!imageFileNames || imageFileNames.length === 0) {
+            setIsLoading(false);
+            return;
+        }
     
+        setIsLoading(true);
         const fetchImages = async () => {
             try {
                 const urls = await Promise.all(
@@ -42,8 +46,10 @@ export default function CarCardDetailed() {
                     })
                 );
                 setImageUrls(urls);
+                setIsLoading(false);
             } catch (error) {
                 console.error('Error fetching images:', error);
+                setIsLoading(false);
                 // Optionally set some fallback images here
             }
         };
@@ -57,21 +63,60 @@ export default function CarCardDetailed() {
         <div className="row">
             <div className="col-8">
                 <div className="car-card-img">
-                <PhotoProvider>
-                {imageUrls.map((url, index) => (
+                    {/* Main large image */}
+                    <div className="main-image-container">
+                        {isLoading ? (
+                            <div className="loader-container">
+                                <BeatLoader color="#0096D6" size={15} />
+                                <p>Képek betöltése...</p>
+                            </div>
+                        ) : imageUrls.length > 0 ? (
+                            <PhotoProvider
+                                loop={false}
+                                speed={() => 800}
+                                easing={(type) => (type === 2 ? 'cubic-bezier(0.36, 0, 0.66, -0.56)' : 'cubic-bezier(0.34, 1.56, 0.64, 1)')}
+                            >
+                                {imageUrls.map((url, index) => (
+                                    <PhotoView key={index} src={url}>
+                                        {index === selectedImageIndex && (
+                                            <img
+                                                src={url || "/placeholder.svg"}
+                                                alt={`Car ${index + 1}`}
+                                                className="main-image"
+                                            />
+                                        )}
+                                    </PhotoView>
+                                ))}
+                            </PhotoProvider>
+                        ) : (
+                            <div className="no-images-container">
+                                <p>Nincsenek elérhető képek</p>
+                            </div>
+                        )}
+                    </div>
                     
-                                <PhotoView key={index} src={url}>
+                    {/* Thumbnails container */}
+                    {!isLoading && imageUrls.length > 0 && (
+                        <div className="thumbnails-row">
+                            {imageUrls.map((url, index) => (
+                                <div 
+                                    key={index} 
+                                    className={`thumbnail-container ${selectedImageIndex === index ? 'selected' : ''}`}
+                                    onClick={() => setSelectedImageIndex(index)}
+                                >
                                     <img
-                                        src={url}
-                                        alt={`Car ${index + 1}`}
-                                        style={{ cursor: 'pointer', maxWidth: '100%', height: 'auto', marginBottom: '10px' }} // Ensure proper styling
+                                        src={url || "/placeholder.svg"}
+                                        alt={`Car thumbnail ${index + 1}`}
+                                        className="thumbnail"
                                     />
-                                </PhotoView>
+                                </div>
                             ))}
-                </PhotoProvider>                
+                        </div>
+                    )}
                 </div>
-                <p>//fénykép irányítás</p>
-                
+                {!isLoading && imageUrls.length > 0 && (
+                    <p className="text-center">Kattintson a képre a nagyításhoz vagy válasszon a kisképek közül</p>
+                )}
             </div>
             <div className="col-4">
                 <h1>{carDetailed.price} Ft</h1>
@@ -110,24 +155,24 @@ export default function CarCardDetailed() {
 
                 <h3 className="mt-2">Hírdető adatai</h3>
                 <hr className="my-1"/>
-                <div class="row">
-                    <div class="col-12">
+                <div className="row">
+                    <div className="col-12">
                         <p>Hírdető neve: {carDetailed.username}</p>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-4">
+                <div className="row">
+                    <div className="col-4">
                         <p>Telefon száma: {carDetailed.phoneNum}</p>
                     </div>
-                    <div class="col-8">
+                    <div className="col-8">
                         <a href={`tel:${carDetailed.phoneNum}`} className="btn">Vevő felhívása</a>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-4">
+                <div className="row">
+                    <div className="col-4">
                         <p>Email címe: {carDetailed.email}</p>
                     </div>
-                    <div class="col-8">
+                    <div className="col-8">
                         <a href={`mailto:${carDetailed.email}`} className="btn">E-mail küldése a vevőnek</a>
                     </div>
                 </div>

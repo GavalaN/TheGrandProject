@@ -1,4 +1,4 @@
-.car-card{
+.car-card {
     display: flex;
     justify-content: start;
     text-align: left;
@@ -8,13 +8,13 @@
     padding: 1rem;
     border: 1px solid black;
     border-radius: 0.2rem;
-    background-color: #DEDFE1;
+    background-color: #dedfe1;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     font-family: "Kanit", serif !important;
-}
-
-.car-card-img{
+  }
+  
+  .car-card-img {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,118 +22,216 @@
     min-height: 12rem;
     width: 15rem;
     border: 1px solid black;
-}
-
-.car-card-img img{
+  }
+  
+  .car-card-img img {
     display: block;
     margin-top: auto;
     margin-bottom: auto;
     width: 100%;
-}
-
-.car-card-text{
+  }
+  
+  .car-card-text {
     align-items: start;
     margin-left: 1rem;
     margin-right: 1rem;
     height: fit-content;
     width: 35rem;
-}
-
-.car-card-text h3, .car-card-detailed h3{
+  }
+  
+  .car-card-text h3,
+  .car-card-detailed h3 {
     font-size: x-large !important;
     font-weight: 600 !important;
     color: #0096d6;
-}
-
-.car-card-text h2{
+  }
+  
+  .car-card-text h2 {
     font-size: x-large !important;
     font-weight: 600 !important;
     margin-right: 1rem;
-}
-
-.props{
+  }
+  
+  .props {
     color: #585858 !important;
-}
-
-.car-card-text a{
+  }
+  
+  .car-card-text a {
     visibility: visible !important;
     display: inline-block;
-}
-
-.car-card-text a:hover{
+  }
+  
+  .car-card-text a:hover {
     cursor: help;
-}
-
-.search-list .row .col-9{
+  }
+  
+  .search-list .row .col-9 {
     margin-top: 1rem;
     margin-left: auto;
     margin-right: auto;
-}
-
-/*CarCardDetailed*/
-.car-card-detailed {
-    width: 60rem;
+  }
+  
+  /*CarCardDetailed*/
+  .car-card-detailed {
+    width: 64rem;
     text-align: left;
     margin: 1rem auto 1rem auto;
     padding: 1rem;
     border: 1px solid black;
     border-radius: 0.2rem;
-    background-color: #DEDFE1;
+    background-color: #dedfe1;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: all 1s ease;
     font-family: "Kanit", serif !important;
-}
-
-.car-card-detailed h1 {
-    color: #0096D6 !important;
+  }
+  
+  .car-card-detailed h1 {
+    color: #0096d6 !important;
     text-align: right;
-}
-
-.car-card-detailed p {
+  }
+  
+  .car-card-detailed p {
     margin-top: 0 !important;
     margin-bottom: 0.5rem !important;
-}
-
-.car-card-detailed .car-card-img {
+  }
+  
+  .car-card-detailed .car-card-img {
     height: fit-content;
     width: 100% !important;
     margin-left: auto;
     margin-right: auto;
     padding: 0;
-}
-
-.car-card-detailed .car-card-img img {
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    border: none;
+  }
+  
+  .car-card-detailed .car-card-img .main-image-container {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .car-card-detailed .car-card-img img {
     width: 100%;
-}
-
-.car-card-detailed .car-card-text {
+  }
+  
+  /* New styles for the image gallery */
+  .car-card-detailed .car-card-img .main-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    cursor: pointer;
+  }
+  
+  .car-card-detailed .car-card-img .thumbnails-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+    justify-content: flex-start;
+  }
+  
+  .car-card-detailed .car-card-img .thumbnail-container {
+    width: 100px;
+    height: 75px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: white;
+  }
+  
+  .car-card-detailed .car-card-img .thumbnail-container:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .car-card-detailed .car-card-img .thumbnail-container.selected {
+    border: 2px solid #0096d6;
+    box-shadow: 0 0 8px rgba(0, 150, 214, 0.5);
+  }
+  
+  .car-card-detailed .car-card-img .thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Loader styles */
+  .loader-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    width: 32rem;
+  }
+  
+  .loader-container p {
+    margin-top: 15px !important;
+    color: #0096d6;
+    font-weight: 500;
+  }
+  
+  .no-images-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    width: 100%;
+    background-color: #f5f5f5;
+    color: #666;
+    font-style: italic;
+  }
+  
+  /* Hide the default PhotoView items but keep them in the DOM for functionality */
+  .pswp-gallery__item {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+  }
+  
+  .car-card-detailed .car-card-text {
     width: fit-content;
-}
-
-.color-display {
+  }
+  
+  .color-display {
     display: flex;
     align-items: center;
     gap: 10px;
   }
   
-.color-display p {
+  .color-display p {
     margin: 0 !important;
-}
-
-#colorShape {
+  }
+  
+  #colorShape {
     width: 1rem;
     height: 1rem;
     border-radius: 0.2rem;
     border: 1px solid black;
     display: inline-block;
-}
-
-#owner-things {
+  }
+  
+  #owner-things {
     width: 10rem;
-}
-
-.car-card-detailed .btn, #owner-things .btn{
-    background-color: #0096D6;
+  }
+  
+  .car-card-detailed .btn,
+  #owner-things .btn {
+    background-color: #0096d6;
     color: white;
     border: none;
     border-bottom: 0.2rem solid #005d88;
@@ -148,79 +246,122 @@
     margin-bottom: 0.5rem;
     padding: 0;
     transition: 0.3s;
-}
-
-.car-card-detailed .btn:hover, #owner-things .btn:hover {
+  }
+  
+  .car-card-detailed .btn:hover,
+  #owner-things .btn:hover {
     margin-top: -0.3rem;
     margin-bottom: 0.5rem;
     height: 2.8rem;
     color: white;
-    background-color: #0096D6;
+    background-color: #0096d6;
     border-bottom: 0.4rem solid #005d88;
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
-    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.75);
     transition: 0.3s;
     cursor: pointer !important;
-}
-
-#owner-things .btn.btn-danger{
+  }
+  
+  #owner-things .btn.btn-danger {
     background-color: #ff0000;
     border-color: #bb0000;
-}
-
-@media (max-width: 1500px){
-    .car-card{
-        width: 70%;
+  }
+  
+  @media (max-width: 1500px) {
+    .car-card {
+      width: 70%;
     }
-}
-
-@media (max-width: 1200px){
-    .car-card{
-        width: 80%;
-    }
-    .car-card-detailed {
-        width: 90%;
-    }
-}
-
-@media (max-width: 990px){
-    .car-card{
-        width: 100%;
-        flex-direction: column;
+  }
+  
+  @media (max-width: 1200px) {
+    .car-card {
+      width: 80%;
     }
     .car-card-detailed {
-        width: 100%;
-        font-size: larger;
+      width: 90%;
     }
-    .car-card .col-8, .car-card .col-6, .car-card .col-4, .car-card-detailed .col-8, .car-card-detailed .col-6, .car-card-detailed .col-4 , #owner-things.col-2{
-        width: 100% !important;
+  }
+  
+  @media (max-width: 990px) {
+    .car-card {
+      width: 100%;
+      flex-direction: column;
+    }
+    .car-card-detailed {
+      width: 100%;
+      font-size: larger;
+    }
+    .car-card .col-8,
+    .car-card .col-6,
+    .car-card .col-4,
+    .car-card-detailed .col-8,
+    .car-card-detailed .col-6,
+    .car-card-detailed .col-4,
+    #owner-things.col-2 {
+      width: 100% !important;
     }
     .car-card-detailed .car-card-text {
-        margin-left: 0;
-        width: 100%;
+      margin-left: 0;
+      width: 100%;
     }
     .car-card-detailed h1 {
-        font-size: revert;
+      font-size: revert;
     }
-
+  
     .car-card-detailed .btn {
-        margin-top: 1rem;
-        width: 100%;
+      margin-top: 1rem;
+      width: 100%;
     }
-
+  
     .car-card-detailed .btn:hover {
-        margin-top: 0.7rem;
+      margin-top: 0.7rem;
     }
-
+  
     #owner-things {
-        display: flex;
-        width: fit-content !important;
+      display: flex;
+      width: fit-content !important;
     }
-    #owner-things .btn{
-        margin: 0 2rem 0 2rem;
+    #owner-things .btn {
+      margin: 0 2rem 0 2rem;
     }
-    #owner-things .btn:hover{
-        margin: -0.3rem 2rem 0 2rem;
+    #owner-things .btn:hover {
+      margin: -0.3rem 2rem 0 2rem;
     }
-}
+  
+    /* Responsive adjustments for the image gallery */
+    .car-card-detailed .car-card-img .main-image {
+      height: 300px;
+    }
+  
+    .car-card-detailed .car-card-img .main-image-container {
+      min-height: 300px;
+    }
+  
+    .car-card-detailed .car-card-img .thumbnail-container {
+      width: 80px;
+      height: 60px;
+    }
+  
+    .loader-container {
+      height: 300px;
+    }
+  
+    .no-images-container {
+      height: 300px;
+    }
+  }
+  
+  /* For very small screens */
+  @media (max-width: 576px) {
+    .car-card-detailed .car-card-img .thumbnails-row {
+      justify-content: center;
+    }
+  
+    .car-card-detailed .car-card-img .thumbnail-container {
+      width: 70px;
+      height: 50px;
+    }
+  }
+  
+  

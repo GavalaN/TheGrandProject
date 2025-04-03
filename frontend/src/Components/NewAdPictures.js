@@ -13,7 +13,7 @@ import axios from "axios"
 export default function NewAdPictures() {
   const [images, setImages] = useState([])
   const maxNumber = 6
-  const carId = 2;
+  const carId = 4;
   const navigate = useNavigate()
   const user = Cookies.get("user")
   const base_url = process.env.REACT_APP_BASE_URL
@@ -51,7 +51,7 @@ export default function NewAdPictures() {
           // Append the file with the custom filename
           formData.append("file", file, Filename)
 
-          console.log(`Uploading file with custom name: ${customFilename}`)
+          console.log(`Uploading file with custom name: ${Filename}`)
 
           
           const response = await axios.post(base_url + `/Picture/Upload?carId=${carId}`, formData, {

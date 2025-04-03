@@ -922,20 +922,24 @@ export default function SearchList() {
       </div>
       <div className="row">
         <div id='search-list'>
-          {cars.map(car => {
-            return <CarCard id={car.id} brand={car.brand} type_name={car.type_name} fuel_type={car.fuel_type} year={car.year} ccm={car.ccm} horsepower={car.hp} odometer={car.kmClock} price={car.price} description={car.description}/>
-          })}
-          <ReactPaginate
-            containerClassName={"pagination d-flex justify-content-center"}
-            breakLabel="..."
-            nextLabel="következő >"
-            onPageChange={handlePageClick}
-            pageRangeDisplayed={pageSize}
-            pageCount={Math.ceil(dataCount/pageSize)}
-            previousLabel="< előző"
-            renderOnZeroPageCount={null}
-            //initialPage={params.page-1}
-          />
+            <div className="flex-grow-1">
+            {cars.map(car => {
+                return <CarCard id={car.id} brand={car.brand} type_name={car.type_name} fuel_type={car.fuel_type} year={car.year} ccm={car.ccm} horsepower={car.hp} odometer={car.kmClock} price={car.price} description={car.description}/>
+            })}
+            </div>
+            <div className="pagination-container">
+                <ReactPaginate
+                    containerClassName={"pagination d-flex justify-content-center"}
+                    breakLabel="..."
+                    nextLabel="következő >"
+                    onPageChange={handlePageClick}
+                    pageRangeDisplayed={pageSize}
+                    pageCount={Math.ceil(dataCount/pageSize)}
+                    previousLabel="< előző"
+                    renderOnZeroPageCount={null}
+                    //initialPage={params.page-1}
+                />
+            </div>
         </div>
       </div>
       <InformationModal
