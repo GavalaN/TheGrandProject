@@ -27,7 +27,12 @@ namespace AA_Backend.Controllers
                     car.Sold = false;
                     await context.Cars.AddAsync(car);
                     await context.SaveChangesAsync();
-                    return Ok("Sikeres hozzáadás!\nMost átnavigálunk a képfeltöltésre!");
+                    Car car2 = new Car()
+                    {
+                        Id = car.Id,
+                        Description = "Sikeres hozzáadás!\nMost átnavigálunk a képfeltöltésre!"
+                    };
+                    return Ok(car2);
                 }
                 catch (Exception ex)
                 {
@@ -87,15 +92,16 @@ namespace AA_Backend.Controllers
             }
         }
         [HttpDelete("Delete")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id, string token)
         {
             using (var context = new CarplaceContext())
             {
                 try
                 {
+                    User user;
+                    Program.LoggedInUsers.TryGetValue(token, out user);
                     
-                    
-                    if (true)
+                    if (user.IsAdmin == true || Program.LoggedInUsers.ContainsKey(token))
                     {
                         var car = new Car() { Id = id };
                         if (context.Cars.Contains(car))
