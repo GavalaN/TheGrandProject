@@ -273,6 +273,13 @@
   z-index: 9999 !important;
 }
 
+.car-card-img a {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @media (max-width: 1500px) {
   .car-card {
     width: 70%;

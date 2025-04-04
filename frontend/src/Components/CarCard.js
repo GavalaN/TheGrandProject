@@ -1,20 +1,25 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './CarCard.css'
 import logo from '../Images/logo.png'
 import 'react-tooltip/dist/react-tooltip.css'
 import { Tooltip } from 'react-tooltip'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { faHorseHead, faGasPump, faCalendarWeek, faRoad, faChargingStation, faGaugeHigh } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import axios from 'axios'
 import InformationModal from './InformationModal'
 import ConfirmModal from './ConfirmModal'
 import Cookies from 'js-cookie';
+import { BeatLoader } from 'react-spinners'
 
 export default function CarCard(props) {
   const base_url = process.env.REACT_APP_BASE_URL
   const navigate = useNavigate()
   const [user, setUser] = useState(Cookies.get("user") === undefined? undefined : JSON.parse(Cookies.get("user")))
+  const [imageFileName, setImageFileName] = useState(props.pathname);
+  const [image, setImage] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const params = useParams();
 
   // State for information modal
   const [modalInfo, setModalInfo] = useState({
@@ -83,12 +88,33 @@ export default function CarCard(props) {
       })
   }
 
+  useEffect(() => {
+    setIsLoading(true);
+    const fetchImages = async () => {
+        try {
+            if (imageFileName != null) {
+              const response = await axios.get(base_url+`/Picture/download/${imageFileName}`, { responseType: 'blob' });
+              setImage(URL.createObjectURL(response.data));
+            }
+            setIsLoading(false);
+        } catch (error) {
+            console.error('Error fetching images:', error);
+            setIsLoading(false);
+        }
+    };
+
+    fetchImages();
+}, [params]);
+
   return (
     <div className="car-card">
       <div className="car-card-img col-4">
+        { isLoading ? <div className="">
+                                <BeatLoader color="#0096D6" size={15} />
+                            </div> :
         <Link to={`/hirdetes/${props.id}`}>
-          <img src={logo || "/placeholder.svg"} alt={props.brand + " " + props.type_name} />
-        </Link>
+          <img src={image || logo} alt={props.brand + " " + props.type_name} />
+        </Link>}
       </div>
       <div className={`car-card-text ${props.is_owner ? "col-6" : "col-8"}`}>
         <div className="title d-flex justify-content-between">

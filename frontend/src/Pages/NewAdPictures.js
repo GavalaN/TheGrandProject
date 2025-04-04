@@ -12,8 +12,8 @@ import axios from "axios"
 
 export default function NewAdPictures() {
   const [images, setImages] = useState([])
-  const maxNumber = 6
-  const carId = 4;
+  const maxNumber = 6;
+  const carId = Cookies.get("carId");
   const navigate = useNavigate()
   const user = Cookies.get("user")
   const base_url = process.env.REACT_APP_BASE_URL
@@ -107,6 +107,13 @@ export default function NewAdPictures() {
   }, [])
 
   const handleUpload = async () => {
+    setModalInfo({
+      show: true,
+      title: "Sikeres képfeltöltés!",
+      text: "Most elviszünk Borsodba.",
+      theme: "information",
+    })
+    Cookies.remove("carId")
     navigate("/profil")
     // if (!selectedFile) return
 
@@ -157,7 +164,7 @@ export default function NewAdPictures() {
   if (user !== undefined) {
     return (
       <div id="uploadphoto">
-        <input type="file" id="fileupload" onChange={handleFileChange} />
+        {/* <input type="file" id="fileupload" onChange={handleFileChange} /> */}
         <h1>Képek feltöltése</h1>
         <div id="uploadphoto-form">
           <ReactImageUploading multiple value={images} onChange={onChange} maxNumber={maxNumber} dataURLKey="data_url">

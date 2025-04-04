@@ -20,7 +20,7 @@ import RegistrationTaxCalculator from './Pages/RegistrationTaxCalculator';
 import VehicleTitleTransfer from './Pages/VehicleTitleTransfer';
 import Documents from './Pages/Documents';
 import Activated from './Pages/Activated';
-import NewAdPictures from './Components/NewAdPictures';
+import NewAdPictures from './Pages/NewAdPictures';
 
 function App() {
   const location = useLocation();
