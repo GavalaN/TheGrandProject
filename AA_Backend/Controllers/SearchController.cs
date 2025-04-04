@@ -101,7 +101,8 @@ namespace AA_Backend.Controllers
                         Year = car.Year,
                         fuel_type = car.FuelType,
                         ccm = car.Cc,
-                        hp = car.Horsepower
+                        hp = car.Horsepower,
+                        Pathname = car.Pictues.FirstOrDefault(x => x.CarId == car.Id).FilePath
                     }).Skip((page - 1) * pagesize).Take(pagesize).ToList();
 
                     return Ok(response);
@@ -207,7 +208,8 @@ namespace AA_Backend.Controllers
                         Year = car.Year,
                         fuel_type = car.FuelType,
                         ccm = car.Cc,
-                        hp = car.Horsepower
+                        hp = car.Horsepower,
+                        Pathname = car.Pictues.FirstOrDefault(x => x.CarId == car.Id).FilePath
                     }).ToList();
 
                     return Ok(response.Count());
