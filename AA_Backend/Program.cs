@@ -67,8 +67,6 @@ namespace AA_Backend
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
-            var app = builder.Build();
             var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
             builder.Services.AddCors(options =>
             {
@@ -78,6 +76,9 @@ namespace AA_Backend
                     policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
                 });
             });
+            var app = builder.Build();
+            //works
+
 
            
             
