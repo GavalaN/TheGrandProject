@@ -32,7 +32,8 @@ namespace AA_Backend.Controllers
                         ccm = k.Cc,
                         hp = k.Horsepower,
                         fuel_type = k.FuelType,
-                        Year = k.Year
+                        Year = k.Year,
+                        picId = k.Pictues.FirstOrDefault(x=>x.CarId==k.Id).Id
 
 
                     }).ToList();

@@ -13,6 +13,6 @@
         public string fuel_type { get; set; } = null!;
         public int ccm { get; set; }
         public int hp { get; set; }
-
-    }
+        public int? picId { get; set; }
+     }
 }
