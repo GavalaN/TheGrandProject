@@ -4,7 +4,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Select, { useStateManager } from 'react-select';
 import TomSelect from 'tom-select';
 import './NewAdForm.css';
-import './Search.css'
+import '../Pages/Search.css'
 import logo from '../Images/logo.png'
 import Cookies from 'js-cookie';
 import InformationModal from './InformationModal';
@@ -512,7 +512,7 @@ export default function NewAdForm() {
           <hr/>
           <div className="form-group col-3">
             <label htmlFor="brand">Márka</label>
-            <select id="brand" name="brand" className="form-select" data-placeholder="Válassz!" autoComplete="off" onChange={handleBrandChange}/>
+            <select id="brand" name="brand" className="form-select tomselect-notloaded" data-placeholder="Válassz!" autoComplete="off" onChange={handleBrandChange}/>
           </div>
           <div className="form-group col-3">
             <label htmlFor="type_name">Típus</label>
@@ -570,7 +570,7 @@ export default function NewAdForm() {
           </div>
           <div className="form-group col-3">
             <label htmlFor='color'>Szín</label><br/>
-            <select id="color" name="color" className="form-select" data-placeholder="Válassz!" autoComplete="off" onChange={handleColorChange}/>
+            <select id="color" name="color" className="form-select tomselect-notloaded" data-placeholder="Válassz!" autoComplete="off" onChange={handleColorChange}/>
           </div>
           <div className="form-group col-3">
             <label htmlFor="odometer">Kilométeróra állása</label>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './Search.css';
+import '../Pages/Search.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import TomSelect from 'tom-select';
@@ -634,7 +634,7 @@ const HomeSearch = React.memo(() => {
                 <div className="row d-flex justify-content-between">
                     <div className="col-auto brand-slct">
                         <label htmlFor="brand">Márka</label><br/>
-                        <select id="brand" name="brand" className="form-select" data-placeholder="Mindegy" autoComplete="off" onChange={handleBrandChange}>
+                        <select id="brand" name="brand" className="form-select tomselect-notloaded" data-placeholder="Mindegy" autoComplete="off" onChange={handleBrandChange}>
                             {/* <option value="0">Összes</option>
                             <option value="BMW">BMW</option>
                             {brands.map((brand) => (

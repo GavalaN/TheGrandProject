@@ -1,0 +1,262 @@
+.form-group {
+  margin-bottom: 1rem;
+}
+
+#newad-form .form-control, #newad-form .form-select {
+  width: 100%;
+  font-size: larger !important;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+h1 {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #ffffff !important;
+}
+
+#newad-form, #uploadphoto-form {
+  width: 60rem !important;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 3rem;
+  background-color: #DEDFE1;
+  border: 2px solid black;
+  padding: 2rem;
+  box-shadow: -30px 30px 50px -12px rgba(0,0,0,0.75);
+  font-family: "Kanit", serif !important;
+}
+
+#newad-form button{
+  background-color: #0096D6 !important;
+    color: white;
+    border: none;
+    border-bottom: 0.2rem solid #005d88;
+    border-radius: 0.8rem;
+    font-size: larger;
+    height: 2.5rem;
+    min-width: 15rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1rem;
+    transition: 0.3s;
+}
+
+#newad-form button:hover{
+  margin-top: -0.3rem;
+  height: 2.8rem;
+  border-bottom: 0.4rem solid #005d88;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
+  transition: 0.3s;
+}
+
+#newad-form input, #newad-form select{
+  height: 2.5rem !important;
+}
+
+#newad-form input, #newad-form select, #newad-form textarea{
+  border: 2px solid black !important;
+  border-radius: 0.2rem !important;
+}
+
+#newad-form #brand{
+  padding: 0;
+  border: 2px solid black;
+}
+
+#newad-form .ts-wrapper{
+  width: 100% !important;
+}
+
+#newad-form .ts-wrapper, #newad-form .ts-control{
+  height: 2.5rem !important;
+  background-color: none !important;
+}
+
+#newad-form #brand-ts-control, #newad-form #type-ts-control, #newad-form #color-ts-control{
+  margin-top: -0.5rem !important;
+  border: none !important;
+}
+
+#newad-form .ts-control .item {
+  padding: 0 !important;
+  font-size: larger !important;
+  margin-top: -0.1rem !important;
+}
+
+#newad-form h4 {
+  text-align: left;
+}
+
+hr {
+  border: none;
+  height: 2px;
+  color: black !important;
+  background-color: black !important;
+}
+
+#newad-form .input-group {
+  height: 2.5rem !important;
+  width: 100% !important;
+  font-size: larger;
+}
+
+#newad-form .input-group input{
+  border: none !important;
+  border-right: 2px solid black !important;
+  height: 2.25rem !important;
+  border-radius: 0.2rem 0 0 0.2rem !important;
+  text-align: right !important;
+  width: 80%;
+}
+
+#newad-form .input-group-append {
+  margin-left: 0.2rem !important;
+  margin-right: 0.2rem;
+  font-weight: bold;
+  font-size: large;
+  margin: auto !important;
+}
+
+#uploadphoto-form img {
+  margin: 1rem;
+}
+
+#uploadphoto-form .upload-image-dropzone {
+  height: 15rem;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+#uploadphoto-form .upload-image-dropzone .upload-image-dropzone-text{
+  border: 1px solid black;
+  border-radius: 0.2rem;
+  margin: 1rem 0;
+  height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#uploadphoto-form .upload-image-dropzone:hover {
+  cursor: pointer;
+}
+
+#uploadphoto-form .btn{
+  background-color: #0096D6;
+  color: white;
+  border: none;
+  border-bottom: 0.2rem solid #005d88;
+  border-radius: 0.8rem;
+  font-size: larger;
+  height: 2.5rem;
+  padding-top: 0.25rem !important;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  margin-top: -5.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0 10px;
+  transition: 0.3s;
+}
+
+#uploadphoto-form .btn:hover {
+  margin-top: -5.2rem;
+  margin-bottom: 0.5rem;
+  height: 2.8rem;
+  color: white;
+  background-color: #0096D6;
+  border-bottom: 0.4rem solid #005d88;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
+  transition: 0.3s;
+  cursor: pointer !important;
+}
+
+#uploadphoto-form .btn.btn-danger{
+  background-color: #ff0000;
+  border-color: #bb0000;
+}
+/* 
+#uploadphoto-form .image-item {
+  border: #005d88 1px solid;
+} */
+
+#uploadphoto-form .image-item img {
+  width: fit-content;
+  height: 8rem;
+  margin: 0.5rem;
+  max-height: 8rem;
+}
+
+#uploadphoto-form .btn.lower {
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+#uploadphoto-form .btn.lower:hover {
+  margin-top: 0.7rem;
+}
+
+@media (max-width: 568px) {
+  #newad-form .input-group input {
+    width: 80% !important;
+  }
+}
+
+@media (max-width: 660px) {
+  #newad-form, #uploadphoto-form {
+    width: 100% !important;
+  }
+
+  #uploadphoto-form .col-4 {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 860px) {
+  #newad-form .col-3 {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 990px) {
+  #newad-form, #uploadphoto-form {
+    max-width: 90% !important;
+  }
+
+  #uploadphoto-form .col-4 {
+    width: 50%;
+  }
+    
+}
+
+@media (max-width: 1200px) {
+  #newad-form {
+    width: 90%;
+  }
+
+  #newad-form .input-group input {
+    width: 90%;
+  }
+
+  #newad-form .col-3{
+    width: 50%;
+  }
+}

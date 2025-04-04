@@ -712,7 +712,7 @@ export default function SearchList() {
                     <button id='side-search-closing' className='btn ms-auto' onClick={handleClick}><i className="bi bi-x-square"></i></button>
                     <div className='col-12'>
                         <label htmlFor='manufacturer'>Márka</label><br/>
-                        <select id="brand" name="brand" className="form-select" data-placeholder="Mindegy" autoComplete="off" onChange={handleBrandChange}/>
+                        <select id="brand" name="brand" className="form-select tomselect-notloaded" data-placeholder="Mindegy" autoComplete="off" onChange={handleBrandChange}/>
                     </div>
                     <div className="col-12">
                         <label htmlFor='type'>Típus</label><br/>
@@ -810,7 +810,7 @@ export default function SearchList() {
                         </div>
                         <div className="col-12">
                             <label htmlFor='color'>Szín</label><br/>
-                            <select id="color" name="color" className="form-select" data-placeholder="Összes" autoComplete="off" onChange={handleColorChange}/>
+                            <select id="color" name="color" className="form-select tomselect-notloaded" data-placeholder="Összes" autoComplete="off" onChange={handleColorChange}/>
                         </div>
                         <div className="col-12">
                             <label htmlFor='ccm_from'>Hengerűrtartalom</label><br/>
@@ -847,7 +847,7 @@ export default function SearchList() {
                             </div>
                         </div>
                         <div className="col-6">
-                            <label htmlFor='number_of_cylinder'>Hengerek száma</label><br/>
+                            <label htmlFor='number_of_cylinder'>Hengerek<br/>száma</label><br/>
                             <select id='number_of_cylinder' className='form-select'>
                                 <option value='0'>Összes</option>
                                 <option value='1'>1 db</option>
@@ -864,7 +864,7 @@ export default function SearchList() {
                             </select>
                         </div>
                         <div className="col-6">
-                            <label htmlFor='motor_type'>Motor elrendezés</label><br/>
+                            <label htmlFor='motor_type'>Motor<br/>elrendezés</label><br/>
                             <select id='motor_type' className='form-select f-s-m' onChange={handleEngineChange}>
                                 <option value='0'>Összes</option>
                                 <option value="Soros">Soros</option>
