@@ -79,7 +79,7 @@ namespace AA_Backend
                 });
             });
 
-            app.Urls.Add("http://0.0.0.0:5149&quot;");
+           
             
 
             app.UseCors(MyAllowSpecificOrigins);
