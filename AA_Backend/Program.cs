@@ -58,7 +58,7 @@ namespace AA_Backend
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-             builder.Services.AddCors(c => { c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()); });
+             
             // Add services to the container.
             builder.Services.AddScoped<FtpService>();
            
@@ -69,7 +69,20 @@ namespace AA_Backend
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
-            app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(MyAllowSpecificOrigins,
+                policy =>
+                {
+                    policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                });
+            });
+
+            app.Urls.Add("http://0.0.0.0:5149&quot;");
+            
+
+            app.UseCors(MyAllowSpecificOrigins);
             app.UseCors("AllowAll");
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

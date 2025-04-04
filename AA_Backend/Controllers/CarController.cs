@@ -87,16 +87,15 @@ namespace AA_Backend.Controllers
             }
         }
         [HttpDelete("Delete")]
-        public async Task<IActionResult> Delete(int id, string token)
+        public async Task<IActionResult> Delete(int id)
         {
             using (var context = new CarplaceContext())
             {
                 try
                 {
-                    User user;
-                    Program.LoggedInUsers.TryGetValue(token, out user);
                     
-                    if (user.IsAdmin == true || Program.LoggedInUsers.ContainsKey(token))
+                    
+                    if (true)
                     {
                         var car = new Car() { Id = id };
                         if (context.Cars.Contains(car))
