@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from 'react'
-import './CarCard.css'
-import logo from '../Images/logo.png'
-import 'react-tooltip/dist/react-tooltip.css'
-import { Tooltip } from 'react-tooltip'
-import { Link, useNavigate, useParams } from 'react-router-dom'
-import { faHorseHead, faGasPump, faCalendarWeek, faRoad, faChargingStation, faGaugeHigh } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import axios from 'axios'
-import InformationModal from './InformationModal'
-import ConfirmModal from './ConfirmModal'
-import Cookies from 'js-cookie';
-import { BeatLoader } from 'react-spinners'
+import { useEffect, useState } from "react"
+import "./CarCard.css"
+import logo from "../Images/logo.png"
+import "react-tooltip/dist/react-tooltip.css"
+import { Tooltip } from "react-tooltip"
+import { Link, useNavigate, useParams } from "react-router-dom"
+import { faHorseHead, faGasPump, faCalendarWeek, faRoad, faChargingStation, faGaugeHigh } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import axios from "axios"
+import InformationModal from "./InformationModal"
+import ConfirmModal from "./ConfirmModal"
+import Cookies from "js-cookie"
+import { BeatLoader } from "react-spinners"
 
 export default function CarCard(props) {
   const base_url = process.env.REACT_APP_BASE_URL
   const navigate = useNavigate()
-  const [user, setUser] = useState(Cookies.get("user") === undefined? undefined : JSON.parse(Cookies.get("user")))
-  const [imageFileName, setImageFileName] = useState(props.pathname);
-  const [image, setImage] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const params = useParams();
+  const [user, setUser] = useState(Cookies.get("user") === undefined ? undefined : JSON.parse(Cookies.get("user")))
+  const [imageFileName, setImageFileName] = useState(props.pathname)
+  const [image, setImage] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const params = useParams()
 
   // State for information modal
   const [modalInfo, setModalInfo] = useState({
@@ -64,7 +64,7 @@ export default function CarCard(props) {
   // Handler for the delete action
   const handleDeleteCar = () => {
     axios
-      .get(base_url + "/Car/Delete?id="+props.id+"&token=" + user.token)
+      .get(base_url + "/Car/Delete?id=" + props.id + "&token=" + user.token)
       .then((response) => {
         setModalInfo({
           show: true,
@@ -89,32 +89,71 @@ export default function CarCard(props) {
   }
 
   useEffect(() => {
-    setIsLoading(true);
-    const fetchImages = async () => {
-        try {
-            if (imageFileName != null) {
-              const response = await axios.get(base_url+`/Picture/download/${imageFileName}`, { responseType: 'blob' });
-              setImage(URL.createObjectURL(response.data));
-            }
-            setIsLoading(false);
-        } catch (error) {
-            console.error('Error fetching images:', error);
-            setIsLoading(false);
-        }
-    };
+    // Reset image state immediately when props change
+    setImage(null)
+    setIsLoading(true)
 
-    fetchImages();
-}, [params]);
+    // Create a flag to handle component unmounting
+    let isMounted = true
+
+    const fetchImages = async () => {
+      try {
+        if (props.pathname) {
+          // Create a unique URL with a timestamp to prevent caching
+          const imageUrl = `${base_url}/Picture/download/${props.pathname}?t=${new Date().getTime()}`
+          const response = await axios.get(imageUrl, { responseType: "blob" })
+
+          // Only update state if component is still mounted
+          if (isMounted) {
+            // Revoke any previous object URL before creating a new one
+            if (image) {
+              URL.revokeObjectURL(image)
+            }
+            const newImageUrl = URL.createObjectURL(response.data)
+            setImage(newImageUrl)
+            setIsLoading(false)
+          }
+        } else {
+          if (isMounted) {
+            setIsLoading(false)
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching images:", error)
+        if (isMounted) {
+          setIsLoading(false)
+        }
+      }
+    }
+
+    // Only fetch if we have a pathname
+    if (props.pathname) {
+      fetchImages()
+    } else {
+      setIsLoading(false)
+    }
+
+    // Cleanup function
+    return () => {
+      isMounted = false
+      if (image) {
+        URL.revokeObjectURL(image)
+      }
+    }
+  }, [props.id, props.pathname])
 
   return (
     <div className="car-card">
       <div className="car-card-img col-4">
-        { isLoading ? <div className="">
-                                <BeatLoader color="#0096D6" size={15} />
-                            </div> :
-        <Link to={`/hirdetes/${props.id}`}>
-          <img src={image || logo} alt={props.brand + " " + props.type_name} />
-        </Link>}
+        {isLoading ? (
+          <div className="">
+            <BeatLoader color="#0096D6" size={15} />
+          </div>
+        ) : (
+          <Link to={`/hirdetes/${props.id}`}>
+            <img src={image || logo} alt={props.brand + " " + props.type_name} />
+          </Link>
+        )}
       </div>
       <div className={`car-card-text ${props.is_owner ? "col-6" : "col-8"}`}>
         <div className="title d-flex justify-content-between">
@@ -194,3 +233,4 @@ export default function CarCard(props) {
     </div>
   )
 }
+

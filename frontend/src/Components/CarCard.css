@@ -39,8 +39,7 @@
   width: 35rem;
 }
 
-.car-card-text h3,
-.car-card-detailed h3 {
+.car-card-text h3, .car-card-detailed h3 {
   font-size: x-large !important;
   font-weight: 600 !important;
   color: #0096d6;
@@ -230,8 +229,7 @@
   width: 10rem;
 }
 
-.car-card-detailed .btn,
-#owner-things .btn {
+.car-card-detailed .btn, #owner-things .btn {
   background-color: #0096d6;
   color: white;
   border: none;
@@ -249,8 +247,7 @@
   transition: 0.3s;
 }
 
-.car-card-detailed .btn:hover,
-#owner-things .btn:hover {
+.car-card-detailed .btn:hover, #owner-things .btn:hover {
   margin-top: -0.3rem;
   margin-bottom: 0.5rem;
   height: 2.8rem;
@@ -304,13 +301,7 @@
     width: 100%;
     font-size: larger;
   }
-  .car-card .col-8,
-  .car-card .col-6,
-  .car-card .col-4,
-  .car-card-detailed .col-8,
-  .car-card-detailed .col-6,
-  .car-card-detailed .col-4,
-  #owner-things.col-2 {
+  .car-card .col-8, .car-card .col-6, .car-card .col-4, .car-card-detailed .col-8, .car-card-detailed .col-6, .car-card-detailed .col-4, #owner-things.col-2 {
     width: 100% !important;
   }
   .car-card-detailed .car-card-text {

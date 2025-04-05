@@ -17,6 +17,7 @@ function yearRange(){
   }
   return years.reverse();
 }
+
 // "id": 0,
 // "brandId": 0,
 // "typeId": 0,
@@ -40,13 +41,12 @@ function yearRange(){
 // "kWeightMin": 0,
 // "kWeightMax": 0
 
-
 export default function SearchList() {
   const base_url = process.env.REACT_APP_BASE_URL;
   const params = useParams();
   const [cars, setCars] = useState([])
   const [dataCount, setDataCount] = useState(0)
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(5);
   const [page, setPage] = useState(params.page === undefined? 1 : params.page)
   const navigate = useNavigate();
   const location = useLocation();
