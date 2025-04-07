@@ -37,7 +37,7 @@ namespace AA_Backend.Controllers
                             hp = k.Horsepower,
                             fuel_type = k.FuelType,
                             Year = k.Year,
-                            Pathname = k.Pictues.FirstOrDefault().FilePath
+                            Pathname = k.Pictues.FirstOrDefault(x => x.CarId == k.Id).FilePath
 
                         }).ToList();
 
