@@ -22,24 +22,25 @@ namespace AA_Backend.Services
             using var client = new FtpClient(_host, _username, _password);
 
             client.Connect();
-            client.UploadStream(fileStream, $"{remoteFileName}");
+            client.UploadStream(fileStream, $"{_remoteDirectory}/{remoteFileName}");
         }
 
         public Stream DownloadImageAsync(string remoteFileName)
         {
             using var client = new FtpClient(_host, _username, _password);
             client.Connect();
-            return client.OpenRead($"{remoteFileName}");
+            return client.OpenRead($"{_remoteDirectory}/{remoteFileName}");
         }
+     
 
         public bool DeleteFileAsync(string remoteFileName)
         {
-            using var client = new AsyncFtpClient(_host, _username, _password);
+            using var client = new FtpClient(_host, _username, _password);
             try
             {
                  client.Connect();
 
-                string fullPath = $"{remoteFileName}";
+                string fullPath = $"{_remoteDirectory}/{remoteFileName}";
 
                 
 
