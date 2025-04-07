@@ -154,6 +154,13 @@
               "type": "integer",
               "format": "int32"
             }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {

@@ -21,8 +21,8 @@ namespace AA_Backend.Services
         {
             using var client = new FtpClient(_host, _username, _password);
 
-           client.Connect();
-           client.UploadStream(fileStream, $"{_remoteDirectory}/{remoteFileName}");
+            client.Connect();
+            client.UploadStream(fileStream, $"{_remoteDirectory}/{remoteFileName}");
         }
 
         public Stream DownloadImageAsync(string remoteFileName)
@@ -31,5 +31,34 @@ namespace AA_Backend.Services
             client.Connect();
             return client.OpenRead($"{_remoteDirectory}/{remoteFileName}");
         }
+
+        public bool DeleteFileAsync(string remoteFileName)
+        {
+            using var client = new AsyncFtpClient(_host, _username, _password);
+            try
+            {
+                 client.Connect();
+
+                string fullPath = $"{_remoteDirectory}/{remoteFileName}";
+
+                
+
+                // Delete the file
+                client.DeleteFile(fullPath);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Log error (consider injecting ILogger<FtpService>)
+                Console.WriteLine($"FTP deletion failed: {ex.Message}");
+                return false;
+            }
+            finally
+            {
+                if (client.IsConnected)
+                     client.Disconnect();
+            }
+        }
+
     }
 }

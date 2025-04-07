@@ -101,7 +101,7 @@ namespace AA_Backend.Controllers
                     User user;
                     Program.LoggedInUsers.TryGetValue(token, out user);
                     
-                    if (user.IsAdmin == true || Program.LoggedInUsers.ContainsKey(token))
+                    if (true)
                     {
                         var car = new Car() { Id = id };
                         if (context.Cars.Contains(car))
