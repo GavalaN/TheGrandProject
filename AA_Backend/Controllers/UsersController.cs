@@ -36,7 +36,9 @@ namespace AA_Backend.Controllers
                             ccm = k.Cc,
                             hp = k.Horsepower,
                             fuel_type = k.FuelType,
-                            Year = k.Year
+                            Year = k.Year,
+                            Pathname = k.Pictues.FirstOrDefault().FilePath
+
                         }).ToList();
 
                     if (listings.Any())
