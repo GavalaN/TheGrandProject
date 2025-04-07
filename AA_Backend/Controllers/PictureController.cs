@@ -120,7 +120,7 @@ namespace AA_Backend.Controllers
         {
             using (var context = new CarplaceContext())
             {
-
+                 
 
                 if (file == null || file.Length == 0)
                     return BadRequest("Nem adott meg fájlt");
