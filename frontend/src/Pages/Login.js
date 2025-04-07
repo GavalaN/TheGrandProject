@@ -45,22 +45,22 @@ export default function Login() {
     const password = document.getElementById("password").value
 
     try {
-      // Salt lekérése a szervertől
+      // Get salt from the server
       const saltResponse = await axios.post(base_url + "/Login/GetSalt/" + username)
       const salt = saltResponse.data
       console.log("Salt:", salt)
 
-      // Jelszó hash-elése
+      // Hash the password with the salt
       const hashedPassword = await bcrypt.hash(password, salt)
       console.log("Hashed Password:", hashedPassword)
 
-      // Login adatok összeállítása
+      // Login object
       const login = {
         loginName: username,
         tmpHash: hashedPassword,
       }
 
-      // Login kérés küldése
+      // Login request
       const loginResponse = await axios.post(base_url + "/Login", login)
       console.log("Login Response:", loginResponse.data)
 
@@ -69,7 +69,6 @@ export default function Login() {
       Cookies.set("user", JSON.stringify(loginResponse.data), { expires: date })
       console.log(JSON.parse(Cookies.get("user")))
 
-      // Show the modal first, don't navigate immediately
       setModalInfo({
         show: true,
         title: "",
@@ -77,8 +76,6 @@ export default function Login() {
         theme: "information",
       })
 
-      // IMPORTANT: Don't navigate here at all
-      // We'll only navigate when the user clicks the button in the modal
     } catch (error) {
       console.error("Hiba történt:", error)
       setModalInfo({
@@ -90,6 +87,7 @@ export default function Login() {
     }
   }
 
+  // Function to toggle password visibility
   function ShowPassword() {
     setIsPasswordVisible(!isPasswordVisible);
   }

@@ -7,6 +7,7 @@ export default function TermsAndConditions() {
   const location = useLocation();
   const [isModalOpen, setIsModalOpen] = useState(true);
 
+  // Scroll to top on page load
   useEffect(() => {
     if (!isModalOpen) {
       window.scrollTo({ top: 0, behavior: 'smooth' });

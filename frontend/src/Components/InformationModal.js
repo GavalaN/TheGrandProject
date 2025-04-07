@@ -9,6 +9,7 @@ export default function InformationModal({ title, text, theme, show, onClose }) 
     let modalIcon = faTriangleExclamation
     let modalBgColor = "#0096D6"
   
+    // Set the icon and background color based on the theme
     switch (theme) {
       case "information":
         modalIcon = faCircleInfo

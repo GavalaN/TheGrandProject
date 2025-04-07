@@ -35,7 +35,6 @@ function App() {
       <Routes>
         <Route path='/' element={<HomePage/>}/>
         <Route path='/search/:page' element={<SearchList/>}/>
-        {/* legyen POST (login), PUT (profil), GETID (/adat/:id) */}
         <Route path='/login' element={<Login/>}/>
         <Route path='/regisztracio' element={<Registration/>}/>
         <Route path='/aktivalas/:username/:email' element={<Activated/>}/>
@@ -52,7 +51,7 @@ function App() {
         <Route path='kapcsolat' element={<Contact/>}/>
         <Route path='/hirdetes/:id' element={<CarCardDetailed/>}/>
         <Route path='/profil' element={<Profile/>}/>
-        {/* <Route path='*' element={<HomePage/>}/> */}
+        <Route path='*' element={<HomePage/>}/>
       </Routes>
       <SiteCookies/>
       <Footer/>

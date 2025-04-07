@@ -46,7 +46,7 @@ export default function HomePage() {
         theme: "information",
     })
 
-
+    // Function to set input filter
     function setInputFilter(textbox, inputFilter, errMsg) {
         ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop", "focusout"].forEach(function(event) {
           textbox.addEventListener(event, function(e) {
@@ -75,33 +75,33 @@ export default function HomePage() {
       }
       
       
-    // Install input filters.
+    // Function to handle input change and set filters
     const handleInputChange = () => {
-        //Ár ellenörzés
+        //Check price
         setInputFilter(document.getElementById("price_from"), function(value) {
             return /^\d*$/.test(value); }, "Ide csak egész számot adhatsz meg!");
         setInputFilter(document.getElementById("price_to"), function(value) {
             return /^\d*$/.test(value); }, "Ide csak egész számot adhatsz meg!");
 
-        //Km ellenörzés
+        //Check odometer
         setInputFilter(document.getElementById("odometer_from"), function(value) {
             return /^\d*$/.test(value); }, "Ide csak egész számot adhatsz meg!");
         setInputFilter(document.getElementById("odometer_to"), function(value) {
             return /^\d*$/.test(value); }, "Ide csak egész számot adhatsz meg!");
 
-        //Ccm ellenörzés
+        //Check ccm
         setInputFilter(document.getElementById("ccm_from"), function(value) {
             return /^\d*$/.test(value); }, "Ide csak egész számot adhatsz meg!");
         setInputFilter(document.getElementById("ccm_to"), function(value) {
             return /^\d*$/.test(value); }, "Ide csak egész számot adhatsz meg!");
 
-        //LE ellenörzés
+        //Check horsepower
         setInputFilter(document.getElementById("horsepower_from"), function(value) {
             return /^\d*$/.test(value); }, "Ide csak egész számot adhatsz meg!");
         setInputFilter(document.getElementById("horsepower_to"), function(value) {
             return /^\d*$/.test(value); }, "Ide csak egész számot adhatsz meg!");
         
-        //Kg ellenörzés
+        //Check kerb weight
         setInputFilter(document.getElementById("kerb_wheight_from"), function(value) {
             return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 3500); }, "0kg és 3500Kg között adhatsz meg értéket!");
         setInputFilter(document.getElementById("kerb_wheight_to"), function(value) {
@@ -109,139 +109,164 @@ export default function HomePage() {
     
     }
     
+    //TomSelect init
     useEffect(() => {
+
+        // Initialize TomSelect for body type select
         const body_typeSelect = new TomSelect("#body_type", {
           create: false,
           controlInput: null,
           maxOptions: false,
           plugins: ["no_backspace_delete"],
           render: {
-              no_results: function(){
-                  return '<div class="no-results">Nincs találat</div>';
-              }
+            no_results: function(){
+                return '<div class="no-results">Nincs találat</div>';
+            }
           }
           
         })
     
+        // Set the value of the body type select based on the gigaSearch object
         if (gigaSearch !== undefined && gigaSearch.bodyType !== null) {
           body_typeSelect.setValue(gigaSearch.bodyType)
         } else {
           body_typeSelect.setValue("0")
         }
     
+        // Initialize TomSelect for fuel select
         const fuelSelect = new TomSelect("#fuel", {
           create: false,
           controlInput: null,
           maxOptions: false,
           plugins: ["no_backspace_delete"],
           render: {
-              no_results: function(){
-                  return '<div class="no-results">Nincs találat</div>';
-              }
+            no_results: function(){
+                return '<div class="no-results">Nincs találat</div>';
+            }
           }
         })
+
+        // Set the value of the fuel select based on the gigaSearch object
         if (gigaSearch !== undefined && gigaSearch.fuelType !== null) {
           fuelSelect.setValue(gigaSearch.fuelType)
         } else {
           fuelSelect.setValue("0")
         }
     
+        // Initialize TomSelect for year from and to selects
         const year_fromSelect = new TomSelect("#year_from", {
           create: false,
           controlInput: null,
           maxOptions: false,
           plugins: ["no_backspace_delete"],
           render: {
-              no_results: function(){
-                  return '<div class="no-results">Nincs találat</div>';
-              }
+            no_results: function(){
+                return '<div class="no-results">Nincs találat</div>';
+            }
           }
         })
+
+        // Set the value of the year from select based on the gigaSearch object
         if (gigaSearch !== undefined && gigaSearch.yearMin !== null) {
           year_fromSelect.setValue(gigaSearch.yearMin)
         } else {
           year_fromSelect.setValue("0")
         }
     
+        // Initialize TomSelect for year to select
         const year_toSelect = new TomSelect("#year_to", {
           create: false,
           controlInput: null,
           maxOptions: false,
           plugins: ["no_backspace_delete"],
           render: {
-              no_results: function(){
-                  return '<div class="no-results">Nincs találat</div>';
-              }
+            no_results: function(){
+                return '<div class="no-results">Nincs találat</div>';
+            }
           }
         })
+
+        // Set the value of the year to select based on the gigaSearch object
         if (gigaSearch !== undefined && gigaSearch.yearMax !== null) {
           year_toSelect.setValue(gigaSearch.yearMax)
         } else {
           year_toSelect.setValue("0")
         }
     
+        // Initialize TomSelect for number of cylinder select
         const number_of_cylinderSelect = new TomSelect("#number_of_cylinder", {
           create: false,
           controlInput: null,
           maxOptions: false,
           plugins: ["no_backspace_delete"],
           render: {
-              no_results: function(){
-                  return '<div class="no-results">Nincs találat</div>';
-              }
+            no_results: function(){
+                return '<div class="no-results">Nincs találat</div>';
+            }
           }
         })
+
+        // Set the value of the number of cylinder select based on the gigaSearch object
         if (gigaSearch !== undefined && gigaSearch.numOfCyl !== null) {
           number_of_cylinderSelect.setValue(gigaSearch.numOfCyl)
         } else {
           number_of_cylinderSelect.setValue("0")
         }
     
+        // Initialize TomSelect for motor type select
         const motor_typeSelect = new TomSelect("#motor_type", {
           create: false,
           controlInput: null,
           maxOptions: false,
           plugins: ["no_backspace_delete"],
           render: {
-              no_results: function(){
-                  return '<div class="no-results">Nincs találat</div>';
-              }
+            no_results: function(){
+                return '<div class="no-results">Nincs találat</div>';
+            }
           }
         })
+
+        // Set the value of the motor type select based on the gigaSearch object
         if (gigaSearch !== undefined && gigaSearch.engineType !== null) {
           motor_typeSelect.setValue(gigaSearch.engineType)
         } else {
           motor_typeSelect.setValue("0")
         }
     
+        // Initialize TomSelect for drive train select
         const drive_trainSelect = new TomSelect("#drive_train", {
           create: false,
           controlInput: null,
           maxOptions: false,
           plugins: ["no_backspace_delete"],
           render: {
-              no_results: function(){
-                  return '<div class="no-results">Nincs találat</div>';
-              }
+            no_results: function(){
+                return '<div class="no-results">Nincs találat</div>';
+            }
           }
         })
+
+        // Set the value of the drive train select based on the gigaSearch object
         if (gigaSearch !== undefined && gigaSearch.drive !== null) {
           drive_trainSelect.setValue(gigaSearch.drive)
         } else {
           drive_trainSelect.setValue("0")
         }
     
+        // Initialize TomSelect for gearbox select
         const gearboxSelect = new TomSelect("#gearbox", {
           create: false,
           controlInput: null,
           maxOptions: false,
           plugins: ["no_backspace_delete"],
           render: {
-              no_results: function(){
-                  return '<div class="no-results">Nincs találat</div>';
-              }
+            no_results: function(){
+                return '<div class="no-results">Nincs találat</div>';
+            }
           }
         })
+
+        // Set the value of the gearbox select based on the gigaSearch object
         if (gigaSearch !== undefined && gigaSearch.transType !== null) {
           gearboxSelect.setValue(gigaSearch.transType)
         } else {
@@ -336,6 +361,7 @@ export default function HomePage() {
         }
     }, [brands])
 
+    //Brand select init
     useEffect(() => {
         if(brandSelection.length > 0){
             new TomSelect("#brand",{
@@ -358,7 +384,7 @@ export default function HomePage() {
 
     useEffect(() => {
         if (selectedBrand === "" || selectedBrand === undefined) {
-            setSelectedType(undefined); // Alapértelmezett érték beállítása
+            setSelectedType(undefined); // Reset selectedType when selectedBrand is empty or undefined
             document.getElementById("type").setAttribute("disabled","")
         }
         else{
@@ -401,6 +427,7 @@ export default function HomePage() {
         }
     }, [types])
 
+    //Type select init
     useEffect(() => {
         const selectElement = document.querySelector("#type");
 
@@ -449,6 +476,7 @@ export default function HomePage() {
         }
     }, [colors])
 
+    //Color select init
     useEffect(() => {
         if(colorSelection.length > 0){
             new TomSelect("#color",{
@@ -542,6 +570,7 @@ export default function HomePage() {
         })
     }
 
+    // GigaSearch function
     function GigaSearch(e){
         e.preventDefault();
         let gigaSearch = {

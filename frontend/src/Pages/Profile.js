@@ -10,6 +10,7 @@ import { Button, Modal } from 'react-bootstrap'
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import InformationModal from '../Components/InformationModal'
+import ConfirmModal from '../Components/ConfirmModal'
 
 export default function Profile() {
     const base_url = process.env.REACT_APP_BASE_URL;
@@ -29,6 +30,22 @@ export default function Profile() {
         theme: "information",
       })
 
+    // State for confirm modal
+    const [confirmModal, setConfirmModal] = useState({
+        show: false,
+        title: "Megerősítés",
+        text: "Biztos meg szeretnéd változtatni a jelszavad?",
+        theme: "error",
+    })
+
+    // Handler to close the confirm modal
+    const closeConfirmModal = () => {
+        setConfirmModal({
+            ...confirmModal,
+            show: false,
+        })
+    }
+
     // Add a handler to close the modal
     const handleCloseModal = () => {
         setModalInfo({
@@ -36,7 +53,8 @@ export default function Profile() {
         show: false,
         })
     }
-
+ 
+    // Fetch ads if user is logged in
     useEffect(() => {
         if (userdata !== undefined) {
             axios.get(base_url+'/Users/GetUserListings?userid='+userdata.uId)
@@ -49,20 +67,53 @@ export default function Profile() {
         }
     }, [])
 
+    // Show ads for the user
     function ShowAds(e) {
         e.preventDefault();
-        setModalInfo({
-            show: true,
-            title: "",
-            text: "Nincs megjeleníthető hírdetés!",
-            theme: "information",
-        })
-        setIsSAActive((prevState) => !prevState);
-        handleOpen();
+        if (ads.length > 0) {
+            setIsSAActive((prevState) => !prevState);
+        }
+        else {
+            setModalInfo({
+                show: true,
+                title: "",
+                text: "Nincs megjeleníthető hírdetés!",
+                theme: "information",
+            })
+            handleOpen();
+        }
+    }
+    
+    // Handle reset password
+    async function handleResetPassword() {
+        try {
+            const loginResponse = await axios.post(base_url+'/Registry/ForgotPassword?email='+userdata.email);
+            console.log("Forgotted password:", loginResponse.data);
+            setModalInfo({
+              show: true,
+              title: "",
+              text: loginResponse.data,
+              theme: "information",
+            })
+            
+        } catch (error) {
+            console.error("Hiba történt:", error);
+            setModalInfo({
+              show: true,
+              title: "Hiba",
+              text: error.response?.data || error.message,
+              theme: "error",
+            })
+        }
     }
 
+    // Show reset password form
     function ShowResetPassword(e) {
         e.preventDefault();
+        setConfirmModal({
+            ...confirmModal,
+            show: true,
+        })
         setIsSRPActive((prevState) => !prevState);
     }
 
@@ -96,22 +147,27 @@ export default function Profile() {
                     
                 </div>
                 <div className={`col-auto ${isSRPActive ? "open" : "close"}`}>
-                        <NewPassword/>
-                    </div>
+                    <ConfirmModal
+                        show={confirmModal.show}
+                        title={confirmModal.title}
+                        text={confirmModal.text}
+                        onClose={closeConfirmModal}
+                        onAccept={handleResetPassword}
+                        onReject={() => setConfirmModal({ ...confirmModal, show: false })}
+                    />
+                </div>
                 <div className={`col-auto ${isSAActive ? "open" : "close"}`}>
                   {ads.length > 0? ads.map(car => {
                     return <CarCard id={car.id} brand={car.brand} type_name={car.type_name} fuel_type={car.fuel_type} year={car.year} ccm={car.ccm} horsepower={car.hp} odometer={car.kmClock} price={car.price} description={car.description}  pathname={car.pathname} is_owner={true}/>
-                  }) : 
-                    <InformationModal
-                        show={modalInfo.show}
-                        title={modalInfo.title}
-                        text={modalInfo.text}
-                        theme={modalInfo.theme}
-                        onClose={handleCloseModal}
-                    />
-                //   <h2 style={{color : "white"}}>Nincs megjeleníthető hírdetés</h2>
-                  }
+                  }) : ""}
                 </div>
+                <InformationModal
+                    show={modalInfo.show}
+                    title={modalInfo.title}
+                    text={modalInfo.text}
+                    theme={modalInfo.theme}
+                    onClose={handleCloseModal}
+                />
             </div>
             
           )

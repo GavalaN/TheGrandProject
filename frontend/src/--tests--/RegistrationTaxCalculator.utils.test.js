@@ -1,8 +1,4 @@
 import "@testing-library/jest-dom"
-
-// Extract the utility functions from RegistrationTaxCalculator.js for testing
-// Note: In a real-world scenario, these would ideally be in separate files
-
 /**
  * Calculates the Hungarian vehicle tax multiplier based on power and environmental class
  */

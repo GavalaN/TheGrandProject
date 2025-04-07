@@ -6,27 +6,6 @@ export default function Footer(isActive) {
   const [footerMargin, setFooterMargin] = useState(0);
   const location = useLocation();
 
-  // useEffect(() => {
-  //   const updateFooterMargin = () => {
-  //     const contentHeight = document.querySelector(".content").offsetHeight;
-  //     const footerHeight = document.getElementById("footer").scrollHeight;
-  //     const navHeight = document.getElementById("nav").scrollHeight;
-  //     const windowHeight = window.innerHeight;
-  //     setFooterMargin(windowHeight - contentHeight - navHeight + 2*footerHeight);
-  //     console.log(footerMargin)
-  //   };
-
-    // Frissíti a margót az oldal betöltődésekor
-    //updateFooterMargin();
-
-    // Eseményfigyelő az ablakméret változására
-    //window.addEventListener("resize", updateFooterMargin);
-
-    // Tisztítás az eseményfigyelő eltávolításához
-  //   return () => {
-  //     window.removeEventListener("resize", updateFooterMargin);
-  //   };
-  // }, [location.pathname, footerMargin, isActive]);
   return (
     <div id="footer" >
       <div id="upper" className="text-white">

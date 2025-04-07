@@ -1,5 +1,3 @@
-"use client"
-
 import { useEffect, useRef } from "react"
 import { useState } from "react"
 import ReactImageUploading from "react-images-uploading"
@@ -29,6 +27,7 @@ export default function NewAdPictures() {
   const [imageToUpdateIndex, setImageToUpdateIndex] = useState(-1) // Track which image is selected for update
   const [isLoading, setIsLoading] = useState(true) // Track if we're loading existing images
   const [isModify, setIsModify] = useState(false) // Track if we're in modify mode
+  const [isUploading, setIsUploading] = useState(true) // Track if we're uploading images
 
   // Create a ref for the hidden file input
   const fileInputRef = useRef(null)
@@ -48,7 +47,6 @@ export default function NewAdPictures() {
     }
 
     setIsLoading(true)
-    setIsModify(true)
 
     try {
       // Get the list of image filenames for this car
@@ -87,13 +85,15 @@ export default function NewAdPictures() {
         setImages(validImages)
       }
     } catch (error) {
-      console.error("Error fetching existing images:", error)
-      setModalInfo({
-        show: true,
-        title: "Hiba",
-        text: "Nem sikerült betölteni a meglévő képeket: " + ("nincs még feltöltve kép" || error.message),
-        theme: "error",
-      })
+      if (isModify == true) {
+        console.error("Error fetching existing images:", error)
+        setModalInfo({
+          show: true,
+          title: "Hiba",
+          text: "Nem sikerült betölteni a meglévő képeket: " + ("nincs még feltöltve kép" || error.message),
+          theme: "error",
+        })
+      }
     } finally {
       setIsLoading(false)
     }
@@ -336,6 +336,11 @@ export default function NewAdPictures() {
     if (user === undefined) {
       navigate("/login")
     }
+
+    if (isUploading === false) {
+      navigate("/profil")
+      Cookies.remove("carId")
+    }
   }
 
   useEffect(() => {
@@ -360,9 +365,9 @@ export default function NewAdPictures() {
       text: "Most elviszünk Borsodba.",
       theme: "information",
     })
-    Cookies.remove("carId")
-    navigate("/profil")
+    setIsUploading(false);
   }
+
 
   if (user !== undefined) {
     return (

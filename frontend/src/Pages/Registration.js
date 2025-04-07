@@ -40,13 +40,12 @@ export default function Registration() {
   }
 
   async function Reg(e) {
-    // Megakadályozzuk, hogy a form automatikusan elküldődjön
     e.preventDefault()
 
-    // Aszinkron módon hash-eljük a jelszót
+    // Validate form inputs
     try {
       const salt = await axios.get(base_url + "/Registry/GenerateSalt")
-      const hashedPassword = await bcrypt.hash(document.getElementById("password").value, salt.data) // Jelszó titkosítása aszinkron
+      const hashedPassword = await bcrypt.hash(document.getElementById("password").value, salt.data) // Hash the password with the salt
 
       const user = {
         id: 0,
@@ -62,6 +61,7 @@ export default function Registration() {
         resetPasswordTokenExpiry: null,
       }
 
+      // Post the user data to the server
       const response = await axios.post(base_url + "/Registry/Registry", user)
       console.log(response)
 
@@ -73,8 +73,7 @@ export default function Registration() {
         theme: "information",
       })
 
-      // Don't navigate here - we'll navigate after modal is closed
-      console.log(user) // Kiírja a felhasználói adatokat a konzolra
+      console.log(user)
     } catch (error) {
       console.log(error)
 
@@ -88,6 +87,7 @@ export default function Registration() {
     }
   }
 
+  // Function to toggle password visibility
   function ShowPassword() {
     setIsPasswordVisible(!isPasswordVisible);
   }

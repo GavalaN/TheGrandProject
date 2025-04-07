@@ -7,6 +7,7 @@ import './Modals.css';
 
 export default function ConfirmModal({ title, text, show, onClose, onAccept, onReject }) {
 
+    // State to manage the modal visibility
     const handleAccept = () => {
         if (onAccept) {
           onAccept()

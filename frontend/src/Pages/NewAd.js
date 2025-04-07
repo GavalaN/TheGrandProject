@@ -49,8 +49,14 @@ export default function NewAd() {
       show: false,
     })
 
+    // Check if the user is logged in
     if (user === undefined) {
       navigate("/login")
+    }
+
+    // Only navigate after closing if it was a success modal
+    if (modalInfo.theme === "information") {
+      navigate("/profil")
     }
   }
 
@@ -93,23 +99,23 @@ export default function NewAd() {
   }
   
   const handleInputChange = () => {
-      //Ár ellenörzés
+      //Check price
       setInputFilter(document.getElementById("price"), function(value) {
           return /^\d*$/.test(value); }, "Ide csak egész számot adhatsz meg!");
 
-      //Km ellenörzés
+      //Check odometer
       setInputFilter(document.getElementById("odometer"), function(value) {
           return /^\d*$/.test(value); }, "Ide csak egész számot adhatsz meg!");
 
-      //Ccm ellenörzés
+      //Check ccm
       setInputFilter(document.getElementById("ccm"), function(value) {
           return /^\d*$/.test(value); }, "Ide csak egész számot adhatsz meg!");
 
-      //LE ellenörzés
+      //Check horsepower
       setInputFilter(document.getElementById("horsepower"), function(value) {
           return /^\d*$/.test(value); }, "Ide csak egész számot adhatsz meg!");
       
-      //Kg ellenörzés
+      //Check kerb weight
       setInputFilter(document.getElementById("kerb_wheight"), function(value) {
           return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 3500); }, "0kg és 3500Kg között adhatsz meg értéket!");
   
@@ -263,6 +269,7 @@ export default function NewAd() {
       }
   }, [brands])
 
+  //Brand select init
   useEffect(() => {
       if(brandSelection.length > 0){
           const brandSelect = new TomSelect("#brand",{
@@ -313,7 +320,7 @@ export default function NewAd() {
           setTypes(allType)
           console.log(types)
       }
-      }, [selectedBrand])
+    }, [selectedBrand])
 
   useEffect(() => {
       if (types.length > 0) {
@@ -330,13 +337,14 @@ export default function NewAd() {
       console.log(typeSelection)
   }, [types])
 
+  //Type select init
   useEffect(() => {
       const selectElement = document.querySelector("#type");
 
       if (!selectElement) return;
 
       if (selectElement.tomselect) {
-          selectElement.tomselect.destroy(); // Korábbi példány törlése
+          selectElement.tomselect.destroy(); // TomSelect destroy
       }
 
       const typeSelect = new TomSelect(selectElement, {
@@ -353,7 +361,7 @@ export default function NewAd() {
       }
 
       return () => {
-          typeSelect.destroy();// Komponens unmountolásakor töröljük
+          typeSelect.destroy();// Destroy when the component unmounts
       };
   }, [typeSelection]);
 
@@ -378,6 +386,7 @@ export default function NewAd() {
       }
   }, [colors])
 
+  //Color select init
   useEffect(() => {
       if(colorSelection.length > 0){
           const colorSelect = new TomSelect("#color",{
@@ -395,6 +404,7 @@ export default function NewAd() {
       }
   }, [colorSelection])
   
+  //Fetch car data for modification
   useEffect(() => {
     if (isModify) {
       axios.get(base_url+'/Car/GetById?id='+params.id)
@@ -405,6 +415,7 @@ export default function NewAd() {
     }
   }, [isModify, params.id])
 
+  //POST
   function AdPOST(e){
     e.preventDefault();
 
@@ -441,15 +452,15 @@ export default function NewAd() {
     
     axios.post(base_url+'/Car/Add?token='+user.token, body)
     .then(response => {console.log(response); Cookies.set("carId", JSON.stringify(response.data.id)); setModalInfo({
-      show: true,
-      title: "",
-      text: response.data.description,
-      theme: "information",
-    }); setTimeout(() => {
-      navigate("/kepfeltoltes")
-    }, 1500)})
+        show: true,
+        title: "",
+        text: response.data.description,
+        theme: "information",
+      })
+    })
   }
 
+  //PUT
   function AdPUT(e){
     e.preventDefault();
 
@@ -486,13 +497,12 @@ export default function NewAd() {
     
     axios.put(base_url+'/Car/Put?token='+user.token, body)
     .then(response => {console.log(response); Cookies.set("carId", JSON.stringify(carModify.id)); setModalInfo({
-      show: true,
-      title: "",
-      text: response.data,
-      theme: "information",
-    }); setTimeout(() => {
-      navigate("/kepfeltoltes")
-    }, 1500)})
+        show: true,
+        title: "",
+        text: response.data,
+        theme: "information",
+      })
+    })
   }
 
   //HandleChanges

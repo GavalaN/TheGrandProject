@@ -266,6 +266,11 @@
   border-color: #bb0000;
 }
 
+#owner-things .btn.btn-warning {
+  background-color: #ff6600;
+  border-color: #ff4800;
+}
+
 .PhotoView-Portal {
   z-index: 9999 !important;
 }

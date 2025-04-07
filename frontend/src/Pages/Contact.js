@@ -10,6 +10,7 @@ export default function Contact() {
   const location = useLocation();
   const [isModalOpen, setIsModalOpen] = useState(true);
 
+  // Scroll to top on page load
   useEffect(() => {
     if (!isModalOpen) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -41,14 +42,6 @@ export default function Contact() {
         <p><a data-tooltip-id="contacts" data-tooltip-content="Telefonszám"><FontAwesomeIcon icon={faSquarePhone} style={{color: "#0096D6"}}/></a> +3620-1234567</p>
         <Tooltip id="contacts" />
       </div>
-
-      {/* Kapcsolati Űrlap
-
-      Név
-      E-mail cím
-      Üzenet mező
-      Opcionálisan: telefonszám, témakör kiválasztása
-      Küldés gomb */}
   </div>
   )
 }

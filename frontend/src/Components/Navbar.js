@@ -11,6 +11,7 @@ export default function Navbar() {
   const navigate = useNavigate();
   const user = Cookies.get("user") === undefined? undefined : JSON.parse(Cookies.get("user"))
 
+  // Set the initial state for the modal
   const [modalInfo, setModalInfo] = useState({
       show: false,
       title: "",
@@ -26,6 +27,7 @@ export default function Navbar() {
     })
   }
   
+  // Set the initial state for the navbar
   function Logout(){
     if (user !== undefined){
       axios.post(base_url+'/Logout?token='+user.token)
@@ -72,9 +74,6 @@ export default function Navbar() {
               <li className="nav-item">
                 {Cookies.get("user") == undefined? <Link className="nav-link" to="/regisztracio">Regisztráció</Link> : <Link className="nav-link" onClick={Logout}>Kilépés</Link>}
               </li>
-              {/* <li className="nav-item">
-                <Link className="nav-link" to="/hasznos-tudnivalok">Hasznos Tudnivalók</Link>
-              </li> */}
               <li className="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Hasznos Tudnivalók

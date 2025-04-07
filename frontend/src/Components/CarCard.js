@@ -20,6 +20,7 @@ export default function CarCard(props) {
   const [image, setImage] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const params = useParams()
+  const [isSold, setIsSold] = useState(false)
 
   // State for information modal
   const [modalInfo, setModalInfo] = useState({
@@ -34,6 +35,14 @@ export default function CarCard(props) {
     show: false,
     title: "Megerősítés",
     text: "Biztos ki szeretnéd törölni ezt a hirdetést?",
+    theme: "error",
+  })
+
+  // State for confirm modal
+  const [isSoldModal, setIsSoldModal] = useState({
+    show: false,
+    title: "Megerősítés",
+    text:  "",
     theme: "error",
   })
 
@@ -53,18 +62,44 @@ export default function CarCard(props) {
     })
   }
 
+  // Handler to open the sold status modal
+  const openIsSoldModal = () => {
+    setIsSoldModal({
+      ...isSoldModal,
+      text: `Biztos megszeretnéd jelölni ${ isSold? "elérhetőként" : "eladottként" } ezt a hirdetést?`,
+      show: true,
+    })
+  }
+
+  // Handler to set the sold status
+  const handleIsSold = () => {
+    setIsSold((prevIsSold) => !prevIsSold);
+  }
+
+  // Handler to close the sold status modal
+  const closeIsSoldModal = () => {
+    setIsSoldModal({
+      ...isSoldModal,
+      show: false,
+    })
+  }
+
   // Handler to close the confirm modal
   const closeConfirmModal = () => {
     setConfirmModal({
       ...confirmModal,
       show: false,
     })
+
+    // Navigate after a short delay to allow the user to see the success message
+    setTimeout(() => {
+      navigate("/profil")
+    }, 1000)
   }
 
   // Handler for the delete action
   const handleDeleteCar = () => {
-    axios
-      .get(base_url + "/Car/Delete?id=" + props.id + "&token=" + user.token)
+    axios.delete(base_url + "/Car/Delete?id=" + props.id + "&token=" + user.token)
       .then((response) => {
         setModalInfo({
           show: true,
@@ -73,10 +108,7 @@ export default function CarCard(props) {
           theme: "information",
         })
 
-        // Navigate after a short delay to allow the user to see the success message
-        setTimeout(() => {
-          navigate("/profil")
-        }, 1500)
+        
       })
       .catch((error) => {
         setModalInfo({
@@ -201,6 +233,9 @@ export default function CarCard(props) {
       </div>
       {props.is_owner ? (
         <div id="owner-things" className="col-2">
+          <button className="btn btn-warning" onClick={openIsSoldModal}>
+            {isSold ? "Eladva" : "Elérhető"}
+          </button>
           <Link to={"/modositas/" + props.id} className="btn">
             Módosítás
           </Link>
@@ -229,6 +264,15 @@ export default function CarCard(props) {
         onClose={closeConfirmModal}
         onAccept={handleDeleteCar}
         onReject={closeConfirmModal}
+      />
+      {/* Confirm Modal for sold status */}
+      <ConfirmModal
+        show={isSoldModal.show}
+        title={isSoldModal.title}
+        text={isSoldModal.text}
+        onClose={closeIsSoldModal}
+        onAccept={handleIsSold}
+        onReject={() => setIsSoldModal({ ...isSoldModal, show: false })}
       />
     </div>
   )

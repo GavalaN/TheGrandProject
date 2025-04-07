@@ -13,16 +13,21 @@ export default function Activated() {
         text: "",
         theme: "information",
       })
+
+    // Function to handle the close button of the modal
     const handleCloseModal = () => {
         setModalInfo({
           ...modalInfo,
           show: false,
         })
 
+        // Redirect to the profile page if the theme is "information"
         if (modalInfo.theme === "information") {
           navigate("/profil")
         }
       }
+
+      // Fetch the activation status from the server
       useEffect(() => {
         axios.get(base_url+`/Registry/Activation?Username=${params.username}&email=${params.email}`)
         .then((response) => {

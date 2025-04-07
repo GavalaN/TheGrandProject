@@ -16,11 +16,13 @@ export default function CarCardDetailed() {
     const [selectedImageIndex, setSelectedImageIndex] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
 
+    // Fetch car details by ID
     useEffect(() => {
         axios.get(base_url+'/Hirdetes/GetHirdetesById?id='+params.id)
         .then(response => {console.log(response.data); setCarDetailed(response.data)})
     }, [])
 
+    // Fetch image names by car ID
     useEffect(() => {
         axios.get(base_url+`/Picture/bycar/${params.id}`)
             .then(response => {
@@ -30,6 +32,7 @@ export default function CarCardDetailed() {
             .catch(error => console.error('Error fetching image names:', error));
     }, [carDetailed]);
     
+    // Fetch images by file names
     useEffect(() => {
         if (!imageFileNames || imageFileNames.length === 0) {
             setIsLoading(false);
@@ -39,6 +42,7 @@ export default function CarCardDetailed() {
         setIsLoading(true);
         const fetchImages = async () => {
             try {
+                // Create URLs for each image file name
                 const urls = await Promise.all(
                     imageFileNames.map(async (item) => {
                         const response = await axios.get(base_url+`/Picture/download/${item}`, { responseType: 'blob' });
@@ -50,7 +54,6 @@ export default function CarCardDetailed() {
             } catch (error) {
                 console.error('Error fetching images:', error);
                 setIsLoading(false);
-                // Optionally set some fallback images here
             }
         };
     
@@ -118,6 +121,7 @@ export default function CarCardDetailed() {
                     <p className="text-center">Kattintson a képre a nagyításhoz vagy válasszon a kisképek közül</p>
                 )}
             </div>
+            {/* Car details */}
             <div className="col-4">
                 <h1>{carDetailed.price} Ft</h1>
                 <div className="car-card-text">

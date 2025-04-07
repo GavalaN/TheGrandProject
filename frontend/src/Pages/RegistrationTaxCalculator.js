@@ -120,7 +120,7 @@ export default function RegistrationTaxCalculator() {
   }
 
   const handleInputChange = () => {
-    //Ccm ellenörzés
+    //Check ccm
     setInputFilter(document.getElementById("kw"), (value) => /^\d*$/.test(value), "Ide csak egész számot adhatsz meg!")
   }
 
@@ -263,7 +263,7 @@ export default function RegistrationTaxCalculator() {
       const finalTaxAmount = Math.round(baseTaxAmount * (1 - reductionRate))
 
       // Update the result display
-      document.getElementById("result").innerText = finalTaxAmount.toLocaleString("hu-HU")
+      document.getElementById("result").innerText = finalTaxAmount.toLocaleString("hu-HU")+" Ft"
       console.log(
         `Power: ${powerKW}kW, Multiplier: ${multiplier}, Age: ${ageInMonths} months, Reduction: ${reductionRate}, Tax: ${finalTaxAmount} Ft`,
       )
@@ -293,11 +293,11 @@ export default function RegistrationTaxCalculator() {
               <select id="emission" name="emission" className="form-select w-100">
                 <option value="" selected>Válassz!</option>
                 <option value="0">Hidrid</option>
-                <option value="1">5E, 5Z</option>
-                <option value="2">14-nél jobb</option>
-                <option value="3">14-12</option>
-                <option value="4">11-9</option>
-                <option value="5">8 vagy annál rosszabb</option>
+                <option value="1">5E, 5Z (elektromos)</option>
+                <option value="2">14-nél jobb (Euro 6)</option>
+                <option value="3">14-12 (Euro 5 és EEV)</option>
+                <option value="4">11-9 (Euro 4)</option>
+                <option value="5">8 vagy annál rosszabb (Euro 3 és rosszabb)</option>
               </select>
             </div>
             <div className="col-6">
@@ -342,7 +342,7 @@ export default function RegistrationTaxCalculator() {
         </div>
         <div className="col-4 text-center">
           <h2>
-            Fizetendő: <span id="result"></span> Ft
+            Fizetendő: <span id="result"></span>
           </h2>
           <button className="mt-4" onClick={CalculateTax}>
             Kalkulál
