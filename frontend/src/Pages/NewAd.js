@@ -485,7 +485,7 @@ export default function NewAd() {
     console.log(body)
     
     axios.put(base_url+'/Car/Put?token='+user.token, body)
-    .then(response => {console.log(response); setModalInfo({
+    .then(response => {console.log(response); Cookies.set("carId", JSON.stringify(carModify.id)); setModalInfo({
       show: true,
       title: "",
       text: response.data,

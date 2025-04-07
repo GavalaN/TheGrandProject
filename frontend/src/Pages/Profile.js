@@ -100,7 +100,7 @@ export default function Profile() {
                     </div>
                 <div className={`col-auto ${isSAActive ? "open" : "close"}`}>
                   {ads.length > 0? ads.map(car => {
-                    return <CarCard id={car.id} brand={car.brand} type_name={car.type_name} fuel_type={car.fuel_type} year={car.year} ccm={car.ccm} horsepower={car.hp} odometer={car.kmClock} price={car.price} description={car.description} is_owner={true}/>
+                    return <CarCard id={car.id} brand={car.brand} type_name={car.type_name} fuel_type={car.fuel_type} year={car.year} ccm={car.ccm} horsepower={car.hp} odometer={car.kmClock} price={car.price} description={car.description}  pathname={car.pathname} is_owner={true}/>
                   }) : 
                     <InformationModal
                         show={modalInfo.show}
