@@ -14,12 +14,12 @@ namespace AA_Backend.Controllers
     public class PictureController : ControllerBase
     {
         private readonly FtpService _ftpService;
-        private readonly FtpConfig _ftpConfig;
+   
 
-        public PictureController(FtpService ftpService,FtpConfig ftpConfig)
+        public PictureController(FtpService ftpService)
         {
             _ftpService = ftpService;
-            _ftpConfig = ftpConfig;
+        
         }
         [HttpPost("Upload")]
         public async Task<IActionResult> UploadImage([FromForm] IFormFile file, int carId)

@@ -273,7 +273,6 @@ C:\Users\tulak\Documents\GitKraken\TheGrandProject\AA_Backend\obj\Debug\net8.0\A
 C:\Users\tulak\Documents\GitKraken\TheGrandProject\AA_Backend\obj\Debug\net8.0\AA_Backend.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\tulak\Documents\GitKraken\TheGrandProject\AA_Backend\obj\Debug\net8.0\AA_Backend.sourcelink.json
 C:\Users\tulak\Documents\GitKraken\TheGrandProject\AA_Backend\bin\Debug\net8.0\appsettings.Development.json
-C:\Users\tulak\Documents\GitKraken\TheGrandProject\AA_Backend\bin\Debug\net8.0\appsettings.json
 C:\Users\tulak\Documents\GitKraken\TheGrandProject\AA_Backend\bin\Debug\net8.0\AA_Backend.staticwebassets.endpoints.json
 C:\Users\tulak\Documents\GitKraken\TheGrandProject\AA_Backend\bin\Debug\net8.0\AA_Backend.exe
 C:\Users\tulak\Documents\GitKraken\TheGrandProject\AA_Backend\bin\Debug\net8.0\AA_Backend.deps.json
