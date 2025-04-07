@@ -56,7 +56,12 @@ namespace AA_Backend.Controllers
                 context.SaveChanges();
                 using var stream = file.OpenReadStream();
                 _ftpService.UploadImageAsync(stream, fileName);
-                return Ok($"Sikeres Fájlfeltöltés {fileName} néven");
+                Car car = new Car()
+                {
+                    Description = $"Sikeres Fájlfeltöltés {fileName} néven",
+                    BodyType = fileName
+                };
+                return Ok(car);
             }
         }
 
