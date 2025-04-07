@@ -346,7 +346,7 @@
   {
     "ContainingType": "AA_Backend.Controllers.PictureController",
     "Method": "DeletePicture",
-    "RelativePath": "Picture/{id}",
+    "RelativePath": "Picture/{filename}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -354,11 +354,6 @@
       {
         "Name": "filename",
         "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "id",
-        "Type": "",
         "IsRequired": true
       }
     ],

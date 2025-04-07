@@ -148,7 +148,7 @@ namespace AA_Backend.Controllers
                 return Ok($"Sikeres Fájlmodosítás {filename} néven");
             }
         }
-        [HttpDelete("{id}")]
+        [HttpDelete("{filename}")]
         public async Task<IActionResult> DeletePicture(string filename)
         {
             using (var context = new CarplaceContext()) {

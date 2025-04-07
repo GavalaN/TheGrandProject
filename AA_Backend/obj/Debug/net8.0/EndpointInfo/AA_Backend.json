@@ -546,7 +546,7 @@
         }
       }
     },
-    "/Picture/{id}": {
+    "/Picture/{filename}": {
       "delete": {
         "tags": [
           "Picture"
@@ -554,13 +554,6 @@
         "parameters": [
           {
             "name": "filename",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "id",
             "in": "path",
             "required": true,
             "schema": {
