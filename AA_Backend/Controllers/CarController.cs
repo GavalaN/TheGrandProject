@@ -138,7 +138,7 @@ namespace AA_Backend.Controllers
                             car.Sold = !car.Sold;
                             context.Update(car);
                             await context.SaveChangesAsync();
-                            return Ok("Sikeres módosítás!");
+                            return Ok("Hírdetés állapota frissítve!");
                         }
                         else
                         {
