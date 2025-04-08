@@ -42,7 +42,8 @@ namespace AA_Backend.Controllers
                         NumofCylinders = k.NumOfCyl,
                         BodyType = k.BodyType,
                         KWeight = k.KWeight,
-                        Hexcode = k.Color.Hexcode
+                        Hexcode = k.Color.Hexcode,
+                        Sold = k.Sold
 
 
 

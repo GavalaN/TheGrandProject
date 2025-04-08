@@ -23,5 +23,6 @@
         public int NumofCylinders { get; set; }
         public string BodyType { get; set; } = null!;
         public int KWeight { get; set; }
+        public bool? Sold { get; set; }
     }
 }
