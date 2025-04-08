@@ -17,7 +17,7 @@ namespace AA_Backend.Controllers
             {
                 try
                 {
-                    if (context.Types.Any(t => t.TypeName == type.TypeName && t.BrandId == type.BrandId))
+                    if (context.Types.Any(t => t.TypeName == type.TypeName ))
                     {
                         return BadRequest("Ez a típus már létezik!");
                     }
