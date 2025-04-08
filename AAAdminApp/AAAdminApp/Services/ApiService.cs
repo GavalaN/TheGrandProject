@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using System.Security.Cryptography;
 using System.Collections.ObjectModel;
+using System.Net;
 namespace AAAdminApp.Services
 
 {
@@ -172,6 +173,104 @@ namespace AAAdminApp.Services
             catch (Exception ex)
             {
                 throw new Exception("Failed to update car", ex);
+            }
+        }
+        public async Task<ObservableCollection<CarDTO>> GetUserListingsAsync(int userId)
+        {
+            try
+            {
+                
+
+                var response = await _httpClient.GetAsync($"Users/GetUserListings?userid={userId}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadFromJsonAsync<ObservableCollection<CarDTO>>();
+                }
+                else if (response.StatusCode == HttpStatusCode.NotFound)
+                {
+                    // Handle empty listings case
+                    return new ObservableCollection<CarDTO> { new CarDTO { Id = -1, Description = "No listings found" } };
+                }
+                else
+                {
+                    var errorContent = await response.Content.ReadAsStringAsync();
+                    throw new HttpRequestException($"Error: {response.StatusCode} - {errorContent}");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to get user listings", ex);
+            }
+        }
+        public async Task<string> AddBrandAdminAsync(Brand brand, string token)
+        {
+            try
+            {
+               
+
+                
+                // Send the request
+                var response = await _httpClient.PostAsJsonAsync($"Brand/AddBrandAdmin?token={token}", brand);
+
+                // Handle response
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadAsStringAsync();
+                }
+                else if (response.StatusCode == HttpStatusCode.Unauthorized)
+                {
+                    throw new UnauthorizedAccessException("Not logged in or insufficient permissions");
+                }
+                else if (response.StatusCode == HttpStatusCode.BadRequest)
+                {
+                    var errorContent = await response.Content.ReadAsStringAsync();
+                    throw new ArgumentException(errorContent);
+                }
+                else
+                {
+                    throw new HttpRequestException($"Error: {response.StatusCode}");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to add brand", ex);
+            }
+
+        }
+        public async Task<List<Brand>> GetBrandsAsync()
+        {
+            try
+            {
+                var response = await _httpClient.GetAsync("Brand/BrandGet");
+                response.EnsureSuccessStatusCode();
+                return await response.Content.ReadFromJsonAsync<List<Brand>>();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to load brands", ex);
+            }
+        }
+
+        public async Task<string> AddTypeAdminAsync(AAAdminApp.Models.Type type, string token)
+        {
+            try
+            {
+                
+
+                var response = await _httpClient.PostAsJsonAsync($"Type/AddTypeAdmin?token={token}", type);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    var errorContent = await response.Content.ReadAsStringAsync();
+                    throw new Exception(errorContent);
+                }
+
+                return await response.Content.ReadAsStringAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to add type", ex);
             }
         }
 

@@ -66,22 +66,31 @@ public partial class MainWindow : Window
     {
         using (var context = new CarplaceContext())
         {
-            int selectedcar = int.Parse(dtgHird.SelectedItem.GetType().GetProperty("Id").GetValue(dtgHird.SelectedItem, null).ToString());
-            Car selectedCar = context.Cars.FirstOrDefault(c => c.Id == selectedcar);
-            if (true)
+            try
             {
-                string token = _userToken;
-                var editWindow = new Window1(selectedCar, token);
-
-                if (editWindow.ShowDialog() == true)
+                if (dtgHird.SelectedItem == null)
                 {
+                    MessageBox.Show("Válasszon ki egy hirdetést!");
+                }
+                else
+                {
+                    int selectedcar = int.Parse(dtgHird.SelectedItem.GetType().GetProperty("Id").GetValue(dtgHird.SelectedItem, null).ToString());
+                    Car selectedCar = context.Cars.FirstOrDefault(c => c.Id == selectedcar);
+                    
+                        string token = _userToken;
+                        var editWindow = new Window1(selectedCar, token);
 
-                    RefreshCarList();
+                        if (editWindow.ShowDialog() == true)
+                        {
+
+                            RefreshCarList();
+                        }
+                    
                 }
             }
-            else
+            catch(Exception ex)
             {
-                MessageBox.Show("Please select a car to edit");
+                MessageBox.Show("Hiba",ex.Message);
             }
         }
     }
@@ -99,9 +108,21 @@ public partial class MainWindow : Window
         }
     }
 
-    private void Button_Click_2(object sender, RoutedEventArgs e)
+    private async void Button_Click_2(object sender, RoutedEventArgs e)
     {
+        if (dtgHird.SelectedItem == null)
+        {
+            MessageBox.Show("Válasszon ki egy hirdetést!");
+        }
+        else
+        {
+            int selectedSeller = int.Parse(dtgHird.SelectedItem.GetType().GetProperty("SellerId").GetValue(dtgHird.SelectedItem, null).ToString());
+           
+            var apiService = new ApiService();
+            filteredCars =  await apiService.GetUserListingsAsync(selectedSeller);
+            dtgHird.ItemsSource = filteredCars;
 
+        }
     }
 
     private void Button_Click_3(object sender, RoutedEventArgs e)
@@ -141,6 +162,25 @@ public partial class MainWindow : Window
                 }
             }
             dtgHird.ItemsSource = filteredCars;
+        }
+    }
+
+    private void btnBrand_Click(object sender, RoutedEventArgs e)
+    {
+        var addBrandWindow = new AddBrand(_userToken);
+        if (addBrandWindow.ShowDialog() == true)
+        {
+
+            RefreshCarList();
+        }
+    }
+
+    private void btnType_Click(object sender, RoutedEventArgs e)
+    {
+        var typeWindow = new AddType(_userToken);
+        if (typeWindow.ShowDialog() == true)
+        {
+            RefreshCarList();
         }
     }
 }

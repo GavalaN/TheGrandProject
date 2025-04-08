@@ -4327,11 +4327,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\tulak\\source\\repos\\AAAdminApp\\AAAdminApp\\AAAdminApp.csproj",
+      "projectUniqueName": "C:\\Users\\tulak\\Documents\\GitKraken\\TheGrandProject\\AAAdminApp\\AAAdminApp\\AAAdminApp.csproj",
       "projectName": "AAAdminApp",
-      "projectPath": "C:\\Users\\tulak\\source\\repos\\AAAdminApp\\AAAdminApp\\AAAdminApp.csproj",
+      "projectPath": "C:\\Users\\tulak\\Documents\\GitKraken\\TheGrandProject\\AAAdminApp\\AAAdminApp\\AAAdminApp.csproj",
       "packagesPath": "C:\\Users\\tulak\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\tulak\\source\\repos\\AAAdminApp\\AAAdminApp\\obj\\",
+      "outputPath": "C:\\Users\\tulak\\Documents\\GitKraken\\TheGrandProject\\AAAdminApp\\AAAdminApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

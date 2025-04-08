@@ -38,7 +38,7 @@ namespace AAAdminApp
         {
 
             string username = tbFelhasznalonev.Text;
-            string password = tbJelszo.Text;
+            string password = tbJelszo.Password;
 
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
@@ -63,8 +63,7 @@ namespace AAAdminApp
 
 
                 // 4. Perform login
-                MessageBox.Show($"Bejelentkezés folyamatban: {username} - {tmpHash}", "Info",
-                              MessageBoxButton.OK, MessageBoxImage.Information);
+          
                 LoggedInUsers user = await authService.LoginAsync(new LoginDTO
                 {
                     LoginName = username,

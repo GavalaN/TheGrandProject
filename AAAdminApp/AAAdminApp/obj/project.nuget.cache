@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Y045s+2hhLQ=",
+  "dgSpecHash": "OTQ97wX1UeQ=",
   "success": true,
-  "projectFilePath": "C:\\Users\\tulak\\source\\repos\\AAAdminApp\\AAAdminApp\\AAAdminApp.csproj",
+  "projectFilePath": "C:\\Users\\tulak\\Documents\\GitKraken\\TheGrandProject\\AAAdminApp\\AAAdminApp\\AAAdminApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\tulak\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\tulak\\.nuget\\packages\\bouncycastle.cryptography\\2.3.1\\bouncycastle.cryptography.2.3.1.nupkg.sha512",

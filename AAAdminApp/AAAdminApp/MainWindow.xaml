@@ -17,7 +17,9 @@
             <TextBox x:Name="txtKer" FontSize="15" Margin="10" TextChanged="TextBox_TextChanged"/>
             <Button Content="Törlés" Margin="10" Click="Button_Click"/>
             <Button Content="Módosítás" Margin="10" Click="Button_Click_1"/>
-            <Button Content="Felhasználó megnyitása" Margin="10" Click="Button_Click_2"/>
+            <Button Content="Felhasználó további hirdetései" Margin="10" Click="Button_Click_2"/>
+            <Button x:Name="btnBrand" Content="Új márka hozzáadása" Margin="10" Click="btnBrand_Click" />
+            <Button x:Name="btnType" Content="Új típus hozzáadása" Margin="10" Click="btnType_Click" />
 
         </StackPanel>
         <Button Content="Kilépés" VerticalAlignment="Top" Margin="10,454,10,0" Click="Button_Click_3" Grid.ColumnSpan="2"/>

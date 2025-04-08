@@ -11,12 +11,12 @@
         <RowDefinition Height="1*"/>
         <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        
+        <Image Source="/logo2.png" Width="400" Height="200"/>
         <StackPanel Grid.Row="1" Orientation="Vertical">
             <TextBlock Text="Felhasználónév" FontSize="15" HorizontalAlignment="Center"/>
             <TextBox x:Name="tbFelhasznalonev" Width="150" Margin="10"/>
             <TextBlock Text="Jelszó" FontSize="15" HorizontalAlignment="Center"/>
-            <TextBox x:Name="tbJelszo" Width="150" Margin="10"/>
+            <PasswordBox x:Name="tbJelszo" Width="150" Margin="10" />
             <Button x:Name="btnLogin" Content="Bejelentkezés" Margin="20" Width="100" Height="50" Click="btnLogin_Click" />
         </StackPanel>
     </Grid>
