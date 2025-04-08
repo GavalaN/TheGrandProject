@@ -66,25 +66,39 @@ namespace AA_Backend.Controllers
                         return BadRequest(list);
                     }
                 }
-            }
-
-            /*[HttpPost]
-            public IActionResult Post(Brand brand)
-            {
 
             }
-
-            [HttpPut("{id}")]
-            public IActionResult Put(string id)
-            {
-                return Ok();
-            }
-
-            [HttpDelete("{id}")]
-            public IActionResult Delete(string id)
-            {
-                return Ok();
-            }*/
         }
+        [HttpPost("AddBrandAdmin")]
+        public async Task<IActionResult> AddBrandAdmin(Brand brand, string token)
+        {
+            using (var context = new CarplaceContext())
+            {
+                try
+                {
+                    Program.LoggedInUsers.TryGetValue(token, out var user);
+
+                    if (!Program.LoggedInUsers.ContainsKey(token)||user.IsAdmin==false)
+                    {
+                        return StatusCode(401,"Nem vagy bejelentkezve vagy nincs megfelelő jogosultságod");
+                    }
+                    if (context.Brands.Any(b => b.Id == brand.Id) == false)
+                    {
+                        return BadRequest("Ez a márka nem létezik!");
+                    }
+                    await context.Brands.AddAsync(brand);
+                    await context.SaveChangesAsync();
+                    return Ok("Sikeres hozzáadás!");
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+            }
+        }
+
+
     }
+    
 }
+
