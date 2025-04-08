@@ -20,7 +20,8 @@ export default function CarCard(props) {
   const [image, setImage] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const params = useParams()
-  const [isSold, setIsSold] = useState(false)
+  const [isSold, setIsSold] = useState(props.sold)
+  console.log(props.sold, "sold status")
 
   // State for information modal
   const [modalInfo, setModalInfo] = useState({
@@ -73,7 +74,17 @@ export default function CarCard(props) {
 
   // Handler to set the sold status
   const handleIsSold = () => {
-    setIsSold((prevIsSold) => !prevIsSold);
+    axios.put(base_url + "/Car/ToggleSold?id=" + props.id + "&token=" + user.token)
+      .then((response) => {
+        setModalInfo({
+          show: true,
+          title: "",
+          text: response.data,
+          theme: "information",
+        })
+        setIsSold((prevIsSold) => !prevIsSold); // Toggle the sold status
+      })
+      
   }
 
   // Handler to close the sold status modal
@@ -177,21 +188,30 @@ export default function CarCard(props) {
   return (
     <div className="car-card">
       <div className="car-card-img col-4">
-        {isLoading ? (
+      {isLoading ? (
           <div className="">
             <BeatLoader color="#0096D6" size={15} />
           </div>
         ) : (
           <Link to={`/hirdetes/${props.id}`}>
-            <img src={image || logo} alt={props.brand + " " + props.type_name} />
+            <div className="position-relative">
+              <img src={image || logo} alt={props.brand + " " + props.type_name} />
+              {isSold && (
+                <div className="sold-overlay">
+                  <span>Eladva!</span>
+                </div>
+              )}
+            </div>
           </Link>
         )}
       </div>
       <div className={`car-card-text ${props.is_owner ? "col-6" : "col-8"}`}>
         <div className="title d-flex justify-content-between">
-          <h3>
-            {props.brand} {props.type_name}
-          </h3>
+          <Link to={`/hirdetes/${props.id}`}>
+            <h3>
+              {props.brand} {props.type_name} {isSold? " - Eladva!" : ""}
+            </h3>
+          </Link>
           <h2>{props.price} Ft</h2>
         </div>
         <p className="props">

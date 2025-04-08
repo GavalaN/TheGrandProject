@@ -1,19 +1,19 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import TomSelect from 'tom-select';
-import './NewAdForm.css';
-import './Search.css'
-import Cookies from 'js-cookie';
-import InformationModal from '../Components/InformationModal';
+import axios from "axios"
+import { useEffect, useState } from "react"
+import { useLocation, useNavigate, useParams } from "react-router-dom"
+import TomSelect from "tom-select"
+import "./NewAdForm.css"
+import "./Search.css"
+import Cookies from "js-cookie"
+import InformationModal from "../Components/InformationModal"
 
-function yearRange(){
-  let years = [];
-  const currentYear = new Date().getFullYear();
-  for(let i = 1885; i <= currentYear; i++){
-      years.push(i);
+function yearRange() {
+  const years = []
+  const currentYear = new Date().getFullYear()
+  for (let i = 1885; i <= currentYear; i++) {
+    years.push(i)
   }
-  return years.reverse();
+  return years.reverse()
 }
 
 export default function NewAd() {
@@ -56,7 +56,7 @@ export default function NewAd() {
 
     // Only navigate after closing if it was a success modal
     if (modalInfo.theme === "information") {
-      navigate("/profil")
+      navigate("/kepfeltoltes")
     }
   }
 
@@ -72,7 +72,7 @@ export default function NewAd() {
   }, [])
 
   function setInputFilter(textbox, inputFilter, errMsg) {
-    ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop", "focusout"].forEach(function(event) {
+    ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop", "focusout"].forEach((event) => {
       textbox.addEventListener(event, function(e) {
         if (inputFilter(this.value)) {
           // Accepted value
@@ -100,24 +100,19 @@ export default function NewAd() {
   
   const handleInputChange = () => {
       //Check price
-      setInputFilter(document.getElementById("price"), function(value) {
-          return /^\d*$/.test(value); }, "Ide csak egész számot adhatsz meg!");
+      setInputFilter(document.getElementById("price"), (value) => /^\d*$/.test(value), "Ide csak egész számot adhatsz meg!");
 
       //Check odometer
-      setInputFilter(document.getElementById("odometer"), function(value) {
-          return /^\d*$/.test(value); }, "Ide csak egész számot adhatsz meg!");
+      setInputFilter(document.getElementById("odometer"), (value) => /^\d*$/.test(value), "Ide csak egész számot adhatsz meg!");
 
       //Check ccm
-      setInputFilter(document.getElementById("ccm"), function(value) {
-          return /^\d*$/.test(value); }, "Ide csak egész számot adhatsz meg!");
+      setInputFilter(document.getElementById("ccm"), (value) => /^\d*$/.test(value), "Ide csak egész számot adhatsz meg!");
 
       //Check horsepower
-      setInputFilter(document.getElementById("horsepower"), function(value) {
-          return /^\d*$/.test(value); }, "Ide csak egész számot adhatsz meg!");
+      setInputFilter(document.getElementById("horsepower"), (value) => /^\d*$/.test(value), "Ide csak egész számot adhatsz meg!");
       
       //Check kerb weight
-      setInputFilter(document.getElementById("kerb_wheight"), function(value) {
-          return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 3500); }, "0kg és 3500Kg között adhatsz meg értéket!");
+      setInputFilter(document.getElementById("kerb_wheight"), (value) => /^\d*$/.test(value) && (value === "" || Number.parseInt(value) <= 3500), "0kg és 3500Kg között adhatsz meg értéket!");
   
 
   
@@ -271,23 +266,45 @@ export default function NewAd() {
 
   //Brand select init
   useEffect(() => {
-      if(brandSelection.length > 0){
-          const brandSelect = new TomSelect("#brand",{
-              create: false,
-              options: brandSelection,
-              sortField: {
-                  field: "text",
-                  direction: "asc",
-                  allowEmptyOption: true,
-              }
-          })
-          if (carModify != undefined) {
-            brandSelect.setValue(carModify.brandId)
-            setSelectedBrand(carModify.brandId)
-          }
-      }
-      
-  }, [brandSelection])
+    if(brandSelection.length > 0){
+        // Check if there's an existing TomSelect instance and destroy it
+        const brandElement = document.querySelector("#brand");
+        if (brandElement && brandElement.tomselect) {
+            brandElement.tomselect.destroy();
+        }
+        
+        const brandSelect = new TomSelect("#brand",{
+            create: false,
+            options: brandSelection,
+            sortField: {
+                field: "text",
+                direction: "asc",
+                allowEmptyOption: true,
+            },
+            // Add an onChange handler to update the selectedBrand state
+            onChange: (value) => {
+                setSelectedBrand(value);
+            }
+        });
+        
+        // If we're in modify mode and have car data, set the brand value
+        if (carModify !== undefined) {
+            brandSelect.setValue(carModify.brandId);
+            setSelectedBrand(carModify.brandId);
+        }
+        
+        // Return cleanup function
+        return () => {
+            if (brandSelect && brandSelect.destroy) {
+                try {
+                    brandSelect.destroy();
+                } catch (e) {
+                    console.warn("Error destroying brandSelect:", e);
+                }
+            }
+        };
+    }
+}, [brandSelection, carModify]);
 
   useEffect(() => {
     if (user !== undefined){
@@ -339,31 +356,49 @@ export default function NewAd() {
 
   //Type select init
   useEffect(() => {
-      const selectElement = document.querySelector("#type");
+    const selectElement = document.querySelector("#type");
 
-      if (!selectElement) return;
+    if (!selectElement) return;
 
-      if (selectElement.tomselect) {
-          selectElement.tomselect.destroy(); // TomSelect destroy
-      }
+    // Only proceed if we have type options to show
+    if (typeSelection.length === 0 && !carModify) return;
 
-      const typeSelect = new TomSelect(selectElement, {
-          create: false,
-          options: typeSelection,
-          sortField: { 
-              field: "text", 
-              direction: "asc" 
-          },
-          allowEmptyOption: true,
-      });
-      if (carModify != undefined) {
-        typeSelect.setValue(carModify.typeId)
-      }
+    if (selectElement.tomselect) {
+        selectElement.tomselect.destroy(); // TomSelect destroy
+    }
 
-      return () => {
-          typeSelect.destroy();// Destroy when the component unmounts
-      };
-  }, [typeSelection]);
+    const typeSelect = new TomSelect(selectElement, {
+        create: false,
+        options: typeSelection,
+        sortField: { 
+            field: "text", 
+            direction: "asc" 
+        },
+        allowEmptyOption: true,
+        onChange: (value) => {
+            setSelectedType(value);
+        }
+    });
+    
+    // If we're in modify mode and have car data, set the type value
+    if (carModify !== undefined) {
+        // Make sure we have the right types loaded before setting the value
+        if (selectedBrand == carModify.brandId) {
+            typeSelect.setValue(carModify.typeId);
+            setSelectedType(carModify.typeId);
+        }
+    }
+
+    return () => {
+        if (typeSelect && typeSelect.destroy) {
+            try {
+                typeSelect.destroy();
+            } catch (e) {
+                console.warn("Error destroying typeSelect:", e);
+            }
+        }
+    };
+}, [typeSelection, carModify, selectedBrand]);
 
   //Color
   useEffect(() => {
@@ -388,21 +423,44 @@ export default function NewAd() {
 
   //Color select init
   useEffect(() => {
-      if(colorSelection.length > 0){
-          const colorSelect = new TomSelect("#color",{
-              create: false,
-              options: colorSelection,
-              sortField: {
-                  field: "text",
-                  direction: "asc",
-                  allowEmptyOption: true,
-              }
-          })
-          if (carModify != undefined) {
-            colorSelect.setValue(carModify.colorId)
-          }
-      }
-  }, [colorSelection])
+    if(colorSelection.length > 0){
+        // Check if there's an existing TomSelect instance and destroy it
+        const colorElement = document.querySelector("#color");
+        if (colorElement && colorElement.tomselect) {
+            colorElement.tomselect.destroy();
+        }
+        
+        const colorSelect = new TomSelect("#color",{
+            create: false,
+            options: colorSelection,
+            sortField: {
+                field: "text",
+                direction: "asc",
+                allowEmptyOption: true,
+            },
+            onChange: (value) => {
+                setSelectedColor(value);
+            }
+        });
+        
+        // If we're in modify mode and have car data, set the color value
+        if (carModify !== undefined) {
+            colorSelect.setValue(carModify.colorId);
+            setSelectedColor(carModify.colorId);
+        }
+        
+        // Return cleanup function
+        return () => {
+            if (colorSelect && colorSelect.destroy) {
+                try {
+                    colorSelect.destroy();
+                } catch (e) {
+                    console.warn("Error destroying colorSelect:", e);
+                }
+            }
+        };
+    }
+}, [colorSelection, carModify]);
   
   //Fetch car data for modification
   useEffect(() => {
@@ -517,6 +575,14 @@ export default function NewAd() {
   const handleColorChange = (event) => {
     setSelectedColor(event.target.value);
   };
+
+  // Add a new useEffect to ensure the type dropdown gets populated when carModify loads
+  useEffect(() => {
+    // If we're in modify mode and have car data, make sure we load the types for the brand
+    if (carModify !== undefined && selectedBrand !== carModify.brandId) {
+        setSelectedBrand(carModify.brandId);
+    }
+}, [carModify]);
 
   if (user !== undefined){
     return (

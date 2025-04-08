@@ -62,7 +62,7 @@ export default function CarCardDetailed() {
 
   return (
     <div className="car-card-detailed">
-        <h2>{carDetailed.brand} {carDetailed.type_Name}</h2>
+        <h2>{carDetailed.brand} {carDetailed.type_Name}  {carDetailed.sold? " - Eladva!" : ""}</h2>
         <div className="row">
             <div className="col-8">
                 <div className="car-card-img">

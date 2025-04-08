@@ -909,7 +909,7 @@ export default function SearchList() {
             <div className="flex-grow-1">
             {console.log(cars)}
             {cars.map(car => {
-                return <CarCard id={car.id} brand={car.brand} type_name={car.type_name} fuel_type={car.fuel_type} year={car.year} ccm={car.ccm} horsepower={car.hp} odometer={car.kmClock} price={car.price} description={car.description} pathname={car.pathname}/>
+                return <CarCard id={car.id} brand={car.brand} type_name={car.type_name} fuel_type={car.fuel_type} year={car.year} ccm={car.ccm} horsepower={car.hp} odometer={car.kmClock} price={car.price} description={car.description} pathname={car.pathname} sold={car.sold}/>
             })}
             </div>
             <div className="pagination-container">
