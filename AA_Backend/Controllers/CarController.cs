@@ -123,6 +123,36 @@ namespace AA_Backend.Controllers
                 }
             }
         }
+        [HttpPut("ToggleSold")]
+        public async Task<IActionResult> ToggleSold(int id, string token)
+        {
+            using (var context = new CarplaceContext())
+            {
+                try
+                {
+                    if (Program.LoggedInUsers.ContainsKey(token))
+                    {
+                        var car = context.Cars.FirstOrDefault(k => k.Id == id);
+                        if (car != null)
+                        {
+                            car.Sold = !car.Sold;
+                            context.Update(car);
+                            await context.SaveChangesAsync();
+                            return Ok("Sikeres módosítás!");
+                        }
+                        else
+                        {
+                            return BadRequest("Nem található a hirdetés!");
+                        }
+                    }
+                    return StatusCode(401, "Nem vagy belépve");
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+            }
+        }
 
 
 
