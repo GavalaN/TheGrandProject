@@ -102,7 +102,8 @@ namespace AA_Backend.Controllers
                         fuel_type = car.FuelType,
                         ccm = car.Cc,
                         hp = car.Horsepower,
-                        Pathname = car.Pictues.FirstOrDefault(x => x.CarId == car.Id).FilePath
+                        Pathname = car.Pictues.FirstOrDefault(x => x.CarId == car.Id).FilePath,
+                        Sold = car.Sold
                     }).Skip((page - 1) * pagesize).Take(pagesize).ToList();
 
                     return Ok(response);
@@ -209,7 +210,8 @@ namespace AA_Backend.Controllers
                         fuel_type = car.FuelType,
                         ccm = car.Cc,
                         hp = car.Horsepower,
-                        Pathname = car.Pictues.FirstOrDefault(x => x.CarId == car.Id).FilePath
+                        Pathname = car.Pictues.FirstOrDefault(x => x.CarId == car.Id).FilePath,
+                        Sold = car.Sold
                     }).ToList();
 
                     return Ok(response.Count());

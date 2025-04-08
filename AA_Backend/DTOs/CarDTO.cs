@@ -14,6 +14,7 @@
         public int ccm { get; set; }
         public int hp { get; set; }
         public string? Pathname { get; set; }
-     
+        public bool? Sold { get; set; } = null!;
+
     }
 }
