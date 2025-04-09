@@ -224,7 +224,7 @@ export default function NewAdPictures() {
         show: true,
         title: "Sikeres módosítás",
         text: response.data || `A(z) ${imageToUpdate.serverFilename} nevű kép sikeresen módosítva lett.`,
-        theme: "success",
+        theme: "information",
       })
     } catch (error) {
       console.error("Update failed:", error)
@@ -408,7 +408,6 @@ export default function NewAdPictures() {
                 isDragging,
                 dragProps,
               }) => (
-                // write your building UI
                 <div className="upload-image-wrapper">
                   <a
                     className="upload-image-dropzone"
@@ -452,10 +451,8 @@ export default function NewAdPictures() {
                                 src={image["data_url"] || "/placeholder.svg"}
                                 alt=""
                                 width="100"
-                                // Add cache-busting parameter for existing images to ensure we get the latest version
                                 onError={(e) => {
                                   if (image.isExisting) {
-                                    // If the image fails to load, try adding a cache-busting parameter
                                     e.target.src = `${image.data_url}?t=${new Date().getTime()}`
                                   }
                                 }}

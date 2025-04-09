@@ -70,7 +70,7 @@ describe("SiteCookies", () => {
     })
   })
 
-  it("renders correctly when cookies are not accepted", () => {
+  it("Megfelelően renderelődik, ha a sütik nincsenek elfogadva", () => {
     Cookies.get.mockReturnValue(undefined)
 
     render(<SiteCookies />)
@@ -81,7 +81,7 @@ describe("SiteCookies", () => {
     expect(mockElement.style.visibility).toBe("hidden")
   })
 
-  it("does not show modal when cookies are already accepted", () => {
+  it("Az ablak nem látszódik, ha a sütik már el vannak fogadva!", () => {
     Cookies.get.mockReturnValue("true")
 
     render(<SiteCookies />)

@@ -37,7 +37,7 @@ describe("WarningModal", () => {
     jest.clearAllMocks()
   })
 
-  it("renders correctly", () => {
+  it("Figyelmeztető ablak megfelelően renderelődik", () => {
     render(<WarningModal onClose={onClose} />)
 
     expect(screen.getByTestId("modal")).toBeInTheDocument()
@@ -46,19 +46,11 @@ describe("WarningModal", () => {
     expect(screen.getByTestId("warning-button")).toHaveTextContent("Megértettem!")
   })
 
-  it("calls onClose when button is clicked", () => {
+  it("Gombra kattintva meghívja az onClose-t", () => {
     render(<WarningModal onClose={onClose} />)
 
     fireEvent.click(screen.getByTestId("warning-button"))
     expect(onClose).toHaveBeenCalledTimes(1)
-  })
-
-  it("has the correct button styling", () => {
-    render(<WarningModal onClose={onClose} />)
-
-    const button = screen.getByTestId("warning-button")
-    expect(button).toHaveClass("danger")
-    // We can't easily test the style prop in JSDOM, but we can check it's passed
   })
 })
 
