@@ -33,7 +33,8 @@ namespace AA_Backend.Controllers
                         hp = k.Horsepower,
                         fuel_type = k.FuelType,
                         Year = k.Year,
-                        Pathname = k.Pictues.FirstOrDefault(x=>x.CarId==k.Id).FilePath
+                        Pathname = k.Pictues.FirstOrDefault(x=>x.CarId==k.Id).FilePath,
+                        Sold = k.Sold
 
 
                     }).ToList();
@@ -72,7 +73,9 @@ namespace AA_Backend.Controllers
                         ccm = k.Cc,
                         hp = k.Horsepower,
                         fuel_type = k.FuelType,
-                        Year = k.Year
+                        Year = k.Year,
+                        Pathname = k.Pictues.FirstOrDefault(x => x.CarId == k.Id).FilePath,
+                        Sold = k.Sold
                     }).Skip((page - 1) * pagesize).Take(pagesize).ToList();
                     return Ok(CarDTOs);
                 }
