@@ -158,7 +158,6 @@ CREATE TABLE IF NOT EXISTS `cars` (
 --
 
 INSERT INTO `cars` (`id`, `brand_id`, `type_id`, `description`, `km_clock`, `color_id`, `price`, `seller_id`, `upload_date`, `sold`, `body_type`, `num_of_cyl`, `horsepower`, `cc`, `engine_type`, `fuel_type`, `drive`, `trans_type`, `Year`, `k_weight`) VALUES
-<<<<<<< HEAD
 (1, 1, 1, 'Megbízható a gépjármű!', 40000, 3, 1800000, 1, '2024-01-10 10:00:00', 0, 'ferdehátú', 4, 139, 1798, 'Soros', 'benzin', 'FWD', 'Automata', 2022, 1400),
 (2, 2, 12, 'Kényelmes és tágas.', 25000, 2, 25000000, 2, '2024-02-05 14:30:00', 0, 'szedán', 4, 505, 4000, 'Soros', 'benzin', 'AWD', 'DCT', 2021, 2500),
 (3, 3, 22, 'Erő és luxus életmód', 60000, 5, 32000000, 3, '2023-12-01 09:45:00', 1, 'szedán', 6, 400, 3000, 'V', 'plug-in hibrid (benzin)', 'AWD', 'Automata', 2023, 2600),
@@ -168,17 +167,6 @@ INSERT INTO `cars` (`id`, `brand_id`, `type_id`, `description`, `km_clock`, `col
 (7, 7, 61, 'Hatékony, dinamikus járgány.', 30000, 7, 1900000, 1, '2024-02-20 11:15:00', 0, 'kombi', 4, 149, 1997, 'Soros', 'benzin', 'FWD', 'CVT', 2020, 1400),
 (8, 8, 71, 'Családi kombi.', 250000, 2, 1200000, 2, '2023-10-10 07:35:00', 0, 'kombi', 4, 150, 1995, 'Soros', 'benzin', 'FWD', 'Manuális', 2010, 1400),
 (13, 9, 85, 'Takarékos, környezetbarát.', 50000, 1, 1500000, 3, '2025-02-24 11:43:38', 0, 'ferdehátú', 4, 120, 2000, 'Soros', 'hibrid (benzin)', 'FWD', 'Automata', 2020, 1300);
-=======
-(1, 1, 1, 'Fuel-efficient and reliable.', 40000, 3, 18000, 1, '2024-01-10 10:00:00', 0, 'Sedan', 4, 139, 1798, 'Inline', 'Petrol', 'FWD', 'Automatic', 2022, 1400),
-(2, 2, 2, 'Comfortable and spacious.', 25000, 2, 25000, 1, '2024-02-05 14:30:00', 0, 'Sedan', 4, 192, 1996, 'Inline', 'Petrol', 'FWD', 'CVT', 2021, 1500),
-(3, 3, 3, 'Strong and powerful SUV.', 60000, 5, 32000, 1, '2023-12-01 09:45:00', 1, 'SUV', 6, 400, 3000, 'V', 'Petrol', 'AWD', 'Automatic', 2023, 2100),
-(4, 4, 4, 'Eladó sorba került BMW 320i autóm!', 20000, 1, 42000, 1, '2024-03-15 16:20:00', 0, 'Coupe', 6, 382, 2998, 'Inline', 'Petrol', 'RWD', 'Automatic', 2022, 1700),
-(5, 5, 5, 'Luxury and performance.', 18000, 4, 48000, 1, '2023-11-20 08:10:00', 1, 'Sedan', 4, 255, 1991, 'Inline', 'Petrol', 'RWD', 'Automatic', 2023, 1800),
-(6, 6, 6, 'Large family-friendly SUV.', 55000, 6, 35000, 1, '2024-01-25 12:50:00', 0, 'SUV', 8, 420, 5300, 'V', 'Petrol', 'AWD', 'Automatic', 2021, 2500),
-(7, 7, 7, 'Efficient and compact.', 30000, 7, 19000, 1, '2024-02-20 11:15:00', 0, 'Sedan', 4, 149, 1997, 'Inline', 'Petrol', 'FWD', 'CVT', 2020, 1300),
-(8, 8, 8, 'Reliable mid-size sedan.', 75000, 8, 22000, 1, '2023-10-10 07:35:00', 1, 'Sedan', 4, 174, 1984, 'Inline', 'Petrol', 'FWD', 'Manual', 2019, 1400),
-(13, 9, 9, 'A nice car', 50000, 1, 15000, 1, '2025-02-24 11:43:38', 0, 'Sedan', 4, 150, 2000, 'Inline', 'Petrol', 'FWD', 'Automatic', 2020, 1500);
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 
 -- --------------------------------------------------------
 
@@ -288,10 +276,6 @@ CREATE TABLE IF NOT EXISTS `types` (
 --
 
 INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
-<<<<<<< HEAD
-=======
--- Volkswagen
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (1, 1, 'Golf'),
 (2, 1, 'Passat'),
 (3, 1, 'Tiguan'),
@@ -302,11 +286,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (8, 1, 'T-Roc'),
 (9, 1, 'Touran'),
 (10, 1, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- BMW
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (11, 2, '3 Series'),
 (12, 2, '5 Series'),
 (13, 2, 'X3'),
@@ -317,11 +296,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (18, 2, 'i4'),
 (19, 2, 'iX'),
 (20, 2, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Mercedes-Benz
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (21, 3, 'C-Class'),
 (22, 3, 'E-Class'),
 (23, 3, 'GLC'),
@@ -332,11 +306,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (28, 3, 'GLE'),
 (29, 3, 'CLA'),
 (30, 3, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Audi
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (31, 4, 'A3'),
 (32, 4, 'A4'),
 (33, 4, 'A6'),
@@ -347,11 +316,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (38, 4, 'TT'),
 (39, 4, 'A5'),
 (40, 4, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Renault
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (41, 5, 'Clio'),
 (42, 5, 'Megane'),
 (43, 5, 'Captur'),
@@ -362,11 +326,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (48, 5, 'Austral'),
 (49, 5, 'Scenic'),
 (50, 5, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Peugeot
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (51, 6, '208'),
 (52, 6, '308'),
 (53, 6, '3008'),
@@ -377,11 +336,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (58, 6, 'e-2008'),
 (59, 6, 'Rifter'),
 (60, 6, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Opel
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (61, 7, 'Corsa'),
 (62, 7, 'Astra'),
 (63, 7, 'Mokka'),
@@ -392,11 +346,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (68, 7, 'Combo'),
 (69, 7, 'Vivaro'),
 (70, 7, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Ford
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (71, 8, 'Focus'),
 (72, 8, 'Fiesta'),
 (73, 8, 'Kuga'),
@@ -407,11 +356,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (78, 8, 'Mustang'),
 (79, 8, 'Explorer'),
 (80, 8, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Toyota
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (81, 9, 'Corolla'),
 (82, 9, 'Yaris'),
 (83, 9, 'RAV4'),
@@ -422,11 +366,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (88, 9, 'Highlander'),
 (89, 9, 'bZ4X'),
 (90, 9, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Skoda
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (91, 10, 'Octavia'),
 (92, 10, 'Fabia'),
 (93, 10, 'Kodiaq'),
@@ -437,11 +376,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (98, 10, 'Kamiq'),
 (99, 10, 'Rapid'),
 (100, 10, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Fiat
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (101, 11, '500'),
 (102, 11, 'Panda'),
 (103, 11, 'Tipo'),
@@ -452,11 +386,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (108, 11, 'Qubo'),
 (109, 11, 'Freemont'),
 (110, 11, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Citroën
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (111, 12, 'C3'),
 (112, 12, 'C4'),
 (113, 12, 'C5 Aircross'),
@@ -467,11 +396,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (118, 12, 'Jumpy'),
 (119, 12, 'Ami'),
 (120, 12, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Hyundai
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (121, 13, 'Tucson'),
 (122, 13, 'i30'),
 (123, 13, 'Kona'),
@@ -482,11 +406,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (128, 13, 'IONIQ 6'),
 (129, 13, 'Porter'),
 (130, 13, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Kia
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (131, 14, 'Sportage'),
 (132, 14, 'Ceed'),
 (133, 14, 'Niro'),
@@ -497,11 +416,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (138, 14, 'Rio'),
 (139, 14, 'Carnival'),
 (140, 14, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Nissan
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (141, 15, 'Qashqai'),
 (142, 15, 'Juke'),
 (143, 15, 'Leaf'),
@@ -512,11 +426,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (148, 15, 'Note'),
 (149, 15, 'Pathfinder'),
 (150, 15, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Volvo
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (151, 16, 'XC40'),
 (152, 16, 'XC60'),
 (153, 16, 'XC90'),
@@ -527,11 +436,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (158, 16, 'EX30'),
 (159, 16, 'EX90'),
 (160, 16, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Seat
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (161, 17, 'Leon'),
 (162, 17, 'Ibiza'),
 (163, 17, 'Arona'),
@@ -542,11 +446,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (168, 17, 'Alhambra'),
 (169, 17, 'Mii'),
 (170, 17, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Dacia
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (171, 18, 'Sandero'),
 (172, 18, 'Duster'),
 (173, 18, 'Spring'),
@@ -557,11 +456,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (178, 18, '1300'),
 (179, 18, '1410'),
 (180, 18, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Mazda
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (181, 19, 'CX-5'),
 (182, 19, '3'),
 (183, 19, 'CX-30'),
@@ -572,11 +466,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (188, 19, 'CX-3'),
 (189, 19, 'CX-80'),
 (190, 19, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Suzuki
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (191, 20, 'Swift'),
 (192, 20, 'Vitara'),
 (193, 20, 'S-Cross'),
@@ -587,11 +476,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (198, 20, 'Swace'),
 (199, 20, 'Celerio'),
 (200, 20, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Honda
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (201, 21, 'Civic'),
 (202, 21, 'CR-V'),
 (203, 21, 'Jazz'),
@@ -602,11 +486,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (208, 21, 'Legend'),
 (209, 21, 'S2000'),
 (210, 21, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Mitsubishi
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (211, 22, 'ASX'),
 (212, 22, 'Eclipse Cross'),
 (213, 22, 'Outlander'),
@@ -617,11 +496,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (218, 22, 'Colt'),
 (219, 22, 'Galant'),
 (220, 22, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Jeep
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (221, 23, 'Renegade'),
 (222, 23, 'Compass'),
 (223, 23, 'Wrangler'),
@@ -632,11 +506,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (228, 23, 'Patriot'),
 (229, 23, 'Liberty'),
 (230, 23, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Land Rover
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (231, 24, 'Range Rover'),
 (232, 24, 'Range Rover Sport'),
 (233, 24, 'Discovery'),
@@ -647,11 +516,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (238, 24, 'Range Rover Velar'),
 (239, 24, 'Series'),
 (240, 24, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Mini
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (241, 25, 'Hatch'),
 (242, 25, 'Countryman'),
 (243, 25, 'Clubman'),
@@ -662,11 +526,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (248, 25, 'Electric'),
 (249, 25, 'John Cooper Works'),
 (250, 25, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Jaguar
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (251, 26, 'XE'),
 (252, 26, 'XF'),
 (253, 26, 'F-Pace'),
@@ -677,11 +536,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (258, 26, 'S-Type'),
 (259, 26, 'X-Type'),
 (260, 26, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Porsche
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (261, 27, '911'),
 (262, 27, 'Cayenne'),
 (263, 27, 'Macan'),
@@ -692,11 +546,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (268, 27, '918 Spyder'),
 (269, 27, 'Carrera GT'),
 (270, 27, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Lexus
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (271, 28, 'NX'),
 (272, 28, 'RX'),
 (273, 28, 'UX'),
@@ -707,11 +556,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (278, 28, 'RC'),
 (279, 28, 'GX'),
 (280, 28, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Alfa Romeo
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (281, 29, 'Giulia'),
 (282, 29, 'Stelvio'),
 (283, 29, 'Tonale'),
@@ -722,11 +566,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (288, 29, 'Brera'),
 (289, 29, '159'),
 (290, 29, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Chevrolet
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (291, 30, 'Spark'),
 (292, 30, 'Aveo'),
 (293, 30, 'Cruze'),
@@ -737,11 +576,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (298, 30, 'Malibu'),
 (299, 30, 'Tahoe'),
 (300, 30, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Tesla
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (301, 31, 'Model 3'),
 (302, 31, 'Model Y'),
 (303, 31, 'Model S'),
@@ -752,11 +586,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (308, 31, 'Model 2'),
 (309, 31, 'Model C'),
 (310, 31, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Smart
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (311, 32, 'Fortwo'),
 (312, 32, 'Forfour'),
 (313, 32, 'EQ Fortwo'),
@@ -767,11 +596,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (318, 32, 'M'),
 (319, 32, 'City Coupe'),
 (320, 32, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Subaru
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (321, 33, 'Forester'),
 (322, 33, 'Outback'),
 (323, 33, 'XV'),
@@ -782,11 +606,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (328, 33, 'Tribeca'),
 (329, 33, 'Baja'),
 (330, 33, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- DS Automobiles
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (331, 34, 'DS 3'),
 (332, 34, 'DS 4'),
 (333, 34, 'DS 7'),
@@ -797,11 +616,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (338, 34, 'DS 4 Crossback'),
 (339, 34, 'DS 21'),
 (340, 34, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Infiniti
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (341, 35, 'Q50'),
 (342, 35, 'Q60'),
 (343, 35, 'QX50'),
@@ -812,11 +626,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (348, 35, 'M'),
 (349, 35, 'FX'),
 (350, 35, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- SsangYong
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (351, 36, 'Tivoli'),
 (352, 36, 'Korando'),
 (353, 36, 'Rexton'),
@@ -827,11 +636,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (358, 36, 'Stavic'),
 (359, 36, 'Chairman'),
 (360, 36, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Lancia
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (361, 37, 'Ypsilon'),
 (362, 37, 'Delta'),
 (363, 37, 'Thema'),
@@ -842,11 +646,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (368, 37, 'Beta'),
 (369, 37, 'Prisma'),
 (370, 37, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Lada
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (371, 38, 'Niva'),
 (372, 38, 'Granta'),
 (373, 38, 'Vesta'),
@@ -857,11 +656,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (378, 38, 'Samara'),
 (379, 38, '2101'),
 (380, 38, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Dodge
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (381, 39, 'Challenger'),
 (382, 39, 'Charger'),
 (383, 39, 'Durango'),
@@ -872,11 +666,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (388, 39, 'Viper'),
 (389, 39, 'Dart'),
 (390, 39, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Chrysler
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (391, 40, '300C'),
 (392, 40, 'Voyager'),
 (393, 40, 'Pacifica'),
@@ -887,11 +676,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (398, 40, 'Neon'),
 (399, 40, 'LeBaron'),
 (400, 40, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Abarth
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (401, 41, '500'),
 (402, 41, '595'),
 (403, 41, '695'),
@@ -902,11 +686,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (408, 41, 'Simca'),
 (409, 41, '1000'),
 (410, 41, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- MG
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (411, 42, 'ZS'),
 (412, 42, 'HS'),
 (413, 42, '5'),
@@ -917,11 +696,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (418, 42, 'ZT'),
 (419, 42, 'RV8'),
 (420, 42, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Cupra
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (421, 43, 'Leon'),
 (422, 43, 'Ateca'),
 (423, 43, 'Formentor'),
@@ -932,11 +706,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (428, 43, 'Ronda'),
 (429, 43, 'Marbella'),
 (430, 43, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Aston Martin
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (431, 44, 'DB11'),
 (432, 44, 'Vantage'),
 (433, 44, 'DBS'),
@@ -947,11 +716,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (438, 44, 'Vanquish'),
 (439, 44, 'Bulldog'),
 (440, 44, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Bentley
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (441, 45, 'Continental'),
 (442, 45, 'Flying Spur'),
 (443, 45, 'Bentayga'),
@@ -962,11 +726,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (448, 45, 'Azure'),
 (449, 45, 'Eight'),
 (450, 45, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Ferrari
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (451, 46, '488'),
 (452, 46, 'F8'),
 (453, 46, 'Roma'),
@@ -977,11 +736,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (458, 46, 'Daytona'),
 (459, 46, 'Testarossa'),
 (460, 46, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Lamborghini
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (461, 47, 'Huracan'),
 (462, 47, 'Aventador'),
 (463, 47, 'Urus'),
@@ -992,11 +746,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (468, 47, 'Reventon'),
 (469, 47, 'Sian'),
 (470, 47, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Maserati
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (471, 48, 'Ghibli'),
 (472, 48, 'Quattroporte'),
 (473, 48, 'Levante'),
@@ -1007,11 +756,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (478, 48, 'Spyder'),
 (479, 48, 'Bora'),
 (480, 48, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- McLaren
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (481, 49, '720S'),
 (482, 49, '570S'),
 (483, 49, '600LT'),
@@ -1022,11 +766,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (488, 49, 'Senna'),
 (489, 49, 'Speedtail'),
 (490, 49, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Rolls-Royce
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (491, 50, 'Phantom'),
 (492, 50, 'Ghost'),
 (493, 50, 'Wraith'),
@@ -1037,11 +776,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (498, 50, 'Silver Spur'),
 (499, 50, 'Silver Cloud'),
 (500, 50, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Bugatti
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (501, 51, 'Chiron'),
 (502, 51, 'Veyron'),
 (503, 51, 'Divo'),
@@ -1052,11 +786,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (508, 51, 'Type 41'),
 (509, 51, 'Type 55'),
 (510, 51, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Lotus
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (511, 52, 'Emira'),
 (512, 52, 'Evora'),
 (513, 52, 'Elise'),
@@ -1067,11 +796,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (518, 52, 'Carlton'),
 (519, 52, 'Eclat'),
 (520, 52, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Alpine
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (521, 53, 'A110'),
 (522, 53, 'A310'),
 (523, 53, 'A610'),
@@ -1082,11 +806,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (528, 53, 'A450'),
 (529, 53, 'A480'),
 (530, 53, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Tata
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (531, 54, 'Nano'),
 (532, 54, 'Safari'),
 (533, 54, 'Harrier'),
@@ -1097,11 +816,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (538, 54, 'Indigo'),
 (539, 54, 'Sumo'),
 (540, 54, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Mahindra
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (541, 55, 'Thar'),
 (542, 55, 'Scorpio'),
 (543, 55, 'XUV500'),
@@ -1112,11 +826,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (548, 55, 'XUV300'),
 (549, 55, 'Verito'),
 (550, 55, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Great Wall
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (551, 56, 'Haval H6'),
 (552, 56, 'Haval Jolion'),
 (553, 56, 'Wingle'),
@@ -1127,11 +836,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (558, 56, 'Safe'),
 (559, 56, 'Soveran'),
 (560, 56, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- BYD
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (561, 57, 'Atto 3'),
 (562, 57, 'Han'),
 (563, 57, 'Tang'),
@@ -1142,11 +846,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (568, 57, 'Qin'),
 (569, 57, 'F3'),
 (570, 57, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Geely
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (571, 58, 'Coolray'),
 (572, 58, 'Atlas'),
 (573, 58, 'Emgrand'),
@@ -1157,11 +856,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (578, 58, 'Panda'),
 (579, 58, 'MK'),
 (580, 58, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Haval
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (581, 59, 'H6'),
 (582, 59, 'Jolion'),
 (583, 59, 'Dargo'),
@@ -1172,11 +866,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (588, 59, 'H5'),
 (589, 59, 'H8'),
 (590, 59, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Chery
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (591, 60, 'Tiggo'),
 (592, 60, 'Arrizo'),
 (593, 60, 'QQ'),
@@ -1187,11 +876,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (598, 60, 'Cowin'),
 (599, 60, 'Riich'),
 (600, 60, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Daihatsu
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (601, 61, 'Terios'),
 (602, 61, 'Sirion'),
 (603, 61, 'Materia'),
@@ -1202,11 +886,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (608, 61, 'Feroza'),
 (609, 61, 'Rocky'),
 (610, 61, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Isuzu
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (611, 62, 'D-Max'),
 (612, 62, 'MU-X'),
 (613, 62, 'Rodeo'),
@@ -1217,11 +896,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (618, 62, 'Bellett'),
 (619, 62, '117'),
 (620, 62, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Proton
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (621, 63, 'Saga'),
 (622, 63, 'Persona'),
 (623, 63, 'Iriz'),
@@ -1232,11 +906,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (628, 63, 'Wira'),
 (629, 63, 'Satria'),
 (630, 63, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Perodua
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (631, 64, 'Myvi'),
 (632, 64, 'Axia'),
 (633, 64, 'Bezza'),
@@ -1247,11 +916,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (638, 64, 'Viva'),
 (639, 64, 'Nautica'),
 (640, 64, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Saab
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (641, 65, '9-3'),
 (642, 65, '9-5'),
 (643, 65, '900'),
@@ -1262,11 +926,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (648, 65, '99'),
 (649, 65, 'Sonett'),
 (650, 65, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Trabant
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (651, 66, '601'),
 (652, 66, '600'),
 (653, 66, '1.1'),
@@ -1277,11 +936,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (658, 66, 'P2400'),
 (659, 66, 'P800'),
 (660, 66, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Wartburg
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (661, 67, '353'),
 (662, 67, '311'),
 (663, 67, '312'),
@@ -1292,11 +946,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (668, 67, '313'),
 (669, 67, '355'),
 (670, 67, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Moskvich
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (671, 68, '412'),
 (672, 68, '408'),
 (673, 68, '2140'),
@@ -1307,11 +956,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (678, 68, '400'),
 (679, 68, '401'),
 (680, 68, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Zastava
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (681, 69, 'Yugo'),
 (682, 69, '101'),
 (683, 69, '128'),
@@ -1322,11 +966,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (688, 69, 'Florida'),
 (689, 69, 'Skala'),
 (690, 69, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- GAZ
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (691, 70, 'Volga'),
 (692, 70, 'Chaika'),
 (693, 70, 'Pobeda'),
@@ -1337,11 +976,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (698, 70, '3111'),
 (699, 70, 'Tiger'),
 (700, 70, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- UAZ
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (701, 71, 'Patriot'),
 (702, 71, 'Hunter'),
 (703, 71, '469'),
@@ -1352,11 +986,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (708, 71, '3162'),
 (709, 71, '3163'),
 (710, 71, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Datsun
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (711, 72, 'Go'),
 (712, 72, 'Go+'),
 (713, 72, 'redi-GO'),
@@ -1367,11 +996,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (718, 72, '1200'),
 (719, 72, 'Fairlady'),
 (720, 72, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Hummer
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (721, 73, 'H2'),
 (722, 73, 'H3'),
 (723, 73, 'H1'),
@@ -1382,11 +1006,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (728, 73, 'SUT'),
 (729, 73, 'Pickup'),
 (730, 73, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Maybach
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (731, 74, '57'),
 (732, 74, '62'),
 (733, 74, 'Zeppelin'),
@@ -1397,11 +1016,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (738, 74, 'W3'),
 (739, 74, 'W5'),
 (740, 74, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Rover
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (741, 75, '75'),
 (742, 75, '45'),
 (743, 75, '25'),
@@ -1412,11 +1026,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (748, 75, '800'),
 (749, 75, 'SD1'),
 (750, 75, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Austin
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (751, 76, 'Mini'),
 (752, 76, 'Allegro'),
 (753, 76, 'Maestro'),
@@ -1427,11 +1036,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (758, 76, 'Maxi'),
 (759, 76, '1100'),
 (760, 76, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Morris
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (761, 77, 'Minor'),
 (762, 77, 'Marina'),
 (763, 77, 'Oxford'),
@@ -1442,11 +1046,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (768, 77, 'Fourteen'),
 (769, 77, 'Six'),
 (770, 77, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- TVR
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (771, 78, 'Griffith'),
 (772, 78, 'Chimaera'),
 (773, 78, 'Cerbera'),
@@ -1457,11 +1056,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (778, 78, 'Typhon'),
 (779, 78, 'Vixen'),
 (780, 78, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Noble
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (781, 79, 'M600'),
 (782, 79, 'M12'),
 (783, 79, 'M15'),
@@ -1472,11 +1066,6 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 (788, 79, 'Rossion'),
 (789, 79, 'F1'),
 (790, 79, 'Egyéb'),
-<<<<<<< HEAD
-=======
-
--- Koenigsegg
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 (791, 80, 'Jesko'),
 (792, 80, 'Regera'),
 (793, 80, 'Agera'),
@@ -1523,97 +1112,7 @@ INSERT INTO `users` (`id`, `username`, `email`, `phone_num`, `HASH`, `created`, 
 --
 
 --
-<<<<<<< HEAD
 -- Megkötések a táblához `cars`
-=======
--- Indexes for table `brands`
---
-ALTER TABLE `brands`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `cars`
---
-ALTER TABLE `cars`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `brand_id` (`brand_id`),
-  ADD KEY `type_id` (`type_id`),
-  ADD KEY `color_id` (`color_id`),
-  ADD KEY `seller_id` (`seller_id`);
-
---
--- Indexes for table `colors`
---
-ALTER TABLE `colors`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `pictues`
---
-ALTER TABLE `pictues`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `car_id` (`car_id`);
-
---
--- Indexes for table `types`
---
-ALTER TABLE `types`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `brand_id` (`brand_id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `brands`
---
-ALTER TABLE `brands`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
-
---
--- AUTO_INCREMENT for table `cars`
---
-ALTER TABLE `cars`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT for table `colors`
---
-ALTER TABLE `colors`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `pictues`
---
-ALTER TABLE `pictues`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `types`
---
-ALTER TABLE `types`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=801;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `cars`
->>>>>>> d8ef3b19457a0d48415432365552e21845f4b40e
 --
 ALTER TABLE `cars`
   ADD CONSTRAINT `cars_ibfk_1` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`id`),
