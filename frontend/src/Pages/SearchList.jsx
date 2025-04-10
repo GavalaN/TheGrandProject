@@ -23,7 +23,7 @@ export default function SearchList() {
   const params = useParams();
   const [cars, setCars] = useState([])
   const [dataCount, setDataCount] = useState(0)
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(10);
   const [page, setPage] = useState(params.page === undefined? 1 : params.page)
   const navigate = useNavigate();
   const location = useLocation();
