@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Ápr 10. 01:16
--- Kiszolgáló verziója: 10.4.27-MariaDB
--- PHP verzió: 8.1.12
+-- Létrehozás ideje: 2025. Ápr 10. 10:57
+-- Kiszolgáló verziója: 10.4.20-MariaDB
+-- PHP verzió: 7.3.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Adatbázis: `carplace`
 --
+CREATE DATABASE IF NOT EXISTS `carplace` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `carplace`;
 
 -- --------------------------------------------------------
 
@@ -27,11 +29,10 @@ SET time_zone = "+00:00";
 -- Tábla szerkezet ehhez a táblához `brands`
 --
 
-CREATE TABLE IF NOT EXISTS `brands` (
-  `id` int(9) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `brands` (
+  `id` int(9) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- A tábla adatainak kiíratása `brands`
@@ -125,8 +126,8 @@ INSERT INTO `brands` (`id`, `name`) VALUES
 -- Tábla szerkezet ehhez a táblához `cars`
 --
 
-CREATE TABLE IF NOT EXISTS `cars` (
-  `id` int(9) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `cars` (
+  `id` int(9) NOT NULL,
   `brand_id` int(9) NOT NULL,
   `type_id` int(9) NOT NULL,
   `description` text DEFAULT NULL,
@@ -145,20 +146,15 @@ CREATE TABLE IF NOT EXISTS `cars` (
   `drive` varchar(50) NOT NULL,
   `trans_type` varchar(50) NOT NULL,
   `Year` int(9) NOT NULL,
-  `k_weight` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `brand_id` (`brand_id`),
-  KEY `type_id` (`type_id`),
-  KEY `color_id` (`color_id`),
-  KEY `seller_id` (`seller_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `k_weight` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- A tábla adatainak kiíratása `cars`
 --
 
 INSERT INTO `cars` (`id`, `brand_id`, `type_id`, `description`, `km_clock`, `color_id`, `price`, `seller_id`, `upload_date`, `sold`, `body_type`, `num_of_cyl`, `horsepower`, `cc`, `engine_type`, `fuel_type`, `drive`, `trans_type`, `Year`, `k_weight`) VALUES
-(1, 1, 1, 'Megbízható a gépjármű!', 40000, 3, 1800000, 1, '2024-01-10 10:00:00', 0, 'ferdehátú', 4, 139, 1798, 'Soros', 'benzin', 'FWD', 'Automata', 2022, 1400),
+(1, 1, 1, 'Megbízható a gépjármű!', 40000, 3, 1800000, 1, '2024-01-10 10:00:00', 0, 'ferdehátú', 4, 139, 1798, 'Soros', 'dízel', 'FWD', 'Automata', 2022, 1400),
 (2, 2, 12, 'Kényelmes és tágas.', 25000, 2, 25000000, 2, '2024-02-05 14:30:00', 0, 'szedán', 4, 505, 4000, 'Soros', 'benzin', 'AWD', 'DCT', 2021, 2500),
 (3, 3, 22, 'Erő és luxus életmód', 60000, 5, 32000000, 3, '2023-12-01 09:45:00', 1, 'szedán', 6, 400, 3000, 'V', 'plug-in hibrid (benzin)', 'AWD', 'Automata', 2023, 2600),
 (4, 2, 11, 'Eladó sorba került BMW 320i autóm! Amit tudni kell róla: 2006 év PopsnBangs Szakadás mentes beltér. M lökhárítók, M felni, M kormány. Angel Eyes. M3 visszapillantók. Működő Klíma. Vétel ár: 1,800,000ft Csere érdekelhet, kisebb-nagyobb nautóra!', 20000, 1, 1800000, 2, '2024-03-15 16:20:00', 0, 'kupé', 6, 382, 2998, 'Soros', 'benzin', 'RWD', 'Manuális', 2006, 1700),
@@ -166,7 +162,7 @@ INSERT INTO `cars` (`id`, `brand_id`, `type_id`, `description`, `km_clock`, `col
 (6, 6, 57, 'Városi cirkáló.', 5000, 2, 3500000, 2, '2024-01-25 12:50:00', 1, 'ferdehátú', -1, 220, 0, 'Soros', 'elektromos', 'FWD', 'Automata', 2021, 1500),
 (7, 7, 61, 'Hatékony, dinamikus járgány.', 30000, 7, 1900000, 1, '2024-02-20 11:15:00', 0, 'kombi', 4, 149, 1997, 'Soros', 'benzin', 'FWD', 'CVT', 2020, 1400),
 (8, 8, 71, 'Családi kombi.', 250000, 2, 1200000, 2, '2023-10-10 07:35:00', 0, 'kombi', 4, 150, 1995, 'Soros', 'benzin', 'FWD', 'Manuális', 2010, 1400),
-(13, 9, 85, 'Takarékos, környezetbarát.', 50000, 1, 1500000, 3, '2025-02-24 11:43:38', 0, 'ferdehátú', 4, 120, 2000, 'Soros', 'hibrid (benzin)', 'FWD', 'Automata', 2020, 1300);
+(9, 9, 85, 'Takarékos, környezetbarát.', 50000, 1, 1500000, 3, '2025-02-24 11:43:38', 0, 'ferdehátú', 4, 120, 2000, 'Soros', 'hibrid (benzin)', 'FWD', 'Automata', 2020, 1300);
 
 -- --------------------------------------------------------
 
@@ -174,12 +170,11 @@ INSERT INTO `cars` (`id`, `brand_id`, `type_id`, `description`, `km_clock`, `col
 -- Tábla szerkezet ehhez a táblához `colors`
 --
 
-CREATE TABLE IF NOT EXISTS `colors` (
-  `id` int(9) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `colors` (
+  `id` int(9) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `hexcode` varchar(9) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `hexcode` varchar(9) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- A tábla adatainak kiíratása `colors`
@@ -233,13 +228,11 @@ INSERT INTO `colors` (`id`, `name`, `hexcode`) VALUES
 -- Tábla szerkezet ehhez a táblához `pictues`
 --
 
-CREATE TABLE IF NOT EXISTS `pictues` (
-  `id` int(8) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pictues` (
+  `id` int(8) NOT NULL,
   `car_id` int(11) NOT NULL,
-  `filePath` varchar(124) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `car_id` (`car_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `filePath` varchar(124) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- A tábla adatainak kiíratása `pictues`
@@ -255,7 +248,7 @@ INSERT INTO `pictues` (`id`, `car_id`, `filePath`) VALUES
 (17, 5, '5.jpg'),
 (18, 8, '8.jpg'),
 (19, 6, '6.jpg'),
-(20, 13, '13.jpg');
+(21, 9, '9.jpg');
 
 -- --------------------------------------------------------
 
@@ -263,13 +256,11 @@ INSERT INTO `pictues` (`id`, `car_id`, `filePath`) VALUES
 -- Tábla szerkezet ehhez a táblához `types`
 --
 
-CREATE TABLE IF NOT EXISTS `types` (
-  `id` int(9) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `types` (
+  `id` int(9) NOT NULL,
   `brand_id` int(9) NOT NULL,
-  `type_name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `brand_id` (`brand_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=801 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `type_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- A tábla adatainak kiíratása `types`
@@ -1083,8 +1074,8 @@ INSERT INTO `types` (`id`, `brand_id`, `type_name`) VALUES
 -- Tábla szerkezet ehhez a táblához `users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(9) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `users` (
+  `id` int(9) NOT NULL,
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `phone_num` varchar(50) NOT NULL,
@@ -1094,9 +1085,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   `SALT` varchar(64) NOT NULL,
   `IsActive` int(1) NOT NULL,
   `ResetPasswordToken` varchar(255) DEFAULT NULL,
-  `ResetPasswordTokenExpiry` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `ResetPasswordTokenExpiry` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- A tábla adatainak kiíratása `users`
@@ -1106,6 +1096,92 @@ INSERT INTO `users` (`id`, `username`, `email`, `phone_num`, `HASH`, `created`, 
 (1, 'admin', 'tulakm@kkszki.hu', '+36701234560', '988b1bb6c60e2af353fa3a3b40bb4e5b49157f055cc6bfbe070734edadc68a71', '2025-02-04 11:05:38', 1, '$2a$12$mPjZeCwK0iDVK7oL3v9w7u', 1, NULL, NULL),
 (2, 'user', 'gavalan@kkszki.hu', '+36201234567', 'fe4bf7f254b1fea0f1a6e342f42a34dd3c740f47f5d5dce8ced90959f0dbccea', '2025-02-18 12:25:08', 0, '$2a$12$nph8l98PIUwIj2BwXVan2O', 1, NULL, NULL),
 (3, 'budaM', 'budahazim@kkszki.hu', '+36302345678', 'd913e353d8183cfa64b4e4f2c2f9456a8a5d248996a27c6241f242afc8736da8', '2025-02-18 13:10:14', 0, '$2a$12$qG5w9g0B6dym0FRJgxZCX.', 1, NULL, NULL);
+
+--
+-- Indexek a kiírt táblákhoz
+--
+
+--
+-- A tábla indexei `brands`
+--
+ALTER TABLE `brands`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- A tábla indexei `cars`
+--
+ALTER TABLE `cars`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `brand_id` (`brand_id`),
+  ADD KEY `type_id` (`type_id`),
+  ADD KEY `color_id` (`color_id`),
+  ADD KEY `seller_id` (`seller_id`);
+
+--
+-- A tábla indexei `colors`
+--
+ALTER TABLE `colors`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- A tábla indexei `pictues`
+--
+ALTER TABLE `pictues`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `car_id` (`car_id`);
+
+--
+-- A tábla indexei `types`
+--
+ALTER TABLE `types`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `brand_id` (`brand_id`);
+
+--
+-- A tábla indexei `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- A kiírt táblák AUTO_INCREMENT értéke
+--
+
+--
+-- AUTO_INCREMENT a táblához `brands`
+--
+ALTER TABLE `brands`
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+
+--
+-- AUTO_INCREMENT a táblához `cars`
+--
+ALTER TABLE `cars`
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT a táblához `colors`
+--
+ALTER TABLE `colors`
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
+--
+-- AUTO_INCREMENT a táblához `pictues`
+--
+ALTER TABLE `pictues`
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT a táblához `types`
+--
+ALTER TABLE `types`
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=801;
+
+--
+-- AUTO_INCREMENT a táblához `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Megkötések a kiírt táblákhoz
