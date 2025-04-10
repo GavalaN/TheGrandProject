@@ -272,7 +272,7 @@ export default function NewAdPictures() {
         show: true,
         title: "Sikeres törlés",
         text: `A(z) ${filename} nevű kép sikeresen törölve lett.`,
-        theme: "success",
+        theme: "information",
       })
     } else {
       setModalInfo({
