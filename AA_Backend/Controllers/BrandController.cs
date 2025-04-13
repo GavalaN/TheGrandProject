@@ -82,9 +82,9 @@ namespace AA_Backend.Controllers
                     {
                         return StatusCode(401,"Nem vagy bejelentkezve vagy nincs megfelelő jogosultságod");
                     }
-                    if (context.Brands.Any(b => b.Id == brand.Id) == false)
+                    if (context.Brands.Any(b => b.Id == brand.Id) == true)
                     {
-                        return BadRequest("Ez a márka nem létezik!");
+                        return BadRequest("Ez a márka már létezik!");
                     }
                     await context.Brands.AddAsync(brand);
                     await context.SaveChangesAsync();
